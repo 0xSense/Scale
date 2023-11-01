@@ -1,1 +1,1 @@
-# Game-Jam--project-name-unknown-
+# Game-Jam-project-name-unknown
