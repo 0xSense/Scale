@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cipd5odixnpm8"]
+[gd_scene load_steps=5 format=3 uid="uid://cipd5odixnpm8"]
 
 [ext_resource type="Script" path="res://main/main.cs" id="1_kesy7"]
-[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/game_camera.tscn" id="2_vkydl"]
+[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/overworld_game_camera.tscn" id="2_vkydl"]
+[ext_resource type="PackedScene" path="res://scenes/combat_scene/combat_scene.tscn" id="3_fx0jb"]
+[ext_resource type="PackedScene" uid="uid://0a2y4iigyw4" path="res://scenes/combat_game_camera.tscn" id="4_sxii7"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_kesy7")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_vkydl")]
+
+[node name="GameCamera" parent="." instance=ExtResource("3_fx0jb")]
+
+[node name="combat_game_camera" parent="." instance=ExtResource("4_sxii7")]
