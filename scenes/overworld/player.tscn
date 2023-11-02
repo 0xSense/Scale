@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cshcvcas2jerk"]
+
+[ext_resource type="Script" path="res://scenes/overworld/PlayerMovement.cs" id="1_5dqim"]
+[ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2at6a"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tdw5"]
+size = Vector2(1150, 50)
+
+[node name="player_scene" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(71, -9)
+script = ExtResource("1_5dqim")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_3574l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_2at6a")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(72, 40)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-1.00002, 51)
+scale = Vector2(0.998264, 0.0771605)
+texture = ExtResource("2_dq3xf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 51)
+shape = SubResource("RectangleShape2D_4tdw5")
