@@ -24,7 +24,6 @@ public partial class Player : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 
-
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
@@ -56,7 +55,6 @@ public partial class Player : CharacterBody2D
 			velocity.X += speed * accelerationRate;
 		}
 
-
 		if (!Input.IsActionPressed("ui_left") && !Input.IsActionPressed("ui_right"))
 		{
 			velocity.X = (float)Mathf.Lerp(velocity.X, 0, 0.257);
@@ -71,7 +69,6 @@ public partial class Player : CharacterBody2D
 			velocity.X = Mathf.Clamp(velocity.X, -maxWalkSpeed, maxWalkSpeed);
 		}
 
-		GD.Print(velocity.X);
 		Velocity = velocity;
 		MoveAndSlide();
 
