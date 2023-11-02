@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cipd5odixnpm8"]
+[gd_scene load_steps=6 format=3 uid="uid://cipd5odixnpm8"]
 
 [ext_resource type="Script" path="res://main/main.cs" id="1_kesy7"]
 [ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/game_camera.tscn" id="2_vkydl"]
+[ext_resource type="Script" path="res://main/CardTestNode.cs" id="3_rr1sg"]
+[ext_resource type="Resource" uid="uid://dubg7k3yfq3wm" path="res://data_resources/card_data/MovementCardExample.tres" id="4_kwhin"]
+[ext_resource type="Script" path="res://main/GeneralTestNode.cs" id="5_tchrg"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_kesy7")
 
 [node name="Camera2D" parent="." instance=ExtResource("2_vkydl")]
+
+[node name="CardTestNode" type="Node2D" parent="."]
+script = ExtResource("3_rr1sg")
+_data = ExtResource("4_kwhin")
+
+[node name="GeneralTestNode" type="Node2D" parent="."]
+script = ExtResource("5_tchrg")
