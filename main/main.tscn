@@ -21,3 +21,4 @@ script = ExtResource("5_tchrg")
 
 [node name="MasterDeck" type="Node2D" parent="."]
 script = ExtResource("6_qtf4t")
+_cardTypes = [ExtResource("4_kwhin")]
