@@ -8,6 +8,8 @@ public partial class PlayerMovement : CharacterBody2D
 	public float speedDiff;
 	public const float jumpVelocity = -400.0f;
 	public const float accelerationRate = 40f;
+	public const int jumpBufferTimer = 15; // 1/4s = 15/60
+	public int jumpBufferCounter;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -18,20 +20,30 @@ public partial class PlayerMovement : CharacterBody2D
 
 		// Add the gravity.
 		if (!IsOnFloor())
+		{
 			velocity.Y += gravity * (float)delta;
+		}
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		{ 
+			jumpBufferCounter = jumpBufferTimer;
+		}
+		if (jumpBufferCounter > 0)
+		{
+			jumpBufferCounter -= 1;
+		}
+		if (jumpBufferCounter > 0 && IsOnFloor()){
 			velocity.Y = jumpVelocity;
+			jumpBufferCounter = 0;
+		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		if (Input.IsActionPressed("ui_left")) {
-			//speedDiff = maxSpeed - Math.Abs(Velocity.X); 
+		// Movement Based on the X axsis
+		if (Input.IsActionPressed("ui_left")) 
+		{
 			velocity.X -= accelerationRate;
 		}
 		else if (Input.IsActionPressed("ui_right")) {
-			//speedDiff = maxSpeed - Math.Abs(Velocity.X); 
 			velocity.X += accelerationRate;
 		}
 		else 
@@ -39,21 +51,6 @@ public partial class PlayerMovement : CharacterBody2D
 			velocity.X = (float)Mathf.Lerp(velocity.X, 0, 0.257);
 		}
 
-		/*
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			speedDiff = maxSpeed - Math.Abs(Velocity.X); 
-			currentSpeed = speedDiff * accelerationRate;
-			velocity.X = direction.X * currentSpeed;
-		}
-		else
-		{
-			speedDiff = maxSpeed - Math.Abs(Velocity.X); 
-			currentSpeed = speedDiff * accelerationRate;
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, currentSpeed);
-		}
-*/		
 		velocity.X = Mathf.Clamp(velocity.X, -maxSpeed, maxSpeed);
 		Velocity = velocity;
 		MoveAndSlide();
