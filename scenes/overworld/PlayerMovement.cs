@@ -29,9 +29,13 @@ public partial class PlayerMovement : CharacterBody2D
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
-			speedDiff  = maxSpeed - Velocity.X;
+			speedDiff = maxSpeed - Math.Abs(Velocity.X);
 			currentSpeed = speedDiff * accelerationRate;
 			velocity.X = direction.X * currentSpeed;
+			GD.Print(Velocity.X);
+			GD.Print(speedDiff);
+			GD.Print(currentSpeed);
+			GD.Print(velocity.X);
 		}
 		else
 		{
