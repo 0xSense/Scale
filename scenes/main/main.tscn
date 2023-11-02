@@ -15,12 +15,12 @@ script = ExtResource("1_6ei66")
 [node name="GeneralTestNode" type="Node2D" parent="."]
 script = ExtResource("5_6bc1x")
 
-[node name="MasterDeck" type="Node2D" parent="GeneralTestNode"]
-script = ExtResource("6_77fqh")
-_cardTypes = [ExtResource("4_rwdgt"), ExtResource("7_4lg8u"), ExtResource("8_3vddy")]
-
 [node name="Camera2D" parent="." instance=ExtResource("2_5ntls")]
 
 [node name="CardTestNode" type="Node2D" parent="."]
 script = ExtResource("3_k0m6s")
 _data = ExtResource("4_rwdgt")
+
+[node name="MasterDeck" type="Node2D" parent="."]
+script = ExtResource("6_77fqh")
+_cardTypes = [ExtResource("4_rwdgt"), ExtResource("7_4lg8u"), ExtResource("8_3vddy")]
