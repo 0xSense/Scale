@@ -4,8 +4,10 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	public const float maxSpeed = 400f;
+	public const float maxWalkSpeed = 200f;
 	public const float jumpVelocity = -400.0f;
-	public const float accelerationRate = 100 * 0.4f;
+	public float speed = 100;
+	public float accelerationRate = 0.4f;
 	public const int jumpBufferTimer = 15; // 1/4s = 15/60
 	public int jumpBufferCounter;
 
@@ -40,21 +42,29 @@ public partial class Player : CharacterBody2D
 		// Movement Based on the X axis
 		if (Input.IsActionPressed("ui_left"))
 		{
-			velocity.X -= accelerationRate;
+			velocity.X -= speed * accelerationRate;
 		}
 
 		if (Input.IsActionPressed("ui_right"))
 		{
-			velocity.X += accelerationRate;
+			velocity.X += speed * accelerationRate;
 		}
+
 
 		if (!Input.IsActionPressed("ui_left") && !Input.IsActionPressed("ui_right"))
 		{
 			velocity.X = (float)Mathf.Lerp(velocity.X, 0, 0.257);
 		}
 
+		if (Input.IsActionPressed("ui_sprint"))
+		{
+			velocity.X = Mathf.Clamp(velocity.X, -maxSpeed, maxSpeed);
+		}
+		else
+		{
+			velocity.X = Mathf.Clamp(velocity.X, -maxWalkSpeed, maxWalkSpeed);
+		}
 
-		velocity.X = Mathf.Clamp(velocity.X, -maxSpeed, maxSpeed);
 		GD.Print(velocity.X);
 		Velocity = velocity;
 		MoveAndSlide();
