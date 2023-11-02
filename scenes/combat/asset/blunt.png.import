@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmqcs1vqo2kms"
-path="res://.godot/imported/blunt_damage_asset.png-34f2b1099b12c0f836a1ffc35aa188b3.ctex"
+path="res://.godot/imported/blunt.png-8a3f160d2ec2876726d3dd10741a7f89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/blunt_damage_asset.png"
-dest_files=["res://.godot/imported/blunt_damage_asset.png-34f2b1099b12c0f836a1ffc35aa188b3.ctex"]
+source_file="res://scenes/combat/asset/blunt.png"
+dest_files=["res://.godot/imported/blunt.png-8a3f160d2ec2876726d3dd10741a7f89.ctex"]
 
 [params]
 
