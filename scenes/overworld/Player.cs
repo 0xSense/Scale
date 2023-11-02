@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	public Vector2 collisionShapeSize;
 	public const float maxSpeed = 400f;
 	public const float maxWalkSpeed = 200f;
 	public const float jumpVelocity = -400.0f;
@@ -13,8 +14,13 @@ public partial class Player : CharacterBody2D
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	
+	public override void _Ready()
+    {
+        collisionShapeSize = GetNode<CollisionShape2D>("./CollisionShape2D").Scale;
+    }
 
-	public override void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
@@ -69,5 +75,14 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 
+		// Crounching
+		if (Input.IsActionPressed("ui_crouch"))
+		{
+			GetNode<CollisionShape2D>("./CollisionShape2D").Scale = new Vector2(collisionShapeSize[0], collisionShapeSize[1] / 2);
+		} 
+		else
+		{
+			GetNode<CollisionShape2D>("./CollisionShape2D").Scale = collisionShapeSize;
+		} 
 	}
 }

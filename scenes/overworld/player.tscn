@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5jqr3"]
-radius = 7.5
-height = 15.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ltim"]
+size = Vector2(16, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tdw5"]
 size = Vector2(1150, 50)
@@ -26,7 +25,7 @@ texture = ExtResource("1_3574l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 0.5)
-shape = SubResource("CapsuleShape2D_5jqr3")
+shape = SubResource("RectangleShape2D_6ltim")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
