@@ -1,8 +1,9 @@
 // This class manages all card types in the game
-
 namespace Systems.Combat;
 
-public class MasterDeck
+using Godot;
+
+public partial class MasterDeck : Node2D
 {
 
 }
