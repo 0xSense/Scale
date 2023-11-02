@@ -25,8 +25,11 @@ public partial class CardData : Resource
     [Export] private CardRarity _rarity;
     [Export] private CardType _type;
 
+    [Export] private String _name;
+
     public CardRarity Rarity => _rarity;
     public CardType Type => _type;
+    public String Name => _name;
 
     private int _uid;
     public int UID => _uid;
@@ -38,7 +41,7 @@ public partial class CardData : Resource
     public CardData(CardRarity rarity, CardType type) : base()
     {
         _uid = _usedIds++;
-        GD.Print("Card: " + _uid);
+        //GD.Print("Card: " + _uid);
     }
 
     // Operator overrides for easy comparisons of card data. Don't worry about the implementation here unless you really think it's bugged.
@@ -64,6 +67,11 @@ public partial class CardData : Resource
     public override int GetHashCode()
     {
         return _uid.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return "Card " + _name;
     }
 
 }

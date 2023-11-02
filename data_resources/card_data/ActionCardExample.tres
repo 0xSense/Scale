@@ -6,3 +6,4 @@
 script = ExtResource("1_ykw2l")
 _rarity = 0
 _type = 2
+_name = "Action"
