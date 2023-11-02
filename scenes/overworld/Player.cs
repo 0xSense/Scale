@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class PlayerMovement : CharacterBody2D
+public partial class Player : CharacterBody2D
 {
 	public const float maxSpeed = 432.130f;
-	public float currentSpeed;
+	public float speed;
 	public float speedDiff;
 	public const float jumpVelocity = -400.0f;
-	public const float accelerationRate = 40f;
+	public const float accelerationRate = 0.4f;
 	public const int jumpBufferTimer = 15; // 1/4s = 15/60
 	public int jumpBufferCounter;
 
@@ -27,24 +27,26 @@ public partial class PlayerMovement : CharacterBody2D
 		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{ 
-			jumpBufferCounter = jumpBufferTimer;
+			velocity.Y = jumpVelocity;
 		}
 		if (jumpBufferCounter > 0)
 		{
 			jumpBufferCounter -= 1;
 		}
 		if (jumpBufferCounter > 0 && IsOnFloor()){
-			velocity.Y = jumpVelocity;
+			
 			jumpBufferCounter = 0;
 		}
 
 		// Movement Based on the X axsis
 		if (Input.IsActionPressed("ui_left")) 
 		{
-			velocity.X -= accelerationRate;
+			speedDiff = maxSpeed - Math.Abs(velocity.X);
+			velocity.X -= speedDiff * accelerationRate;
 		}
 		else if (Input.IsActionPressed("ui_right")) {
-			velocity.X += accelerationRate;
+			speedDiff = maxSpeed - Math.Abs(velocity.X);
+			velocity.X += speedDiff * accelerationRate;
 		}
 		else 
 		{
@@ -52,6 +54,8 @@ public partial class PlayerMovement : CharacterBody2D
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -maxSpeed, maxSpeed);
+		GD.Print(maxSpeed);
+		GD.Print(velocity.X);
 		Velocity = velocity;
 		MoveAndSlide();
 		

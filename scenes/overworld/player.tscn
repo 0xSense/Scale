@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cshcvcas2jerk"]
 
-[ext_resource type="Script" path="res://scenes/overworld/PlayerMovement.cs" id="1_5dqim"]
+[ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
 
@@ -18,7 +18,7 @@ size = Vector2(343.5, 33)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(71, -8)
-script = ExtResource("1_5dqim")
+script = ExtResource("1_4vnmq")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
