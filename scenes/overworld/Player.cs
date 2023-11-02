@@ -44,7 +44,12 @@ public partial class Player : CharacterBody2D
 			speedDiff = maxSpeed - Math.Abs(velocity.X);
 			velocity.X -= speedDiff * accelerationRate;
 		}
-		else if (Input.IsActionPressed("ui_right")) {
+		else 
+		{
+			velocity.X = (float)Mathf.Lerp(velocity.X, 0, 0.257);
+		}
+		
+		if (Input.IsActionPressed("ui_right")) {
 			speedDiff = maxSpeed - Math.Abs(velocity.X);
 			velocity.X += speedDiff * accelerationRate;
 		}
@@ -54,7 +59,6 @@ public partial class Player : CharacterBody2D
 		}
 
 		velocity.X = Mathf.Clamp(velocity.X, -maxSpeed, maxSpeed);
-		GD.Print(maxSpeed);
 		GD.Print(velocity.X);
 		Velocity = velocity;
 		MoveAndSlide();
