@@ -13,6 +13,4 @@ public partial class GeneralTestNode : Node2D
         CardData card2 = new();
 
     }
-    
-
 }
