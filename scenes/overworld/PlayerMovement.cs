@@ -3,11 +3,11 @@ using System;
 
 public partial class PlayerMovement : CharacterBody2D
 {
-	public const float maxSpeed = 300.0f;
+	public const float maxSpeed = 1000.0f;
 	public float currentSpeed;
 	public float speedDiff;
 	public const float jumpVelocity = -400.0f;
-	public const float accelerationRate = 0.8f;
+	public const float accelerationRate = 0.3f;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -26,23 +26,36 @@ public partial class PlayerMovement : CharacterBody2D
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
+		if (Input.IsActionPressed("ui_left")) {
+			speedDiff = maxSpeed - Math.Abs(Velocity.X); 
+			velocity.X = -(speedDiff * accelerationRate);
+		}
+		else if (Input.IsActionPressed("ui_right")) {
+			speedDiff = maxSpeed - Math.Abs(Velocity.X); 
+			velocity.X = speedDiff * accelerationRate;
+		}
+		else 
+		{
+			velocity.X = 0;
+		}
+
+		/*
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
-			speedDiff = maxSpeed - Math.Abs(Velocity.X);
+			speedDiff = maxSpeed - Math.Abs(Velocity.X); 
 			currentSpeed = speedDiff * accelerationRate;
 			velocity.X = direction.X * currentSpeed;
-			GD.Print(Velocity.X);
-			GD.Print(speedDiff);
-			GD.Print(currentSpeed);
-			GD.Print(velocity.X);
 		}
 		else
 		{
+			speedDiff = maxSpeed - Math.Abs(Velocity.X); 
+			currentSpeed = speedDiff * accelerationRate;
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, currentSpeed);
 		}
-
+*/
 		Velocity = velocity;
 		MoveAndSlide();
+		
 	}
 }
