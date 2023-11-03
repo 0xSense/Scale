@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=11 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
+[ext_resource type="Script" path="res://scenes/overworld/Pathfinding.cs" id="4_djmuh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
 radius = 7.5
@@ -13,6 +14,20 @@ size = Vector2(1150, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kfju"]
 size = Vector2(343.5, 33)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_mj5mb"]
+vertices = PackedVector2Array(-446, -102, -106, -103, -105, -16, -446, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-446, -16, -105, -16, -106, -103, -446, -102)])
+
+[sub_resource type="Curve2D" id="Curve2D_s14n8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -4, 31, 0, 0, 0, 0, 310, 30, 0, 0, 0, 0, -4, 31)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syloq"]
+size = Vector2(336.999, 82.9964)
 
 [node name="player_scene" type="Node2D"]
 
@@ -32,7 +47,6 @@ position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_4x2bo")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5, 5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(72, 40)
@@ -57,3 +71,35 @@ texture = ExtResource("2_dq3xf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-346, -36)
 shape = SubResource("RectangleShape2D_5kfju")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_mj5mb")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-430, -90)
+curve = SubResource("Curve2D_s14n8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-4, 31)
+rotation = -0.0031847
+
+[node name="Enemy_1" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+script = ExtResource("4_djmuh")
+_speed = 100.0
+_acceleration = 0.4
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Enemy_1"]
+scale = Vector2(0.00868054, 0.0200617)
+texture = ExtResource("2_dq3xf")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Path2D/PathFollow2D/Enemy_1"]
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D/Enemy_1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Enemy_1/Area2D"]
+position = Vector2(158.499, 0.00478745)
+shape = SubResource("RectangleShape2D_syloq")
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy_1/Area2D" to="Path2D/PathFollow2D/Enemy_1" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Path2D/PathFollow2D/Enemy_1/Area2D" to="Path2D/PathFollow2D/Enemy_1" method="_on_area_2d_body_exited"]
