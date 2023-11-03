@@ -4,6 +4,17 @@
 
 [resource]
 script = ExtResource("1_ykw2l")
-_rarity = 0
-_type = 2
 _name = "Action"
+_type = 2
+_rarity = 0
+_actionPointCost = 1
+_movementPointCost = 1
+_target = 0
+_damageTypes = [2, 3]
+_damageValues = [10, 5]
+_drawEffects = [0]
+_drawQuantities = [2]
+_buffs = [0]
+_buffDuration = [100.0]
+_debuffs = []
+_debuffDuration = []
