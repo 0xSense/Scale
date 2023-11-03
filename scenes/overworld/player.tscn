@@ -20,6 +20,7 @@ size = Vector2(343.5, 33)
 position = Vector2(71, -8)
 script = ExtResource("1_4vnmq")
 _walkSpeed = 450.0
+_sprintSpeed = 1020.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
