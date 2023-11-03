@@ -22,11 +22,6 @@ public partial class MovingPlatform : StaticBody2D
 			{
 				Position += new Vector2(_movingSpeed, 0) * (float)delta;
 			} 
-			else
-			{
-				GD.Print(_startingPosition.X);
-				GD.Print(Position.X);
-			}
 		} 
 		else if (_Y)
 		{
