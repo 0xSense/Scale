@@ -1,11 +1,12 @@
 using Godot;
 using System;
 
-public partial class Area2D : Godot.Area2D
+public partial class LeverCollision : Godot.Area2D
 {
 	private Sprite2D _on;
 	private Sprite2D _off;
 	private bool _state;
+	
 
     public override void _Ready()
     {
@@ -18,7 +19,7 @@ public partial class Area2D : Godot.Area2D
     public void _on_body_entered(Node2D body)
 	{
 		GD.Print("Body entered the collision area!");
-		
+
 		switch(_state){
 			case true:
 				_off.Visible = true;

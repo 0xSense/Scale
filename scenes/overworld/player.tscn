@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=11 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
 [ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="4_5f14t"]
-[ext_resource type="Script" path="res://scenes/overworld/Area2D.cs" id="4_xe5v2"]
+[ext_resource type="Script" path="res://scenes/overworld/LeverCollision.cs" id="4_l8clh"]
+[ext_resource type="Script" path="res://scenes/overworld/LeverInteract.cs" id="6_xgl5r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
 radius = 7.5
@@ -17,7 +18,7 @@ size = Vector2(1150, 50)
 size = Vector2(343.5, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1py"]
-size = Vector2(89, 42)
+size = Vector2(72, 32)
 
 [node name="player_scene" type="Node2D"]
 
@@ -67,12 +68,13 @@ shape = SubResource("RectangleShape2D_5kfju")
 
 [node name="Lever" type="Node2D" parent="."]
 position = Vector2(-206, 58)
+metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="Lever"]
-script = ExtResource("4_xe5v2")
+script = ExtResource("4_l8clh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/Area2D"]
-position = Vector2(0, -14)
+position = Vector2(1, -9)
 shape = SubResource("RectangleShape2D_mw1py")
 
 [node name="Off" type="Sprite2D" parent="Lever"]
@@ -81,8 +83,29 @@ scale = Vector2(0.005, -0.025)
 texture = ExtResource("4_5f14t")
 
 [node name="On" type="Sprite2D" parent="Lever"]
+scale = Vector2(0.005, -0.025)
+texture = ExtResource("2_dq3xf")
+
+[node name="Lever2" type="Node2D" parent="."]
+position = Vector2(402, 58)
+metadata/_edit_group_ = true
+
+[node name="Area2D_2" type="Area2D" parent="Lever2"]
+script = ExtResource("6_xgl5r")
+
+[node name="CollisionShape2D_2" type="CollisionShape2D" parent="Lever2/Area2D_2"]
+position = Vector2(-1, -9)
+shape = SubResource("RectangleShape2D_mw1py")
+
+[node name="Off_2" type="Sprite2D" parent="Lever2"]
 visible = false
+scale = Vector2(0.005, -0.025)
+texture = ExtResource("4_5f14t")
+
+[node name="On_2" type="Sprite2D" parent="Lever2"]
 scale = Vector2(0.005, -0.025)
 texture = ExtResource("2_dq3xf")
 
 [connection signal="body_entered" from="Lever/Area2D" to="Lever/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Lever2/Area2D_2" to="Lever2/Area2D_2" method="_on_body_entered"]
+[connection signal="body_exited" from="Lever2/Area2D_2" to="Lever2/Area2D_2" method="_on_body_exited"]
