@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2f00u8u6e854"]
+
+[ext_resource type="Texture2D" uid="uid://boofm0h7hde7h" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/Background/back.png" id="1_boroi"]
+[ext_resource type="PackedScene" uid="uid://dgkkhk5ao6if" path="res://scenes/purgatory/scenes/receptionist.tscn" id="2_gc1ef"]
+
+[node name="Mike Wazowski Office" type="Node2D"]
+
+[node name="placeholder-background2" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(3, 2.7)
+texture = ExtResource("1_boroi")
+
+[node name="receptionist" parent="." instance=ExtResource("2_gc1ef")]
+position = Vector2(968, 448)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 752.0
+offset_top = 336.0
+offset_right = 1072.0
+offset_bottom = 424.0
+text = "sassy receptionist area, queue dialogue exchange between PC and Frog lady to tell player that he is on Mikes route now"
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 296.0
+offset_top = 192.0
+offset_right = 616.0
+offset_bottom = 280.0
+text = "Player starts in this room"
+tab_size = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 16.0
+offset_top = 424.0
+offset_right = 336.0
+offset_bottom = 512.0
+text = "This is a doorway. Make sure its closed until PC has talked to frog lady. 
+"
+tab_size = 10
+metadata/_edit_use_anchors_ = true
