@@ -1,85 +1,101 @@
 using Godot;
 using System;
+using System.Data;
+
+/*
+
+Player movement:
+ - Walk left and right
+ - Jump
+  * Gravity increases on descent
+ - Crouching (ask Perplexer why this needs to be a thing)
+ - Sprinting (ask Perplexer why this needs to be a thing)
+
+*/
+
+public enum State
+{
+	GROUNDED,
+	AIRBORNE
+}
 
 public partial class Player : CharacterBody2D
 {
-	public Vector2 collisionShapeSize;
-	public const float maxSpeed = 400f;
-	public const float maxWalkSpeed = 200f;
-	public const float jumpVelocity = -400.0f;
-	public float speed = 100;
-	public float accelerationRate = 0.4f;
-	public const int jumpBufferTimer = 15; // 1/4s = 15/60
-	public int jumpBufferCounter;
+	[Export] private float _walkSpeed = 1000f;
+	[Export] private float _jumpTime; // Time spent in upward acceleration
+	[Export] private float _jumpSpeed = 400f; // Speed player moves upward while jumping
+	[Export] private float _gravityFallMultiplier = 2f;
+	[Export] public float _accelerationStrength = 0.09f;
+	private float _gravityDefault;
 
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-	
+	private State _state;
+
 	public override void _Ready()
-    {
-        collisionShapeSize = GetNode<CollisionShape2D>("./CollisionShape2D").Scale;
-    }
-
-    public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
-
-		// Add the gravity.
-		if (!IsOnFloor())
-		{
-			velocity.Y += gravity * (float)delta;
-		}
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-		{
-			velocity.Y = jumpVelocity;
-		}
-		if (jumpBufferCounter > 0)
-		{
-			jumpBufferCounter -= 1;
-		}
-		if (jumpBufferCounter > 0 && IsOnFloor())
-		{
-			jumpBufferCounter = 0;
-		}
-
-		// Movement Based on the X axis
-		if (Input.IsActionPressed("ui_left"))
-		{
-			velocity.X -= speed * accelerationRate;
-		}
-
-		if (Input.IsActionPressed("ui_right"))
-		{
-			velocity.X += speed * accelerationRate;
-		}
-
-		if (!Input.IsActionPressed("ui_left") && !Input.IsActionPressed("ui_right"))
-		{
-			velocity.X = (float)Mathf.Lerp(velocity.X, 0, 0.257);
-		}
-
-		if (Input.IsActionPressed("ui_sprint"))
-		{
-			velocity.X = Mathf.Clamp(velocity.X, -maxSpeed, maxSpeed);
-		}
-		else
-		{
-			velocity.X = Mathf.Clamp(velocity.X, -maxWalkSpeed, maxWalkSpeed);
-		}
-
-		Velocity = velocity;
-		MoveAndSlide();
-
-		// Crounching
-		if (Input.IsActionPressed("ui_crouch"))
-		{
-			GetNode<CollisionShape2D>("./CollisionShape2D").Scale = new Vector2(collisionShapeSize[0], collisionShapeSize[1] / 2);
-		} 
-		else
-		{
-			GetNode<CollisionShape2D>("./CollisionShape2D").Scale = collisionShapeSize;
-		} 
+		_gravityDefault = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+		_state = State.GROUNDED;
 	}
+	
+	public override void _PhysicsProcess(double delta)
+	{
+		float fDelta = (float)delta;
+
+		Vector2 movementInput = GetMovementInput();
+		Vector2 vel = Velocity;
+		vel.X = (float)Mathf.Lerp(vel.X, 0, 0.257);
+
+		if (IsOnFloor())
+			_state = State.GROUNDED;
+		else
+			_state = State.AIRBORNE;
+
+		float accelerationRate;
+		// Continuing in current direction
+		if ((movementInput.X > 0) == (Velocity.X > 0))
+		{
+			accelerationRate = (_walkSpeed - Mathf.Abs(Velocity.X))/_walkSpeed;
+		}
+		else
+		{
+			accelerationRate = 2f;
+		}
+		switch (_state)
+		{
+			case State.GROUNDED:				
+				vel += movementInput * accelerationRate * _walkSpeed * _accelerationStrength;
+				if (GetJumpInput())
+				{
+					vel.Y = -_jumpSpeed;
+				}
+				break;
+			case State.AIRBORNE:
+				vel.X += movementInput.X * accelerationRate * _walkSpeed * _accelerationStrength;
+				
+				if (vel.Y < 0)
+					vel.Y += _gravityDefault * fDelta;
+				else
+					vel.Y += _gravityDefault * _gravityFallMultiplier * fDelta;
+
+				break;
+		}
+
+		Velocity = vel;
+
+		MoveAndSlide();
+	}
+
+	private Vector2 GetMovementInput()
+	{
+		Vector2 movement = new();
+
+		movement.X = Input.GetAxis("ui_left", "ui_right");
+
+		return movement;
+	}
+
+	private bool GetJumpInput()
+	{
+		return Input.IsActionJustPressed("ui_select");
+	}
+
 }
