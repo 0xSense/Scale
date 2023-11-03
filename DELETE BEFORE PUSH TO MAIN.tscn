@@ -1,6 +1,5 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqgtrrmbs48b8"]
+[gd_scene load_steps=16 format=3 uid="uid://j0u6rbh7esxy"]
 
-[ext_resource type="Script" path="res://DELETE BEFORE PUSH TO MAIN.gd" id="1_wy6hp"]
 [ext_resource type="Texture2D" uid="uid://b7pkhgdhiqieh" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/player/idle/player-idle-1.png" id="2_8cufa"]
 [ext_resource type="Texture2D" uid="uid://cjh18dhf5owkm" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/player/idle/player-idle-2.png" id="3_mre1r"]
 [ext_resource type="Texture2D" uid="uid://diocrfp5boxuo" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/player/idle/player-idle-3.png" id="4_ko1gt"]
@@ -13,6 +12,37 @@
 [ext_resource type="Texture2D" uid="uid://b1g26t4kuqbpu" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/player/run/player-run-4.png" id="11_ivdqd"]
 [ext_resource type="Texture2D" uid="uid://dfv3ocg6y8qrx" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/player/run/player-run-5.png" id="12_7cqi7"]
 [ext_resource type="Texture2D" uid="uid://jgfrxvv2yog4" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/player/run/player-run-6.png" id="13_ukjn5"]
+
+[sub_resource type="GDScript" id="GDScript_34h5t"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -600.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Handle Jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3j12"]
 
@@ -71,7 +101,7 @@ animations = [{
 }]
 
 [node name="placeholder-player" type="CharacterBody2D"]
-script = ExtResource("1_wy6hp")
+script = SubResource("GDScript_34h5t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k3j12")
