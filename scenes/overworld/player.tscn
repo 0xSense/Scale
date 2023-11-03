@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=13 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
 [ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="4_5f14t"]
 [ext_resource type="Script" path="res://scenes/overworld/LeverCollision.cs" id="4_l8clh"]
+[ext_resource type="Script" path="res://scenes/overworld/MovingPlatform.cs" id="4_nr1vd"]
 [ext_resource type="Script" path="res://scenes/overworld/LeverInteract.cs" id="6_xgl5r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
@@ -15,7 +16,10 @@ height = 19.0
 size = Vector2(1150, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kfju"]
-size = Vector2(343.5, 33)
+size = Vector2(342.498, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxoss"]
+size = Vector2(247.997, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1py"]
 size = Vector2(72, 32)
@@ -57,14 +61,31 @@ shape = SubResource("RectangleShape2D_4tdw5")
 position = Vector2(72, 40)
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+[node name="Sprite2D_2" type="Sprite2D" parent="StaticBody2D2"]
 position = Vector2(-346, -36)
 scale = Vector2(0.298177, 0.0509259)
 texture = ExtResource("2_dq3xf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D_2" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-346, -36)
 shape = SubResource("RectangleShape2D_5kfju")
+
+[node name="MovingPlatform" type="StaticBody2D" parent="."]
+position = Vector2(450, 1)
+script = ExtResource("4_nr1vd")
+_movingSpeed = 100.0
+_movingDistance = 100.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D_3" type="Sprite2D" parent="MovingPlatform"]
+position = Vector2(-346, -36)
+scale = Vector2(0.138802, 0.0505351)
+texture = ExtResource("2_dq3xf")
+
+[node name="CollisionShape2D_3" type="CollisionShape2D" parent="MovingPlatform"]
+position = Vector2(-346, -36)
+scale = Vector2(0.645169, 1)
+shape = SubResource("RectangleShape2D_pxoss")
 
 [node name="Lever" type="Node2D" parent="."]
 position = Vector2(-206, 58)
