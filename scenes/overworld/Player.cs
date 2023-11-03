@@ -21,7 +21,8 @@ public enum State
 
 public partial class Player : CharacterBody2D
 {
-	[Export] private float _walkSpeed = 1000f;
+	[Export] private float _walkSpeed = 800f;
+	[Export] private float _sprintSpeed = 1700f;
 	[Export] private float _jumpTime; // Time spent in upward acceleration
 	[Export] private float _jumpSpeed = 400f; // Speed player moves upward while jumping
 	[Export] private float _gravityFallMultiplier = 2f;
@@ -42,7 +43,7 @@ public partial class Player : CharacterBody2D
 
 		Vector2 movementInput = GetMovementInput();
 		Vector2 vel = Velocity;
-		vel.X = (float)Mathf.Lerp(vel.X, 0, 0.257);
+		vel.X = (float)Mathf.Lerp(vel.X, 0, 0.157);
 
 		if (IsOnFloor())
 			_state = State.GROUNDED;
@@ -62,7 +63,15 @@ public partial class Player : CharacterBody2D
 		switch (_state)
 		{
 			case State.GROUNDED:				
-				vel += movementInput * accelerationRate * _walkSpeed * _accelerationStrength;
+				
+				if (IsSprinting())
+				{
+					vel += movementInput * accelerationRate * _sprintSpeed * _accelerationStrength;
+				}
+				else
+				{
+					vel += movementInput * accelerationRate * _walkSpeed * _accelerationStrength;
+				}
 				if (GetJumpInput())
 				{
 					vel.Y = -_jumpSpeed;
@@ -96,6 +105,11 @@ public partial class Player : CharacterBody2D
 	private bool GetJumpInput()
 	{
 		return Input.IsActionJustPressed("ui_select");
+	}
+
+	private bool IsSprinting()
+	{
+		return Input.IsActionPressed("ui_sprint");
 	}
 
 }
