@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_fquxf")
 _rarity = 2
-_type = 2
+_type = 0
+_name = "Movement"
