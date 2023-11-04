@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgkkhk5ao6if"]
+
+[ext_resource type="Script" path="res://scenes/purgatory/scenes/Receptionist.cs" id="1_38ccg"]
+[ext_resource type="Texture2D" uid="uid://by6um3my2bhn0" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-2.png" id="1_sr1is"]
+[ext_resource type="Texture2D" uid="uid://bnn3jol75toh4" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-1.png" id="2_r72no"]
+[ext_resource type="Texture2D" uid="uid://yx20fi2recd5" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-3.png" id="4_rbi6r"]
+[ext_resource type="Texture2D" uid="uid://do06r13pd82v6" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-4.png" id="5_jtl8g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb60k"]
+radius = 8.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x6cei"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_r72no")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_sr1is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rbi6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jtl8g")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu62b"]
+size = Vector2(235.5, 124)
+
+[node name="Receptionist" type="CharacterBody2D"]
+script = ExtResource("1_38ccg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qb60k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -2)
+sprite_frames = SubResource("SpriteFrames_x6cei")
+animation = &"Idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_mu62b")
