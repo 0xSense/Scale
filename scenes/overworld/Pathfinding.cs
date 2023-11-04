@@ -13,7 +13,7 @@ public partial class Pathfinding : Node2D
 	private bool _playerInRange;
 	private CharacterBody2D _playerBody;
 	private Vector2 _startingPos;
-	private bool _reachedStartingPos = true;
+	private bool _reachedStartingPos;
 
     public override void _Ready()
     {
@@ -52,8 +52,9 @@ public partial class Pathfinding : Node2D
 
 			_enemyBody.MoveAndSlide();
 
-			if (_enemyBody.GlobalPosition.Abs().Normalized() == _startingPos.Abs().Normalized())
+			if (_enemyBody.GlobalPosition == _startingPos)
 			{
+				_path.Progress = 0;
 				_reachedStartingPos = true;
 			}
 		}

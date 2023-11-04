@@ -98,6 +98,7 @@ rotates = false
 cubic_interp = false
 
 [node name="Enemy_Body" type="CharacterBody2D" parent="Enemy/Path2D/PathFollow2D"]
+motion_mode = 1
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy/Path2D/PathFollow2D/Enemy_Body"]
