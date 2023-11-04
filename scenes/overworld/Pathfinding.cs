@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.IO;
+using System.Linq;
 
 public partial class Pathfinding : Node2D
 {
@@ -28,6 +29,7 @@ public partial class Pathfinding : Node2D
     {
 		if (_playerInRange)
 		{
+			
 			_navAgent.TargetPosition = _playerBody.GlobalPosition;
 			_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
 			_direction = _direction.Normalized();
@@ -52,9 +54,10 @@ public partial class Pathfinding : Node2D
 
 			_enemyBody.MoveAndSlide();
 
+			_path.Progress = 0;
+
 			if (_enemyBody.GlobalPosition == _startingPos)
 			{
-				_path.Progress = 0;
 				_reachedStartingPos = true;
 			}
 		}
