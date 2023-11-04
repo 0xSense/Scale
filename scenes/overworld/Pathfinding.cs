@@ -1,19 +1,21 @@
 using Godot;
 using System;
 
-public partial class Pathfinding : CharacterBody2D
+public partial class Pathfinding : Node2D
 {
 	[Export] private float _speed;
 	[Export] private float _acceleration;
 	private Vector2 _direction;
 	private NavigationAgent2D _navAgent;
 	private Path2D _path;
+	private CharacterBody2D _enemyBody;
 	private bool _playerInRange;
 
     public override void _Ready()
     {
-        _navAgent = GetNode<NavigationAgent2D>("./NavigationAgent2D");
-		_path = GetNode<Path2D>("../../Path2D");
+        _navAgent = GetNode<NavigationAgent2D>("./Path2D/PathFollow2D/Enemy_Body/NavigationAgent2D");
+		_path = GetNode<Path2D>("./Path2D");
+		_enemyBody = GetNode<CharacterBody2D>("./Path2D/PathFollow2D/Enemy_Body");
     }
 
     public override void _Process(double delta)
@@ -27,9 +29,9 @@ public partial class Pathfinding : CharacterBody2D
 			_direction = _navAgent.GetNextPathPosition() - GlobalPosition;
 			_direction = _direction.Normalized();
 
-			Velocity = Velocity.Lerp(_direction * _speed, _acceleration * (float)delta);
+			_enemyBody.Velocity = _enemyBody.Velocity.Lerp(_direction * _speed, _acceleration * (float)delta);
 		}
-        MoveAndSlide();
+        _enemyBody.MoveAndSlide();
 	}
 
 	public void _on_area_2d_body_entered(Node2D body) 
