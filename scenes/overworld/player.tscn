@@ -78,6 +78,8 @@ navigation_polygon = SubResource("NavigationPolygon_mj5mb")
 [node name="Enemy" type="Node2D" parent="."]
 position = Vector2(-430, -90)
 script = ExtResource("4_djmuh")
+_speed = 100.0
+_acceleration = 0.4
 
 [node name="Path2D" type="Path2D" parent="Enemy"]
 curve = SubResource("Curve2D_s14n8")
@@ -86,20 +88,26 @@ curve = SubResource("Curve2D_s14n8")
 position = Vector2(-4, 31)
 rotation = -0.0031847
 
-[node name="Enemy_Body" type="CharacterBody2D" parent="Enemy/Path2D/PathFollow2D"]
-metadata/_edit_group_ = true
+[node name="Area2D" type="Area2D" parent="Enemy"]
+position = Vector2(-4, 31)
+rotation = -0.0031847
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy/Path2D/PathFollow2D/Enemy_Body"]
-scale = Vector2(0.00868054, 0.0200617)
-texture = ExtResource("2_dq3xf")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy/Path2D/PathFollow2D/Enemy_Body"]
-
-[node name="Area2D" type="Area2D" parent="Enemy/Path2D/PathFollow2D/Enemy_Body"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Path2D/PathFollow2D/Enemy_Body/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
 position = Vector2(158.499, 0.00478745)
 shape = SubResource("RectangleShape2D_syloq")
 
-[connection signal="body_entered" from="Enemy/Path2D/PathFollow2D/Enemy_Body/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Enemy/Path2D/PathFollow2D/Enemy_Body/Area2D" to="Enemy" method="_on_area_2d_body_exited"]
+[node name="Enemy_Body" type="CharacterBody2D" parent="Enemy"]
+position = Vector2(-4, 31)
+rotation = -0.0031847
+collision_layer = 4
+collision_mask = 4
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy/Enemy_Body"]
+scale = Vector2(0.00868054, 0.0200617)
+texture = ExtResource("2_dq3xf")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy/Enemy_Body"]
+
+[connection signal="body_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_exited"]

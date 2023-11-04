@@ -13,9 +13,9 @@ public partial class Pathfinding : Node2D
 
     public override void _Ready()
     {
-        _navAgent = GetNode<NavigationAgent2D>("./Path2D/PathFollow2D/Enemy_Body/NavigationAgent2D");
+        _navAgent = GetNode<NavigationAgent2D>("./Enemy_Body/NavigationAgent2D");
 		_path = GetNode<Path2D>("./Path2D");
-		_enemyBody = GetNode<CharacterBody2D>("./Path2D/PathFollow2D/Enemy_Body");
+		_enemyBody = GetNode<CharacterBody2D>("./Enemy_Body");
     }
 
     public override void _Process(double delta)
@@ -42,5 +42,7 @@ public partial class Pathfinding : Node2D
 	public void _on_area_2d_body_exited(Node2D body) 
 	{
 		_playerInRange = false;
+		GD.Print(body);
+		GD.Print("Left Zone");
 	}
 }
