@@ -1,10 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://0a2y4iigyw4"]
-
-[ext_resource type="PackedScene" uid="uid://br6p7cq5g8pmm" path="res://scenes/combat/player/PlayerCombat.tscn" id="1_ohlc1"]
+[gd_scene format=3 uid="uid://0a2y4iigyw4"]
 
 [node name="combat_view" type="Node2D"]
 
-[node name="Player<Combat>" parent="." instance=ExtResource("1_ohlc1")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(100, 0)
+[node name="CombatCameraIsometric" type="Camera2D" parent="."]

@@ -70,10 +70,8 @@ public enum Debuff
     EXPOSED,
 }
 
-
-
 public partial class CardData : Resource
-{    
+{
     [Export] private String _name;
     // Types and rarity
     [Export] private CardType _type;
@@ -89,7 +87,7 @@ public partial class CardData : Resource
 
     [Export] private TargetType _target;
     public TargetType Target => _target;
-    
+
 
     // Damage and damage types
     [Export] private Godot.Collections.Array<DamageType> _damageTypes = new();
@@ -111,9 +109,6 @@ public partial class CardData : Resource
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
     public Dictionary<Debuff, int> Debuffs;
 
-    
-    
-
     private int _uid;
     public int UID => _uid;
     private static int _usedIds = 0;
@@ -126,7 +121,7 @@ public partial class CardData : Resource
         DrawEffects = new();
         Buffs = new();
         Debuffs = new();
-       
+
         int i = 0;
         foreach (DamageType t in _damageTypes)
         {
@@ -172,14 +167,14 @@ public partial class CardData : Resource
         return _uid == ((CardData)obj).UID;
     }
 
-    public static bool operator == (CardData c1, CardData c2)
+    public static bool operator ==(CardData c1, CardData c2)
     {
         if ((object)c1 == null)
             return (object)c2 == null;
         return c1.Equals(c2);
     }
 
-    public static bool operator != (CardData c1, CardData c2)
+    public static bool operator !=(CardData c1, CardData c2)
     {
         return !(c1 == c2);
     }
@@ -193,8 +188,6 @@ public partial class CardData : Resource
     {
         return "Card " + _name;
     }
-
-
 
 }
 
