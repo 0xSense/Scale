@@ -10,4 +10,21 @@ public partial class CombatCameraIsometric : Camera2D
         Input.SetCustomMouseCursor(MousePointer);
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton eventMouseButton)
+        {
+            GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+        }
+        else if (@event is InputEventMouseMotion eventMouseMotion)
+        {
+            GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
+        }
+        GetViewport().GetMousePosition();
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+    }
 }
