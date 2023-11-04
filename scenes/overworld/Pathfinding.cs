@@ -27,7 +27,6 @@ public partial class Pathfinding : Node2D
 			_direction = new Vector2();
 
 			_navAgent.TargetPosition = _playerBody.GlobalPosition;
-			GD.Print(GlobalPosition);
 			_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
 			_direction = _direction.Normalized();
 
