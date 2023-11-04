@@ -1,18 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://0a2y4iigyw4"]
 
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="2_qndfr"]
+[ext_resource type="PackedScene" uid="uid://br6p7cq5g8pmm" path="res://scenes/combat/player/PlayerCombat.tscn" id="1_ohlc1"]
 
 [node name="combat_game_camera" type="Node2D"]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="WhiteBackgroundSquare" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(-56, -56)
-scale = Vector2(0.904514, 0.827161)
-
-[node name="BlackBackgroundSquare" type="Sprite2D" parent="."]
-position = Vector2(-0.5, 2.14577e-06)
-scale = Vector2(1.00087, 1)
-texture = ExtResource("2_qndfr")
+[node name="Player<Combat>" parent="." instance=ExtResource("1_ohlc1")]

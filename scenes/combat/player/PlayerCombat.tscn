@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://br6p7cq5g8pmm"]
+
+[ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_ogb0e"]
+
+[node name="Player<Combat>" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-414, 199)
+scale = Vector2(35.3438, 29.9687)
+texture = ExtResource("1_ogb0e")
+
+[node name="PlayersMasterDeck" type="Node2D" parent="."]
+
+[node name="CardSleeve" type="Node2D" parent="PlayersMasterDeck"]
