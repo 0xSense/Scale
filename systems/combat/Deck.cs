@@ -4,6 +4,7 @@ Represents the cards carried by a player, enemy, etc
 
 namespace Systems.Combat;
 
+using System;
 using System.Collections.Generic;
 using Data;
 
@@ -12,10 +13,15 @@ public class Deck
     private Dictionary<CardData, int> _cards; // Maps cards to number of instances in this deck
     public Dictionary<CardData, int> CardDict => _cards;
 
+    private List<CardData> _mainDeck;
+    private List<CardData> _discard;
+
 
     public Deck()
     {
         _cards = new();
+        _mainDeck = new();
+        _discard = new();
     }
 
     public void AddCard(CardData card)
@@ -47,6 +53,18 @@ public class Deck
     public List<CardData> GetCards()
     {
         return GetCards((CardData c) => true);
+    }
+
+    public CardData[] Draw(int numCards)
+    {
+        Random rand = CombatManager.GetInstance().RNG;
+        CardData[] cards = new CardData[numCards];
+
+
+        // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
+
+
+        return cards;
     }
 
 
