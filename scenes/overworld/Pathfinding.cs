@@ -5,27 +5,29 @@ using System.IO;
 public partial class Pathfinding : Node2D
 {
 	[Export] private float _speed;
+	[Export] private float _idleSpeed;
 	private Vector2 _direction;
 	private NavigationAgent2D _navAgent;
-	private Path2D _path;
+	private PathFollow2D _path;
 	private CharacterBody2D _enemyBody;
 	private bool _playerInRange;
 	private CharacterBody2D _playerBody;
+	private Vector2 _startingPos;
+	private bool _reachedStartingPos = true;
 
     public override void _Ready()
     {
-        _navAgent = GetNode<NavigationAgent2D>("./Enemy_Body/NavigationAgent2D");
-//		_path = GetNode<Path2D>("./Path2D");
-		_enemyBody = GetNode<CharacterBody2D>("./Enemy_Body");
+        _navAgent = GetNode<NavigationAgent2D>("./Path2D/PathFollow2D/Enemy_Body/NavigationAgent2D");
+		_path = GetNode<PathFollow2D>("./Path2D/PathFollow2D");
+		_enemyBody = GetNode<CharacterBody2D>("./Path2D/PathFollow2D/Enemy_Body");
 		_playerBody = GetNode<CharacterBody2D>("../Player");
+		_startingPos = _enemyBody.GlobalPosition;
     }
 
     public override void _Process(double delta)
     {
 		if (_playerInRange)
 		{
-			_direction = new Vector2();
-
 			_navAgent.TargetPosition = _playerBody.GlobalPosition;
 			_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
 			_direction = _direction.Normalized();
@@ -33,6 +35,27 @@ public partial class Pathfinding : Node2D
 			_enemyBody.Velocity = _direction * _speed;
 
 			_enemyBody.MoveAndSlide();
+
+			_reachedStartingPos = false;
+		}
+		else if ((!_playerInRange) && _reachedStartingPos)
+		{
+			_path.Progress += _idleSpeed * (float)delta;
+		}
+		else
+		{
+			_navAgent.TargetPosition = _startingPos;
+			_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
+			_direction = _direction.Normalized();
+
+			_enemyBody.Velocity = _direction * _speed;
+
+			_enemyBody.MoveAndSlide();
+
+			if (_enemyBody.GlobalPosition.Abs().Normalized() == _startingPos.Abs().Normalized())
+			{
+				_reachedStartingPos = true;
+			}
 		}
 	}
 
