@@ -14,8 +14,9 @@ public partial class MasterDeck : Node2D
 	{        
 		foreach (CardData c in _cardTypes)
 		{
-			CardTypes.Add(c);
-			GD.Print(c.UID);
+			c.Activate();
+			CardTypes.Add(c);			
+			//GD.Print(c.UID);
 		}
 		_cardTypes.Clear();
 	}
