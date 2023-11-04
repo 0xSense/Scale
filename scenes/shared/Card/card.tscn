@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://m111ef6ocdd0"]
+
+[ext_resource type="Texture2D" uid="uid://bimpkbssiiwtk" path="res://scenes/shared/Card/5to7aspect_ratio_rock_gnome_wizard.png" id="1_aciow"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_237di"]
+radius = 465.0
+height = 1308.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_aciow")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+shape = SubResource("CapsuleShape2D_237di")

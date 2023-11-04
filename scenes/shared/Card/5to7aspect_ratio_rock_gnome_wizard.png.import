@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bimpkbssiiwtk"
-path="res://.godot/imported/5to7aspect_ratio_rock_gnome_wizard.png-214281eee9682d80e70b8cc4ec765dc1.ctex"
+path="res://.godot/imported/5to7aspect_ratio_rock_gnome_wizard.png-9e2b935073b79451d55babba6c86889d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/player/5to7aspect_ratio_rock_gnome_wizard.png"
-dest_files=["res://.godot/imported/5to7aspect_ratio_rock_gnome_wizard.png-214281eee9682d80e70b8cc4ec765dc1.ctex"]
+source_file="res://scenes/shared/Card/5to7aspect_ratio_rock_gnome_wizard.png"
+dest_files=["res://.godot/imported/5to7aspect_ratio_rock_gnome_wizard.png-9e2b935073b79451d55babba6c86889d.ctex"]
 
 [params]
 

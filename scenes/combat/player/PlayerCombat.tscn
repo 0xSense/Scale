@@ -24,3 +24,6 @@ z_index = 1
 position = Vector2(963, 35)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_dg2pp")
+
+[connection signal="frame_changed" from="PlayerSkin" to="." method="_on_player_skin_frame_changed"]
+[connection signal="texture_changed" from="PlayerSkin" to="." method="_on_player_skin_texture_changed"]
