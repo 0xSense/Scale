@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2f00u8u6e854"]
+[gd_scene load_steps=12 format=3 uid="uid://c2f00u8u6e854"]
 
 [ext_resource type="Texture2D" uid="uid://boofm0h7hde7h" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/Background/back.png" id="1_boroi"]
 [ext_resource type="PackedScene" uid="uid://dgkkhk5ao6if" path="res://scenes/purgatory/scenes/receptionist.tscn" id="2_gc1ef"]
 [ext_resource type="Texture2D" uid="uid://d3311qoae378m" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/tileset.png" id="3_llpjb"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_ejam8"]
+[ext_resource type="Script" path="res://scenes/purgatory/scenes/door.cs" id="5_ivrjb"]
+[ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="6_ktkmk"]
+[ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="7_j7j22"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pm5lj"]
 texture = ExtResource("3_llpjb")
@@ -515,6 +518,10 @@ sources/0 = SubResource("TileSetAtlasSource_pm5lj")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5l57v"]
 size = Vector2(2304, 809.999)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uf555"]
+radius = 7.5
+height = 19.0
+
 [node name="Mike Wazowski Office" type="Node2D"]
 
 [node name="placeholder-background2" type="Sprite2D" parent="."]
@@ -558,7 +565,29 @@ scale = Vector2(0.0277778, 0.0987655)
 texture = ExtResource("4_ejam8")
 
 [node name="Area2D" type="Area2D" parent="Purgatory Door"]
+script = ExtResource("5_ivrjb")
+_sceneTransition = "res://scenes/purgatory/scenes/purgatory-level.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Purgatory Door/Area2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_5l57v")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(208, 512)
+script = ExtResource("6_ktkmk")
+_walkSpeed = 450.0
+_sprintSpeed = 1020.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(1, 1.24)
+texture = ExtResource("7_j7j22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 0.5)
+shape = SubResource("CapsuleShape2D_uf555")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+
+[connection signal="body_entered" from="Purgatory Door/Area2D" to="Purgatory Door/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Purgatory Door/Area2D" to="Purgatory Door/Area2D" method="_on_body_exited"]

@@ -578,6 +578,7 @@ texture = ExtResource("5_gr22g")
 
 [node name="Area2D" type="Area2D" parent="Receptionist Door"]
 script = ExtResource("6_k36ct")
+_sceneTransition = "res://scenes/purgatory/scenes/receptionist_office.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Receptionist Door/Area2D"]
 position = Vector2(0.00244141, -40.5)
@@ -685,3 +686,6 @@ offset_right = 1168.0
 offset_bottom = 752.0
 text = "THIS IS A DOOR BITCH
  "
+
+[connection signal="body_entered" from="Receptionist Door/Area2D" to="Receptionist Door/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Receptionist Door/Area2D" to="Receptionist Door/Area2D" method="_on_body_exited"]
