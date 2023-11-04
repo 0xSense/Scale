@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="Game-jam-project-name-unknown"
-run/main_scene="res://scenes/combat_game_camera.tscn"
+run/main_scene="res://scenes/CombatView.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/placeholder/kenney_tinydungeon/Tiles/tile_0117.png"
 
