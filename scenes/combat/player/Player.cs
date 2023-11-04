@@ -11,11 +11,11 @@ public partial class Player : Node2D
 
     public override void _Ready()
     {
+        // public static MasterDeck PlayersLibrary{
 
+        // };
     }
 
     public override void _Process(double delta)
     { }
-
-
 }

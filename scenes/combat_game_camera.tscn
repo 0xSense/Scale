@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://0a2y4iigyw4"]
+[gd_scene load_steps=3 format=3 uid="uid://0a2y4iigyw4"]
 
+[ext_resource type="PackedScene" uid="uid://camftt4st5inu" path="res://scenes/combat/environment/combat_environment.tscn" id="1_fhajq"]
 [ext_resource type="PackedScene" uid="uid://br6p7cq5g8pmm" path="res://scenes/combat/player/PlayerCombat.tscn" id="1_ohlc1"]
 
-[node name="combat_game_camera" type="Node2D"]
+[node name="combat_view" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="CombatEnvironment" parent="." instance=ExtResource("1_fhajq")]
 
 [node name="Player<Combat>" parent="." instance=ExtResource("1_ohlc1")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(9, 9)
+skew = -1.20777
+
+[node name="TileMap" type="TileMap" parent="Camera2D"]
+format = 2
