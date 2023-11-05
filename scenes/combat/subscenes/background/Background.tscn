@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5xfakfw8o7lh"]
+
+[ext_resource type="Texture2D" uid="uid://c6b8bplmp4nov" path="res://scenes/combat/asset/backgrounds/bg.png" id="1_ysj6j"]
+
+[node name="Background" type="ParallaxBackground"]
+follow_viewport_enabled = true
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_ysj6j")

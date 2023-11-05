@@ -6,6 +6,7 @@ namespace Systems.Combat;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 
 public class Deck
@@ -34,7 +35,7 @@ public class Deck
         _mainDeck.AddFirst(card);
     }
 
-    public void RemoveCard(CardData card)
+    public void RemoveCard(CardData card, bool removeFromMainDeck)
     {
         if (_cards.ContainsKey(card))
         {
@@ -42,6 +43,9 @@ public class Deck
             if (_cards[card] <= 0)
                 _cards.Remove(card);
         }
+
+        if (!removeFromMainDeck)
+            return;
 
         CardData toRemove = null;
         foreach (CardData c in _mainDeck)
@@ -78,8 +82,14 @@ public class Deck
 
         // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
 
-        // _mainDeck.RemoveLast();
+        for (int i = 0; i < numCards; i++)
+        {
+            cards[i] = _mainDeck.Last.Value;
+            _mainDeck.RemoveLast();
+            RemoveCard(cards[i], false);
 
+            ShuffleIfNecessary();
+        }
 
         return cards;
     }
@@ -113,4 +123,29 @@ public class Deck
         return cards;
     }
 
+    private void ShuffleIfNecessary()
+    {
+        if (_mainDeck.Count <= 0)
+        {
+            Shuffle(_discard);
+            foreach (CardData c in _discard)
+            {
+                _mainDeck.AddFirst(c);
+            }
+
+            _discard.Clear();            
+        }
+    }
+
+    private void Shuffle(List<CardData> list)  
+    {  
+        int n = list.Count;  
+        while (n > 1) {  
+            n--;  
+            int k = CombatManager.GetInstance().RNG.Next(n + 1);  
+            CardData swap = list[k];  
+            list[k] = list[n];  
+            list[n] = swap;  
+        }  
+    }
 }

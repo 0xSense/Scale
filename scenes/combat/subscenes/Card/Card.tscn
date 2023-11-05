@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqskjl6vsej8"]
+
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/test_card.png" id="1_rhpyq"]
+[ext_resource type="Texture2D" uid="uid://rdvqrptlgq8y" path="res://scenes/combat/subscenes/Card/images/background.png" id="2_05kx7"]
+
+[node name="Card" type="Node2D"]
+
+[node name="Art" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -3.05176e-05)
+texture = ExtResource("1_rhpyq")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(0, 238.805)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("2_05kx7")
