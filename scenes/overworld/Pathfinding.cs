@@ -1,75 +1,91 @@
 using Godot;
-using System;
-using System.IO;
-using System.Linq;
+
+public enum State
+{
+	FOLLOWINGPLAYER,
+	IDLE
+}
 
 public partial class Pathfinding : Node2D
 {
 	[Export] private float _speed;
 	[Export] private float _idleSpeed;
+	[Export] private bool _isWalking; 
+	[Export] private CharacterBody2D _playerBody;
 	private Vector2 _direction;
 	private NavigationAgent2D _navAgent;
-	private PathFollow2D _path;
+	private PathFollow2D _pathFollow;
 	private CharacterBody2D _enemyBody;
-	private bool _playerInRange;
-	private CharacterBody2D _playerBody;
-	private Vector2 _startingPos;
-	private bool _reachedStartingPos;
+	private float _gravityDefault;
+	private State _state;
 
     public override void _Ready()
     {
-        _navAgent = GetNode<NavigationAgent2D>("./Path2D/PathFollow2D/Enemy_Body/NavigationAgent2D");
-		_path = GetNode<PathFollow2D>("./Path2D/PathFollow2D");
-		_enemyBody = GetNode<CharacterBody2D>("./Path2D/PathFollow2D/Enemy_Body");
-		_playerBody = GetNode<CharacterBody2D>("../Player");
-		_startingPos = _enemyBody.GlobalPosition;
+        _navAgent = GetNode<NavigationAgent2D>("./Body/NavigationAgent2D");
+		_enemyBody = GetNode<CharacterBody2D>("./Body");
+		_pathFollow = GetNode<PathFollow2D>("./Path2D/PathFollow2D");
+		_gravityDefault = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+		_state = State.IDLE;
     }
 
     public override void _Process(double delta)
     {
-		if (_playerInRange)
+		Vector2 vel = _enemyBody.Velocity;
+
+		switch(_state)
 		{
-			
-			_navAgent.TargetPosition = _playerBody.GlobalPosition;
-			_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
-			_direction = _direction.Normalized();
-
-			_enemyBody.Velocity = _direction * _speed;
-
-			_enemyBody.MoveAndSlide();
-
-			_reachedStartingPos = false;
+			case State.IDLE: 
+				_pathFollow.Progress += _idleSpeed * (float)delta;
+				if (_isWalking)
+				{
+					vel.X = FollowPath(_pathFollow.GlobalPosition).X * _idleSpeed;
+					vel.Y += _gravityDefault * (float)delta;
+				}	
+				else
+				{
+					vel = FollowPath(_pathFollow.GlobalPosition) * _idleSpeed;
+				}
+				break;
+			case State.FOLLOWINGPLAYER:
+				
+				if (_isWalking)
+				{
+					vel.X = FollowPath(_playerBody.GlobalPosition).X * _speed;
+					vel.Y += _gravityDefault * (float)delta;
+				}	
+				else
+				{
+					vel = FollowPath(_playerBody.GlobalPosition) * _speed;
+				}
+				break;
 		}
-		else if ((!_playerInRange) && _reachedStartingPos)
-		{
-			_path.Progress += _idleSpeed * (float)delta;
-		}
-		else
-		{
-			_navAgent.TargetPosition = _startingPos;
-			_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
-			_direction = _direction.Normalized();
 
-			_enemyBody.Velocity = _direction * _speed;
-
-			_enemyBody.MoveAndSlide();
-
-			_path.Progress = 0;
-
-			if (_enemyBody.GlobalPosition == _startingPos)
-			{
-				_reachedStartingPos = true;
-			}
-		}
-	}
+		_enemyBody.Velocity = vel;
+		_enemyBody.MoveAndSlide();
+	}	
 
 	public void _on_area_2d_body_entered(Node2D body) 
 	{
-		_playerInRange = true;
+		if (body == _playerBody){
+			_state = State.FOLLOWINGPLAYER;
+		}
 	}
 
 	public void _on_area_2d_body_exited(Node2D body) 
 	{
-		_playerInRange = false;
+		if (body == _playerBody)
+		{
+			_state = State.IDLE;
+		}
+	}
+
+	public Vector2 FollowPath(Vector2 target)
+	{
+		_navAgent.TargetPosition = target;
+		_direction = _navAgent.GetNextPathPosition() - _enemyBody.GlobalPosition;
+		_direction = _direction.Normalized();
+
+		return _direction;
 	}
 }
