@@ -1,0 +1,4 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://bf6u0fvyxjf2a"]
+
+[resource]
+bus/0/volume_db = -7.26851
