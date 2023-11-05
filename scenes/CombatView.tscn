@@ -11,14 +11,8 @@ script = ExtResource("1_fpbkg")
 
 [node name="CombatEnvironment" parent="." instance=ExtResource("2_ncup4")]
 
-[node name="Sprite2D" parent="CombatEnvironment" index="0"]
-z_index = -1
-scale = Vector2(1.32, 1.32)
-
 [node name="LibraryOfCards" parent="." instance=ExtResource("3_k53q0")]
 position = Vector2(881, 261)
 
 [node name="LibraryOfCardsUISpawnPoint" type="Marker2D" parent="."]
 position = Vector2(883, 261)
-
-[editable path="CombatEnvironment"]
