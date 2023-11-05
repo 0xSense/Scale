@@ -29,7 +29,5 @@ public interface ICombatant
     public abstract Deck GetDeck();
     public abstract void BurnActionPoints(int burn); // If this function reduces action points below zero, set them to zero.
     public abstract void BurnMovementPoints(int burn); // If this function reduces movement points below zero, set them to zero.
-
-    // Todo: 
     
 }

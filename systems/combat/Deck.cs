@@ -13,7 +13,7 @@ public class Deck
     private Dictionary<CardData, int> _cards; // Maps cards to number of instances in this deck
     public Dictionary<CardData, int> CardDict => _cards;
 
-    private List<CardData> _mainDeck;
+    private LinkedList<CardData> _mainDeck;
     private List<CardData> _discard;
 
 
@@ -30,6 +30,8 @@ public class Deck
             _cards[card]++;
         else
             _cards.Add(card, 1);
+
+        _mainDeck.AddFirst(card);
     }
 
     public void RemoveCard(CardData card)
@@ -40,6 +42,19 @@ public class Deck
             if (_cards[card] <= 0)
                 _cards.Remove(card);
         }
+
+        CardData toRemove = null;
+        foreach (CardData c in _mainDeck)
+        {
+            if (c == card)
+            {
+                toRemove = c;
+                break;
+            }
+        }
+
+        if (toRemove != null)
+            _mainDeck.Remove(toRemove);
     }
 
     public int GetCount(CardData card)
@@ -62,6 +77,8 @@ public class Deck
 
 
         // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
+
+        // _mainDeck.RemoveLast();
 
 
         return cards;
