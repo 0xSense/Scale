@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://codhqx13wk0qj"]
+
+[ext_resource type="Script" path="res://scenes/overworld/Pathfinding.cs" id="1_w6vaw"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_oiqp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8yaq"]
+size = Vector2(336.999, 82.9964)
+
+[sub_resource type="Curve2D" id="Curve2D_ci25x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 322, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 3
+
+[node name="enemy" type="Node2D"]
+script = ExtResource("1_w6vaw")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-433, -59)
+rotation = -0.0031847
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(158.499, 0.00478745)
+shape = SubResource("RectangleShape2D_g8yaq")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-433, -59)
+curve = SubResource("Curve2D_ci25x")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+rotates = false
+cubic_interp = false
+
+[node name="Enemy_Body" type="CharacterBody2D" parent="Path2D/PathFollow2D"]
+motion_mode = 1
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Enemy_Body"]
+scale = Vector2(0.00868054, 0.0200617)
+texture = ExtResource("2_oiqp0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Path2D/PathFollow2D/Enemy_Body"]
+debug_enabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
