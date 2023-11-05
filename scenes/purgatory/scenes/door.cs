@@ -9,19 +9,14 @@ public partial class door : Area2D
 
 	public void _on_body_entered(Node2D body)
 	{
-		GD.Print ("Hello cutie");
+		GD.Print("Hello cutie");
 		_doorEntered = true;
-
 	}
 	public void _on_body_exited(Node2D body)
 	{
 		GD.Print("Goodbye cutie :(");
 		_doorEntered = false;
-
 	}
-
-
-
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -38,9 +33,6 @@ public partial class door : Area2D
 				GetTree().ChangeSceneToFile(_sceneTransition);
 
 			}
-
-
 		}
-
 	}
 }
