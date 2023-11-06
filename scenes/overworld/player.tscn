@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
 [ext_resource type="PackedScene" uid="uid://csv68lfmbllbb" path="res://scenes/overworld/enemy.tscn" id="5_tpju5"]
-[ext_resource type="PackedScene" uid="uid://cyj22wo26qjra" path="res://scenes/overworld/objects/Moving_Platform.tscn" id="8_hfea3"]
-[ext_resource type="PackedScene" uid="uid://dujbp4wpv8wo1" path="res://scenes/overworld/objects/Interatction_Lever.tscn" id="8_k5l1f"]
+[ext_resource type="PackedScene" uid="uid://cyj22wo26qjra" path="res://scenes/overworld/objects/moving_Platform.tscn" id="8_hfea3"]
+[ext_resource type="PackedScene" uid="uid://dujbp4wpv8wo1" path="res://scenes/overworld/objects/interatction_Lever.tscn" id="8_k5l1f"]
 [ext_resource type="PackedScene" uid="uid://lckxk3aqysfo" path="res://scenes/overworld/objects/Spikes.tscn" id="8_kja40"]
-[ext_resource type="PackedScene" uid="uid://bb3cgq1iluiu0" path="res://scenes/overworld/objects/Collision_Lever.tscn" id="9_ktm0b"]
+[ext_resource type="PackedScene" uid="uid://bb3cgq1iluiu0" path="res://scenes/overworld/objects/collision_Lever.tscn" id="9_ktm0b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
 radius = 7.5
