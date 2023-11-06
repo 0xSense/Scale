@@ -4,16 +4,17 @@ using Data;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.XPath;
 
 
-public partial class Hand : Node
+public partial class Hand : Marker2D
 {   
     [Export] private PackedScene _cardResource;
     [Export] private Vector2 _scale;
     [Export] private float _handArc;
     [Export] private float _radius;
     private List<Card> _cards;
-    private List<bool> _mousedOver;
 
     private int _selectedCardIndex;
 
@@ -21,7 +22,6 @@ public partial class Hand : Node
     {
         _selectedCardIndex = -1;
         _cards = new();
-        _mousedOver = new();
 
         MasterDeck.OnLoad += FillHandDefault;
     }
@@ -40,17 +40,38 @@ public partial class Hand : Node
             newCard.SetHandOwner(this);
             AddChild(newCard);
             _cards.Add(newCard);
-            _mousedOver.Add(false);
         }
 
         OrderCards();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        OrderCards();
+        Vector2 mousePos = GetGlobalMousePosition();
+        PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
+        PhysicsPointQueryParameters2D query = new();
+        query.CollideWithAreas = true;
+        query.Position = mousePos;
+        query.CollisionMask = 0b0010;
+        var hits = spaceState.IntersectPoint(query);
+
+        Card highestZ = null;
+        Card nextCard = null;
+
+        foreach (var h in hits)
+        {            
+            nextCard = (Card)(h["collider"]);
+            if (highestZ == null || nextCard.ZIndex > highestZ.ZIndex)
+                highestZ = nextCard;
+        }        
+
+        if (highestZ != null)
+            _selectedCardIndex = _cards.IndexOf(highestZ);
+        else
+            _selectedCardIndex = -1;
 
         UpdateCardProtrusion();
+        OrderCards();
         
     }
 
@@ -78,7 +99,7 @@ public partial class Hand : Node
             else
                 _cards[i].StartAngleTween(0, 0.25f);
 
-            _cards[i].RotationDegrees = angle;
+            _cards[i].RotationDegrees = Mathf.Lerp(angle, 0, _cards[i].GetRotationFactor());
 
             offset.X = Mathf.Cos(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
             offset.Y = Mathf.Sin(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
@@ -89,15 +110,19 @@ public partial class Hand : Node
 
         }
 
-        if (_selectedCardIndex != -1)
+        if (_selectedCardIndex != -1 && _cards[_selectedCardIndex].FullyExtended())
         {
             _cards[_selectedCardIndex].ZIndex = _cards.Count + 2;
         }
     }
 
+    
     private void UpdateCardProtrusion()
-    {
-        Card topMoused = GetTopMoused();
+    {        
+        Card topMoused = null;
+        
+        if (_selectedCardIndex >= 0)
+            topMoused = _cards[_selectedCardIndex]; //GetTopMoused();
 
         foreach (Card c in _cards)
         {
@@ -113,52 +138,5 @@ public partial class Hand : Node
         }
         _selectedCardIndex = _cards.IndexOf(topMoused);
     }
-
-    public void PrintOnMousedDebug()
-    {
-        string msg = "";
-        foreach (bool v in _mousedOver)
-        {
-            msg += v;
-        }
-        GD.Print(msg, "\n");
-    }    
-
-    public void CardMousedOver(Card c)
-    {
-        _mousedOver[_cards.IndexOf(c)] = true;
-    }
-
-    public void CardUnmousedOver(Card c)
-    {
-        _mousedOver[_cards.IndexOf(c)] = false;
-    }    
-
-    private bool IsTopMoused(Card c)
-    {
-        bool onTop = true;
-
-        int endIndex = _cards.IndexOf(c);
-        for (int i = _mousedOver.Count-1; i > endIndex; i--)
-        {
-            if (_mousedOver[i])
-                onTop = false;
-        }
-
-        return onTop;
-    }
-
-    private Card GetTopMoused()
-    {
-        Card top = null;
-        for (int i = 0; i < _mousedOver.Count; i++)
-        {
-            if (_mousedOver[i])
-                top = _cards[i];
-        }
-
-        return top;
-    }
-
 
 }

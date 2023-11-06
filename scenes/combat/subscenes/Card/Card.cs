@@ -22,19 +22,11 @@ public partial class Card : Area2D
 	public float AngleOffset;
 	public Tween AngleTween;
 	private int _currentAngleGoal;
+
+	private float _rotationFactor = 0;
+	public Tween _rotationFactorTween;
 	
-
-
-    public void OnMouseEntered()
-	{
-		_handOwner.CardMousedOver(this);
-	}
-
-	public void OnMouseExited()
-	{		
-		_handOwner.CardUnmousedOver(this);
-	}
-
+	
 	public void SetMouseOverStatus(bool moused)
 	{		
 		if (moused == _isMoused)
@@ -44,16 +36,17 @@ public partial class Card : Area2D
 
 		if (moused)
 		{
-			//if (_offset > _offset*0.1)
-				//return;
-
 			_tween = CreateTween();
 			_tween.TweenProperty(this, "_offset", _maxOffset, 0.25);
+			_rotationFactorTween = CreateTween();
+			_rotationFactorTween.TweenProperty(this, "_rotationFactor", 1.0f, 0.25f);
 		}
 		else
 		{
 			_tween = CreateTween();
 			_tween.TweenProperty(this, "_offset", 0f, 0.25);
+			_rotationFactorTween = CreateTween();
+			_rotationFactorTween.TweenProperty(this, "_rotationFactor", 0f, 0.25f);
 		}
 	}
 
@@ -71,6 +64,16 @@ public partial class Card : Area2D
 
 		AngleTween = CreateTween();
 		AngleTween.TweenProperty(this, "AngleOffset", goal, duration);
+	}
+
+	public float GetRotationFactor()
+	{
+		return _rotationFactor;
+	}
+
+	public bool FullyExtended()
+	{
+		return _rotationFactor >= 0.95f;
 	}
 
 }
