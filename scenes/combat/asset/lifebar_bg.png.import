@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://55ovn8bglemx"
-path="res://.godot/imported/PlayableCharacter-removebg-preview.png-578cd82d314a108fb2365e6acbce9b0f.ctex"
+uid="uid://suvrwtmiqiin"
+path="res://.godot/imported/lifebar_bg.png-9cf0cf3b21953e1207fdd12f0973ec5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main_character/PlayableCharacter-removebg-preview.png"
-dest_files=["res://.godot/imported/PlayableCharacter-removebg-preview.png-578cd82d314a108fb2365e6acbce9b0f.ctex"]
+source_file="res://scenes/combat/asset/lifebar_bg.png"
+dest_files=["res://.godot/imported/lifebar_bg.png-9cf0cf3b21953e1207fdd12f0973ec5c.ctex"]
 
 [params]
 

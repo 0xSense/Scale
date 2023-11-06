@@ -1,4 +1,5 @@
 namespace Overworld;
+
 using Godot;
 
 public enum PathState

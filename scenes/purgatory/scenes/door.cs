@@ -28,9 +28,7 @@ public partial class Door : Area2D
 			if (Input.IsActionJustReleased("ui_interact"))
 			{
 				GetTree().ChangeSceneToPacked(_sceneTransition);
-				GetTree().ChangeSceneToPacked
-				GetTree().Free();
-
+				// GetTree().Free();
 			}
 		}
 	}
