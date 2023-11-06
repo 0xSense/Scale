@@ -62,7 +62,7 @@ public partial class Card : Area2D
 		_handOwner = hand;
 	}
 
-	public void StartAngleTween(int goal)
+	public void StartAngleTween(int goal, float duration)
 	{
 		if (_currentAngleGoal == goal)
 			return;
@@ -70,7 +70,7 @@ public partial class Card : Area2D
 		_currentAngleGoal = goal;
 
 		AngleTween = CreateTween();
-		AngleTween.TweenProperty(this, "AngleOffset", goal, 0.35);
+		AngleTween.TweenProperty(this, "AngleOffset", goal, duration);
 	}
 
 }

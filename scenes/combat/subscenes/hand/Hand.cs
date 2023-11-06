@@ -68,25 +68,30 @@ public partial class Hand : Node
 
             if (_selectedCardIndex != -1 && i < _selectedCardIndex)
             {
-                _cards[i].StartAngleTween(-(int)(_cards.Count*1.75));
+                _cards[i].StartAngleTween(-(int)(_cards.Count*1.5), 0.25f);
 
             }
             else if (_selectedCardIndex != -1 && i > _selectedCardIndex)
             {
-                _cards[i].StartAngleTween((int)(_cards.Count*1.75));
+                _cards[i].StartAngleTween((int)(_cards.Count*1.5), 0.25f);
             }
             else
-                _cards[i].StartAngleTween(0);
+                _cards[i].StartAngleTween(0, 0.25f);
 
             _cards[i].RotationDegrees = angle;
 
-            offset.X = Mathf.Cos(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset) * 1.5f;
+            offset.X = Mathf.Cos(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
             offset.Y = Mathf.Sin(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
 
             _cards[i].Position = Vector2.Zero + offset;
 
             _cards[i].ZIndex = i+1;  
 
+        }
+
+        if (_selectedCardIndex != -1)
+        {
+            _cards[_selectedCardIndex].ZIndex = _cards.Count + 2;
         }
     }
 

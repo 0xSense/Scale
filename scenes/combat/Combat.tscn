@@ -17,9 +17,9 @@ transform = Transform2D(0.67, 0, 0, 0.67, 0, 0)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Hand" type="Marker2D" parent="."]
-position = Vector2(0, 875)
+position = Vector2(0, 1450)
 script = ExtResource("2_xecqg")
 _cardResource = ExtResource("3_6gjep")
-_scale = Vector2(0.25, 0.25)
-_handArc = 50.0
-_radius = 300.0
+_scale = Vector2(0.3, 0.3)
+_handArc = 25.0
+_radius = 900.0

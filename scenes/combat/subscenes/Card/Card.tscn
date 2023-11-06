@@ -24,5 +24,49 @@ texture = ExtResource("2_05kx7")
 position = Vector2(-2, -499.75)
 shape = SubResource("RectangleShape2D_3gqjh")
 
+[node name="NameLabel" type="RichTextLabel" parent="."]
+offset_left = -306.0
+offset_top = -471.0
+offset_right = 310.0
+offset_bottom = -381.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Name[/center]"
+threaded = true
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="."]
+offset_left = -306.0
+offset_top = -375.0
+offset_right = 306.0
+offset_bottom = -211.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Description of the card - intended to be flavor text."
+threaded = true
+
+[node name="DamageLabel" type="RichTextLabel" parent="."]
+offset_left = -306.0
+offset_top = -194.0
+offset_right = -21.0
+offset_bottom = -42.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[color=red]1d8 + 4[/color] [img=40]assets/placeholder/damage_icons/fire.png[/img]"
+threaded = true
+
+[node name="TargetsLabel" type="RichTextLabel" parent="."]
+offset_left = 23.0
+offset_top = -194.0
+offset_right = 307.0
+offset_bottom = -42.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[right]Target info here"
+threaded = true
+
 [connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExited"]
