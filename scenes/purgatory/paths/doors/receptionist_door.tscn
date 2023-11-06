@@ -12,6 +12,7 @@ texture = ExtResource("1_ymygq")
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_k36yk")
+_sceneTransition = "res://scenes/purgatory/scenes/receptionOffice.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_m6lve")

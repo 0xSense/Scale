@@ -28,7 +28,7 @@ public partial class Player : CharacterBody2D
 	[Export] private float _walkSpeed = 500f;
 	[Export] private float _sprintSpeed = 1700f;
 	[Export] private float _jumpTime; // Time spent in upward acceleration
-	[Export] private float _jumpSpeed = 400f; // Speed player moves upward while jumping
+	[Export] private float _jumpSpeed = 500f; // Speed player moves upward while jumping
 	[Export] private float _gravityFallMultiplier = 2f;
 	[Export] private float _accelerationStrength = 0.09f;
 	[Export] private float _coyoteBuffer = 0.5f; // In seconds

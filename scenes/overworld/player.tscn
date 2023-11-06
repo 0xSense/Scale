@@ -15,12 +15,13 @@ _walkSpeed = 450.0
 _sprintSpeed = 1020.0
 metadata/_edit_group_ = true
 
-[node name="PlayerSkin" type="Sprite2D" parent="."]
-scale = Vector2(0.15, 0.186)
-texture = ExtResource("2_qemqk")
-
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
+scale = Vector2(1, 1.72)
 shape = SubResource("CapsuleShape2D_0q2rg")
+
+[node name="PlayerSkin" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.31)
+texture = ExtResource("2_qemqk")
 
 [node name="PlayerAttachedCamera" parent="." instance=ExtResource("3_xlfk0")]

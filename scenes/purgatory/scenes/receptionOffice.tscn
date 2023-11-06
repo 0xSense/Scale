@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccr4eijee7e4g"]
+
+[ext_resource type="Texture2D" uid="uid://bk68n18f2lkx4" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/Props/big-crate.png" id="1_cqlcq"]
+[ext_resource type="PackedScene" uid="uid://clpb08acj6srs" path="res://scenes/overworld/player.tscn" id="2_0e45h"]
+
+[node name="receptionOffice" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cqlcq")
+
+[node name="Player" parent="." instance=ExtResource("2_0e45h")]
