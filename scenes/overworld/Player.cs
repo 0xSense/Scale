@@ -41,7 +41,7 @@ public partial class Player : CharacterBody2D
 		_state = State.GROUNDED;
 		_coyoteTimer = _coyoteBuffer;
 	}
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 		float fDelta = (float)delta;
@@ -49,7 +49,7 @@ public partial class Player : CharacterBody2D
 		Vector2 movementInput = GetMovementInput();
 		Vector2 vel = Velocity;
 
-		if (IsOnFloor())		
+		if (IsOnFloor())
 			_state = State.GROUNDED;
 		else
 			_state = State.AIRBORNE;
@@ -58,7 +58,7 @@ public partial class Player : CharacterBody2D
 		// Continuing in current direction
 		if ((movementInput.X > 0) == (Velocity.X > 0))
 		{
-			accelerationRate = (_walkSpeed - Mathf.Abs(Velocity.X))/_walkSpeed;
+			accelerationRate = (_walkSpeed - Mathf.Abs(Velocity.X)) / _walkSpeed;
 		}
 		else
 		{
@@ -95,7 +95,7 @@ public partial class Player : CharacterBody2D
 
 				vel.X = (float)Mathf.Lerp(vel.X, 0, 0.075);
 				vel.X += movementInput.X * accelerationRate * _walkSpeed * _accelerationStrength;
-				
+
 				if (vel.Y < 0)
 					vel.Y += _gravityDefault * fDelta;
 				else
@@ -107,6 +107,11 @@ public partial class Player : CharacterBody2D
 		Velocity = vel;
 
 		MoveAndSlide();
+	}
+
+	public void _Process()
+	{
+
 	}
 
 	private Vector2 GetMovementInput()
