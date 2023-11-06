@@ -1,11 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk6mw4uwgd1yl"]
+[gd_scene load_steps=6 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
+[ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="1_y42kw"]
+[ext_resource type="Resource" uid="uid://sp8dso2o8vhb" path="res://data_resources/card_data/WORK.tres" id="2_h0k1a"]
+[ext_resource type="Script" path="res://scenes/combat/subscenes/hand/Hand.cs" id="2_xecqg"]
+[ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://scenes/combat/subscenes/Card/Card.tscn" id="3_6gjep"]
 
 [node name="Combat" type="Node2D"]
+script = ExtResource("1_y42kw")
+_cardTypes = [ExtResource("2_h0k1a")]
 
 [node name="Background" parent="." instance=ExtResource("1_5pl1x")]
 scale = Vector2(0.67, 0.67)
 transform = Transform2D(0.67, 0, 0, 0.67, 0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hand" type="Marker2D" parent="."]
+position = Vector2(0, 875)
+script = ExtResource("2_xecqg")
+_cardResource = ExtResource("3_6gjep")
+_scale = Vector2(0.25, 0.25)
+_handArc = 50.0
+_radius = 300.0

@@ -1,16 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqskjl6vsej8"]
+[gd_scene load_steps=5 format=3 uid="uid://dqskjl6vsej8"]
 
+[ext_resource type="Script" path="res://scenes/combat/subscenes/Card/Card.cs" id="1_q4dhy"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/test_card.png" id="1_rhpyq"]
 [ext_resource type="Texture2D" uid="uid://rdvqrptlgq8y" path="res://scenes/combat/subscenes/Card/images/background.png" id="2_05kx7"]
 
-[node name="Card" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqjh"]
+size = Vector2(704, 988.5)
+
+[node name="Card" type="Area2D"]
+script = ExtResource("1_q4dhy")
 
 [node name="Art" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -3.05176e-05)
+position = Vector2(0, -737.805)
 texture = ExtResource("1_rhpyq")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(0, 238.805)
+position = Vector2(0, -499)
 scale = Vector2(0.76, 0.76)
 texture = ExtResource("2_05kx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -499.75)
+shape = SubResource("RectangleShape2D_3gqjh")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

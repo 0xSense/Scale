@@ -1,4 +1,7 @@
+namespace Systems.Combat;
+
 using System.Collections.Generic;
+using System.Linq;
 using Data;
 
 public class Hand
@@ -9,6 +12,15 @@ public class Hand
     public Hand()
     {
 
+    }
+
+    public CardData Play(int index)
+    {
+        CardData played = _hand.ElementAt(index);
+
+        
+
+        return played;
     }
 
 }
