@@ -3,7 +3,7 @@ using Godot;
 public partial class Door : Area2D
 {
 	private bool _doorEntered;
-	[Export] private string _sceneTransition;
+	[Export] private PackedScene _sceneTransition;
 
 	public void _on_body_entered(Node2D body)
 	{
@@ -27,7 +27,10 @@ public partial class Door : Area2D
 		{
 			if (Input.IsActionJustReleased("ui_interact"))
 			{
-				GetTree().ChangeSceneToFile(_sceneTransition);
+				GetTree().ChangeSceneToPacked(_sceneTransition);
+				GetTree().ChangeSceneToPacked
+				GetTree().Free();
+
 			}
 		}
 	}

@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2f00u8u6e854"]
+[gd_scene load_steps=13 format=3 uid="uid://c2f00u8u6e854"]
 
 [ext_resource type="Texture2D" uid="uid://boofm0h7hde7h" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/Background/back.png" id="1_boroi"]
 [ext_resource type="PackedScene" uid="uid://dgkkhk5ao6if" path="res://scenes/purgatory/scenes/receptionist.tscn" id="2_gc1ef"]
 [ext_resource type="Texture2D" uid="uid://d3311qoae378m" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/tileset.png" id="3_llpjb"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_ejam8"]
-[ext_resource type="Script" path="res://scenes/purgatory/scenes/door.cs" id="5_ivrjb"]
+[ext_resource type="Script" path="res://scenes/purgatory/scenes/Door.cs" id="5_60ra7"]
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="6_ktkmk"]
+[ext_resource type="PackedScene" uid="uid://h8hxdj6xv1b5" path="res://scenes/purgatory/scenes/purgatory-level.tscn" id="6_tqm7u"]
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="7_j7j22"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pm5lj"]
@@ -565,8 +566,8 @@ scale = Vector2(0.0277778, 0.0987655)
 texture = ExtResource("4_ejam8")
 
 [node name="Area2D" type="Area2D" parent="Purgatory Door"]
-script = ExtResource("5_ivrjb")
-_sceneTransition = "res://scenes/purgatory/scenes/purgatory-level.tscn"
+script = ExtResource("5_60ra7")
+_sceneTransition = ExtResource("6_tqm7u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Purgatory Door/Area2D"]
 shape = SubResource("RectangleShape2D_5l57v")

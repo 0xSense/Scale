@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://h8hxdj6xv1b5"]
+[gd_scene load_steps=15 format=3 uid="uid://h8hxdj6xv1b5"]
 
 [ext_resource type="Texture2D" uid="uid://boofm0h7hde7h" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/Background/back.png" id="1_83f6a"]
 [ext_resource type="Texture2D" uid="uid://d3311qoae378m" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/environment/tileset.png" id="2_qrp43"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="5_us5ot"]
 [ext_resource type="Script" path="res://scenes/purgatory/scenes/Door.cs" id="6_3v7ff"]
 [ext_resource type="Texture2D" uid="uid://bo5bjm5a2nkty" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/eagle/eagle-attack-1.png" id="6_ou5ra"]
+[ext_resource type="PackedScene" uid="uid://c2f00u8u6e854" path="res://scenes/purgatory/scenes/receptionist_office.tscn" id="7_1xpp3"]
 [ext_resource type="Texture2D" uid="uid://55ovn8bglemx" path="res://assets/main_character/PlayableCharacter-removebg-preview.png" id="8_4r7jv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vj6lx"]
@@ -578,7 +579,7 @@ texture = ExtResource("5_gr22g")
 
 [node name="Area2D" type="Area2D" parent="Receptionist Door"]
 script = ExtResource("6_3v7ff")
-_sceneTransition = "res://scenes/purgatory/scenes/receptionist_office.tscn"
+_sceneTransition = ExtResource("7_1xpp3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Receptionist Door/Area2D"]
 position = Vector2(0.00244141, -40.5)
