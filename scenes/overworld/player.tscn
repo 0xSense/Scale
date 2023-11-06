@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=19 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
 [ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
 [ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="4_5f14t"]
-[ext_resource type="Script" path="res://scenes/overworld/LeverCollision.cs" id="4_l8clh"]
 [ext_resource type="Script" path="res://scenes/overworld/MovingPlatform.cs" id="4_nr1vd"]
 [ext_resource type="Script" path="res://scenes/overworld/Spikes.cs" id="5_6jmsv"]
-[ext_resource type="Script" path="res://scenes/overworld/LeverInteract.cs" id="6_xgl5r"]
 [ext_resource type="PackedScene" uid="uid://csv68lfmbllbb" path="res://scenes/overworld/enemy.tscn" id="5_tpju5"]
+[ext_resource type="PackedScene" uid="uid://dujbp4wpv8wo1" path="res://scenes/overworld/objects/Interatction_Lever.tscn" id="8_k5l1f"]
+[ext_resource type="PackedScene" uid="uid://bb3cgq1iluiu0" path="res://scenes/overworld/objects/Collision_Lever.tscn" id="9_ktm0b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
 radius = 7.5
@@ -28,9 +28,6 @@ size = Vector2(29, 6.1085)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxoss"]
 size = Vector2(247.997, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mw1py"]
-size = Vector2(72, 32)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a1m6g"]
 vertices = PackedVector2Array(-812.268, -1579.66, 2499.87, -1524.48, 2477.16, 1441.7, -961.099, 1493.44)
@@ -134,64 +131,16 @@ position = Vector2(-346, -36)
 scale = Vector2(0.645169, 1)
 shape = SubResource("RectangleShape2D_pxoss")
 
-[node name="Lever" type="Node2D" parent="."]
-position = Vector2(-206, 58)
-metadata/_edit_group_ = true
-
-[node name="Area2D" type="Area2D" parent="Lever"]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("4_l8clh")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever/Area2D"]
-position = Vector2(1, -9)
-shape = SubResource("RectangleShape2D_mw1py")
-
-[node name="Off" type="Sprite2D" parent="Lever"]
-visible = false
-scale = Vector2(0.005, -0.025)
-texture = ExtResource("4_5f14t")
-
-[node name="On" type="Sprite2D" parent="Lever"]
-scale = Vector2(0.005, -0.025)
-texture = ExtResource("2_dq3xf")
-
-[node name="Lever2" type="Node2D" parent="."]
-position = Vector2(402, 58)
-metadata/_edit_group_ = true
-
-[node name="Area2D_2" type="Area2D" parent="Lever2"]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("6_xgl5r")
-
-[node name="CollisionShape2D_2" type="CollisionShape2D" parent="Lever2/Area2D_2"]
-position = Vector2(-1, -9)
-shape = SubResource("RectangleShape2D_mw1py")
-
-[node name="Off_2" type="Sprite2D" parent="Lever2"]
-visible = false
-scale = Vector2(0.005, -0.025)
-texture = ExtResource("4_5f14t")
-
-[node name="On_2" type="Sprite2D" parent="Lever2"]
-scale = Vector2(0.005, -0.025)
-texture = ExtResource("2_dq3xf")
-
-[connection signal="body_entered" from="Spikes/Area2D" to="Spikes/Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Lever/Area2D" to="Lever/Area2D" method="_on_body_entered"]
-[connection signal="body_entered" from="Lever2/Area2D_2" to="Lever2/Area2D_2" method="_on_body_entered"]
-[connection signal="body_exited" from="Lever2/Area2D_2" to="Lever2/Area2D_2" method="_on_body_exited"]
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-255, -2)
 scale = Vector2(0.396421, 0.289936)
 navigation_polygon = SubResource("NavigationPolygon_a1m6g")
 
 [node name="enemy" parent="." node_paths=PackedStringArray("_playerBody") instance=ExtResource("5_tpju5")]
-position = Vector2(388, 22)
+position = Vector2(-289, -54)
 _speed = 100.0
 _idleSpeed = 100.0
+_isWalking = true
 _playerBody = NodePath("../Player")
 
 [node name="Area2D" type="Area2D" parent="enemy"]
@@ -208,5 +157,12 @@ position = Vector2(-133, -1)
 rotates = false
 cubic_interp = false
 
+[node name="Interatction_Lever" parent="." instance=ExtResource("8_k5l1f")]
+position = Vector2(357, 55)
+
+[node name="Collision_Lever" parent="." instance=ExtResource("9_ktm0b")]
+position = Vector2(-228, 57)
+
+[connection signal="body_entered" from="Spikes/Area2D" to="Spikes/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_exited"]
