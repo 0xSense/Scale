@@ -23,6 +23,6 @@ public partial class Transition : Node2D
 
     public void EngagedInCombat()
     {
-
+        // load scene combat scene
     }
 }

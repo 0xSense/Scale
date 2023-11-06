@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c56hkkjvyocxr" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/cherry/cherry-1.png" id="5_f2u44"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="5_gr22g"]
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="5_us5ot"]
-[ext_resource type="Script" path="res://scenes/purgatory/scenes/Door.cs" id="6_nrlt3"]
+[ext_resource type="Script" path="res://scenes/purgatory/scenes/Door.cs" id="6_3v7ff"]
 [ext_resource type="Texture2D" uid="uid://bo5bjm5a2nkty" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/eagle/eagle-attack-1.png" id="6_ou5ra"]
 [ext_resource type="Texture2D" uid="uid://55ovn8bglemx" path="res://assets/main_character/PlayableCharacter-removebg-preview.png" id="8_4r7jv"]
 
@@ -577,7 +577,7 @@ scale = Vector2(0.0277778, 0.0987655)
 texture = ExtResource("5_gr22g")
 
 [node name="Area2D" type="Area2D" parent="Receptionist Door"]
-script = ExtResource("6_nrlt3")
+script = ExtResource("6_3v7ff")
 _sceneTransition = "res://scenes/purgatory/scenes/receptionist_office.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Receptionist Door/Area2D"]

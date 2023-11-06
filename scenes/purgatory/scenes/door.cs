@@ -3,7 +3,7 @@ using Godot;
 public partial class Door : Area2D
 {
 	private bool _doorEntered;
-	// [Export] private string _sceneTransition;
+	[Export] private string _sceneTransition;
 
 	public void _on_body_entered(Node2D body)
 	{
@@ -18,8 +18,7 @@ public partial class Door : Area2D
 
 	public override void _Ready()
 	{
-		// Load Resource
-		_sceneTransition = GetNode()
+		// Load Resource, 
 	}
 
 	public override void _Process(double delta)
