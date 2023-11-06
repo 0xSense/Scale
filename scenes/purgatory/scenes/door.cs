@@ -1,34 +1,27 @@
 using Godot;
-using System;
-using System.IO;
 
-public partial class door : Area2D
+public partial class Door : Area2D
 {
 	private bool _doorEntered;
-	[Export] private string _sceneTransition;
+	// [Export] private string _sceneTransition;
 
 	public void _on_body_entered(Node2D body)
 	{
-		GD.Print ("Hello cutie");
+		GD.Print("Door Enter");
 		_doorEntered = true;
-
 	}
 	public void _on_body_exited(Node2D body)
 	{
-		GD.Print("Goodbye cutie :(");
+		GD.Print("Door Exit");
 		_doorEntered = false;
-
 	}
 
-
-
-
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Load Resource
+		_sceneTransition = GetNode()
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if (_doorEntered)
@@ -36,11 +29,7 @@ public partial class door : Area2D
 			if (Input.IsActionJustReleased("ui_interact"))
 			{
 				GetTree().ChangeSceneToFile(_sceneTransition);
-
 			}
-
-
 		}
-
 	}
 }

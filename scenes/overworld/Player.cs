@@ -12,7 +12,8 @@ Player movement:
   * Gravity increases on descent
  - Crouching (ask Perplexer why this needs to be a thing)
  - Sprinting (ask Perplexer why this needs to be a thing)
-
+	When input is "right" character sprite should face right
+		
 */
 
 public enum State

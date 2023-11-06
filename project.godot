@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game-jam-project-name-unknown"
-run/main_scene="res://scenes/overworld/player.tscn"
+run/main_scene="res://scenes/overworld/overworld.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
-mouse_cursor/custom_image="res://assets/placeholder/kenney_tinydungeon/Tiles/tile_0117.png"
+mouse_cursor/custom_image="res://scenes/combat/asset/blunt_damage_asset.png"
 
 [dotnet]
 
