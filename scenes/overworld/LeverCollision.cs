@@ -20,8 +20,6 @@ public partial class LeverCollision : Godot.Area2D
 
     public void _on_body_entered(Node2D body)
 	{
-		GD.Print("Body entered the collision area!");
-
 		switch(_state){
 			case true:
 				_off.Visible = true;
@@ -34,6 +32,5 @@ public partial class LeverCollision : Godot.Area2D
 				_state = true;
 				break;
 		}
-
 	}
 }

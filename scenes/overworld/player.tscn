@@ -117,6 +117,7 @@ position = Vector2(-228, 57)
 position = Vector2(307, -1)
 
 [node name="Moving_Platform" parent="." instance=ExtResource("8_hfea3")]
+position = Vector2(2, 0)
 
 [connection signal="body_entered" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_exited"]

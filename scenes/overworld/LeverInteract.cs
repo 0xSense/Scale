@@ -20,13 +20,11 @@ public partial class LeverInteract : Godot.Area2D
 
     public void _on_body_entered(Node2D body)
 	{
-		GD.Print("Body entered the collision area!");
 		_playerInsideArea = true;
 	}
 
 	public void _on_body_exited(Node2D body) 
 	{
-		GD.Print("Body exited the collision area!");
 		_playerInsideArea = false;
 	}
 
