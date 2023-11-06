@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs2hgehp17a87"
-path="res://.godot/imported/Magic.png-ba75a4757e00987f460cc64020914b43.ctex"
+uid="uid://b7rqgqjktyw54"
+path="res://.godot/imported/armour.png-8236ce96876705ef44960d0d11ce2266.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/Magic.png"
-dest_files=["res://.godot/imported/Magic.png-ba75a4757e00987f460cc64020914b43.ctex"]
+source_file="res://assets/asset/armour.png"
+dest_files=["res://.godot/imported/armour.png-8236ce96876705ef44960d0d11ce2266.ctex"]
 
 [params]
 

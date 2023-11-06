@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmqcs1vqo2kms"
-path="res://.godot/imported/blunt_damage_asset.png-34f2b1099b12c0f836a1ffc35aa188b3.ctex"
+uid="uid://0x2qpgm3jwb3"
+path="res://.godot/imported/action_points.png-5c36efee14250468fe983fb28ca278ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/blunt_damage_asset.png"
-dest_files=["res://.godot/imported/blunt_damage_asset.png-34f2b1099b12c0f836a1ffc35aa188b3.ctex"]
+source_file="res://assets/asset/action_points.png"
+dest_files=["res://.godot/imported/action_points.png-5c36efee14250468fe983fb28ca278ab.ctex"]
 
 [params]
 

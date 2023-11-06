@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7rqgqjktyw54"
-path="res://.godot/imported/armour.png-a8f9f45323c2109cab6cbde92d7c9483.ctex"
+uid="uid://pa7i20fvwdqa"
+path="res://.godot/imported/combat_environment.png-d079c9484c8014e94d2ac7bf8a84814f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/armour.png"
-dest_files=["res://.godot/imported/armour.png-a8f9f45323c2109cab6cbde92d7c9483.ctex"]
+source_file="res://assets/asset/combat_environment.png"
+dest_files=["res://.godot/imported/combat_environment.png-d079c9484c8014e94d2ac7bf8a84814f.ctex"]
 
 [params]
 

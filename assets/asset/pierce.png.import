@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0x2qpgm3jwb3"
-path="res://.godot/imported/action_points.png-48c062b596624cf09d0d6eb4142b0a21.ctex"
+uid="uid://dl6l3x1q5lpir"
+path="res://.godot/imported/pierce.png-338aaa8d5b59ea93b849cc07499dbbc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/action_points.png"
-dest_files=["res://.godot/imported/action_points.png-48c062b596624cf09d0d6eb4142b0a21.ctex"]
+source_file="res://assets/asset/pierce.png"
+dest_files=["res://.godot/imported/pierce.png-338aaa8d5b59ea93b849cc07499dbbc0.ctex"]
 
 [params]
 

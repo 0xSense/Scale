@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://suvrwtmiqiin"
-path="res://.godot/imported/lifebar_bg.png-9cf0cf3b21953e1207fdd12f0973ec5c.ctex"
+uid="uid://xjqeaxy6sf5i"
+path="res://.godot/imported/Enemy.png-c55bee9e60f14164a4a2dd38a5327c29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/lifebar_bg.png"
-dest_files=["res://.godot/imported/lifebar_bg.png-9cf0cf3b21953e1207fdd12f0973ec5c.ctex"]
+source_file="res://assets/asset/Enemy.png"
+dest_files=["res://.godot/imported/Enemy.png-c55bee9e60f14164a4a2dd38a5327c29.ctex"]
 
 [params]
 

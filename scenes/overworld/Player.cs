@@ -24,6 +24,7 @@ public enum State
 
 public partial class Player : CharacterBody2D
 {
+	[Export] public string _playerSkin = "res://assets/main_character/PlayableCharacter.png";
 	[Export] private float _walkSpeed = 500f;
 	[Export] private float _sprintSpeed = 1700f;
 	[Export] private float _jumpTime; // Time spent in upward acceleration
@@ -132,6 +133,11 @@ public partial class Player : CharacterBody2D
 	private bool IsSprinting()
 	{
 		return Input.IsActionPressed("ui_sprint");
+	}
+
+	private bool FlipSpriteTowardsMomentum()
+	{
+		return true;
 	}
 
 }

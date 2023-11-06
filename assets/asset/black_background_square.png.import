@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl6l3x1q5lpir"
-path="res://.godot/imported/pierce.png-01a71fedea1ffa501577fbb3277c9dff.ctex"
+uid="uid://c6vlylv4mg1io"
+path="res://.godot/imported/black_background_square.png-5dfc2154378224b9190d5e2f92d773ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/pierce.png"
-dest_files=["res://.godot/imported/pierce.png-01a71fedea1ffa501577fbb3277c9dff.ctex"]
+source_file="res://assets/asset/black_background_square.png"
+dest_files=["res://.godot/imported/black_background_square.png-5dfc2154378224b9190d5e2f92d773ee.ctex"]
 
 [params]
 

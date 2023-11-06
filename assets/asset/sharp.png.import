@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6obo0rmxjdl"
-path="res://.godot/imported/lifebar_fill.png-9874d3bead07d26010bc522d190e85d7.ctex"
+uid="uid://u7i78f8i1mrt"
+path="res://.godot/imported/sharp.png-afcea74264573a81f1e1e78ac807d59c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/lifebar_fill.png"
-dest_files=["res://.godot/imported/lifebar_fill.png-9874d3bead07d26010bc522d190e85d7.ctex"]
+source_file="res://assets/asset/sharp.png"
+dest_files=["res://.godot/imported/sharp.png-afcea74264573a81f1e1e78ac807d59c.ctex"]
 
 [params]
 

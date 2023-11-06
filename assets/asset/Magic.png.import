@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pa7i20fvwdqa"
-path="res://.godot/imported/combat_environment.png-6a65cc3ac34bdb2819860828007d99c6.ctex"
+uid="uid://bs2hgehp17a87"
+path="res://.godot/imported/Magic.png-d8b856205fb2b6d5a0b69bc09181ee20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/combat_environment.png"
-dest_files=["res://.godot/imported/combat_environment.png-6a65cc3ac34bdb2819860828007d99c6.ctex"]
+source_file="res://assets/asset/Magic.png"
+dest_files=["res://.godot/imported/Magic.png-d8b856205fb2b6d5a0b69bc09181ee20.ctex"]
 
 [params]
 

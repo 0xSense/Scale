@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjhqsrrjydd46"
-path="res://.godot/imported/Player.png-8c45d00b25ed1c2ee3b4c902405c7bf6.ctex"
+uid="uid://suvrwtmiqiin"
+path="res://.godot/imported/lifebar_bg.png-8d66d9841a8165e3d9c4ff93c21418dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/Player.png"
-dest_files=["res://.godot/imported/Player.png-8c45d00b25ed1c2ee3b4c902405c7bf6.ctex"]
+source_file="res://assets/asset/lifebar_bg.png"
+dest_files=["res://.godot/imported/lifebar_bg.png-8d66d9841a8165e3d9c4ff93c21418dc.ctex"]
 
 [params]
 

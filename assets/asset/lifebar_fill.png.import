@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tugk3tu2ltca"
-path="res://.godot/imported/hp.png-ad101646e4d071b1324389399a1f284d.ctex"
+uid="uid://dc6obo0rmxjdl"
+path="res://.godot/imported/lifebar_fill.png-37aff74606c8756cc7441cd71e4d122e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/hp.png"
-dest_files=["res://.godot/imported/hp.png-ad101646e4d071b1324389399a1f284d.ctex"]
+source_file="res://assets/asset/lifebar_fill.png"
+dest_files=["res://.godot/imported/lifebar_fill.png-37aff74606c8756cc7441cd71e4d122e.ctex"]
 
 [params]
 
