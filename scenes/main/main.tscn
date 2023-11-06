@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cipd5odixnpm8"]
 
 [ext_resource type="Script" path="res://scenes/main/main.cs" id="1_6ei66"]
-[ext_resource type="PackedScene" path="res://scenes/overworld_game_camera.tscn" id="2_5ntls"]
+[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/overworld_game_camera.tscn" id="2_5ntls"]
 [ext_resource type="Script" path="res://scenes/main/CardTestNode.cs" id="3_k0m6s"]
 [ext_resource type="Resource" uid="uid://dubg7k3yfq3wm" path="res://data_resources/card_data/MovementCardExample.tres" id="4_rwdgt"]
 [ext_resource type="Script" path="res://scenes/main/GeneralTestNode.cs" id="5_6bc1x"]
