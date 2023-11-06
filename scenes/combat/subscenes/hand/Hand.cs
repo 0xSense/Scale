@@ -28,7 +28,8 @@ public partial class Hand : Marker2D
 
     private void FillHandDefault()
     {
-        AddCards(MasterDeck.CardTypes[0], 6);
+        AddCards(MasterDeck.CardTypes[0], 2);
+        AddCards(MasterDeck.CardTypes[1], 3);
     }
 
     public void AddCards(CardData card, int n)
@@ -37,6 +38,7 @@ public partial class Hand : Marker2D
         for (int i = 0; i < n; i++)
         {
             newCard = (Card)_cardResource.Instantiate();
+            newCard.UpdateData(card);
             newCard.SetHandOwner(this);
             AddChild(newCard);
             _cards.Add(newCard);
@@ -89,19 +91,19 @@ public partial class Hand : Marker2D
 
             if (_selectedCardIndex != -1 && i < _selectedCardIndex)
             {
-                _cards[i].StartAngleTween(-(int)(_cards.Count*1.5), 0.25f);
+                _cards[i].StartAngleTween(-(int)((_cards.Count/2)*1.4), 0.25f);
 
             }
             else if (_selectedCardIndex != -1 && i > _selectedCardIndex)
             {
-                _cards[i].StartAngleTween((int)(_cards.Count*1.5), 0.25f);
+                _cards[i].StartAngleTween((int)((_cards.Count/2)*1.4), 0.25f);
             }
             else
                 _cards[i].StartAngleTween(0, 0.25f);
 
             _cards[i].RotationDegrees = Mathf.Lerp(angle, 0, _cards[i].GetRotationFactor());
 
-            offset.X = Mathf.Cos(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
+            offset.X = Mathf.Cos(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset) * 1.25f;
             offset.Y = Mathf.Sin(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
 
             _cards[i].Position = Vector2.Zero + offset;

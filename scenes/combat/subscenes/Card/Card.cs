@@ -1,5 +1,6 @@
 namespace Gameworld;
 
+using Data;
 using Godot;
 using Godot.NativeInterop;
 using System;
@@ -26,6 +27,29 @@ public partial class Card : Area2D
 	private float _rotationFactor = 0;
 	public Tween _rotationFactorTween;
 	
+	public void UpdateData(CardData data)
+	{
+		((Sprite2D)GetNode("Art")).Texture = data.Artwork;
+		((RichTextLabel)GetNode("NameLabel")).Text = "[center][font_size=65]" + data.Name + "[/font_size][/center]";
+		((RichTextLabel)GetNode("DescriptionLabel")).Text = "[center][font_size=35]" + data.Description + "[/font_size][/center]";
+
+		string diceText = "";
+
+		foreach (DamageType dt in data.Damage.Keys)
+		{
+			diceText += data.Damage[dt].ToString() + " " + dt + "\n";
+		}
+
+		((RichTextLabel)GetNode("DamageLabel")).Text = "[font_size=40]" + diceText + "[/font_size]";
+
+		((RichTextLabel)GetNode("TargetsLabel")).Text = "[right][font_size=40]" + data.Target + "[/font_size][/right]";
+
+		((Label)GetNode("ActionPointIcon/ActionPointNumber")).Text = data.ActionPointCost.ToString();
+
+		if (data.MovementPointCost == 0)
+			((Node2D)GetNode("MovementPointIcon")).Hide();
+		
+	}
 	
 	public void SetMouseOverStatus(bool moused)
 	{		

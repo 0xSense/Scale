@@ -1,17 +1,20 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c0c0mscfyaa73"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c0c0mscfyaa73"]
 
 [ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_4bt6n"]
+[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_q4ws2"]
 
 [resource]
 script = ExtResource("1_4bt6n")
-_name = "This is a sample card."
+_name = "Balemoon"
+_description = "[i]To cast the world in paler shades . . . [/i]"
+_artwork = ExtResource("1_q4ws2")
 _type = 2
 _rarity = 3
 _actionPointCost = 3
 _movementPointCost = 0
-_target = 2
-_damageTypes = [7, 0]
-_damageDice = ["1d10 + 4", "3d6"]
+_target = 5
+_damageTypes = [0, 1]
+_damageDice = ["4d4", "4d4"]
 _drawEffects = [0]
 _drawQuantities = [2]
 _buffs = []

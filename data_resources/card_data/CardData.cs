@@ -108,14 +108,22 @@ public struct DamageDice
 
 public partial class CardData : Resource
 {    
-    [Export] private String _name;
+    [ExportGroup("Appearance")]
+    [Export] private string _name;
+    [Export] private string _description;
+    [Export] private Texture2D _artwork;
+    public Texture2D Artwork => _artwork;
+
+    [ExportGroup("Attributes")]
     // Types and rarity
     [Export] private CardType _type;
     [Export] private CardRarity _rarity;
     [Export] private int _actionPointCost;
     [Export] private int _movementPointCost;
 
-    public String Name => _name;
+    public string Name => _name;
+    public string Description => _description;
+    
     public CardRarity Rarity => _rarity;
     public CardType Type => _type;
     public int ActionPointCost => _actionPointCost;
@@ -124,22 +132,25 @@ public partial class CardData : Resource
     [Export] private TargetType _target;
     public TargetType Target => _target;
     
-
+    [ExportGroup("Damage")]
     // Damage and damage types
     [Export] private Godot.Collections.Array<DamageType> _damageTypes = new();
     [Export] private Godot.Collections.Array<String> _damageDice = new();
     public Dictionary<DamageType, DamageDice> Damage;
 
+    [ExportGroup("Draw")]
     // Draw effects (draw/remove cards to deck; always affects player regardless of TargetType)
     [Export] private Godot.Collections.Array<DrawEffect> _drawEffects = new();
     [Export] private Godot.Collections.Array<int> _drawQuantities = new();
     public Dictionary<DrawEffect, int> DrawEffects;
 
+    [ExportGroup("Buff")]
     // Buff type/duration
     [Export] private Godot.Collections.Array<Buff> _buffs = new();
     [Export] private Godot.Collections.Array<int> _buffDuration = new(); // Turn based, not seconds
     public Dictionary<Buff, int> Buffs;
 
+    [ExportGroup("Debuff")]
     // Debuff type/duration
     [Export] private Godot.Collections.Array<Debuff> _debuffs = new();
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
