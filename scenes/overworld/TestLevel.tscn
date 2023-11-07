@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c336oofsl335u"]
+
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="1_e6cxx"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Wall"]
+position = Vector2(423, -18)
+scale = Vector2(0.280382, 0.0617283)
+texture = ExtResource("1_e6cxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
