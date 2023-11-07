@@ -13,5 +13,4 @@ public partial class Receptionist : CharacterBody2D
 	{
 	}
 
-	
 }
