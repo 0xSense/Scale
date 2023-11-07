@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bk6mw4uwgd1yl"]
+[gd_scene load_steps=18 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="1_y42kw"]
@@ -14,6 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
 [ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xqp2"]
+
+[sub_resource type="Gradient" id="Gradient_5qtr3"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.572848, 0.794702)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hidsq"]
+gradient = SubResource("Gradient_5qtr3")
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0, 0.5)
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_y42kw")
@@ -140,3 +152,38 @@ z_index = 2
 position = Vector2(368, -1003)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_epm16")
+
+[node name="Energy" type="Node2D" parent="."]
+
+[node name="MovementPoint" type="Sprite2D" parent="Energy"]
+position = Vector2(690, 314)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_epm16")
+
+[node name="Label" type="Label" parent="Energy/MovementPoint"]
+offset_left = -28.0
+offset_top = -52.0
+offset_right = 29.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 100
+text = "1"
+
+[node name="ActionPoint" type="Sprite2D" parent="Energy"]
+position = Vector2(690, 430)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_ey1xf")
+
+[node name="Label" type="Label" parent="Energy/ActionPoint"]
+offset_left = -24.0
+offset_top = -76.0
+offset_right = 33.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 100
+text = "3"
+
+[node name="Sprite2D" type="Sprite2D" parent="Energy"]
+z_index = -1
+material = SubResource("ShaderMaterial_1xqp2")
+position = Vector2(661, 401)
+scale = Vector2(10.6875, 4.57422)
+texture = SubResource("GradientTexture2D_hidsq")
