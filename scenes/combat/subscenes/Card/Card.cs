@@ -1,4 +1,4 @@
-namespace Gameworld;
+namespace Combat;
 
 using Data;
 using Godot;
@@ -26,9 +26,13 @@ public partial class Card : Area2D
 
 	private float _rotationFactor = 0;
 	public Tween _rotationFactorTween;
+
+	private CardData _data;
+	public CardData Data => _data;
 	
 	public void UpdateData(CardData data)
 	{
+		_data = data;
 		((Sprite2D)GetNode("Art")).Texture = data.Artwork;
 		((RichTextLabel)GetNode("NameLabel")).Text = "[center][font_size=65]" + data.Name + "[/font_size][/center]";
 		((RichTextLabel)GetNode("DescriptionLabel")).Text = "[center][font_size=35]" + data.Description + "[/font_size][/center]";

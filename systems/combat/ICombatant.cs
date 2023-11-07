@@ -17,17 +17,25 @@
 
 namespace Systems.Combat;
 
+using System.Collections.Generic;
 using Data;
 
 public interface ICombatant
 {
+    public abstract int GetHealth();
     public abstract void BeginTurn();
-    public abstract void TakeDamage(DamageType type, float amount);
+    public abstract void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit);
     public abstract bool IsDead();
     public abstract int GetActionPoints();
     public abstract int GetMovementPoints();
     public abstract Deck GetDeck();
     public abstract void BurnActionPoints(int burn); // If this function reduces action points below zero, set them to zero.
     public abstract void BurnMovementPoints(int burn); // If this function reduces movement points below zero, set them to zero.
+    public abstract int GetArmor();
+    public abstract void AddArmor(int armor);
+    public abstract void AddResistance(DamageType resistance, int turns);
+    public abstract int GetCritChance();
+    public abstract double GetCritModifier();
+    public Dictionary<Data.DamageType, int> GetResistances();
     
 }

@@ -1,4 +1,4 @@
-namespace Gameworld;
+namespace Combat;
 
 using Data;
 using Godot;

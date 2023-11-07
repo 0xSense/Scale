@@ -33,8 +33,8 @@ namespace Systems.Combat;
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Combat;
 using Data;
-using Systems.Combat;
 
 public class CombatManager
 {
@@ -93,7 +93,7 @@ public class CombatManager
         {
             foreach (DamageType dt in card.Damage.Keys)
             {
-                target.TakeDamage(dt, Roll(card.Damage[dt]));
+                target.TakeDamage(dt, Roll(card.Damage[dt]), cardPlayer.GetCritModifier(), RollForCrit(cardPlayer.GetCritChance()));
             }
         }
 
@@ -101,6 +101,11 @@ public class CombatManager
         // . . .
 
         return true; // TODO: Complete function
+    }
+
+    private bool RollForCrit(int percentChance)
+    {
+        return (RNG.Next(100)+1) < percentChance;
     }
 
     public void EndTurn(ICombatant current)
@@ -157,13 +162,13 @@ public class CombatManager
         int damageTotal = 0;
 
         for (int i = 0; i < dice.d4; i++)        
-            damageTotal += _random.Next(1, 4);
+            damageTotal += _random.Next(4) + 1;
         for (int i = 0; i < dice.d6; i++)        
-            damageTotal += _random.Next(1, 6);
+            damageTotal += _random.Next(6) + 1;
         for (int i = 0; i < dice.d8; i++)        
-            damageTotal += _random.Next(1, 8);
+            damageTotal += _random.Next(8) + 1;
         for (int i = 0; i < dice.d10; i++)        
-            damageTotal += _random.Next(1, 10);
+            damageTotal += _random.Next(10) + 1;
         
         damageTotal += dice.flat;
 

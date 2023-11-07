@@ -60,7 +60,6 @@ public enum Buff
     ARMOR,
     CRIT_DMG_INCREASE,
     CRIT_CHANCE_INCREASE,
-    TRUE_SIGHT,
 }
 
 public enum Debuff
@@ -102,6 +101,18 @@ public struct DamageDice
         }
 
         return final;
+    }
+}
+
+public struct Resistance
+{
+    public DamageType Type;
+    public int Duration;
+
+    public Resistance(DamageType type, int duration)
+    {
+        Type = type;
+        Duration = duration;
     }
 }
 
