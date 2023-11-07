@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk6mw4uwgd1yl"]
+[gd_scene load_steps=15 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="1_y42kw"]
@@ -6,15 +6,21 @@
 [ext_resource type="Script" path="res://scenes/combat/subscenes/hand/Hand.cs" id="2_xecqg"]
 [ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://scenes/combat/subscenes/Card/Card.tscn" id="3_6gjep"]
 [ext_resource type="Resource" uid="uid://c0c0mscfyaa73" path="res://data_resources/card_data/TestCard.tres" id="3_vmwlc"]
-[ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://scenes/combat/subscenes/player/player.tscn" id="4_rn6c5"]
+[ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
 [ext_resource type="PackedScene" uid="uid://gkajlv32sxji" path="res://scenes/combat/subscenes/enemy/Enemy.tscn" id="8_1yf23"]
+[ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
+[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
+[ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
+[ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
+[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_y42kw")
 _cardTypes = [ExtResource("2_h0k1a"), ExtResource("3_vmwlc")]
 
 [node name="Player" parent="." instance=ExtResource("4_rn6c5")]
-position = Vector2(-653, 130)
+position = Vector2(-628, 103)
 scale = Vector2(-1, 1)
 
 [node name="Background" parent="." instance=ExtResource("1_5pl1x")]
@@ -32,12 +38,105 @@ _handArc = 25.0
 _radius = 900.0
 
 [node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("8_1yf23")]
 position = Vector2(614, 107)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("8_1yf23")]
-position = Vector2(475, 367)
+position = Vector2(417, 87)
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("8_1yf23")]
 position = Vector2(383, -64)
+
+[node name="Deck" parent="." instance=ExtResource("9_5f4rp")]
+position = Vector2(842, 379)
+scale = Vector2(0.35, 0.325)
+
+[node name="Discard" type="Sprite2D" parent="."]
+position = Vector2(-847, 481)
+scale = Vector2(0.21, 0.21)
+
+[node name="Card" type="Sprite2D" parent="Discard"]
+
+[node name="Art" type="Sprite2D" parent="Discard/Card"]
+z_index = 1
+position = Vector2(0, -753.805)
+texture = ExtResource("10_04n3w")
+
+[node name="Background" type="Sprite2D" parent="Discard/Card"]
+z_index = 1
+position = Vector2(0, -499)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("11_be1sx")
+
+[node name="BackroundWhite" type="Sprite2D" parent="Discard/Card"]
+position = Vector2(0, -499)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("12_npiqr")
+
+[node name="NameLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = -306.0
+offset_top = -471.0
+offset_right = 310.0
+offset_bottom = -381.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Name[/center]"
+threaded = true
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = -306.0
+offset_top = -375.0
+offset_right = 306.0
+offset_bottom = -211.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Description of the card - intended to be flavor text."
+threaded = true
+
+[node name="DamageLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = -306.0
+offset_top = -194.0
+offset_right = -21.0
+offset_bottom = -42.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[color=red]1d8 + 4[/color] [img=40]assets/placeholder/damage_icons/fire.png[/img]"
+threaded = true
+
+[node name="TargetsLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = 23.0
+offset_top = -194.0
+offset_right = 307.0
+offset_bottom = -42.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[right]Target info here"
+threaded = true
+
+[node name="ActionPointIcon" type="Sprite2D" parent="Discard/Card"]
+z_index = 2
+position = Vector2(-370, -1010)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_ey1xf")
+
+[node name="ActionPointNumber" type="Label" parent="Discard/Card/ActionPointIcon"]
+offset_left = -62.0
+offset_top = -118.0
+offset_right = 58.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovementPointIcon" type="Sprite2D" parent="Discard/Card"]
+z_index = 2
+position = Vector2(368, -1003)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_epm16")
