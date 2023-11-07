@@ -77,12 +77,11 @@ position = Vector2(-255, -2)
 scale = Vector2(0.396421, 0.289936)
 navigation_polygon = SubResource("NavigationPolygon_a1m6g")
 
-[node name="enemy" parent="." node_paths=PackedStringArray("_playerBody") instance=ExtResource("3_0a3r2")]
+[node name="enemy" parent="." instance=ExtResource("3_0a3r2")]
 position = Vector2(-289, -54)
 _speed = 100.0
 _idleSpeed = 100.0
 _isWalking = true
-_playerBody = NodePath("")
 
 [node name="Area2D" type="Area2D" parent="enemy"]
 
@@ -120,12 +119,11 @@ position = Vector2(4231, -1712)
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("8_10snp")]
+[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation") instance=ExtResource("8_10snp")]
 position = Vector2(588, 27)
 rotation = -3.14159
 scale = Vector2(0.0334297, -0.11922)
 _targetLocation = NodePath("../../Locations/Level 2")
-_player = NodePath("")
 
 [connection signal="body_entered" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_exited"]

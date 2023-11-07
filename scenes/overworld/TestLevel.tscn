@@ -1,14 +1,163 @@
-[gd_scene load_steps=2 format=3 uid="uid://c336oofsl335u"]
+[gd_scene load_steps=20 format=3 uid="uid://c336oofsl335u"]
 
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="1_e6cxx"]
+[ext_resource type="PackedScene" uid="uid://b2ij4lnih6yjs" path="res://scenes/overworld/Player.tscn" id="2_f5iqi"]
+[ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
+[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
+a = Vector2(-43, 8)
+b = Vector2(2633, 8)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6fwiq"]
+a = Vector2(21, -214)
+b = Vector2(21, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vqlio"]
+a = Vector2(-48, -3)
+b = Vector2(2157, -3)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_q7lqy"]
+a = Vector2(-8, -330)
+b = Vector2(-9, 43)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_wq0sw"]
+a = Vector2(-10, 7)
+b = Vector2(1113, 7)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hp5lj"]
+a = Vector2(-56, -2)
+b = Vector2(761, -2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcckp"]
+size = Vector2(26, 673)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p38fp"]
+size = Vector2(56, 556)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl5og"]
+size = Vector2(1486, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0pim"]
+size = Vector2(26, 203)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnotd"]
+size = Vector2(83, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omo8s"]
+size = Vector2(56, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnum"]
+size = Vector2(55, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnocb"]
+size = Vector2(56, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lkle"]
+size = Vector2(55, 27.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h05vj"]
+size = Vector2(55, 28)
 
 [node name="TestLevel" type="Node2D"]
 
-[node name="Wall" type="StaticBody2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(506, -993)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_gcwtk")
+metadata/_edit_lock_ = true
 
-[node name="Sprite" type="Sprite2D" parent="Wall"]
-position = Vector2(423, -18)
-scale = Vector2(0.280382, 0.0617283)
-texture = ExtResource("1_e6cxx")
+[node name="Player" parent="." instance=ExtResource("2_f5iqi")]
+position = Vector2(-808, -583)
+_sprintSpeed = 2020.0
+_jumpSpeed = 590.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1532, -563)
+shape = SubResource("SegmentShape2D_hm3xe")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1596, -567)
+shape = SubResource("SegmentShape2D_6fwiq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1528, -778)
+shape = SubResource("SegmentShape2D_vqlio")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2616, -1152)
+shape = SubResource("SegmentShape2D_q7lqy")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Walls"]
+position = Vector2(660, -1317)
+shape = SubResource("SegmentShape2D_wq0sw")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1850, -1475)
+shape = SubResource("SegmentShape2D_hp5lj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(641, -976.5)
+shape = SubResource("RectangleShape2D_kcckp")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1128, -833)
+shape = SubResource("RectangleShape2D_p38fp")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1893, -1085.5)
+shape = SubResource("RectangleShape2D_sl5og")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1783, -1383.5)
+shape = SubResource("RectangleShape2D_y0pim")
+
+[node name="Platforms" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(863.5, -625)
+shape = SubResource("RectangleShape2D_gnotd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1017, -708)
+shape = SubResource("RectangleShape2D_omo8s")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(877.5, -794.5)
+shape = SubResource("RectangleShape2D_5dnum")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(738, -875)
+shape = SubResource("RectangleShape2D_dnocb")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(877.5, -986.75)
+shape = SubResource("RectangleShape2D_6lkle")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(1016.5, -1069)
+shape = SubResource("RectangleShape2D_h05vj")
+
+[node name="Locations" type="Node" parent="."]
+
+[node name="Room_1" type="Marker2D" parent="Locations"]
+position = Vector2(-512, -1195)
+
+[node name="Room_2" type="Marker2D" parent="Locations"]
+position = Vector2(42, -1195)
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
+position = Vector2(-542, -600)
+scale = Vector2(0.0516886, 0.13859)
+_targetLocation = NodePath("../../Locations/Room_1")
+_player = NodePath("../../Player")
+
+[node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
+position = Vector2(12, -600)
+scale = Vector2(0.0516886, 0.13859)
+_targetLocation = NodePath("../../Locations/Room_2")
+_player = NodePath("../../Player")

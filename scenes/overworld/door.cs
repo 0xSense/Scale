@@ -20,11 +20,17 @@ public partial class door : Node2D
 
 	public void OnAreaEntered(Node2D body)
 	{
-		_playerInsideRange = true;
+		if (body == _player)
+		{
+			_playerInsideRange = true;
+		}
 	}
 
 	public void OnAreaExited(Node2D body)
 	{
-		_playerInsideRange = false;
+		if (body == _player)
+		{
+			_playerInsideRange = false;
+		}
 	}
 }
