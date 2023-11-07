@@ -4,7 +4,7 @@ using Data;
 using Godot;
 using System;
 using System.Collections.Generic;
-
+using System.Runtime.InteropServices;
 
 
 public partial class Player : Sprite2D, Systems.Combat.ICombatant
@@ -23,7 +23,8 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     private int _critChance;
     private double _critModifier;
 
-    private bool _dead;
+    private bool _isDead;
+    private bool _isTurn;
 
     private Systems.Combat.Deck _internalDeck;
 
@@ -33,7 +34,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     public override void _Ready()
     {
         _currentHealth = _maxHealth;
-        _dead = false;
+        _isDead = false;
         _internalDeck = new();
         _resistances = new();
         _critChance = _defaultCritChance;
@@ -49,6 +50,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public void BeginTurn()
     {
+        _isTurn = true;
         _movementPoints = _startingMovementPoints;
         _actionPoints = _startingActionPoints;
 
@@ -57,6 +59,8 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
             _resistances[resistance]--;
             _resistances[resistance] = Math.Max(0, _resistances[resistance]);
         }
+
+        // TODO: Fill out function
     }
 
     public void BurnActionPoints(int burn)
@@ -91,7 +95,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         int damage = (int)(amount * (1 + critModifier * isCritInteger) * (1 + isResisted * (0.5 + (0.25 * isCritInteger))));
         _currentHealth -= damage;
         if (_currentHealth < 0)
-            _dead = true;
+            _isDead = true;
     }
 
     public void AddArmor(int armor)
@@ -121,7 +125,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public bool IsDead()
     {
-        return _dead;
+        return _isDead;
     }
 
     public int GetHealth()

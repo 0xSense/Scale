@@ -10,6 +10,7 @@ height = 280.0
 [node name="Player" type="Sprite2D"]
 texture = ExtResource("1_6w4tj")
 script = ExtResource("2_ws6fc")
+_maxHealth = 50
 
 [node name="Area2D" type="Area2D" parent="."]
 

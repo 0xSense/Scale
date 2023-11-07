@@ -166,8 +166,6 @@ public partial class CardData : Resource
     [Export] private Godot.Collections.Array<Debuff> _debuffs = new();
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
     public Dictionary<Debuff, int> Debuffs;
-
-    
     
 
     private int _uid;

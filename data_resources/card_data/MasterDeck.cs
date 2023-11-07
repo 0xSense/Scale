@@ -19,7 +19,7 @@ public partial class MasterDeck : Node2D
 		{
 			c.Activate();
 			CardTypes.Add(c);			
-			//GD.Print(c.UID);
+			// GD.Print(c.UID);
 		}
 		_cardTypes.Clear();
 		OnLoad?.Invoke();
