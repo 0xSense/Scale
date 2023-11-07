@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://fbgpwrq4amq2"]
+[gd_scene load_steps=3 format=3 uid="uid://fbgpwrq4amq2"]
 
 [ext_resource type="PackedScene" uid="uid://cbil2ef821vs8" path="res://scenes/cameras/GUI.tscn" id="1_e7s7g"]
+[ext_resource type="Script" path="res://scenes/cameras/OverworldGameCamera.cs" id="1_nmf7m"]
 
 [node name="Camera2D" type="Camera2D"]
+script = ExtResource("1_nmf7m")
 
-[node name="GUI" parent="." instance=ExtResource("1_e7s7g")]
+[node name="HealthBar" parent="." instance=ExtResource("1_e7s7g")]
 offset_left = -932.0
 offset_top = -524.0
 offset_right = -432.0

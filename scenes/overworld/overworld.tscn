@@ -1,17 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://y0ea6015fblh"]
+[gd_scene load_steps=2 format=3 uid="uid://y0ea6015fblh"]
 
-[ext_resource type="Script" path="res://systems/overworld/Transition.cs" id="1_s1rrn"]
 [ext_resource type="PackedScene" uid="uid://h8hxdj6xv1b5" path="res://scenes/purgatory/scenes/purgatory-level.tscn" id="2_ovmyh"]
-[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/cameras/overworld_game_camera.tscn" id="3_m5e06"]
-[ext_resource type="PackedScene" uid="uid://cbil2ef821vs8" path="res://scenes/cameras/GUI.tscn" id="4_3ekad"]
 
 [node name="overworld" type="Node2D"]
 
-[node name="Observer" type="Node2D" parent="."]
-script = ExtResource("1_s1rrn")
-
 [node name="Purgatory" parent="." instance=ExtResource("2_ovmyh")]
-
-[node name="Camera2D" parent="." instance=ExtResource("3_m5e06")]
-
-[node name="GUI" parent="Camera2D" instance=ExtResource("4_3ekad")]

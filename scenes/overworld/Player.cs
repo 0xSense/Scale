@@ -24,7 +24,6 @@ public enum State
 
 public partial class Player : CharacterBody2D
 {
-	[Export] public string _playerSkin = "res://assets/main_character/PlayableCharacter.png";
 	[Export] private float _walkSpeed = 500f;
 	[Export] private float _sprintSpeed = 1700f;
 	[Export] private float _jumpTime; // Time spent in upward acceleration
@@ -32,16 +31,18 @@ public partial class Player : CharacterBody2D
 	[Export] private float _gravityFallMultiplier = 2f;
 	[Export] private float _accelerationStrength = 0.09f;
 	[Export] private float _coyoteBuffer = 0.5f; // In seconds
+
 	private float _coyoteTimer;
 	private float _gravityDefault;
-
 	private State _state;
+	private Sprite2D _playerSprite;
 
 	public override void _Ready()
 	{
 		_gravityDefault = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 		_state = State.GROUNDED;
 		_coyoteTimer = _coyoteBuffer;
+		_playerSprite = GetNode<Sprite2D>("PlayerSkin");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -49,6 +50,17 @@ public partial class Player : CharacterBody2D
 		float fDelta = (float)delta;
 
 		Vector2 movementInput = GetMovementInput();
+
+		// flip sprite orientation horizontally
+		if (movementInput.X > 0)
+		{
+			_playerSprite.FlipH = true;
+		}
+		else if (movementInput.X < 0)
+		{
+			_playerSprite.FlipH = false;
+		}
+
 		Vector2 vel = Velocity;
 
 		if (IsOnFloor())
@@ -112,16 +124,13 @@ public partial class Player : CharacterBody2D
 	}
 
 	public void _Process()
-	{
-
-	}
+	{ }
 
 	private Vector2 GetMovementInput()
 	{
 		Vector2 movement = new();
 
 		movement.X = Input.GetAxis("ui_left", "ui_right");
-
 		return movement;
 	}
 
@@ -133,11 +142,6 @@ public partial class Player : CharacterBody2D
 	private bool IsSprinting()
 	{
 		return Input.IsActionPressed("ui_sprint");
-	}
-
-	private bool FlipSpriteTowardsMomentum()
-	{
-		return true;
 	}
 
 }
