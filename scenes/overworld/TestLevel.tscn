@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://c336oofsl335u"]
 
-[ext_resource type="PackedScene" uid="uid://b2ij4lnih6yjs" path="res://scenes/overworld/Player.tscn" id="2_f5iqi"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/Player.tscn" id="2_f5iqi"]
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
 
@@ -69,7 +69,6 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_f5iqi")]
 position = Vector2(-808, -583)
-_sprintSpeed = 2020.0
 _jumpSpeed = 590.0
 
 [node name="Walls" type="StaticBody2D" parent="."]
