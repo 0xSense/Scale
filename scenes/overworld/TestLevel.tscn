@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://c336oofsl335u"]
+[gd_scene load_steps=25 format=3 uid="uid://c336oofsl335u"]
 
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/Player.tscn" id="2_f5iqi"]
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_131s4"]
+[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -58,6 +60,17 @@ size = Vector2(55, 27.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h05vj"]
 size = Vector2(55, 28)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52nkj"]
+size = Vector2(1152, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7al6"]
+size = Vector2(1150, 210.5)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ais8d"]
+vertices = PackedVector2Array(4162, -3717, 4145, 20, -2856, -22, -2754, -3717)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2754, -3717, -2856, -22, 4145, 20, 4162, -3717)])
+
 [node name="TestLevel" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -65,7 +78,6 @@ z_index = -1
 position = Vector2(506, -993)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_gcwtk")
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_f5iqi")]
 position = Vector2(-808, -583)
@@ -142,7 +154,7 @@ shape = SubResource("RectangleShape2D_h05vj")
 [node name="Locations" type="Node" parent="."]
 
 [node name="Room_1" type="Marker2D" parent="Locations"]
-position = Vector2(-512, -1195)
+position = Vector2(-18, -2681)
 
 [node name="Room_2" type="Marker2D" parent="Locations"]
 position = Vector2(42, -1195)
@@ -160,3 +172,36 @@ position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_2")
 _player = NodePath("../../Player")
+
+[node name="EnemyStage" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyStage"]
+position = Vector2(182, -2442)
+scale = Vector2(1, 0.0799951)
+texture = ExtResource("4_131s4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyStage"]
+position = Vector2(182, -2442)
+shape = SubResource("RectangleShape2D_52nkj")
+
+[node name="Enemys" type="Node" parent="."]
+
+[node name="enemy" parent="Enemys" node_paths=PackedStringArray("_playerBody", "_groundPosition") instance=ExtResource("5_kojqv")]
+position = Vector2(-376, -2483)
+_playerBody = NodePath("../../Player")
+_groundPosition = NodePath("GroundPosition")
+
+[node name="Area2D" type="Area2D" parent="Enemys/enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemys/enemy/Area2D"]
+position = Vector2(558, -89.75)
+shape = SubResource("RectangleShape2D_a7al6")
+
+[node name="GroundPosition" type="Marker2D" parent="Enemys/enemy"]
+position = Vector2(-13, 15)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ais8d")
+
+[connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
+[connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
