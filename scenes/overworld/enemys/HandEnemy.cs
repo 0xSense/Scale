@@ -1,5 +1,7 @@
 using Godot;
 
+// Start Find -> Find ends -> Place Indicator -> Attack Start -> Attack Ends -> Hold -> Repeat
+
 public partial class HandEnemy : Node
 {
 	[Export] private CharacterBody2D _playerBody;
@@ -31,8 +33,6 @@ public partial class HandEnemy : Node
 		}
 	}
 
-	// Start Find -> Find ends -> Place Indicator -> Attack Start -> Attack Ends -> Hold -> Repeat
-
 	public void OnAreaBodyExited(Node2D body)
 	{
 		if (body == _playerBody)
@@ -45,7 +45,6 @@ public partial class HandEnemy : Node
 
 	public void OnAttackTimerTimeout()
 	{
-		GD.Print("Attack");
 		_indicator.Visible = false;
 		_enemyBody.GlobalPosition = new Vector2(_indicator.GlobalPosition.X, _groundPosition.GlobalPosition.Y - 16);
 		_enemyBody.Visible = true;
@@ -56,7 +55,6 @@ public partial class HandEnemy : Node
 
 	public void OnFindTimerTimeout()
 	{
-		GD.Print("Find");
 		_enemyBody.Visible = false;
 		_enemyBody.GetNode<CollisionShape2D>("./CollisionShape2D").SetDeferred("disabled", true);
 		Vector2 pos = new Vector2(_playerBody.GlobalPosition.X, _groundPosition.GlobalPosition.Y);
@@ -69,7 +67,6 @@ public partial class HandEnemy : Node
 
 	public void OnHoldPositionTimerTimeout()
 	{
-		GD.Print("Hold");
 		_holdPositionTimer.Stop();
 		_findTimer.Start();
 	}
