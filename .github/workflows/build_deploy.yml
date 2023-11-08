@@ -1,0 +1,61 @@
+name: Build and Deploy Project to Itch.io
+
+on:
+  push:
+    branches:
+      - build
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Cache Godot Engine
+        id: cache-godot
+        uses: actions/cache@v2
+        with:
+          path: godot
+          key: godot-${{ runner.os }}-${{ hashFiles('**/godot.zip') }}
+          restore-keys: |
+            godot-${{ runner.os }}-
+
+      - name: Use Cached Godot Engine or Download
+        run: |
+          if [ -d "godot" ]; then
+            echo "Using cached Godot engine."
+          else
+            echo "Downloading Godot engine."
+            wget -O godot.zip https://downloads.tuxfamily.org/godotengine/4.1.2/Godot_v4.1.2-stable_linux.x86_32.zip
+            unzip godot.zip
+            chmod +x Godot_v4.1.2-stable_linux.x86_32
+            mv Godot_v4.1.2-stable_linux.x86_32 godot
+          fi
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+
+      - name: Export Game to EXE
+        run: godot --export "Windows Desktop" output/game.exe
+        
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to itch.io
+        run: |
+          npm install -g butler
+          butler push build/ space-nerd/test:html5 --userversion-file build/version.txt --channel=html5
+        env:
+          ITCHIO_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
