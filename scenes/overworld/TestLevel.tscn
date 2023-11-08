@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://c336oofsl335u"]
+[gd_scene load_steps=28 format=3 uid="uid://c336oofsl335u"]
 
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/Player.tscn" id="2_f5iqi"]
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_131s4"]
+[ext_resource type="Script" path="res://scenes/overworld/npcs/npc.cs" id="5_ayw20"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="5_co7nw"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
@@ -42,6 +43,9 @@ size = Vector2(1486, 51)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0pim"]
 size = Vector2(26, 203)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4dhh"]
+size = Vector2(361, 26)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnotd"]
 size = Vector2(83, 28)
 
@@ -71,6 +75,9 @@ vertices = PackedVector2Array(4162, -3717, 4145, 20, -2856, -22, -2754, -3717)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-2754, -3717, -2856, -22, 4145, 20, 4162, -3717)])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxs41"]
+size = Vector2(107, 140.5)
+
 [node name="TestLevel" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -78,10 +85,6 @@ z_index = -1
 position = Vector2(506, -993)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_gcwtk")
-
-[node name="Player" parent="." instance=ExtResource("2_f5iqi")]
-position = Vector2(-808, -583)
-_jumpSpeed = 590.0
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -125,6 +128,10 @@ shape = SubResource("RectangleShape2D_sl5og")
 position = Vector2(1783, -1383.5)
 shape = SubResource("RectangleShape2D_y0pim")
 
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(167.5, -1099)
+shape = SubResource("RectangleShape2D_g4dhh")
+
 [node name="Platforms" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
@@ -165,13 +172,13 @@ position = Vector2(42, -1195)
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_1")
-_player = NodePath("../../Player")
+_player = NodePath("")
 
 [node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_2")
-_player = NodePath("../../Player")
+_player = NodePath("")
 
 [node name="EnemyStage" type="StaticBody2D" parent="."]
 
@@ -203,5 +210,47 @@ position = Vector2(-13, 15)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_ais8d")
 
+[node name="Npcs" type="Node" parent="."]
+
+[node name="TestNPC" type="Node2D" parent="Npcs"]
+position = Vector2(177, -1171)
+script = ExtResource("5_ayw20")
+
+[node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
+scale = Vector2(0.0555556, 0.180556)
+texture = ExtResource("4_131s4")
+
+[node name="Area2D" type="Area2D" parent="Npcs/TestNPC"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Npcs/TestNPC/Area2D"]
+position = Vector2(0.5, -11.75)
+shape = SubResource("RectangleShape2D_cxs41")
+
+[node name="Dialogue" type="NinePatchRect" parent="Npcs/TestNPC"]
+offset_left = -101.0
+offset_top = -109.0
+offset_right = 103.0
+offset_bottom = -69.0
+texture = ExtResource("4_131s4")
+
+[node name="Name" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 13.0
+
+[node name="Text" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
+layout_mode = 0
+offset_top = 13.0
+offset_right = 204.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Hello"
+
+[node name="Player" parent="." instance=ExtResource("5_co7nw")]
+position = Vector2(-807, -596)
+_jumpSpeed = 590.0
+
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
+[connection signal="body_entered" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="OnAreaBodyEntered"]
+[connection signal="body_exited" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="OnAreaBodyExited"]
