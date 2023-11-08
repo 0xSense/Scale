@@ -1,4 +1,5 @@
 /*
+    @author Alexander Venezia (Blunderguy)
     ** NOTE: This class is INCOMPLETE. Any behaviors you need which it does not currently provide should be immediately send to Blunderguy (Alex). Please do not implement a hacky workaround instead. **
     Also, as I (Blunderguy) have not been able to thoroughly test any of this backend combat behavior without a complementary frontend, bugs are a probability. Please inform me of any possible or certain
     bugs you encounter as soon as possible.
@@ -35,6 +36,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Combat;
 using Data;
+using Godot;
+
 
 public class CombatManager
 {
@@ -60,6 +63,7 @@ public class CombatManager
 
     public void NewFight(ICombatant player, ICombatant[] enemies)
     {
+        GD.Print("Fight has begun");
         _player = player;
         _enemies = enemies;
 
@@ -71,6 +75,8 @@ public class CombatManager
             _moveOrder[++i] = c;        
 
         _currentToMove = 0;
+
+        _player.BeginTurn();
     }
 
     public bool PlayCard(ICombatant cardPlayer, ICombatant[] targets, CardData card)
@@ -155,6 +161,8 @@ public class CombatManager
             if (!_moveOrder[++_currentToMove].IsDead())
                 break;
         }
+
+        _moveOrder[_currentToMove].BeginTurn();
     }
 
     private int Roll(DamageDice dice)

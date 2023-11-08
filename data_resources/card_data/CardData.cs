@@ -1,3 +1,7 @@
+/*
+ @author Alexander Venezia (Blunderguy)
+*/
+
 namespace Data;
 
 using Godot;

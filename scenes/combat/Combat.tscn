@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
+[ext_resource type="Script" path="res://scenes/combat/CombatMain.cs" id="1_gps4y"]
 [ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="1_y42kw"]
 [ext_resource type="Resource" uid="uid://sp8dso2o8vhb" path="res://data_resources/card_data/WORK.tres" id="2_h0k1a"]
 [ext_resource type="Script" path="res://scenes/combat/subscenes/hand/Hand.cs" id="2_xecqg"]
 [ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://scenes/combat/subscenes/Card/Card.tscn" id="3_6gjep"]
 [ext_resource type="Resource" uid="uid://c0c0mscfyaa73" path="res://data_resources/card_data/TestCard.tres" id="3_vmwlc"]
 [ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
-[ext_resource type="PackedScene" uid="uid://gkajlv32sxji" path="res://scenes/combat/subscenes/enemy/Enemy.tscn" id="8_1yf23"]
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
 [ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
@@ -28,8 +28,8 @@ fill_from = Vector2(1, 0.5)
 fill_to = Vector2(0, 0.5)
 
 [node name="Combat" type="Node2D"]
-script = ExtResource("1_y42kw")
-_cardTypes = [ExtResource("2_h0k1a"), ExtResource("3_vmwlc")]
+script = ExtResource("1_gps4y")
+_enemyTypePaths = Array[String](["uid://gkajlv32sxji"])
 
 [node name="Player" parent="." instance=ExtResource("4_rn6c5")]
 position = Vector2(-628, 103)
@@ -51,15 +51,6 @@ _radius = 900.0
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Enemy3" parent="Enemies" instance=ExtResource("8_1yf23")]
-position = Vector2(614, 107)
-
-[node name="Enemy2" parent="Enemies" instance=ExtResource("8_1yf23")]
-position = Vector2(417, 87)
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("8_1yf23")]
-position = Vector2(383, -64)
 
 [node name="Deck" parent="." instance=ExtResource("9_5f4rp")]
 position = Vector2(842, 379)
@@ -187,3 +178,7 @@ material = SubResource("ShaderMaterial_1xqp2")
 position = Vector2(661, 401)
 scale = Vector2(10.6875, 4.57422)
 texture = SubResource("GradientTexture2D_hidsq")
+
+[node name="MasterDeckReference" type="Node" parent="."]
+script = ExtResource("1_y42kw")
+_cardTypes = [ExtResource("3_vmwlc"), ExtResource("2_h0k1a")]

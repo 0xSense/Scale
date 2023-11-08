@@ -1,4 +1,5 @@
 /*
+    @author Alexander Venezia (Blunderguy)
     Specific enemy classes will inherit from this one. The resource-based approach would be too painful with all the different animations,
         I think.
 */
@@ -14,21 +15,54 @@ using Systems.Combat;
 
 public partial class Enemy : Sprite2D, Systems.Combat.ICombatant
 {
-    protected int _maxHealth = 10;
-    protected int _startingActionPoints = 2;
-    protected int _defaultCritChance = 10;
-    protected double _defaultCritModifier = 2.0;
+    [Export] private int _ID;
+    public int UID => _ID;
+    [Export] private int _maxHealth = 10;
+    [Export] private int _startingActionPoints = 2;
+    [Export] private int _defaultCritChance = 10;
+    [Export] private double _defaultCritModifier = 2.0;
 
-    protected int _currentHealth;
-    protected int _armor;
-    protected int _actionPoints;
-    protected int _critChance;
-    protected double _critModifier;
-    protected bool _isDead;
-    protected bool _isTurn;
+    [Export] private Godot.Collections.Array<CardData> _deck = new();
+    [Export] private Godot.Collections.Array<DamageType> _permanentResistances = new();
 
-    protected Systems.Combat.Deck _internalDeck;
-    protected Dictionary<Data.DamageType, int> _resistances;
+    private int _currentHealth;
+    private int _armor;
+    private int _actionPoints;
+    private int _critChance;
+    private double _critModifier;
+    private bool _isDead;
+    private bool _isTurn;
+
+    private Systems.Combat.Deck _internalDeck;
+    private Dictionary<Data.DamageType, int> _resistances;
+
+    public override void _Ready()
+    {
+        _internalDeck = new();
+        _resistances = new();
+
+        List<CardData> converted = new();
+
+        foreach (CardData card in _deck)
+        {
+            converted.Add(card);
+        }
+
+        _deck.Clear();
+
+        Deck.Shuffle(converted);
+        foreach (CardData card in converted)
+        {
+            _internalDeck.AddCard(card);
+        }
+
+        foreach (DamageType type in _permanentResistances)
+        {
+            AddResistance(type, 9999); // If the fight goes on for beyond 9999 rounds, something is very wrong.
+        }
+
+        _permanentResistances.Clear();
+    }
 
     public void AddArmor(int armor)
     {
@@ -42,7 +76,9 @@ public partial class Enemy : Sprite2D, Systems.Combat.ICombatant
 
     public virtual void BeginTurn()
     {
+        GD.Print("Begin enemy turn");
         _isTurn = true;        
+        _actionPoints = _startingActionPoints;
     }
 
     public void BurnActionPoints(int burn)

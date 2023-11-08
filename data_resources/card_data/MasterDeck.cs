@@ -1,3 +1,7 @@
+/*
+ @author Alexander Venezia (Blunderguy)
+*/
+
 // This class manages all card types in the game
 namespace Data;
 
@@ -5,7 +9,7 @@ using System.Collections.Generic;
 using Data;
 using Godot;
 
-public partial class MasterDeck : Node2D
+public partial class MasterDeck : Node
 {	
 	[Export] private Godot.Collections.Array<CardData> _cardTypes = new();
 	public static List<CardData> CardTypes = new();

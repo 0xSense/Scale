@@ -1,3 +1,7 @@
+ /*
+ @author Alexander Venezia (Blunderguy)
+*/
+
 namespace Combat;
 
 using Data;
@@ -5,7 +9,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
+using Systems.Combat;
 
 public partial class Player : Sprite2D, Systems.Combat.ICombatant
 {
@@ -50,6 +54,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public void BeginTurn()
     {
+        GD.Print("Begin player turn");
         _isTurn = true;
         _movementPoints = _startingMovementPoints;
         _actionPoints = _startingActionPoints;

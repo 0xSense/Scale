@@ -1,4 +1,5 @@
 /*
+@author Alexander Venezia (Blunderguy)
 Represents the cards carried by a player, enemy, etc
 */
 
@@ -137,7 +138,7 @@ public class Deck
         }
     }
 
-    private void Shuffle(List<CardData> list)  
+    public static void Shuffle(List<CardData> list)  
     {  
         int n = list.Count;  
         while (n > 1) {  
