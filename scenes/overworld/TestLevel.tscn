@@ -235,15 +235,21 @@ texture = ExtResource("4_131s4")
 
 [node name="Name" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 4.0
+offset_right = 200.0
 offset_bottom = 13.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 9
+text = "Name"
 
 [node name="Text" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
 layout_mode = 0
+offset_left = 4.0
 offset_top = 13.0
-offset_right = 204.0
-offset_bottom = 40.0
+offset_right = 200.0
+offset_bottom = 37.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 9
 text = "Hello"
 
 [node name="Player" parent="." instance=ExtResource("5_co7nw")]
