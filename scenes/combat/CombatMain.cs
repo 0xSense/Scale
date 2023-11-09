@@ -64,6 +64,16 @@ public partial class CombatMain : Node
         enemies[0] = newEnemy;
 
     }
+
+    /* TEST - TODO REMOVE*/
+    public override void _Process(double delta)
+    {
+         if (Input.IsPhysicalKeyPressed(Key.Space))
+        {
+            ((MasterScene)GetTree().Root.GetChild(0)).ActivatePreviousScene();
+        }
+    }
+
     public override void _Ready()
     {
         ICombatant[] enemies = null;

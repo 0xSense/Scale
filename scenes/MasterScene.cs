@@ -16,7 +16,7 @@ public partial class MasterScene : Node
         _loadedScenes = new();
 
         LoadScene(_defaultSceneUID);
-		ActivateScene(_defaultSceneUID);
+		ActivateScene(_defaultSceneUID, false);
 		_activeScene = _defaultSceneUID;
 		_lastScene = "";
     }
@@ -29,10 +29,15 @@ public partial class MasterScene : Node
         _loadedScenes.Add(sceneUID, scene.Instantiate());
     }
 
-    public void ActivateScene(string uid)
+    public void ActivateScene(string uid, bool includeLoad)
     {
         if (!_loadedScenes.ContainsKey(uid))
-            throw new Exception("ERROR: Attempted to active scene which has not been loaded");
+        {
+            if (!includeLoad)
+                throw new Exception("ERROR: Attempted to active scene which has not been loaded");
+            LoadScene(uid);
+            GD.Print("Loading as activation");
+        }
 
         _lastScene = _activeScene;
         if (_activeScene != "")
@@ -43,14 +48,14 @@ public partial class MasterScene : Node
 
     public void ActivateSceneAndWipeCurrent(string destUID)
     {
-        ActivateScene(destUID);
+        ActivateScene(destUID, false);
         WipeScene(_lastScene);
         _lastScene = "";
     }
 
     public void ActivatePreviousScene()
     {
-        ActivateScene(_lastScene);
+        ActivateScene(_lastScene, false);
     }
 
     public void WipeScene(string uid)
