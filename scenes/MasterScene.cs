@@ -1,3 +1,7 @@
+ /*
+ @author Alexander Venezia (Blunderguy)
+*/
+
 using Combat;
 using Godot;
 using System;

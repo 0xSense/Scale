@@ -42,8 +42,8 @@ public enum DamageType
 
 public enum TargetType
 {
-    SINGLE,
     SELF,
+    SINGLE,
     MULTI_TWO,
     MULTI_THREE,
     MULTI_FOUR,

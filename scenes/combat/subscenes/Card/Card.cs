@@ -1,3 +1,7 @@
+ /*
+ @author Alexander Venezia (Blunderguy)
+*/
+
 namespace Combat;
 
 using Data;
@@ -5,7 +9,7 @@ using Godot;
 using Godot.NativeInterop;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Threading.Tasks;
 
 public partial class Card : Area2D
 {
@@ -29,6 +33,7 @@ public partial class Card : Area2D
 
 	private CardData _data;
 	public CardData Data => _data;
+
 	
 	public void UpdateData(CardData data)
 	{
@@ -54,8 +59,39 @@ public partial class Card : Area2D
 			((Node2D)GetNode("MovementPointIcon")).Hide();
 		
 	}
-	
-	public void SetMouseOverStatus(bool moused)
+
+	private float _playAnimationVerticalPosition;
+	private Vector2 _playAnimationPosition;
+	private bool _animating = false;
+	public void BeginPlayAnimation()
+	{
+		((CollisionShape2D)GetNode("CollisionShape2D")).Disabled = true;
+		_animating = true;
+		_playAnimationPosition = Position;
+		_tween = CreateTween();
+		_tween.TweenProperty(this, "_playAnimationPosition", Vector2.Zero, 0.25f);
+
+		_tween.Finished += ContinuePlayAnimation;
+		
+	}
+
+	private async void ContinuePlayAnimation()
+	{
+		// TODO: play some sort of animation or shader. Probably fire/ice/etc particles for magic damage or a white "flare" for physical
+		await Task.Delay(1000);
+		this.QueueFree();
+	}
+
+    public override void _Process(double delta)
+    {
+        if (_animating)
+		{
+			Position = _playAnimationPosition;
+			//GD.Print(_playAnimationPosition);
+		}
+    }
+
+    public void SetMouseOverStatus(bool moused)
 	{		
 		if (moused == _isMoused)
 			return;

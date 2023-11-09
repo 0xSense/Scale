@@ -16,6 +16,15 @@ public partial class CombatMain : Node
     [ExportGroup("Right click .tscn -> get UID -> paste here. Blame Godot for having to use freaking strings because they still haven't fixed a bug reported over a year ago: https:[slashslash]github.com[slash]godotengine[slash]godot[slash]issues[slash]62916")]
     [Export] private Godot.Collections.Array<string> _enemyTypePaths;
     private Dictionary<int, PackedScene> _enemyTypesByUID;
+
+    public Vector2[] EnemySpawnPoints =
+    {
+        new Vector2(325, -100),
+        new Vector2(-230, -150),
+        new Vector2(-25, 50),
+        new Vector2(525, 150)
+    };
+
     private void PopulateEnemyArray(ref ICombatant[] enemies)
     {
 
@@ -39,30 +48,32 @@ public partial class CombatMain : Node
         Node enemiesParentNode = GetNode("Enemies");
 
         // TODO: Finish this once you have the scene transition implemented
-        /* 
-        int[] unloadedEnemies = (Whatever the master root's class is) GetTree().Root.GetChild(0).GetEnemyIndices();
-
+        
+        //int[] unloadedEnemies = (Whatever the master root's class is) GetTree().Root.GetChild(0).GetEnemyIndices();
+        int[] unloadedEnemies = new int[]{1, 1, 1, 1};
         enemies = new ICombatant[unloadedEnemies.Length];
 
         int count = 0;
+        Enemy newEnemy;
         foreach (int e in unloadedEnemies)
         {
-            Enemy newEnemy = (Enemy)_enemyTypesByUID[e].Instantiate();
-            RemoveChild(newEnemy);
+            newEnemy = (Enemy)_enemyTypesByUID[e].Instantiate();
+            //RemoveChild(newEnemy);
             enemiesParentNode.AddChild(newEnemy);
+            newEnemy.GlobalPosition = EnemySpawnPoints[count];
             enemies[count] = newEnemy;
             count++;
         }
-        */
+        
 
         // For testing purposes:
-
+        /*
         enemies = new ICombatant[1];
         
         Enemy newEnemy = (Enemy)GD.Load<PackedScene>(_enemyTypePaths[0]).Instantiate();
         enemiesParentNode.AddChild(newEnemy);
         enemies[0] = newEnemy;
-
+        */
     }
 
     /* TEST - TODO REMOVE*/

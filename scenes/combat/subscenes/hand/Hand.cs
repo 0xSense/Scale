@@ -21,11 +21,13 @@ public partial class Hand : Marker2D
     private List<Card> _cards;
 
     private int _selectedCardIndex;
+    private bool _frozen;
 
     public override void _Ready()
     {
         _selectedCardIndex = -1;
         _cards = new();
+        _frozen = false;
 
         MasterDeck.OnLoad += FillHandDefault;
     }
@@ -33,7 +35,8 @@ public partial class Hand : Marker2D
     private void FillHandDefault()
     {
         AddCards(MasterDeck.CardTypes[0], 2);
-        AddCards(MasterDeck.CardTypes[1], 3);
+        AddCards(MasterDeck.CardTypes[1], 2);
+        AddCards(MasterDeck.CardTypes[2], 2);
     }
 
     public void AddCards(CardData card, int n)
@@ -51,8 +54,28 @@ public partial class Hand : Marker2D
         OrderCards();
     }
 
+    public void RemoveCard(Card card)
+    {
+        RemoveChild(card);
+        _cards.Remove(card);
+        _selectedCardIndex = -1;
+        OrderCards();
+        
+    }
+
+    public void Freeze()
+    {
+        _frozen = true;
+    }
+    public void Unfreeze()
+    {
+        _frozen = false;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
+        if (_frozen)
+            return;
         Vector2 mousePos = GetGlobalMousePosition();
         PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
         PhysicsPointQueryParameters2D query = new();
@@ -143,6 +166,12 @@ public partial class Hand : Marker2D
             return;
         }
         _selectedCardIndex = _cards.IndexOf(topMoused);
+    }
+
+    public Card GetSelectedCard()
+    {
+        if (_selectedCardIndex == -1) return null;
+        return _cards[_selectedCardIndex];
     }
 
 }

@@ -13,8 +13,10 @@ using System.Collections.Generic;
 using Systems.Combat;
 
 
-public partial class Enemy : Sprite2D, Systems.Combat.ICombatant
+public partial class Enemy : Area2D, Systems.Combat.ICombatant
 {
+    private static int SharedCollisionLayer = 3;
+    public static uint Bitmask = 0b0011;
     [Export] private int _ID;
     public int UID => _ID;
     [Export] private int _maxHealth = 10;
@@ -38,6 +40,9 @@ public partial class Enemy : Sprite2D, Systems.Combat.ICombatant
 
     public override void _Ready()
     {
+        SetCollisionMaskValue(1, false);
+        SetCollisionMaskValue(SharedCollisionLayer, true);
+
         _internalDeck = new();
         _resistances = new();
 
