@@ -243,6 +243,7 @@ offset_top = -109.0
 offset_right = 103.0
 offset_bottom = -69.0
 texture = ExtResource("4_131s4")
+metadata/_edit_use_anchors_ = true
 
 [node name="Name" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
 layout_mode = 0
@@ -253,6 +254,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_3yiat")
 theme_override_font_sizes/normal_font_size = 14
 text = "Name"
+metadata/_edit_use_anchors_ = true
 
 [node name="Text" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
 layout_mode = 0
@@ -264,6 +266,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("6_3yiat")
 theme_override_font_sizes/normal_font_size = 13
 text = "Hello"
+metadata/_edit_use_anchors_ = true
 
 [node name="Options" type="Node2D" parent="Npcs/TestNPC/Dialogue"]
 
@@ -279,6 +282,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 text_direction = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC/Dialogue/Options/Button_1"]
 z_index = -1
@@ -299,6 +303,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 text_direction = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC/Dialogue/Options/Button_2"]
 z_index = -1
