@@ -1,0 +1,12 @@
+{
+	"TestNPC": [
+		{
+			"text" : "Moin", 
+			"options": ["1", "2"]
+		},
+		{
+			"text" : "Bye",  
+			"options": []
+		},
+	]
+}

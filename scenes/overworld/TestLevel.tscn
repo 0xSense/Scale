@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_131s4"]
-[ext_resource type="Script" path="res://scenes/overworld/npcs/npc.cs" id="5_ayw20"]
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="5_co7nw"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
+[ext_resource type="Script" path="res://scenes/overworld/npcs/npc.gd" id="5_sq5ew"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -212,11 +212,11 @@ navigation_polygon = SubResource("NavigationPolygon_ais8d")
 
 [node name="Npcs" type="Node" parent="."]
 
-[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("_playerBody")]
+[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("player")]
 position = Vector2(177, -1171)
-script = ExtResource("5_ayw20")
-_playerBody = NodePath("../../Player")
-_dialogueFilePath = "res://dialogue/test_npc.json"
+script = ExtResource("5_sq5ew")
+player = NodePath("../../Player")
+json_file_path = "res://dialogue/dialogue.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
 scale = Vector2(0.0555556, 0.180556)
@@ -260,5 +260,5 @@ _jumpSpeed = 590.0
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
-[connection signal="body_entered" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="OnAreaBodyEntered"]
-[connection signal="body_exited" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="OnAreaBodyExited"]
+[connection signal="body_entered" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_exited"]
