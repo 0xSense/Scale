@@ -4,6 +4,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 public enum CardRarity
 {
@@ -70,10 +71,41 @@ public enum Debuff
     EXPOSED,
 }
 
+public struct DamageDice
+{
+    public int d4;
+    public int d6;
+    public int d8;
+    public int d10;
+    public int flat; // Flat addition, as in "2d6 + *5*"
 
+    public override string ToString()
+    {
+        string final = "";
+
+        if (d4 > 0)
+            final += d4 + "d4";
+        if (d6 > 0)
+            final += d6 + "d6";
+        if (d8 > 0)
+            final += d8 + "d8";
+        if (d10 > 0)
+            final += d10 + "d10";
+
+        if (flat != 0)
+        {
+            if (flat > 0)
+                final += " + " + flat;
+            else
+                final += " - " + Math.Abs(flat);
+        }
+
+        return final;
+    }
+}
 
 public partial class CardData : Resource
-{    
+{
     [Export] private String _name;
     // Types and rarity
     [Export] private CardType _type;
@@ -89,12 +121,12 @@ public partial class CardData : Resource
 
     [Export] private TargetType _target;
     public TargetType Target => _target;
-    
+
 
     // Damage and damage types
     [Export] private Godot.Collections.Array<DamageType> _damageTypes = new();
-    [Export] private Godot.Collections.Array<int> _damageValues = new();
-    public Dictionary<DamageType, int> Damage;
+    [Export] private Godot.Collections.Array<String> _damageDice = new();
+    public Dictionary<DamageType, DamageDice> Damage;
 
     // Draw effects (draw/remove cards to deck; always affects player regardless of TargetType)
     [Export] private Godot.Collections.Array<DrawEffect> _drawEffects = new();
@@ -111,9 +143,6 @@ public partial class CardData : Resource
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
     public Dictionary<Debuff, int> Debuffs;
 
-    
-    
-
     private int _uid;
     public int UID => _uid;
     private static int _usedIds = 0;
@@ -121,20 +150,73 @@ public partial class CardData : Resource
     public CardData()
     {
         _uid = _usedIds++;
+    }
 
+    public void Activate()
+    {
         Damage = new();
         DrawEffects = new();
         Buffs = new();
         Debuffs = new();
-       
+
         int i = 0;
+        DamageDice dice;
+        int dieQuantity;
+        int dieDenomination;
+        int flatModifier;
+
+
         foreach (DamageType t in _damageTypes)
         {
-            Damage.Add(t, _damageValues[i++]);
+            dice = new();
+
+            string[] parts = _damageDice[i].Split("d");
+            dieQuantity = int.Parse(parts[0]);
+
+            if (parts[1].Contains("+"))
+            {
+                parts = parts[1].Split("+");
+                dieDenomination = int.Parse(parts[0].Trim());
+                flatModifier = int.Parse(parts[1].Trim());
+            }
+            else if (parts[1].Contains("-"))
+            {
+                parts = parts[1].Split("-");
+                dieDenomination = int.Parse(parts[0].Trim());
+                flatModifier = int.Parse(parts[1].Trim());
+                flatModifier = -flatModifier;
+            }
+            else
+            {
+                dieDenomination = int.Parse(parts[1].Trim());
+                flatModifier = 0;
+            }
+
+            switch (dieDenomination)
+            {
+                case 4:
+                    dice.d4 = dieQuantity;
+                    break;
+                case 6:
+                    dice.d6 = dieQuantity;
+                    break;
+                case 8:
+                    dice.d8 = dieQuantity;
+                    break;
+                case 10:
+                    dice.d10 = dieQuantity;
+                    break;
+            }
+
+            dice.flat = flatModifier;
+
+            Damage.Add(t, dice);
+
+            i++;
         }
 
         _damageTypes.Clear();
-        _damageValues.Clear();
+        _damageDice.Clear();
 
         i = 0;
         foreach (DrawEffect e in _drawEffects)
@@ -172,14 +254,14 @@ public partial class CardData : Resource
         return _uid == ((CardData)obj).UID;
     }
 
-    public static bool operator == (CardData c1, CardData c2)
+    public static bool operator ==(CardData c1, CardData c2)
     {
         if ((object)c1 == null)
             return (object)c2 == null;
         return c1.Equals(c2);
     }
 
-    public static bool operator != (CardData c1, CardData c2)
+    public static bool operator !=(CardData c1, CardData c2)
     {
         return !(c1 == c2);
     }
@@ -193,8 +275,6 @@ public partial class CardData : Resource
     {
         return "Card " + _name;
     }
-
-
 
 }
 
