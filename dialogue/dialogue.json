@@ -2,11 +2,19 @@
 	"TestNPC": [
 		{
 			"text" : "Moin", 
-			"options": ["1", "2"]
+			"options": ["yes", "no"]
 		},
 		{
 			"text" : "Bye",  
 			"options": []
+		},
+		{
+			"text" : "Enter Shop?",  
+			"options": ["yes", "no", "shop"]
+		},
+		{
+			"text" : "Take Card?",  
+			"options": ["yes", "no", "card"]
 		},
 	]
 }

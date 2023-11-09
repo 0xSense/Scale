@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
+[gd_scene load_steps=28 format=3 uid="uid://c336oofsl335u"]
 
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="5_co7nw"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 [ext_resource type="Script" path="res://scenes/overworld/npcs/npc.gd" id="5_sq5ew"]
-[ext_resource type="FontFile" uid="uid://b4u1ukisjtk5t" path="res://fonts/18thCentury.ttf" id="6_3yiat"]
-[ext_resource type="Script" path="res://scenes/overworld/shop.cs" id="8_0pv16"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="8_xb7gt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -80,11 +77,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-2754, -3717, -2856, -2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxs41"]
 size = Vector2(107, 140.5)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ra81"]
-texture = ExtResource("8_xb7gt")
-region_rect = Rect2(20, 20, 200, 200)
-modulate_color = Color(0, 0, 0, 1)
 
 [node name="TestLevel" type="Node2D"]
 
@@ -220,11 +212,10 @@ navigation_polygon = SubResource("NavigationPolygon_ais8d")
 
 [node name="Npcs" type="Node" parent="."]
 
-[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("player", "shop")]
+[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("player")]
 position = Vector2(177, -1171)
 script = ExtResource("5_sq5ew")
 player = NodePath("../../Player")
-shop = NodePath("../../Player/Shop")
 json_file_path = "res://dialogue/dialogue.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
@@ -250,8 +241,7 @@ offset_left = 4.0
 offset_right = 200.0
 offset_bottom = 13.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_3yiat")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 9
 text = "Name"
 
 [node name="Text" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
@@ -261,194 +251,54 @@ offset_top = 13.0
 offset_right = 200.0
 offset_bottom = 37.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_3yiat")
-theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/normal_font_size = 9
 text = "Hello"
 
 [node name="Options" type="Node2D" parent="Npcs/TestNPC/Dialogue"]
 
-[node name="Button_1" type="Button" parent="Npcs/TestNPC/Dialogue/Options"]
-offset_top = 40.0
-offset_right = 23.0
-offset_bottom = 59.0
+[node name="Button" type="Button" parent="Npcs/TestNPC/Dialogue/Options"]
+offset_left = 76.0
+offset_top = -1240.0
+offset_right = 99.0
+offset_bottom = -1221.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 7
 text = "Yes"
 flat = true
 icon_alignment = 1
 expand_icon = true
 text_direction = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC/Dialogue/Options/Button_1"]
+[node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC/Dialogue/Options/Button"]
 z_index = -1
-position = Vector2(11.5, 10)
-scale = Vector2(0.0199653, 0.0308641)
+position = Vector2(11.5, 9.50004)
+scale = Vector2(0.0199653, 0.0293209)
 texture = ExtResource("4_131s4")
 
-[node name="Button_2" type="Button" parent="Npcs/TestNPC/Dialogue/Options"]
-offset_left = 23.0
-offset_top = 40.0
-offset_right = 46.0
-offset_bottom = 59.0
+[node name="Button2" type="Button" parent="Npcs/TestNPC/Dialogue/Options"]
+offset_left = 99.0
+offset_top = -1240.0
+offset_right = 122.0
+offset_bottom = -1221.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 7
 text = "No"
 flat = true
 icon_alignment = 1
 expand_icon = true
 text_direction = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC/Dialogue/Options/Button_2"]
+[node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC/Dialogue/Options/Button2"]
 z_index = -1
-position = Vector2(11.5, 10)
-scale = Vector2(0.0199653, 0.0308641)
+position = Vector2(11.5, 9.50004)
+scale = Vector2(0.0199653, 0.0293209)
 texture = ExtResource("4_131s4")
 
 [node name="Player" parent="." instance=ExtResource("5_co7nw")]
 position = Vector2(-807, -596)
 _jumpSpeed = 590.0
 
-[node name="Shop" type="Node2D" parent="Player"]
-visible = false
-z_index = 2
-script = ExtResource("8_0pv16")
-
-[node name="TextureRect" type="TextureRect" parent="Player/Shop"]
-offset_left = -405.0
-offset_top = -237.0
-offset_right = 384.0
-offset_bottom = 219.0
-texture = ExtResource("4_131s4")
-expand_mode = 1
-
-[node name="GridContainer" type="GridContainer" parent="Player/Shop"]
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -125.0
-offset_right = 322.0
-offset_bottom = 125.0
-grow_vertical = 2
-theme_override_constants/h_separation = 24
-theme_override_constants/v_separation = 0
-columns = 4
-
-[node name="Item_1" type="Panel" parent="Player/Shop/GridContainer"]
-custom_minimum_size = Vector2(150, 250)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
-
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_1"]
-layout_mode = 0
-offset_top = -41.0
-offset_right = 56.0
-offset_bottom = -9.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 34
-text = "Item 1"
-
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_1"]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 250.0
-flat = true
-
-[node name="Item_2" type="Panel" parent="Player/Shop/GridContainer"]
-custom_minimum_size = Vector2(150, 250)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
-
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_2"]
-layout_mode = 0
-offset_top = -41.0
-offset_right = 56.0
-offset_bottom = -9.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 34
-text = "Item 2"
-
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_2"]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 250.0
-flat = true
-
-[node name="Item_3" type="Panel" parent="Player/Shop/GridContainer"]
-custom_minimum_size = Vector2(150, 250)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
-
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_3"]
-layout_mode = 0
-offset_top = -41.0
-offset_right = 56.0
-offset_bottom = -9.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 34
-text = "Item 3"
-
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_3"]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 250.0
-flat = true
-
-[node name="Item_4" type="Panel" parent="Player/Shop/GridContainer"]
-custom_minimum_size = Vector2(150, 250)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
-
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_4"]
-layout_mode = 0
-offset_top = -41.0
-offset_right = 56.0
-offset_bottom = -9.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 34
-text = "Item 4
-"
-
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_4"]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 250.0
-flat = true
-
-[node name="Title" type="Label" parent="Player/Shop"]
-offset_left = -391.0
-offset_top = -222.0
-offset_right = -335.0
-offset_bottom = -190.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 34
-text = "Shop"
-
-[node name="Close" type="Button" parent="Player/Shop"]
-offset_left = 303.0
-offset_top = -222.0
-offset_right = 361.0
-offset_bottom = -190.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
-theme_override_font_sizes/font_size = 31
-text = "Exit"
-flat = true
-
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
 [connection signal="body_entered" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_exited"]
-[connection signal="pressed" from="Npcs/TestNPC/Dialogue/Options/Button_1" to="Npcs/TestNPC" method="_on_button_1_pressed"]
-[connection signal="pressed" from="Npcs/TestNPC/Dialogue/Options/Button_2" to="Npcs/TestNPC" method="_on_button_2_pressed"]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_1/Button" to="Player/Shop" method="ButtonItem" binds= [1]]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_2/Button" to="Player/Shop" method="ButtonItem" binds= [2]]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_3/Button" to="Player/Shop" method="ButtonItem" binds= [3]]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_4/Button" to="Player/Shop" method="ButtonItem" binds= [4]]
-[connection signal="pressed" from="Player/Shop/Close" to="Player/Shop" method="OnClosePressed"]
