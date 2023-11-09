@@ -172,13 +172,13 @@ position = Vector2(42, -1195)
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_1")
-_player = NodePath("")
+_player = NodePath("../../Player")
 
 [node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_2")
-_player = NodePath("")
+_player = NodePath("../../Player")
 
 [node name="EnemyStage" type="StaticBody2D" parent="."]
 
@@ -212,9 +212,11 @@ navigation_polygon = SubResource("NavigationPolygon_ais8d")
 
 [node name="Npcs" type="Node" parent="."]
 
-[node name="TestNPC" type="Node2D" parent="Npcs"]
+[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("_playerBody")]
 position = Vector2(177, -1171)
 script = ExtResource("5_ayw20")
+_playerBody = NodePath("../../Player")
+_dialogueFilePath = "res://dialogue/test_npc.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
 scale = Vector2(0.0555556, 0.180556)

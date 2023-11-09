@@ -1,12 +1,15 @@
-{
-    "0" : {
+[
+    {
         "CharacterName" : "Test NPC",
-        "Dialog" : "Cool Text and stuff"
+        "Dialog" : "Cool Text and stuff",
+        "Options": []
     },
-    "1" :
     {
         "CharacterName" : "Test NPC",
         "Dialog" : "Enter Shop?",
-        "Options": ["yes", "no"]
+        "Options": [
+            {"1" : "yes"}, 
+            {"2" : "no"}
+        ]
     }
-}
+]
