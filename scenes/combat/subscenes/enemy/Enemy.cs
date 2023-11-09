@@ -157,7 +157,9 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
         int damage = (int)(amount * (1 + critModifier * isCritInteger) * (1 + isResisted * (0.5 + (0.25 * isCritInteger))));
         _currentHealth -= damage;
         if (_currentHealth < 0)
-            _isDead = true;
+        {
+           _isDead = true;
+        }
     }
 
 }

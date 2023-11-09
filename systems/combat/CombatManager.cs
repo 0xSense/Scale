@@ -61,6 +61,19 @@ public class CombatManager
         return _instance;
     }
 
+    public int GetRemainingEnemies()
+    {
+        int remaining = 0;
+
+        foreach (ICombatant enemy in _enemies)
+        {
+            if (!enemy.IsDead())
+                remaining++;
+        }
+        
+        return remaining;
+    }
+
     public void NewFight(ICombatant player, ICombatant[] enemies)
     {
         GD.Print("Fight has begun");
@@ -133,11 +146,11 @@ public class CombatManager
                     return false;
                 break;
             case TargetType.MULTI_TWO:
-                if (targets.Length != 2)
+                if (targets.Length > 2)
                     return false;
                 break;
             case TargetType.MULTI_THREE:
-                if (targets.Length != 3)
+                if (targets.Length > 3)
                         return false;
                 break;
             case TargetType.ALL:

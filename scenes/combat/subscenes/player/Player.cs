@@ -51,8 +51,10 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     private Card _currentlyTargeting;
     private List<ICombatant> _targeted = new();
 
+    private CombatManager _combatManager;
     public override void _Ready()
     {
+        _combatManager = CombatManager.GetInstance();
         _currentHealth = _maxHealth;
         _isDead = false;
         _internalDeck = new();
@@ -171,9 +173,9 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
             case TargetType.SINGLE:
             return _targeted.Count == 1;
             case TargetType.MULTI_TWO:
-            return _targeted.Count == 2;
+            return _targeted.Count == 2 || (_targeted.Count >= _combatManager.GetRemainingEnemies());
             case TargetType.MULTI_THREE:
-            return _targeted.Count == 3;
+            return _targeted.Count == 3 || (_targeted.Count >= _combatManager.GetRemainingEnemies());
             case TargetType.MULTI_FOUR:
             return true;
             case TargetType.ALL:
