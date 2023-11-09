@@ -53,6 +53,8 @@ func _on_button_1_pressed():
 	if len(json_as_dict[npc_name][index - 1]["options"]) == 3:
 		if json_as_dict[npc_name][index - 1]["options"][2] == "shop":
 			shop.visible = true
+		if json_as_dict[npc_name][index - 1]["options"][2] == "card":
+			print("Give Player Card: " + json_as_dict[npc_name][index - 1]["card"])
 	_get_text()
 			
 func _on_button_2_pressed():

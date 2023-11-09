@@ -14,7 +14,8 @@
 		},
 		{
 			"text" : "Take Card?",  
-			"options": ["yes", "no", "card"]
+			"options": ["yes", "no", "card"],
+			"card": "Fire Ball"
 		},
 	]
 }
