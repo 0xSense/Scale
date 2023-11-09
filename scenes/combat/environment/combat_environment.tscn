@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://camftt4st5inu"]
+
+[ext_resource type="Texture2D" uid="uid://brky0mc03munh" path="res://scenes/combat/environment/placeholder_background_environment_background.png" id="1_q1y3j"]
+
+[sub_resource type="Environment" id="Environment_ff5hn"]
+
+[node name="CombatEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_ff5hn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q1y3j")
