@@ -12,4 +12,6 @@ public partial class Receptionist : CharacterBody2D
 	public override void _Process(double delta)
 	{
 	}
+
+	
 }
