@@ -11,7 +11,7 @@ using System.Linq;
 using Systems.Combat;
 
 
-public partial class CombatMain : Node2D
+public partial class CombatMain : Node
 {
     [ExportGroup("Right click .tscn -> get UID -> paste here. Blame Godot for having to use freaking strings because they still haven't fixed a bug reported over a year ago: https:[slashslash]github.com[slash]godotengine[slash]godot[slash]issues[slash]62916")]
     [Export] private Godot.Collections.Array<string> _enemyTypePaths;
@@ -71,4 +71,15 @@ public partial class CombatMain : Node2D
 
         CombatManager.GetInstance().NewFight((ICombatant)GetNode("Player"), enemies);
     }
+
+    public void SetPlayerHP(int hp)
+    {
+        ((Player)GetNode("Player")).SetHP(hp);
+    }
+
+    public int GetPlayerHP()
+    {
+        return ((Player)GetNode("Player")).CurrentHealth;
+    }
+
 }

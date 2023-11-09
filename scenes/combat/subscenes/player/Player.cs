@@ -21,6 +21,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public int MaxHealth => _maxHealth;
     private int _currentHealth;
+    public int CurrentHealth => _currentHealth;
     private int _armor;
     private int _movementPoints;
     private int _actionPoints;
@@ -80,7 +81,10 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         _movementPoints = Math.Max(_movementPoints, 0);
     }
 
-    
+    public void SetHP(int hp)
+    {
+        _currentHealth = hp;
+    }
 
     public void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit)
     {
