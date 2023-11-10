@@ -76,20 +76,20 @@ public partial class Card : Area2D
 	private float _playAnimationVerticalPosition;
 	private Vector2 _playAnimationPosition;
 	private bool _animating = false;
-	public async void BeginPlayAnimation()
+	public async Task BeginPlayAnimation()
 	{
 		((CollisionShape2D)GetNode("CollisionShape2D")).Disabled = true;
 		_animating = true;
 		_playAnimationPosition = Position;
 		_tween = CreateTween();
-		_tween.TweenProperty(this, "_playAnimationPosition", Vector2.Zero, 0.25f);
+		_tween.TweenProperty(this, "_playAnimationPosition", Vector2.Zero, 0.25f);		
 		await Task.Delay(250);
 
 		// Play animation/shader here
 
+
 		await Task.Delay(750);
-		this.QueueFree();
-		
+		this.QueueFree();		
 	}
 
     public override void _Process(double delta)

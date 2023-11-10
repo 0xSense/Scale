@@ -3,6 +3,7 @@
 */
 
 using Combat;
+using Data;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public partial class MasterScene : Node
 {
     [Export] private Godot.Collections.Array<string> _packedSceneUIDs = new();
     [Export] private string _defaultSceneUID;
+    [Export] private string _combatSceneUID;
     private Dictionary<string, Node> _loadedScenes;
     private string _activeScene = "";
     private string _lastScene;
@@ -19,7 +21,9 @@ public partial class MasterScene : Node
     {
         _loadedScenes = new();
 
+        LoadScene(_combatSceneUID);
         LoadScene(_defaultSceneUID);
+        
 		ActivateScene(_defaultSceneUID, false);
 		_activeScene = _defaultSceneUID;
 		_lastScene = "";

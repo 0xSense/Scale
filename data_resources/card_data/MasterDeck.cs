@@ -17,15 +17,26 @@ public partial class MasterDeck : Node
 	public delegate void OnMasterDeckLoad();
 	public static event OnMasterDeckLoad OnLoad;
 
+	private static Systems.Combat.Deck _playerDeck;
+	public static Systems.Combat.Deck PlayerDeck => _playerDeck;
+
 	public override void _Ready()
 	{        
+		_playerDeck = new();
+
 		foreach (CardData c in _cardTypes)
 		{
 			c.Activate();
 			CardTypes.Add(c);			
 			// GD.Print(c.UID);
+
+			_playerDeck.AddCard(c);
 		}
 		_cardTypes.Clear();
+
+		
+		
+
 		OnLoad?.Invoke();
 	}
 }

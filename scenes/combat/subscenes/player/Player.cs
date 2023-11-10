@@ -43,7 +43,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     private bool _isDead;
     private bool _isTurn;
 
-    private Systems.Combat.Deck _internalDeck;
+    private Systems.Combat.Deck _internalDeck = new();
 
     private Dictionary<Data.DamageType, int> _resistances;
 
@@ -54,6 +54,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     private List<ICombatant> _targeted = new();
 
     private CombatManager _combatManager;
+
     public override void _Ready()
     {
         _combatManager = CombatManager.GetInstance();
@@ -262,7 +263,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     }
 
     public Systems.Combat.Deck GetDeck()
-    {
+    {        
         return _internalDeck;
     }
 
