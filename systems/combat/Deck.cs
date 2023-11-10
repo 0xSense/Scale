@@ -36,7 +36,6 @@ public class Deck
             _cards.Add(card, 1);
 
         _mainDeck.AddFirst(card);
-        GD.Print("Adding" + _mainDeck.Count);
     }
 
     public void RemoveCard(CardData card, bool removeFromMainDeck)
@@ -78,6 +77,22 @@ public class Deck
         return GetCards((CardData c) => true);
     }
 
+    public void Discard(CardData[] cards)
+    {
+        foreach (var c in cards)
+            Discard(c);
+    }
+
+    public void Discard(CardData card)
+    {
+        _discard.Add(card);
+    }
+
+    public int GetCardCount()
+    {
+        return _mainDeck.Count();
+    }
+
     public CardData[] Draw(int numCards)
     {
         Random rand = CombatManager.GetInstance().RNG;
@@ -85,8 +100,6 @@ public class Deck
 
 
         // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
-
-        GD.Print("COUNT: " + _mainDeck.Count);
 
         for (int i = 0; i < numCards; i++)
         {
@@ -132,7 +145,7 @@ public class Deck
 
     public void ForceShuffle()
     {
-        Draw(_mainDeck.Count);
+        Discard(Draw(_mainDeck.Count));
     }
 
     private void ShuffleIfNecessary()

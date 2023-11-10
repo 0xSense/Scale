@@ -97,7 +97,6 @@ public partial class Card : Area2D
         if (_animating)
 		{
 			Position = _playAnimationPosition;
-			//GD.Print(_playAnimationPosition);
 		}
     }
 

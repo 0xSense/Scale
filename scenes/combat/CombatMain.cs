@@ -90,9 +90,8 @@ public partial class CombatMain : Node
         ICombatant[] enemies = null;
         PopulateEnemyArray(ref enemies);
 
-        GD.Print("Alpha " +  ((Player)GetNode("Player")).GetDeck().GetCards().Count);
-        CombatManager.GetInstance().NewFight((ICombatant)GetNode("Player"), enemies);
-        GD.Print("IN COMBATMAIN " + CombatManager.GetInstance().Player.GetDeck().GetCards().Count);
+        Player player = (Player)GetNode("Player");
+        CombatManager.GetInstance().NewFight(player, enemies);
     }
 
     public void SetPlayerHP(int hp)

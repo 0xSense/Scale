@@ -161,8 +161,7 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
         {
             _currentHealth += amount;
             _currentHealth = Math.Max(_currentHealth, _maxHealth);
-            // FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);
-            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, amount, GlobalPosition + Vector2.Up * 150);
+            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, isCrit, amount, GlobalPosition);
             return;
         }
         if (type == DamageType.SHARP || type == DamageType.BLUNT)
@@ -186,7 +185,7 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
            Die();
         }
 
-        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, amount, GlobalPosition + Vector2.Up * 150);
+        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, amount, GlobalPosition);
     }
 
 }

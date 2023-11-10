@@ -13,7 +13,6 @@ public partial class FloatingTextFactory : Node2D
     {
         _instance = this;
         _waitingQueue = new();
-        GD.Print(_instance);
     }
 
     public static FloatingTextFactory GetInstance()
@@ -21,11 +20,15 @@ public partial class FloatingTextFactory : Node2D
         return _instance;
     }
 
-    public void CreateFloatingCardText(bool isHeal, int amount, Vector2 position)
+    public void CreateFloatingCardText(bool isHeal, bool isCrit, int amount, Vector2 position)
     {
         string color = isHeal ? "#33FF33" : "FF3333";
-        string message = String.Format("[color={0}]{1}[/color]", color, amount);
-        CreateFloatingText(message, position);
+        string prefix = isCrit ? "Critical! " : "";
+        string message = String.Format("[color={0}]{1}{2}[/color]", color, prefix, amount);
+
+        Vector2 offset = Vector2.Up * 100;
+
+        CreateFloatingText(message, position  + offset);
     }
 
     public void CreateFloatingText(string message, Vector2 position)
@@ -38,7 +41,6 @@ public partial class FloatingTextFactory : Node2D
         {
             Refresh(label, message, position - new Vector2(150, 75));
             floatingText = label;
-            GD.Print("Reused");
             _waitingQueue.Dequeue();
         }
         else

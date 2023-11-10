@@ -74,9 +74,14 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         _state = PlayerState.SELECTING_CARD;
     }
 
+    private void SyncDeck()
+    {
+        _internalDeck = MasterDeck.PlayerDeck;
+    }
+
     public void StartFight()
     {
-        GD.Print("Cardcount: " + _internalDeck.GetCards().Count);
+        SyncDeck();
         _internalDeck.ForceShuffle();
         _hand.DrawOpeningHand(_internalDeck);
     }
@@ -157,6 +162,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     {
         await card.BeginPlayAnimation();
         _combatManager.PlayCard(this, targets, card.Data);
+        _internalDeck.Discard(card.Data);
     }
 
     /* Enemies are not supposed to overlap, so no need for z-checking.*/
@@ -225,8 +231,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         {            
             _currentHealth += amount;
             _currentHealth = Math.Max(_currentHealth, _maxHealth);
-            // FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);
-            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, amount, GlobalPosition + Vector2.Up * 150);
+            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, isCrit, amount, GlobalPosition);
             return;
         }
         if (type == DamageType.SHARP || type == DamageType.BLUNT)
@@ -247,8 +252,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         if (_currentHealth < 0)
             _isDead = true;
 
-        // FloatingTextFactory.GetInstance().CreateFloatingText("[color=red]-" + damage + "[/color]", GlobalPosition + Vector2.Up * 150);
-        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, damage, GlobalPosition + Vector2.Up * 150);
+        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, damage, GlobalPosition);
     }
 
     public void AddArmor(int armor)

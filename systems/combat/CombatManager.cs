@@ -78,7 +78,7 @@ public class CombatManager
     public void NewFight(ICombatant player, ICombatant[] enemies)
     {
         GD.Print("Fight has begun");
-        
+
         _player = player;
         _enemies = enemies;
 

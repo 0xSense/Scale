@@ -14,7 +14,7 @@ using Systems.Combat;
 
 public partial class Hand : Marker2D
 {   
-    [Export] private int _openingHandSize = 5;
+    [Export] private int _openingHandSize = 6;
     [Export] private PackedScene _cardResource;
     [Export] private Vector2 _scale;
     [Export] private float _handArc;
@@ -44,7 +44,6 @@ public partial class Hand : Marker2D
 
     private void FillHandDefault()
     {
-        GD.Print(MasterDeck.CardTypes.Count());
         AddCards(MasterDeck.CardTypes[0], 1);
         AddCards(MasterDeck.CardTypes[1], 1);
         AddCards(MasterDeck.CardTypes[2], 1);
