@@ -1,101 +1,33 @@
-[gd_scene load_steps=11 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=4 format=3 uid="uid://clpb08acj6srs"]
 
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
-[ext_resource type="Texture2D" uid="uid://bjhqsrrjydd46" path="res://scenes/combat/asset/Player.png" id="1_3574l"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_dq3xf"]
-[ext_resource type="PackedScene" uid="uid://csv68lfmbllbb" path="res://scenes/overworld/enemy.tscn" id="5_tpju5"]
+[ext_resource type="Texture2D" uid="uid://55ovn8bglemx" path="res://assets/main_character/PlayableCharacter.png" id="2_qemqk"]
+[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/cameras/overworld_game_camera.tscn" id="3_xlfk0"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
-radius = 7.5
-height = 19.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tdw5"]
-size = Vector2(1150, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kfju"]
-size = Vector2(343.5, 33)
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_a1m6g"]
-vertices = PackedVector2Array(-812.268, -1579.66, 2499.87, -1524.48, 2477.16, 1441.7, -961.099, 1493.44)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-812.268, -1579.66, 2499.87, -1524.48, 2477.16, 1441.7, -961.099, 1493.44)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhohn"]
-size = Vector2(270, 71.5)
-
-[sub_resource type="Curve2D" id="Curve2D_xlfmj"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -133, -1, 0, 0, 0, 0, 129, -1, 0, 0, 0, 0, -133, -1)
-}
-point_count = 3
-
-[node name="player_scene" type="Node2D"]
-
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(71, -8)
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(892, 472)
 script = ExtResource("1_4vnmq")
 _walkSpeed = 450.0
 _sprintSpeed = 1020.0
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(1, 1.24)
-texture = ExtResource("1_3574l")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="PlayerHitbox" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 0.5)
-shape = SubResource("CapsuleShape2D_4x2bo")
+scale = Vector2(1, 1.72)
+polygon = PackedVector2Array(3, -6.68604, 1, -1.45349, 3, -0.872101, 4, 1.45349, 6, 4.36047, 3, 5.52325, 4, 6.68604, 2, 7.84885, 2, 9.01163, 0, 9.59302, -2, 9.01163, -3, 6.10464, -4, 7.26746, -6, 6.68604, -5, 4.94186, -5, 4.36047, -7, 4.36047, -5, 0.872101, -5, -2.03488, -4, -2.03488, -5, -3.19766, -5, -4.94186, -7, -5.52325, -5, -6.68604, -8, -9.59302, -6, -10.7558, 0, -10.1744, 4, -9.01163, 5, -7.84885, 5, -7.26743)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="PlayerSkin" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.31)
+texture = ExtResource("2_qemqk")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(72, 40)
+[node name="Camera2D" parent="." instance=ExtResource("3_xlfk0")]
+zoom = Vector2(2.5, 2.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(-1.00002, 51)
-scale = Vector2(0.998264, 0.0771605)
-texture = ExtResource("2_dq3xf")
+[node name="HealthBar" parent="Camera2D" index="0"]
+offset_left = -368.0
+offset_top = -208.0
+offset_right = 132.0
+offset_bottom = -155.0
+scale = Vector2(0.4, 0.4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, 51)
-shape = SubResource("RectangleShape2D_4tdw5")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(72, 40)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(-346, -36)
-scale = Vector2(0.298177, 0.0509259)
-texture = ExtResource("2_dq3xf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-346, -36)
-shape = SubResource("RectangleShape2D_5kfju")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-255, -2)
-scale = Vector2(0.396421, 0.289936)
-navigation_polygon = SubResource("NavigationPolygon_a1m6g")
-
-[node name="enemy" parent="." node_paths=PackedStringArray("_playerBody") instance=ExtResource("5_tpju5")]
-position = Vector2(388, 22)
-_speed = 100.0
-_idleSpeed = 100.0
-_playerBody = NodePath("../Player")
-
-[node name="Area2D" type="Area2D" parent="enemy"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy/Area2D"]
-position = Vector2(-1, 3)
-shape = SubResource("RectangleShape2D_mhohn")
-
-[node name="Path2D" type="Path2D" parent="enemy"]
-curve = SubResource("Curve2D_xlfmj")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="enemy/Path2D"]
-position = Vector2(-133, -1)
-rotates = false
-cubic_interp = false
-
-[connection signal="body_entered" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="enemy/Area2D" to="enemy" method="_on_area_2d_body_exited"]
+[editable path="Camera2D"]

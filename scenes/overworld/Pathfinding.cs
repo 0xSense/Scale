@@ -1,6 +1,8 @@
+namespace Overworld;
+
 using Godot;
 
-public enum State
+public enum PathState
 {
 	FOLLOWINGPLAYER,
 	IDLE
@@ -10,50 +12,50 @@ public partial class Pathfinding : Node2D
 {
 	[Export] private float _speed;
 	[Export] private float _idleSpeed;
-	[Export] private bool _isWalking; 
+	[Export] private bool _isWalking;
 	[Export] private CharacterBody2D _playerBody;
 	private Vector2 _direction;
 	private NavigationAgent2D _navAgent;
 	private PathFollow2D _pathFollow;
 	private CharacterBody2D _enemyBody;
 	private float _gravityDefault;
-	private State _state;
+	private PathState _state;
 
-    public override void _Ready()
-    {
-        _navAgent = GetNode<NavigationAgent2D>("./Body/NavigationAgent2D");
+	public override void _Ready()
+	{
+		_navAgent = GetNode<NavigationAgent2D>("./Body/NavigationAgent2D");
 		_enemyBody = GetNode<CharacterBody2D>("./Body");
 		_pathFollow = GetNode<PathFollow2D>("./Path2D/PathFollow2D");
 		_gravityDefault = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-		_state = State.IDLE;
-    }
+		_state = PathState.IDLE;
+	}
 
-    public override void _Process(double delta)
-    {
+	public override void _Process(double delta)
+	{
 		Vector2 vel = _enemyBody.Velocity;
 
-		switch(_state)
+		switch (_state)
 		{
-			case State.IDLE: 
+			case PathState.IDLE:
 				_pathFollow.Progress += _idleSpeed * (float)delta;
 				if (_isWalking)
 				{
 					vel.X = FollowPath(_pathFollow.GlobalPosition).X * _idleSpeed;
 					vel.Y += _gravityDefault * (float)delta;
-				}	
+				}
 				else
 				{
 					vel = FollowPath(_pathFollow.GlobalPosition) * _idleSpeed;
 				}
 				break;
-			case State.FOLLOWINGPLAYER:
-				
+			case PathState.FOLLOWINGPLAYER:
+
 				if (_isWalking)
 				{
 					vel.X = FollowPath(_playerBody.GlobalPosition).X * _speed;
 					vel.Y += _gravityDefault * (float)delta;
-				}	
+				}
 				else
 				{
 					vel = FollowPath(_playerBody.GlobalPosition) * _speed;
@@ -63,20 +65,21 @@ public partial class Pathfinding : Node2D
 
 		_enemyBody.Velocity = vel;
 		_enemyBody.MoveAndSlide();
-	}	
-
-	public void _on_area_2d_body_entered(Node2D body) 
-	{
-		if (body == _playerBody){
-			_state = State.FOLLOWINGPLAYER;
-		}
 	}
 
-	public void _on_area_2d_body_exited(Node2D body) 
+	public void _on_area_2d_body_entered(Node2D body)
 	{
 		if (body == _playerBody)
 		{
-			_state = State.IDLE;
+			_state = PathState.FOLLOWINGPLAYER;
+		}
+	}
+
+	public void _on_area_2d_body_exited(Node2D body)
+	{
+		if (body == _playerBody)
+		{
+			_state = PathState.IDLE;
 		}
 	}
 
@@ -88,4 +91,5 @@ public partial class Pathfinding : Node2D
 
 		return _direction;
 	}
+
 }

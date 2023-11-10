@@ -2,11 +2,8 @@ using Godot;
 using System;
 using Systems.Combat;
 
-public partial class main : Node2D
+public partial class Main : Node2D
 {
-	[Export]
-	public string ReadMe = "Hello from this String";
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{ }
 
