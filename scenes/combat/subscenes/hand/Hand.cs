@@ -29,14 +29,18 @@ public partial class Hand : Marker2D
         _cards = new();
         _frozen = false;
 
-        MasterDeck.OnLoad += FillHandDefault;
+        FillHandDefault();
     }
 
     private void FillHandDefault()
     {
-        AddCards(MasterDeck.CardTypes[0], 2);
-        AddCards(MasterDeck.CardTypes[1], 2);
-        AddCards(MasterDeck.CardTypes[2], 2);
+        GD.Print(MasterDeck.CardTypes.Count());
+        AddCards(MasterDeck.CardTypes[0], 1);
+        AddCards(MasterDeck.CardTypes[1], 1);
+        AddCards(MasterDeck.CardTypes[2], 1);
+        AddCards(MasterDeck.CardTypes[3], 1);
+        AddCards(MasterDeck.CardTypes[4], 1);
+        AddCards(MasterDeck.CardTypes[5], 1);
     }
 
     public void AddCards(CardData card, int n)
@@ -174,4 +178,5 @@ public partial class Hand : Marker2D
         return _cards[_selectedCardIndex];
     }
 
+    
 }

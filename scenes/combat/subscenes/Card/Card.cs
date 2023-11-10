@@ -48,6 +48,19 @@ public partial class Card : Area2D
 		{
 			diceText += data.Damage[dt].ToString() + " " + dt + "\n";
 		}
+		foreach (DrawEffect de in data.DrawEffects.Keys)
+		{
+			diceText += de + " " + data.DrawEffects[de] + "\n";
+		}
+		foreach (Buff b in Data.Buffs)
+		{
+			string type = (b.Type == BuffType.RESISTANCE) ? Enum.GetName(b.ResistanceType) : "";
+			diceText += "[color=#227733]" + ((b.Type == BuffType.RESISTANCE) ? "RES" : b.Type) + " " + type + ": " + b.Value + "[/color]\n";
+		}
+		foreach (Debuff d in Data.Debuffs)
+		{
+			diceText += "[color=#772233]" + d.Type + ": " + d.Duration + "[/color]\n";
+ 		}
 
 		((RichTextLabel)GetNode("DamageLabel")).Text = "[font_size=40]" + diceText + "[/font_size]";
 
@@ -63,23 +76,20 @@ public partial class Card : Area2D
 	private float _playAnimationVerticalPosition;
 	private Vector2 _playAnimationPosition;
 	private bool _animating = false;
-	public void BeginPlayAnimation()
+	public async void BeginPlayAnimation()
 	{
 		((CollisionShape2D)GetNode("CollisionShape2D")).Disabled = true;
 		_animating = true;
 		_playAnimationPosition = Position;
 		_tween = CreateTween();
 		_tween.TweenProperty(this, "_playAnimationPosition", Vector2.Zero, 0.25f);
+		await Task.Delay(250);
 
-		_tween.Finished += ContinuePlayAnimation;
-		
-	}
+		// Play animation/shader here
 
-	private async void ContinuePlayAnimation()
-	{
-		// TODO: play some sort of animation or shader. Probably fire/ice/etc particles for magic damage or a white "flare" for physical
-		await Task.Delay(1000);
+		await Task.Delay(750);
 		this.QueueFree();
+		
 	}
 
     public override void _Process(double delta)

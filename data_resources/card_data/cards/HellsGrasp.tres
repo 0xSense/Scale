@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://df1iwww5ic7dt"]
+
+[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_mjwga"]
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_nm6iy"]
+
+[resource]
+script = ExtResource("1_nm6iy")
+_name = "Hell's Grasp"
+_description = ""
+_artwork = ExtResource("1_mjwga")
+_type = 2
+_rarity = 1
+_actionPointCost = 2
+_movementPointCost = 0
+_target = 1
+_damageTypes = [1]
+_damageDice = ["1d4"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = [2]
+_debuffDuration = [1]

@@ -51,6 +51,7 @@ public class CombatManager
     private ICombatant[] _moveOrder;
     public ICombatant[] MoveOrder => _moveOrder;
     private int _currentToMove;
+    public ICombatant ToMove => _moveOrder[_currentToMove];
 
     private static CombatManager _instance;
     
@@ -94,14 +95,29 @@ public class CombatManager
 
     public bool PlayCard(ICombatant cardPlayer, ICombatant[] targets, CardData card)
     {
-        if (cardPlayer.GetActionPoints() <= card.ActionPointCost || cardPlayer.GetMovementPoints() <= card.MovementPointCost)
-            return false;
+        if (card.Target == TargetType.SELF)
+        {
+            targets = new ICombatant[]{_player};
+        }
+        else if (card.Target == TargetType.ALL)
+        {
+            targets = _moveOrder;
+        }
+
+        if (cardPlayer.GetActionPoints() < card.ActionPointCost || cardPlayer.GetMovementPoints() < card.MovementPointCost)
+            throw new Exception("TOO FEW POINTS");
         
         if (!VerifyTargeting(cardPlayer, targets, card))
-            return false;
+            throw new Exception ("TARGETING INVALID");
 
+        
+
+
+        /*
+        No real need for this.
         if (!VerifyDeck(cardPlayer.GetDeck(), card))
             return false;
+        */
 
         // Put any other necessary verification here
         // . . .

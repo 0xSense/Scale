@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cfgl8lxy6ppp5"]
+
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_k76fu"]
+[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_wkyl0"]
+
+[resource]
+script = ExtResource("1_k76fu")
+_name = "Holy Water"
+_description = ""
+_artwork = ExtResource("1_wkyl0")
+_type = 0
+_rarity = 0
+_actionPointCost = 0
+_movementPointCost = 0
+_target = 0
+_damageTypes = [8]
+_damageDice = ["1d6"]
+_drawEffects = [null]
+_drawQuantities = [2]
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []

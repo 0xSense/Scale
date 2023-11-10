@@ -9,8 +9,10 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Systems.Combat;
 
 public enum PlayerState
@@ -129,7 +131,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
                         _currentlyTargeting.Position = position;
                         GetParent().AddChild(_currentlyTargeting);
 
-                        _currentlyTargeting.BeginPlayAnimation();
+                        PlayCard(_targeted.ToArray(), _currentlyTargeting);                                            
                         
                         endTargeting();
                     }
@@ -141,6 +143,12 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         {
             endTargeting();
         }
+    }
+
+    private async void PlayCard(ICombatant[] targets, Card card)
+    {
+        await card.BeginPlayAnimation();
+        _combatManager.PlayCard(this, targets, card.Data);
     }
 
     /* Enemies are not supposed to overlap, so no need for z-checking.*/
@@ -204,6 +212,14 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit)
     {
+        GD.Print("Player hit");
+        if (type == DamageType.HEAL)
+        {
+            _currentHealth += amount;
+            _currentHealth = Math.Max(_currentHealth, _maxHealth);
+            FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);
+            return;
+        }
         if (type == DamageType.SHARP || type == DamageType.BLUNT)
         {
             int dmg_temp = amount;
@@ -221,6 +237,8 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         _currentHealth -= damage;
         if (_currentHealth < 0)
             _isDead = true;
+
+        FloatingTextFactory.GetInstance().CreateFloatingText("[color=red]-" + damage + "[/color]", GlobalPosition + Vector2.Up * 150);
     }
 
     public void AddArmor(int armor)
@@ -276,6 +294,25 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     public double GetCritModifier()
     {
         return _critModifier;
+    }
+
+    private void EndTurn()
+    {
+        _combatManager.EndTurn(this);
+        _isTurn = false;
+    }
+
+    public async void OnEndTurnButtonInput(Viewport node, InputEvent e, int shapeID)
+    {
+        if (e.IsActionPressed("Select"))
+        {
+            if (_isTurn)
+            {
+                _isTurn = false;
+                await Task.Delay(1000);
+                this.EndTurn();
+            }
+        }
     }
 
 }

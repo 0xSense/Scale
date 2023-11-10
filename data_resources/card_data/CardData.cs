@@ -37,7 +37,8 @@ public enum DamageType
     LIGHTNING,
     SHARP,
     BLUNT,
-    PIERCING
+    PIERCING,
+    HEAL
 }
 
 public enum TargetType
@@ -58,7 +59,7 @@ public enum DrawEffect
     GRAB // Implementation as stretch goal
 }
 
-public enum Buff
+public enum BuffType
 {
     RESISTANCE,
     ARMOR,
@@ -66,7 +67,7 @@ public enum Buff
     CRIT_CHANCE_INCREASE,
 }
 
-public enum Debuff
+public enum DebuffType
 {
     POISONED,
     CRIPPLED,
@@ -120,6 +121,19 @@ public struct Resistance
     }
 }
 
+public struct Buff
+{
+    public BuffType Type;
+    public int Value; // If armor, this represents amount of armor gained; otherwise, duration
+    public DamageType ResistanceType;
+}
+
+public struct Debuff
+{
+    public DebuffType Type;
+    public int Duration;
+}
+
 
 public partial class CardData : Resource
 {    
@@ -161,15 +175,19 @@ public partial class CardData : Resource
 
     [ExportGroup("Buff")]
     // Buff type/duration
-    [Export] private Godot.Collections.Array<Buff> _buffs = new();
+    [Export] private Godot.Collections.Array<BuffType> _buffs = new();
     [Export] private Godot.Collections.Array<int> _buffDuration = new(); // Turn based, not seconds
-    public Dictionary<Buff, int> Buffs;
+    [ExportGroup("Leave null if buff is not type resistance")]
+    [Export] private Godot.Collections.Array<DamageType> _resistanceType = new();
+    //public Dictionary<BuffType, int> Buffs;
+    public List<Buff> Buffs;
 
     [ExportGroup("Debuff")]
     // Debuff type/duration
-    [Export] private Godot.Collections.Array<Debuff> _debuffs = new();
+    [Export] private Godot.Collections.Array<DebuffType> _debuffs = new();
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
-    public Dictionary<Debuff, int> Debuffs;
+    // public Dictionary<DebuffType, int> Debuffs;
+    public List<Debuff> Debuffs;
     
 
     private int _uid;
@@ -257,18 +275,30 @@ public partial class CardData : Resource
         _drawQuantities.Clear();
 
         i = 0;
-        foreach (Buff b in _buffs)
+        foreach (BuffType b in _buffs)
         {
-            Buffs.Add(b, _buffDuration[i++]);
+            // Buffs.Add(b, _buffDuration[i++]);
+            Buff nB = new();
+            nB.Type = b;
+            nB.Value = _buffDuration[i];
+            if (b == BuffType.RESISTANCE)
+                nB.ResistanceType = _resistanceType[i];
+
+            Buffs.Add(nB);
+            i++;
         }
 
         _buffs.Clear();
         _buffDuration.Clear();
 
         i = 0;
-        foreach (Debuff d in _debuffs)
+        foreach (DebuffType d in _debuffs)
         {
-            Debuffs.Add(d, _debuffDuration[i++]);
+            Debuff dB = new();
+            dB.Type = d;           
+            dB.Duration = _debuffDuration[i]; 
+            Debuffs.Add(dB);
+            i++;
         }
 
         _debuffs.Clear();

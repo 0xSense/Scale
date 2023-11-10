@@ -16,7 +16,7 @@ using Systems.Combat;
 public partial class Enemy : Area2D, Systems.Combat.ICombatant
 {
     private static int SharedCollisionLayer = 3;
-    public static uint Bitmask = 0b0011;
+    public static uint Bitmask = 0b0100;
     [Export] private int _ID;
     public int UID => _ID;
     [Export] private int _maxHealth = 10;
@@ -45,8 +45,14 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
 
         _internalDeck = new();
         _resistances = new();
+        _currentHealth = _maxHealth;
 
         List<CardData> converted = new();
+
+        foreach (DamageType type in Enum.GetValues(typeof(Data.DamageType)))
+        {
+            _resistances.Add(type, 0);
+        }
 
         foreach (CardData card in _deck)
         {
@@ -139,8 +145,20 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
         return _isDead;
     }
 
+    private void Die()
+    {
+        QueueFree();
+    }
+
     public void TakeDamage(DamageType type, int amount, double critModifier, bool isCrit)
     {
+        if (type == DamageType.HEAL)
+        {
+            _currentHealth += amount;
+            _currentHealth = Math.Max(_currentHealth, _maxHealth);
+            FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);
+            return;
+        }
         if (type == DamageType.SHARP || type == DamageType.BLUNT)
         {
             int dmg_temp = amount;
@@ -159,7 +177,10 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
         if (_currentHealth < 0)
         {
            _isDead = true;
+           Die();
         }
+
+        FloatingTextFactory.GetInstance().CreateFloatingText("[color=red]-" + damage + "[/color]", GlobalPosition + Vector2.Up * 150);
     }
 
 }

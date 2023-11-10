@@ -2,19 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://scenes/combat/CombatMain.cs" id="1_gps4y"]
-[ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="1_y42kw"]
 [ext_resource type="Script" path="res://scenes/combat/subscenes/hand/Hand.cs" id="2_xecqg"]
 [ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://scenes/combat/subscenes/Card/Card.tscn" id="3_6gjep"]
 [ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
 [ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
+[ext_resource type="Script" path="res://scenes/combat/EndTurn.cs" id="12_atut3"]
 [ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
+[ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]
 [ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
-[ext_resource type="Resource" uid="uid://c0c0mscfyaa73" path="res://data_resources/card_data/Balemoon.tres" id="13_j3ne4"]
+[ext_resource type="Script" path="res://scenes/combat/FloatingTextFactory.cs" id="14_46n5p"]
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
-[ext_resource type="Resource" uid="uid://sp8dso2o8vhb" path="res://data_resources/card_data/Crawl.tres" id="14_ygibh"]
-[ext_resource type="Resource" uid="uid://c7q5swua5sjxy" path="res://data_resources/card_data/TargetThree.tres" id="15_mt33l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xqp2"]
 
@@ -27,6 +26,9 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 gradient = SubResource("Gradient_5qtr3")
 fill_from = Vector2(1, 0.5)
 fill_to = Vector2(0, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jepx"]
+radius = 32.0
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_gps4y")
@@ -163,7 +165,7 @@ theme_override_font_sizes/font_size = 100
 text = "1"
 
 [node name="ActionPoint" type="Sprite2D" parent="Energy"]
-position = Vector2(690, 430)
+position = Vector2(690, 392)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("13_ey1xf")
 
@@ -182,10 +184,6 @@ position = Vector2(661, 401)
 scale = Vector2(10.6875, 4.57422)
 texture = SubResource("GradientTexture2D_hidsq")
 
-[node name="MasterDeckReference" type="Node" parent="."]
-script = ExtResource("1_y42kw")
-_cardTypes = [ExtResource("13_j3ne4"), ExtResource("14_ygibh"), ExtResource("15_mt33l")]
-
 [node name="SelectTargetsLabel" type="RichTextLabel" parent="."]
 visible = false
 offset_left = -398.0
@@ -195,3 +193,22 @@ offset_bottom = -269.0
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center][color=#FFAA45]Select Targets[/color]"
+
+[node name="EndTurn" type="Area2D" parent="."]
+position = Vector2(690, 475)
+script = ExtResource("12_atut3")
+
+[node name="Icon" type="Sprite2D" parent="EndTurn"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("12_y8ifr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndTurn"]
+shape = SubResource("CircleShape2D_1jepx")
+
+[node name="FloatingTextFactory" type="Node2D" parent="."]
+script = ExtResource("14_46n5p")
+
+[connection signal="input_event" from="EndTurn" to="Player" method="OnEndTurnButtonInput"]
+[connection signal="input_event" from="EndTurn" to="EndTurn" method="OnInputEvent"]
+[connection signal="mouse_entered" from="EndTurn" to="EndTurn" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="EndTurn" to="EndTurn" method="OnMouseExited"]
