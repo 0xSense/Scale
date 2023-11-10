@@ -124,6 +124,11 @@ public class Deck
         return cards;
     }
 
+    public void ForceShuffle()
+    {
+        Draw(_mainDeck.Count);
+    }
+
     private void ShuffleIfNecessary()
     {
         if (_mainDeck.Count <= 0)

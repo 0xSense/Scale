@@ -78,6 +78,7 @@ public class CombatManager
     public void NewFight(ICombatant player, ICombatant[] enemies)
     {
         GD.Print("Fight has begun");
+        
         _player = player;
         _enemies = enemies;
 
@@ -89,6 +90,7 @@ public class CombatManager
             _moveOrder[++i] = c;        
 
         _currentToMove = 0;
+        _player.StartFight();
 
         _player.BeginTurn();
     }

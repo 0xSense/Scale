@@ -74,6 +74,11 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         _state = PlayerState.SELECTING_CARD;
     }
 
+    public void StartFight()
+    {
+        _internalDeck.ForceShuffle();
+    }
+
     public void BeginTurn()
     {
         GD.Print("Begin player turn");
@@ -215,7 +220,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     {
         GD.Print("Player hit");
         if (type == DamageType.HEAL)
-        {
+        {            
             _currentHealth += amount;
             _currentHealth = Math.Max(_currentHealth, _maxHealth);
             FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);

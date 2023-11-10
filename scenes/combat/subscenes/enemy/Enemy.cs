@@ -75,6 +75,11 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
         _permanentResistances.Clear();
     }
 
+    public void StartFight()
+    {
+        
+    }
+
     public void AddArmor(int armor)
     {
         _armor += armor;

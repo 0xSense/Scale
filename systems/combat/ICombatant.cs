@@ -37,5 +37,6 @@ public interface ICombatant
     public abstract int GetCritChance();
     public abstract double GetCritModifier();
     public Dictionary<Data.DamageType, int> GetResistances();
+    public void StartFight();
     
 }
