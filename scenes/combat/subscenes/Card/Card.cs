@@ -68,6 +68,9 @@ public partial class Card : Area2D
 
 		((Label)GetNode("ActionPointIcon/ActionPointNumber")).Text = data.ActionPointCost.ToString();
 
+		if (data.ActionPointCost == 0)
+			((Node2D)GetNode("ActionPointIcon")).Hide();
+
 		if (data.MovementPointCost == 0)
 			((Node2D)GetNode("MovementPointIcon")).Hide();
 		
