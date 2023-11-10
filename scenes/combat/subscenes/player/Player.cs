@@ -76,7 +76,9 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public void StartFight()
     {
+        GD.Print("Cardcount: " + _internalDeck.GetCards().Count);
         _internalDeck.ForceShuffle();
+        _hand.DrawOpeningHand(_internalDeck);
     }
 
     public void BeginTurn()
@@ -223,7 +225,8 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         {            
             _currentHealth += amount;
             _currentHealth = Math.Max(_currentHealth, _maxHealth);
-            FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);
+            // FloatingTextFactory.GetInstance().CreateFloatingText("[color=green]+" + amount + "[/color]", GlobalPosition + Vector2.Up * 150);
+            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, amount, GlobalPosition + Vector2.Up * 150);
             return;
         }
         if (type == DamageType.SHARP || type == DamageType.BLUNT)
@@ -244,7 +247,8 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         if (_currentHealth < 0)
             _isDead = true;
 
-        FloatingTextFactory.GetInstance().CreateFloatingText("[color=red]-" + damage + "[/color]", GlobalPosition + Vector2.Up * 150);
+        // FloatingTextFactory.GetInstance().CreateFloatingText("[color=red]-" + damage + "[/color]", GlobalPosition + Vector2.Up * 150);
+        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, damage, GlobalPosition + Vector2.Up * 150);
     }
 
     public void AddArmor(int armor)

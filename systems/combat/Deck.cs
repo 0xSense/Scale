@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Godot;
+
 
 public class Deck
 {
@@ -34,6 +36,7 @@ public class Deck
             _cards.Add(card, 1);
 
         _mainDeck.AddFirst(card);
+        GD.Print("Adding" + _mainDeck.Count);
     }
 
     public void RemoveCard(CardData card, bool removeFromMainDeck)
@@ -83,13 +86,16 @@ public class Deck
 
         // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
 
+        GD.Print("COUNT: " + _mainDeck.Count);
+
         for (int i = 0; i < numCards; i++)
         {
+            ShuffleIfNecessary();
             cards[i] = _mainDeck.Last.Value;
             _mainDeck.RemoveLast();
             RemoveCard(cards[i], false);
 
-            ShuffleIfNecessary();
+            
         }
 
         return cards;

@@ -21,6 +21,13 @@ public partial class FloatingTextFactory : Node2D
         return _instance;
     }
 
+    public void CreateFloatingCardText(bool isHeal, int amount, Vector2 position)
+    {
+        string color = isHeal ? "#33FF33" : "FF3333";
+        string message = String.Format("[color={0}]{1}[/color]", color, amount);
+        CreateFloatingText(message, position);
+    }
+
     public void CreateFloatingText(string message, Vector2 position)
     {
         message = String.Format("[center][font_size={0}]{1}[/font_size][/center]", _fontSize, message);

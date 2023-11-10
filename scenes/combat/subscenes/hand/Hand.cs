@@ -10,10 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.XPath;
-
+using Systems.Combat;
 
 public partial class Hand : Marker2D
 {   
+    [Export] private int _openingHandSize = 5;
     [Export] private PackedScene _cardResource;
     [Export] private Vector2 _scale;
     [Export] private float _handArc;
@@ -29,7 +30,16 @@ public partial class Hand : Marker2D
         _cards = new();
         _frozen = false;
 
-        FillHandDefault();
+        // FillHandDefault();
+    }
+
+    public void DrawOpeningHand(Deck deck)
+    {
+        CardData[] cards = deck.Draw(_openingHandSize);
+        foreach (CardData c in cards)
+            AddCards(c, 1);
+            
+        // for (int i = 0; i < _openingHandSize; i++)
     }
 
     private void FillHandDefault()

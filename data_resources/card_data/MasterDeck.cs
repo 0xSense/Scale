@@ -28,14 +28,12 @@ public partial class MasterDeck : Node
 		{
 			c.Activate();
 			CardTypes.Add(c);			
-			// GD.Print(c.UID);
+			 GD.Print(c.UID);
 
 			_playerDeck.AddCard(c);
 		}
 		_cardTypes.Clear();
-
-		
-		
+		GD.Print("MasterDeck: "  + _playerDeck.GetCards().Count);		
 
 		OnLoad?.Invoke();
 	}
