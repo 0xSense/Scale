@@ -12,7 +12,8 @@ Player movement:
   * Gravity increases on descent
  - Crouching (ask Perplexer why this needs to be a thing)
  - Sprinting (ask Perplexer why this needs to be a thing)
-
+	When input is "right" character sprite should face right
+		
 */
 
 public enum State
@@ -26,30 +27,43 @@ public partial class Player : CharacterBody2D
 	[Export] private float _walkSpeed = 500f;
 	[Export] private float _sprintSpeed = 1700f;
 	[Export] private float _jumpTime; // Time spent in upward acceleration
-	[Export] private float _jumpSpeed = 400f; // Speed player moves upward while jumping
+	[Export] private float _jumpSpeed = 500f; // Speed player moves upward while jumping
 	[Export] private float _gravityFallMultiplier = 2f;
 	[Export] private float _accelerationStrength = 0.09f;
 	[Export] private float _coyoteBuffer = 0.5f; // In seconds
+
 	private float _coyoteTimer;
 	private float _gravityDefault;
-
 	private State _state;
+	private Sprite2D _playerSprite;
 
 	public override void _Ready()
 	{
 		_gravityDefault = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 		_state = State.GROUNDED;
 		_coyoteTimer = _coyoteBuffer;
+		_playerSprite = GetNode<Sprite2D>("PlayerSkin");
 	}
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 		float fDelta = (float)delta;
 
 		Vector2 movementInput = GetMovementInput();
+
+		// flip sprite orientation horizontally
+		if (movementInput.X > 0)
+		{
+			_playerSprite.FlipH = true;
+		}
+		else if (movementInput.X < 0)
+		{
+			_playerSprite.FlipH = false;
+		}
+
 		Vector2 vel = Velocity;
 
-		if (IsOnFloor())		
+		if (IsOnFloor())
 			_state = State.GROUNDED;
 		else
 			_state = State.AIRBORNE;
@@ -58,7 +72,7 @@ public partial class Player : CharacterBody2D
 		// Continuing in current direction
 		if ((movementInput.X > 0) == (Velocity.X > 0))
 		{
-			accelerationRate = (_walkSpeed - Mathf.Abs(Velocity.X))/_walkSpeed;
+			accelerationRate = (_walkSpeed - Mathf.Abs(Velocity.X)) / _walkSpeed;
 		}
 		else
 		{
@@ -95,7 +109,7 @@ public partial class Player : CharacterBody2D
 
 				vel.X = (float)Mathf.Lerp(vel.X, 0, 0.075);
 				vel.X += movementInput.X * accelerationRate * _walkSpeed * _accelerationStrength;
-				
+
 				if (vel.Y < 0)
 					vel.Y += _gravityDefault * fDelta;
 				else
@@ -109,12 +123,14 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
+	public void _Process()
+	{ }
+
 	private Vector2 GetMovementInput()
 	{
 		Vector2 movement = new();
 
 		movement.X = Input.GetAxis("ui_left", "ui_right");
-
 		return movement;
 	}
 

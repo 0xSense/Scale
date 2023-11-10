@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=4 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_hns8f"]
@@ -13,10 +14,22 @@ collision_layer = 7
 collision_mask = 7
 platform_on_leave = 2
 script = ExtResource("1_hns8f")
+=======
+[gd_scene load_steps=4 format=3 uid="uid://clpb08acj6srs"]
+
+[ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_4vnmq"]
+[ext_resource type="Texture2D" uid="uid://55ovn8bglemx" path="res://assets/main_character/PlayableCharacter.png" id="2_qemqk"]
+[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/cameras/overworld_game_camera.tscn" id="3_xlfk0"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(892, 472)
+script = ExtResource("1_4vnmq")
+>>>>>>> 82f683b497c7eb27a271efd50a16da9e7111ee9f
 _walkSpeed = 450.0
 _sprintSpeed = 1020.0
 metadata/_edit_group_ = true
 
+<<<<<<< HEAD
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.0242572, 0.0883498)
 texture = ExtResource("2_qooqh")
@@ -27,3 +40,25 @@ shape = SubResource("CapsuleShape2D_4xlam")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+=======
+[node name="PlayerHitbox" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(1, 1.72)
+polygon = PackedVector2Array(3, -6.68604, 1, -1.45349, 3, -0.872101, 4, 1.45349, 6, 4.36047, 3, 5.52325, 4, 6.68604, 2, 7.84885, 2, 9.01163, 0, 9.59302, -2, 9.01163, -3, 6.10464, -4, 7.26746, -6, 6.68604, -5, 4.94186, -5, 4.36047, -7, 4.36047, -5, 0.872101, -5, -2.03488, -4, -2.03488, -5, -3.19766, -5, -4.94186, -7, -5.52325, -5, -6.68604, -8, -9.59302, -6, -10.7558, 0, -10.1744, 4, -9.01163, 5, -7.84885, 5, -7.26743)
+
+[node name="PlayerSkin" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.31)
+texture = ExtResource("2_qemqk")
+
+[node name="Camera2D" parent="." instance=ExtResource("3_xlfk0")]
+zoom = Vector2(2.5, 2.5)
+
+[node name="HealthBar" parent="Camera2D" index="0"]
+offset_left = -368.0
+offset_top = -208.0
+offset_right = 132.0
+offset_bottom = -155.0
+scale = Vector2(0.4, 0.4)
+
+[editable path="Camera2D"]
+>>>>>>> 82f683b497c7eb27a271efd50a16da9e7111ee9f
