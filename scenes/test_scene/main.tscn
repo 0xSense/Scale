@@ -1,0 +1,19 @@
+[gd_scene load_steps=6 format=3 uid="uid://cipd5odixnpm8"]
+
+[ext_resource type="Script" path="res://scenes/test_scene/main.cs" id="1_njeio"]
+[ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="2_kr4ho"]
+[ext_resource type="Resource" uid="uid://c0c0mscfyaa73" path="res://data_resources/card_data/Balemoon.tres" id="3_06h6j"]
+[ext_resource type="Script" path="res://scenes/test_scene/GeneralTestNode.cs" id="4_hh3iq"]
+[ext_resource type="PackedScene" path="res://scenes/overworld_game_camera.tscn" id="5_gj6jo"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_njeio")
+
+[node name="MasterDeckPopulater" type="Node2D" parent="."]
+script = ExtResource("2_kr4ho")
+_cardTypes = [ExtResource("3_06h6j")]
+
+[node name="GeneralTestNode" type="Node2D" parent="."]
+script = ExtResource("4_hh3iq")
+
+[node name="Camera2D" parent="." instance=ExtResource("5_gj6jo")]

@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 [gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
+=======
+[gd_scene load_steps=28 format=3 uid="uid://dvjwpfs6wm2j4"]
+>>>>>>> 3f9f1d4daa150b2aa3df1f4b7978461562da0947
 
+[ext_resource type="Script" path="res://scenes/overworld/TestLevel.cs" id="1_pc0xt"]
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_131s4"]
+=======
+[ext_resource type="Script" path="res://scenes/overworld/npcs/npc.cs" id="5_ayw20"]
+>>>>>>> 3f9f1d4daa150b2aa3df1f4b7978461562da0947
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="5_co7nw"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 [ext_resource type="Script" path="res://scenes/overworld/npcs/npc.gd" id="5_sq5ew"]
@@ -87,6 +96,8 @@ region_rect = Rect2(20, 20, 200, 200)
 modulate_color = Color(0, 0, 0, 1)
 
 [node name="TestLevel" type="Node2D"]
+script = ExtResource("1_pc0xt")
+_combatScene = "uid://bk6mw4uwgd1yl"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
@@ -176,24 +187,29 @@ position = Vector2(42, -1195)
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
+[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation") instance=ExtResource("3_ne5i1")]
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_1")
+<<<<<<< HEAD
 _player = NodePath("../../Player")
+=======
+>>>>>>> 3f9f1d4daa150b2aa3df1f4b7978461562da0947
 
-[node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
+[node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation") instance=ExtResource("3_ne5i1")]
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
 _targetLocation = NodePath("../../Locations/Room_2")
+<<<<<<< HEAD
 _player = NodePath("../../Player")
+=======
+>>>>>>> 3f9f1d4daa150b2aa3df1f4b7978461562da0947
 
 [node name="EnemyStage" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyStage"]
 position = Vector2(182, -2442)
 scale = Vector2(1, 0.0799951)
-texture = ExtResource("4_131s4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyStage"]
 position = Vector2(182, -2442)
@@ -229,7 +245,6 @@ json_file_path = "res://dialogue/dialogue.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
 scale = Vector2(0.0555556, 0.180556)
-texture = ExtResource("4_131s4")
 
 [node name="Area2D" type="Area2D" parent="Npcs/TestNPC"]
 
@@ -242,8 +257,11 @@ offset_left = -101.0
 offset_top = -109.0
 offset_right = 103.0
 offset_bottom = -69.0
+<<<<<<< HEAD
 texture = ExtResource("4_131s4")
 metadata/_edit_use_anchors_ = true
+=======
+>>>>>>> 3f9f1d4daa150b2aa3df1f4b7978461562da0947
 
 [node name="Name" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
 layout_mode = 0

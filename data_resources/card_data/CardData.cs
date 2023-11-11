@@ -1,3 +1,7 @@
+/*
+ @author Alexander Venezia (Blunderguy)
+*/
+
 namespace Data;
 
 using Godot;
@@ -32,13 +36,14 @@ public enum DamageType
     LIGHTNING,
     SHARP,
     BLUNT,
-    PIERCING
+    PIERCING,
+    HEAL
 }
 
 public enum TargetType
 {
-    SINGLE,
     SELF,
+    SINGLE,
     MULTI_TWO,
     MULTI_THREE,
     MULTI_FOUR,
@@ -53,16 +58,15 @@ public enum DrawEffect
     GRAB // Implementation as stretch goal
 }
 
-public enum Buff
+public enum BuffType
 {
     RESISTANCE,
     ARMOR,
     CRIT_DMG_INCREASE,
     CRIT_CHANCE_INCREASE,
-    TRUE_SIGHT,
 }
 
-public enum Debuff
+public enum DebuffType
 {
     POISONED,
     CRIPPLED,
@@ -104,16 +108,51 @@ public struct DamageDice
     }
 }
 
+public struct Resistance
+
+{
+    public DamageType Type;
+    public int Duration;
+
+    public Resistance(DamageType type, int duration)
+    {
+        Type = type;
+        Duration = duration;
+    }
+}
+
+public struct Buff
+{
+    public BuffType Type;
+    public int Value; // If armor, this represents amount of armor gained; otherwise, duration
+    public DamageType ResistanceType;
+}
+
+public struct Debuff
+{
+    public DebuffType Type;
+    public int Duration;
+}
+
+
 public partial class CardData : Resource
 {
-    [Export] private String _name;
+    [ExportGroup("Appearance")]
+    [Export] private string _name;
+    [Export] private string _description;
+    [Export] private Texture2D _artwork;
+    public Texture2D Artwork => _artwork;
+
+    [ExportGroup("Attributes")]
     // Types and rarity
     [Export] private CardType _type;
     [Export] private CardRarity _rarity;
     [Export] private int _actionPointCost;
     [Export] private int _movementPointCost;
 
-    public String Name => _name;
+    public string Name => _name;
+    public string Description => _description;
+
     public CardRarity Rarity => _rarity;
     public CardType Type => _type;
     public int ActionPointCost => _actionPointCost;
@@ -122,26 +161,34 @@ public partial class CardData : Resource
     [Export] private TargetType _target;
     public TargetType Target => _target;
 
-
+    [ExportGroup("Damage")]
     // Damage and damage types
     [Export] private Godot.Collections.Array<DamageType> _damageTypes = new();
     [Export] private Godot.Collections.Array<String> _damageDice = new();
     public Dictionary<DamageType, DamageDice> Damage;
 
+    [ExportGroup("Draw")]
     // Draw effects (draw/remove cards to deck; always affects player regardless of TargetType)
     [Export] private Godot.Collections.Array<DrawEffect> _drawEffects = new();
     [Export] private Godot.Collections.Array<int> _drawQuantities = new();
     public Dictionary<DrawEffect, int> DrawEffects;
 
+    [ExportGroup("Buff")]
     // Buff type/duration
-    [Export] private Godot.Collections.Array<Buff> _buffs = new();
+    [Export] private Godot.Collections.Array<BuffType> _buffs = new();
     [Export] private Godot.Collections.Array<int> _buffDuration = new(); // Turn based, not seconds
-    public Dictionary<Buff, int> Buffs;
+    [ExportGroup("Leave null if buff is not type resistance")]
+    [Export] private Godot.Collections.Array<DamageType> _resistanceType = new();
+    //public Dictionary<BuffType, int> Buffs;
+    public List<Buff> Buffs;
 
+    [ExportGroup("Debuff")]
     // Debuff type/duration
-    [Export] private Godot.Collections.Array<Debuff> _debuffs = new();
+    [Export] private Godot.Collections.Array<DebuffType> _debuffs = new();
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
-    public Dictionary<Debuff, int> Debuffs;
+    // public Dictionary<DebuffType, int> Debuffs;
+    public List<Debuff> Debuffs;
+
 
     private int _uid;
     public int UID => _uid;
@@ -228,18 +275,30 @@ public partial class CardData : Resource
         _drawQuantities.Clear();
 
         i = 0;
-        foreach (Buff b in _buffs)
+        foreach (BuffType b in _buffs)
         {
-            Buffs.Add(b, _buffDuration[i++]);
+            // Buffs.Add(b, _buffDuration[i++]);
+            Buff nB = new();
+            nB.Type = b;
+            nB.Value = _buffDuration[i];
+            if (b == BuffType.RESISTANCE)
+                nB.ResistanceType = _resistanceType[i];
+
+            Buffs.Add(nB);
+            i++;
         }
 
         _buffs.Clear();
         _buffDuration.Clear();
 
         i = 0;
-        foreach (Debuff d in _debuffs)
+        foreach (DebuffType d in _debuffs)
         {
-            Debuffs.Add(d, _debuffDuration[i++]);
+            Debuff dB = new();
+            dB.Type = d;
+            dB.Duration = _debuffDuration[i];
+            Debuffs.Add(dB);
+            i++;
         }
 
         _debuffs.Clear();

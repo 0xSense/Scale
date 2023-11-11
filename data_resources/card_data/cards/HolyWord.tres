@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dl0lm7wmiydhh"]
+
+[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_f4bnk"]
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_hvasl"]
+
+[resource]
+script = ExtResource("1_hvasl")
+_name = "Holy Word"
+_description = ""
+_artwork = ExtResource("1_f4bnk")
+_type = 0
+_rarity = 0
+_actionPointCost = 0
+_movementPointCost = 0
+_target = 0
+_damageTypes = [0]
+_damageDice = ["1d4 + 1"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_debuffs = []
+_debuffDuration = []

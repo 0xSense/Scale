@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqskjl6vsej8"]
+
+[ext_resource type="Script" path="res://scenes/combat/subscenes/Card/Card.cs" id="1_q4dhy"]
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="2_0qfpw"]
+[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="3_iu6l8"]
+[ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="3_jr6oi"]
+[ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="4_sewri"]
+[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="5_lktgx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqjh"]
+size = Vector2(704, 1736)
+
+[node name="Card" type="Area2D"]
+disable_mode = 1
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_q4dhy")
+
+[node name="Art" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -753.805)
+texture = ExtResource("2_0qfpw")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -499)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("3_iu6l8")
+
+[node name="BackroundWhite" type="Sprite2D" parent="."]
+position = Vector2(0, -499)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("3_jr6oi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -127)
+shape = SubResource("RectangleShape2D_3gqjh")
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+offset_left = -306.0
+offset_top = -471.0
+offset_right = 310.0
+offset_bottom = -381.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Name[/center]"
+threaded = true
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="."]
+offset_left = -306.0
+offset_top = -375.0
+offset_right = 306.0
+offset_bottom = -258.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Description of the card - intended to be flavor text."
+threaded = true
+
+[node name="DamageLabel" type="RichTextLabel" parent="."]
+offset_left = -334.0
+offset_top = -233.0
+offset_right = 5.0
+offset_bottom = -23.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[color=red]1d8 + 4[/color] [img=40]assets/placeholder/damage_icons/fire.png[/img]"
+threaded = true
+
+[node name="TargetsLabel" type="RichTextLabel" parent="."]
+offset_left = 50.0
+offset_top = -233.0
+offset_right = 323.0
+offset_bottom = -23.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[right]Target info here"
+threaded = true
+
+[node name="ActionPointIcon" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-370, -1010)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_sewri")
+
+[node name="ActionPointNumber" type="Label" parent="ActionPointIcon"]
+offset_left = -62.0
+offset_top = -118.0
+offset_right = 58.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovementPointIcon" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(368, -1003)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_lktgx")

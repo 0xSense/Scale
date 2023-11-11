@@ -1,0 +1,19 @@
+[gd_scene load_steps=9 format=3 uid="uid://d204n4ckwe72x"]
+
+[ext_resource type="Script" path="res://scenes/MasterScene.cs" id="1_smi8o"]
+[ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="2_ykx58"]
+[ext_resource type="Resource" uid="uid://b03n7ciamrhdl" path="res://data_resources/card_data/cards/AngelicGlide.tres" id="3_mo4jh"]
+[ext_resource type="Resource" uid="uid://diiq57t1suuc1" path="res://data_resources/card_data/cards/ArrowStorm.tres" id="4_s17bk"]
+[ext_resource type="Resource" uid="uid://bcdiuviks0t4v" path="res://data_resources/card_data/cards/BlessedPlus.tres" id="5_c2wa8"]
+[ext_resource type="Resource" uid="uid://bn1d4ogph8kcx" path="res://data_resources/card_data/cards/DivineSmite.tres" id="6_c0l61"]
+[ext_resource type="Resource" uid="uid://ct440gvn28qyo" path="res://data_resources/card_data/cards/GodsUniform.tres" id="7_4gtcm"]
+[ext_resource type="Resource" uid="uid://df1iwww5ic7dt" path="res://data_resources/card_data/cards/HellsGrasp.tres" id="8_c1vwe"]
+
+[node name="MasterScene" type="Node2D"]
+script = ExtResource("1_smi8o")
+_packedSceneUIDs = ["uid://dvjwpfs6wm2j4", "uid://bk6mw4uwgd1yl"]
+_defaultSceneUID = "uid://bk6mw4uwgd1yl"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_ykx58")
+_cardTypes = [ExtResource("3_mo4jh"), ExtResource("4_s17bk"), ExtResource("5_c2wa8"), ExtResource("6_c0l61"), ExtResource("7_4gtcm"), ExtResource("8_c1vwe")]
