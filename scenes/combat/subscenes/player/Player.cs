@@ -24,30 +24,7 @@ public enum PlayerState
 public partial class Player : Combatant
 {
     [Export] Hand _hand;
-    [Export] RichTextLabel _targetLabel;/*
-    [Export] private int _maxHealth;
-    [Export] private int _startingActionPoints = 3;
-    [Export] private int _startingMovementPoints = 1;
-    [Export] private int _defaultCritChance = 10; // Out of 100
-    [Export] private double _defaultCritModifier = 2.0;
-
-    public int MaxHealth => _maxHealth;
-    private int _currentHealth;
-    public int CurrentHealth => _currentHealth;
-    private int _armor;
-    private int _movementPoints;
-    private int _actionPoints;
-    private int _critChance;
-    private double _critModifier;
-
-    private bool _isDead;
-    private bool _isTurn;
-
-    private Systems.Combat.Deck _internalDeck = new();
-
-    private Dictionary<Data.DamageType, int> _resistances;
-    private List<Buff> _buffs;
-    private List<Debuff> _debuffs;*/
+    [Export] RichTextLabel _targetLabel;
 
     private PlayerState _state;
     public PlayerState State => _state;
@@ -58,24 +35,6 @@ public partial class Player : Combatant
     public override void _Ready()
     {
         base._Ready();
-        /*
-        _combatManager = CombatManager.GetInstance();
-        _currentHealth = _maxHealth;
-        _isDead = false;
-        _internalDeck = new();
-        _resistances = new();
-        _buffs = new();
-        _debuffs = new();
-        _critChance = _defaultCritChance;
-        _critModifier = _defaultCritModifier;
-
-        foreach (Data.DamageType type in Enum.GetValues(typeof(Data.DamageType)))
-        {
-            _resistances.Add(type, 0);
-        }
-
-        _armor = 0;
-        */
         _state = PlayerState.SELECTING_CARD;
         GD.Print(_state);
     }
@@ -97,28 +56,6 @@ public partial class Player : Combatant
     {
         base.BeginTurn();
         GD.Print("Begin player turn");
-        /*
-        _isTurn = true;
-        _movementPoints = _startingMovementPoints;
-        _actionPoints = _startingActionPoints;
-
-        foreach (Data.DamageType resistance in _resistances.Keys)
-        {
-            _resistances[resistance]--;
-            _resistances[resistance] = Math.Max(0, _resistances[resistance]);
-        }
-
-        foreach (Buff buff in _buffs)
-        {
-
-        }
-
-        foreach (Debuff debuff in _debuffs)
-        {
-
-        }*/
-
-        // TODO: Fill out function
     }
 
     public override void _PhysicsProcess(double delta)
@@ -226,129 +163,6 @@ public partial class Player : Combatant
         }
     }
 
-    /*
-    public void BurnActionPoints(int burn)
-    {
-        _actionPoints -= burn;
-        _actionPoints = Math.Max(_actionPoints, 0);
-    }
-
-    public void BurnMovementPoints(int burn)
-    {
-        _movementPoints -= burn;
-        _movementPoints = Math.Max(_movementPoints, 0);
-    }
-
-    public void SetHP(int hp)
-    {
-        _currentHealth = hp;
-    }
-
-    public void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit)
-    {
-        if (type == DamageType.HEAL)
-        {            
-            _currentHealth += amount;
-            _currentHealth = Math.Max(_currentHealth, _maxHealth);
-            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, isCrit, amount, GlobalPosition);
-            return;
-        }
-        if (type == DamageType.SHARP || type == DamageType.BLUNT)
-        {
-            int dmg_temp = amount;
-            amount -= _armor;
-            amount = Math.Max(0, amount);
-            _armor -= dmg_temp;
-            _armor = Math.Max(0, _armor);
-        }        
-
-        int isCritInteger = isCrit ? 1 : 0;
- 
-        int isResisted = (_resistances[type] > 0) ? 1 : 0;
-
-        int damage = (int)(amount * (1 + critModifier * isCritInteger) * (1 + isResisted * (0.5 + (0.25 * isCritInteger))));
-        _currentHealth -= damage;
-        if (_currentHealth < 0)
-            _isDead = true;
-
-        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, damage, GlobalPosition);
-    }
-
-    public void ApplyBuff(Buff buff)
-    {
-        switch (buff.Type)
-        {
-            case BuffType.ARMOR:
-            _armor += buff.Value;
-            return;
-            case BuffType.RESISTANCE:
-            _resistances[buff.ResistanceType] += buff.Value;
-            return;            
-        }
-
-        _buffs.Add(buff);
-    }
-
-    public void ApplyDebuff(Debuff debuff)
-    {
-        _debuffs.Add(debuff);
-    }
-
-    public void AddArmor(int armor)
-    {
-        _armor += armor;
-    }
-
-    public void AddResistance(DamageType resistance, int turns)
-    {        
-        _resistances[resistance] += turns;
-    }
-
-    public int GetActionPoints()
-    {
-        return _actionPoints;
-    }
-
-    public int GetMovementPoints()
-    {
-        return _movementPoints;
-    }
-
-    public Systems.Combat.Deck GetDeck()
-    {        
-        return _internalDeck;
-    }
-
-    public bool IsDead()
-    {
-        return _isDead;
-    }
-
-    public int GetHealth()
-    {
-        return _currentHealth;
-    }
-
-    public int GetArmor()
-    {
-        return _armor;
-    }
-
-    public Dictionary<Data.DamageType, int> GetResistances()
-    {
-        return _resistances;
-    }
-
-    public int GetCritChance()
-    {
-        return _critChance;
-    }
-
-    public double GetCritModifier()
-    {
-        return _critModifier;
-    }
-    */
 
     public async void OnEndTurnButtonInput(Viewport node, InputEvent e, int shapeID)
     {

@@ -11,6 +11,9 @@ height = 268.0
 collision_layer = 4
 script = ExtResource("2_urypt")
 _ID = 1
+_maxHealth = 8
+_startingActionPoints = 1
+_startingMovementPoints = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true

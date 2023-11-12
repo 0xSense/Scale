@@ -7,12 +7,11 @@
 radius = 57.0
 height = 280.0
 
-[node name="Player" type="Sprite2D"]
-texture = ExtResource("1_6w4tj")
+[node name="Player" type="Area2D"]
 script = ExtResource("2_ws6fc")
-_maxHealth = 50
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8u6yp")
+
+[node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("1_6w4tj")

@@ -39,6 +39,7 @@ position = Vector2(-628, 103)
 scale = Vector2(-1, 1)
 _hand = NodePath("../Hand")
 _targetLabel = NodePath("../SelectTargetsLabel")
+_maxHealth = 25
 
 [node name="Background" parent="." instance=ExtResource("1_5pl1x")]
 scale = Vector2(0.67, 0.67)

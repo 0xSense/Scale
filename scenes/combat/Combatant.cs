@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Systems.Combat;
 
 
-public partial class Combatant : Sprite2D, ICombatant
+public partial class Combatant : Area2D, ICombatant
 {
     [Export] protected int _maxHealth;
     [Export] protected int _startingActionPoints = 3;
