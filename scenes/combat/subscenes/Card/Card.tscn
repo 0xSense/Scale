@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="2_0qfpw"]
 [ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="3_iu6l8"]
 [ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="3_jr6oi"]
-[ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="4_sewri"]
+[ext_resource type="Texture2D" uid="uid://7q2b6x200j6v" path="res://scenes/combat/subscenes/Card/images/snek2.png" id="5_l0k84"]
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="5_lktgx"]
 [ext_resource type="SpriteFrames" uid="uid://bsv28668g8l7g" path="res://scenes/combat/subscenes/Card/animations/fire/fire_anim.tres" id="7_1fgaa"]
 
@@ -83,16 +83,16 @@ threaded = true
 
 [node name="ActionPointIcon" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(-370, -1010)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_sewri")
+position = Vector2(-342, -980)
+texture = ExtResource("5_l0k84")
 
 [node name="ActionPointNumber" type="Label" parent="ActionPointIcon"]
-offset_left = -62.0
-offset_top = -118.0
-offset_right = 58.0
-offset_bottom = 112.0
-theme_override_font_sizes/font_size = 150
+offset_left = -65.0
+offset_top = -59.0
+offset_right = 55.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -105,7 +105,7 @@ texture = ExtResource("5_lktgx")
 
 [node name="PlayAnimation" type="AnimatedSprite2D" parent="."]
 z_index = -1
-position = Vector2(0, -483)
+position = Vector2(2, -499)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_1fgaa")
 speed_scale = 0.5

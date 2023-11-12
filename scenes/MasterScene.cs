@@ -17,6 +17,8 @@ public partial class MasterScene : Node
     private string _activeScene = "";
     private string _lastScene;
 
+    private List<int> _enemyIDs;
+
     public override void _Ready() 
     {
         _loadedScenes = new();
@@ -27,6 +29,17 @@ public partial class MasterScene : Node
 		ActivateScene(_defaultSceneUID, false);
 		_activeScene = _defaultSceneUID;
 		_lastScene = "";
+    }
+
+    public List<int> LoadEnemyIDs()
+    {
+        return _enemyIDs;
+    }
+
+    // Overworld team - call this before switching scenes to combat to set the enemies the player will face.
+    public void SetEnemyIDs(List<int> enemyIDs)
+    {
+        _enemyIDs = enemyIDs;
     }
 
     public void LoadScene(string sceneUID)

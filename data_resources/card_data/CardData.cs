@@ -65,6 +65,7 @@ public enum BuffType
     ARMOR,
     CRIT_DMG_INCREASE,
     CRIT_CHANCE_INCREASE,
+    PURIFY
 }
 
 public enum DebuffType
@@ -74,6 +75,7 @@ public enum DebuffType
     TRAUMATIZED,
     SHOCKED,
     EXPOSED,
+    WITHER,
 }
 
 public struct DamageDice

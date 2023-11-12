@@ -49,7 +49,7 @@ public partial class CombatMain : Node
 
         // TODO: Finish this once you have the scene transition implemented
         
-        //int[] unloadedEnemies = (Whatever the master root's class is) GetTree().Root.GetChild(0).GetEnemyIndices();
+        // int[] unloadedEnemies = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs().ToArray();
         int[] unloadedEnemies = new int[]{1, 1, 1};//, 1, 1};
         enemies = new ICombatant[unloadedEnemies.Length];
 

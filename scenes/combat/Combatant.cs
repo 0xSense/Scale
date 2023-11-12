@@ -155,7 +155,10 @@ public partial class Combatant : Area2D, ICombatant
             return;
             case BuffType.RESISTANCE:
             _resistances[buff.ResistanceType] += buff.Value;
-            return;            
+            return;          
+            case BuffType.PURIFY:
+            _debuffs = new();
+            return;  
         }
 
         if (_buffs.ContainsKey(buff.Type))
@@ -166,6 +169,9 @@ public partial class Combatant : Area2D, ICombatant
 
     public virtual void ApplyDebuff(Debuff debuff)
     {
+        if (debuff.Type == DebuffType.WITHER)
+            _buffs = new();
+            
         if (_debuffs.ContainsKey(debuff.Type))
             _debuffs[debuff.Type] += debuff.Duration;
         else
