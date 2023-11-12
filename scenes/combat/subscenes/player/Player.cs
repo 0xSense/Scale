@@ -36,7 +36,6 @@ public partial class Player : Combatant
     {
         base._Ready();
         _state = PlayerState.SELECTING_CARD;
-        GD.Print(_state);
     }
 
     private void SyncDeck()

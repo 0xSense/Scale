@@ -130,7 +130,11 @@ public class CombatManager
         {
             foreach (DamageType dt in card.Damage.Keys)
             {
-                target.TakeDamage(dt, Roll(card.Damage[dt]), cardPlayer.GetCritModifier(), RollForCrit(cardPlayer.GetCritChance()));
+                bool isAutoResisted = (cardPlayer.HasDebuff(DebuffType.TRAUMATIZED) && !IsPhysicalDamage(dt)) ||
+                        (cardPlayer.HasDebuff(DebuffType.CRIPPLED) && IsPhysicalDamage(dt))
+                    ;
+
+                target.TakeDamage(dt, Roll(card.Damage[dt]), cardPlayer.GetCritModifier(), RollForCrit(cardPlayer.GetCritChance()), autoResist:isAutoResisted);
             }
 
             foreach (Buff b in card.Buffs)
@@ -148,6 +152,21 @@ public class CombatManager
         // . . .
 
         return true; // TODO: Complete function
+    }
+
+    private bool IsPhysicalDamage(DamageType damage)
+    {
+        switch (damage)
+        {
+            case DamageType.SHARP:
+            return true;
+            case DamageType.BLUNT:
+            return true;
+            case DamageType.PIERCING:
+            return true;
+            default:
+            return false;
+        }
     }
 
     private bool RollForCrit(int percentChance)

@@ -15,6 +15,7 @@ using Systems.Combat;
 
 public partial class Enemy : Combatant
 {
+    [Export] private Godot.Collections.Array<CardData> _deck = new();
     private static int SharedCollisionLayer = 3;
     public static uint Bitmask = 0b0100;
     [Export] private int _ID;
@@ -23,19 +24,11 @@ public partial class Enemy : Combatant
 
     public override void _Ready()
     {
+        base._Ready();
         SetCollisionMaskValue(1, false);
         SetCollisionMaskValue(SharedCollisionLayer, true);
 
-        _internalDeck = new();
-        _resistances = new();
-        _currentHealth = _maxHealth;
-
         List<CardData> converted = new();
-
-        foreach (DamageType type in Enum.GetValues(typeof(Data.DamageType)))
-        {
-            _resistances.Add(type, 0);
-        }
 
         foreach (CardData card in _deck)
         {
@@ -74,9 +67,9 @@ public partial class Enemy : Combatant
         QueueFree();
     }
 
-    public override void TakeDamage(DamageType type, int amount, double critModifier, bool isCrit)
+    public override void TakeDamage(DamageType type, int amount, double critModifier, bool isCrit, bool autoResist)
     {
-        base.TakeDamage(type, amount, critModifier, isCrit);
+        base.TakeDamage(type, amount, critModifier, isCrit, autoResist);
         if (_isDead)
             Die();
     }

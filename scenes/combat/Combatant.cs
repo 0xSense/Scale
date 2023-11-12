@@ -16,8 +16,6 @@ public partial class Combatant : Area2D, ICombatant
     [Export] protected double _defaultCritModifier = 2.0;
     [Export] protected int _startingArmor;
 
-    [Export] protected Godot.Collections.Array<CardData> _deck = new();
-
     public int MaxHealth => _maxHealth;
     protected int _currentHealth;
     public int CurrentHealth => _currentHealth;
@@ -33,13 +31,12 @@ public partial class Combatant : Area2D, ICombatant
     protected Systems.Combat.Deck _internalDeck = new();
 
     protected Dictionary<Data.DamageType, int> _resistances;
-    protected List<Buff> _buffs;
-    protected List<Debuff> _debuffs;
+    protected Dictionary<BuffType, int> _buffs;
+    protected Dictionary<DebuffType, int> _debuffs;
     protected CombatManager _combatManager;
 
     public override void _Ready()
     {
-        GD.Print("IN _Ready");
         _combatManager = CombatManager.GetInstance();
         _currentHealth = _maxHealth;
         _isDead = false;
@@ -56,7 +53,6 @@ public partial class Combatant : Area2D, ICombatant
             _resistances.Add(type, 0);
         }
 
-        _armor = 0;
     }
 
     public virtual void StartFight()
@@ -66,7 +62,6 @@ public partial class Combatant : Area2D, ICombatant
 
     public virtual void BeginTurn()
     {
-        GD.Print("Running");
         _isTurn = true;
         _movementPoints = _startingMovementPoints;
         _actionPoints = _startingActionPoints;
@@ -77,16 +72,21 @@ public partial class Combatant : Area2D, ICombatant
             _resistances[resistance] = Math.Max(0, _resistances[resistance]);
         }
 
-        foreach (Buff buff in _buffs)
-        {
+        if (_debuffs.ContainsKey(DebuffType.POISONED) && _debuffs[DebuffType.POISONED] > 0)
+            TakeDamage(DamageType.POISON, 1, 1, false, false);
 
+        foreach (BuffType buff in _buffs.Keys)
+        {
+            _buffs[buff]--;
+            _buffs[buff] = Math.Max(0, _buffs[buff]);
         }
 
-        foreach (Debuff debuff in _debuffs)
+        foreach (DebuffType debuff in _debuffs.Keys)
         {
+            _debuffs[debuff]--;
+            _debuffs[debuff] = Math.Max(0, _debuffs[debuff]);
+        }        
             
-        }
-        
 
         // TODO: Fill out function
     }
@@ -108,34 +108,42 @@ public partial class Combatant : Area2D, ICombatant
         _currentHealth = hp;
     }
 
-    public virtual void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit)
+    public virtual void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit, bool autoResist)
     {
         if (type == DamageType.HEAL)
         {            
             _currentHealth += amount;
             _currentHealth = Math.Max(_currentHealth, _maxHealth);
-            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, isCrit, amount, GlobalPosition);
+            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, isCrit, false, false, 0, amount, GlobalPosition);
             return;
         }
-        if (type == DamageType.SHARP || type == DamageType.BLUNT)
+
+        int armorDamage = 0;
+
+        if ((type == DamageType.SHARP || type == DamageType.BLUNT) && !HasDebuff(DebuffType.EXPOSED))
         {
-            int dmg_temp = amount;
+            int dmgTemp = amount;
             amount -= _armor;
             amount = Math.Max(0, amount);
-            _armor -= dmg_temp;
+            armorDamage = dmgTemp;
+            armorDamage = Math.Min(armorDamage, _armor);
+            _armor -= armorDamage;            
             _armor = Math.Max(0, _armor);
         }        
 
         int isCritInteger = isCrit ? 1 : 0;
  
-        int isResisted = (_resistances[type] > 0) ? 1 : 0;
+        int isResisted = ((_resistances[type] > 0) || autoResist) ? 1 : 0;
 
-        int damage = (int)(amount * (1 + critModifier * isCritInteger) * (1 + isResisted * (0.5 + (0.25 * isCritInteger))));
+        if (HasDebuff(DebuffType.EXPOSED))
+            isResisted = 0;
+
+        int damage = (int)(amount * (1 + critModifier * isCritInteger) * (1 + isResisted * (-0.5 + (0.25 * isCritInteger))));
         _currentHealth -= damage;
         if (_currentHealth < 0)
             _isDead = true;
 
-        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, damage, GlobalPosition);
+        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, type==DamageType.POISON, isResisted > 0, armorDamage, damage, GlobalPosition);
     }
 
     public virtual void ApplyBuff(Buff buff)
@@ -150,12 +158,18 @@ public partial class Combatant : Area2D, ICombatant
             return;            
         }
 
-        _buffs.Add(buff);
+        if (_buffs.ContainsKey(buff.Type))
+            _buffs[buff.Type] += buff.Value;
+        else
+            _buffs.Add(buff.Type, buff.Value);
     }
 
     public virtual void ApplyDebuff(Debuff debuff)
     {
-        _debuffs.Add(debuff);
+        if (_debuffs.ContainsKey(debuff.Type))
+            _debuffs[debuff.Type] += debuff.Duration;
+        else
+            _debuffs.Add(debuff.Type, debuff.Duration);
     }
 
     public virtual void AddArmor(int armor)
@@ -205,12 +219,23 @@ public partial class Combatant : Area2D, ICombatant
 
     public virtual int GetCritChance()
     {
+        if (_buffs.ContainsKey(BuffType.CRIT_CHANCE_INCREASE) && _buffs[BuffType.CRIT_CHANCE_INCREASE] > 0)
+            return _critChance * 2;
         return _critChance;
     }
 
     public virtual double GetCritModifier()
     {
+        if (_buffs.ContainsKey(BuffType.CRIT_DMG_INCREASE) && _buffs[BuffType.CRIT_DMG_INCREASE] > 0)
+            return _critModifier + 1;
         return _critModifier;
+    }
+
+    public virtual bool HasDebuff(DebuffType type)
+    {
+        if (_debuffs.ContainsKey(type))
+            return _debuffs[type] > 0;
+        return false;
     }
 
     public virtual void EndTurn()

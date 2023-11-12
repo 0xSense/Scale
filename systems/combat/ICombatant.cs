@@ -25,7 +25,7 @@ public interface ICombatant
     public abstract int GetHealth();
     public abstract void BeginTurn();
     public abstract void EndTurn();
-    public abstract void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit);
+    public abstract void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit, bool autoResist);
     public abstract bool IsDead();
     public abstract int GetActionPoints();
     public abstract int GetMovementPoints();
@@ -42,5 +42,6 @@ public interface ICombatant
 
     public void ApplyBuff(Buff buff);
     public void ApplyDebuff(Debuff debuff);
+    public bool HasDebuff(DebuffType type);
     
 }
