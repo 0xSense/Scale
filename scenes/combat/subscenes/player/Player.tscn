@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjvk42o3wxiyl"]
+[gd_scene load_steps=5 format=3 uid="uid://cjvk42o3wxiyl"]
 
 [ext_resource type="Texture2D" uid="uid://dgiupu1qni7u6" path="res://scenes/combat/subscenes/player/asset/test_player.png" id="1_6w4tj"]
 [ext_resource type="Script" path="res://scenes/combat/subscenes/player/Player.cs" id="2_ws6fc"]
+[ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_ri5e0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u6yp"]
 radius = 57.0
@@ -15,3 +16,6 @@ shape = SubResource("CapsuleShape2D_8u6yp")
 
 [node name="Player" type="Sprite2D" parent="."]
 texture = ExtResource("1_6w4tj")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_ri5e0")]
+position = Vector2(-0.500025, 160.75)

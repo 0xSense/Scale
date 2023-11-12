@@ -49,11 +49,9 @@ public partial class CombatMain : Node
             tempInstance.QueueFree();
         }
         Node enemiesParentNode = GetNode("Enemies");
-
-        // TODO: Finish this once you have the scene transition implemented
         
         // int[] unloadedEnemies = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs().ToArray();
-        int[] unloadedEnemies = new int[]{1};//, 1, 1};
+        int[] unloadedEnemies = new int[]{1, 1, 1};
         enemies = new ICombatant[unloadedEnemies.Length];
 
         int count = 0;
@@ -68,18 +66,11 @@ public partial class CombatMain : Node
             count++;
         }
         
-
-        // For testing purposes:
-        /*
-        enemies = new ICombatant[1];
-        
-        Enemy newEnemy = (Enemy)GD.Load<PackedScene>(_enemyTypePaths[0]).Instantiate();
-        enemiesParentNode.AddChild(newEnemy);
-        enemies[0] = newEnemy;
-        */
     }
 
+    
     /* TEST - TODO REMOVE*/
+    /*
     public override void _Process(double delta)
     {
          if (Input.IsPhysicalKeyPressed(Key.Space))
@@ -87,6 +78,7 @@ public partial class CombatMain : Node
             ((MasterScene)GetTree().Root.GetChild(0)).ActivatePreviousScene();
         }
     }
+    */
 
     public override void _Ready()
     {

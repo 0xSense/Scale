@@ -143,9 +143,9 @@ public partial class Combatant : Area2D, ICombatant
         if (HasDebuff(DebuffType.EXPOSED))
             isResisted = 0;
 
-        int damage = (int)(amount * (1 + critModifier * isCritInteger) * (1 + isResisted * (-0.5 + (0.25 * isCritInteger))));
+        int damage = (int)(amount * (1.0 + critModifier * isCritInteger) * (1.0 + isResisted * (-0.5 + (0.25 * isCritInteger))));
         _currentHealth -= damage;
-        if (_currentHealth < 0)
+        if (_currentHealth <= 0)
             _isDead = true;
 
         FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, type==DamageType.POISON, isResisted > 0, armorDamage, damage, GlobalPosition);
