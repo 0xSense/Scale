@@ -34,11 +34,13 @@ radius = 32.0
 script = ExtResource("1_gps4y")
 _enemyTypePaths = Array[String](["uid://gkajlv32sxji"])
 
-[node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel") instance=ExtResource("4_rn6c5")]
+[node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel") instance=ExtResource("4_rn6c5")]
 position = Vector2(-628, 103)
 scale = Vector2(-1, 1)
 _hand = NodePath("../Hand")
 _targetLabel = NodePath("../SelectTargetsLabel")
+_actionPointLabel = NodePath("../Energy/ActionPoint/Label")
+_movementPointLabel = NodePath("../Energy/MovementPoint/Label")
 _maxHealth = 25
 
 [node name="Background" parent="." instance=ExtResource("1_5pl1x")]

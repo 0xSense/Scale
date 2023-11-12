@@ -14,7 +14,7 @@ using Systems.Combat;
 
 public partial class Hand : Marker2D
 {   
-    [Export] private int _openingHandSize = 6;
+    [Export] private int _openingHandSize = 3;
     [Export] private PackedScene _cardResource;
     [Export] private Vector2 _scale;
     [Export] private float _handArc;
@@ -67,6 +67,15 @@ public partial class Hand : Marker2D
         OrderCards();
     }
 
+    public void AddCards(CardData[] cards)
+    {
+        foreach (CardData c in cards)
+        {
+            if (c != null)
+                AddCards(c, 1);
+        }
+    }
+
     public void RemoveCard(Card card)
     {
         RemoveChild(card);
@@ -88,7 +97,12 @@ public partial class Hand : Marker2D
     public override void _PhysicsProcess(double delta)
     {
         if (_frozen)
+        {
+            UpdateCardProtrusion();
+            OrderCards();
             return;
+        }
+
         Vector2 mousePos = GetGlobalMousePosition();
         PhysicsDirectSpaceState2D spaceState = GetWorld2D().DirectSpaceState;
         PhysicsPointQueryParameters2D query = new();

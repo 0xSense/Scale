@@ -1,3 +1,8 @@
+/*
+ @author Alexander Venezia (Blunderguy)
+*/
+
+
 namespace Combat;
 
 using Data;
@@ -246,7 +251,25 @@ public partial class Combatant : Area2D, ICombatant
 
     public virtual void EndTurn()
     {
-        _combatManager.EndTurn(this);
         _isTurn = false;
+        _combatManager.EndTurn(this);        
     }
+
+    public virtual void DrawCards(int n)
+    {
+        
+    }
+
+    public virtual void DiscardCards(int n)
+    {
+        
+    }
+
+    public virtual void ReturnCards(int n)
+    {
+        
+    }
+
+    public virtual void EndFight(EndState result) {}
+
 }

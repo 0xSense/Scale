@@ -17,6 +17,9 @@ public partial class CombatMain : Node
     [Export] private Godot.Collections.Array<string> _enemyTypePaths;
     private Dictionary<int, PackedScene> _enemyTypesByUID;
 
+    private bool _isOver = false;
+    public bool IsFightOver => _isOver;
+
     public Vector2[] EnemySpawnPoints =
     {
         new Vector2(325, -100),
@@ -50,7 +53,7 @@ public partial class CombatMain : Node
         // TODO: Finish this once you have the scene transition implemented
         
         // int[] unloadedEnemies = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs().ToArray();
-        int[] unloadedEnemies = new int[]{1, 1, 1};//, 1, 1};
+        int[] unloadedEnemies = new int[]{1};//, 1, 1};
         enemies = new ICombatant[unloadedEnemies.Length];
 
         int count = 0;
@@ -103,5 +106,12 @@ public partial class CombatMain : Node
     {
         return ((Player)GetNode("Player")).CurrentHealth;
     }
+
+    public void EndFight(EndState result)
+    {
+        _isOver = true;
+        GD.Print("Is over - " + result);
+    }
+
 
 }

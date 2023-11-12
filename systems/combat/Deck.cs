@@ -78,7 +78,7 @@ public class Deck
     }
 
     public void Discard(CardData[] cards)
-    {
+    {        
         foreach (var c in cards)
             Discard(c);
     }
@@ -104,6 +104,12 @@ public class Deck
         for (int i = 0; i < numCards; i++)
         {
             ShuffleIfNecessary();
+
+            if (_mainDeck.Count <= 0)
+            {
+                cards[i] = null;
+                continue;
+            }
             cards[i] = _mainDeck.Last.Value;
             _mainDeck.RemoveLast();
             RemoveCard(cards[i], false);

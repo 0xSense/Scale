@@ -19,12 +19,15 @@ public enum PlayerState
 {
     SELECTING_CARD,
     SELECTING_TARGETS,
+    GAME_OVER
 }
 
 public partial class Player : Combatant
-{
+{ 
     [Export] Hand _hand;
     [Export] RichTextLabel _targetLabel;
+    [Export] Label _actionPointLabel;
+    [Export] Label _movementPointLabel;
 
     private PlayerState _state;
     public PlayerState State => _state;
@@ -54,6 +57,8 @@ public partial class Player : Combatant
     public override void BeginTurn()
     {
         base.BeginTurn();
+        _actionPointLabel.Text = _actionPoints.ToString();
+        _movementPointLabel.Text = _movementPoints.ToString();
         GD.Print("Begin player turn");
     }
 
@@ -75,8 +80,10 @@ public partial class Player : Combatant
             switch (_state)
             {
                 case PlayerState.SELECTING_CARD:
+                    
                     _currentlyTargeting = _hand.GetSelectedCard();
-                    if (_currentlyTargeting != null)
+
+                    if (_currentlyTargeting != null && CanPlay(_currentlyTargeting))
                     {
                         _state = PlayerState.SELECTING_TARGETS;
                         _targetLabel.Visible = true;
@@ -84,7 +91,7 @@ public partial class Player : Combatant
                         _currentlyTargeting.ZIndex += 99;
                     }
 
-                    break;     
+                break;     
                 case PlayerState.SELECTING_TARGETS:
                     Enemy clicked = GetEnemyUnderMouse();
                     if (clicked != null)
@@ -103,7 +110,9 @@ public partial class Player : Combatant
                         
                         endTargeting();
                     }
-                    break;           
+                break;      
+                case PlayerState.GAME_OVER:
+                break;     
             }
         }
 
@@ -118,6 +127,9 @@ public partial class Player : Combatant
         await card.BeginPlayAnimation();
         _combatManager.PlayCard(this, targets, card.Data);
         _internalDeck.Discard(card.Data);
+
+        _actionPointLabel.Text = _actionPoints.ToString();
+        _movementPointLabel.Text = _movementPoints.ToString();
     }
 
     /* Enemies are not supposed to overlap, so no need for z-checking.*/
@@ -139,6 +151,11 @@ public partial class Player : Combatant
         enemy = (Enemy)hits.ElementAt(0)["collider"];
 
         return enemy;
+    }
+
+    private bool CanPlay(Card card)
+    {
+        return (card.Data.ActionPointCost <= _actionPoints) && (card.Data.MovementPointCost <= _movementPoints);
     }
 
     private bool IsTargetingValid()
@@ -174,6 +191,30 @@ public partial class Player : Combatant
                 this.EndTurn();
             }
         }
+    }
+
+    public override void DrawCards(int n)
+    {
+        CardData[] cards = _internalDeck.Draw(n);
+        _hand.AddCards(cards);
+    }
+
+    public override void DiscardCards(int n)
+    {
+
+    }
+
+    public override void ReturnCards(int n)
+    {
+
+    }
+
+    public override void EndFight(EndState result)
+    {
+        base.EndFight(result);
+        GD.Print("Fight Over - You emerge in " + result);
+        _state = PlayerState.GAME_OVER;
+        ((CombatMain)GetParent()).EndFight(result);
     }
 
 }

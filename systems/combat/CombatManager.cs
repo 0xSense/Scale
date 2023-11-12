@@ -1,5 +1,8 @@
 /*
-    @author Alexander Venezia (Blunderguy)
+ @author Alexander Venezia (Blunderguy)
+*/
+
+/*
     ** NOTE: This class is INCOMPLETE. Any behaviors you need which it does not currently provide should be immediately send to Blunderguy (Alex). Please do not implement a hacky workaround instead. **
     Also, as I (Blunderguy) have not been able to thoroughly test any of this backend combat behavior without a complementary frontend, bugs are a probability. Please inform me of any possible or certain
     bugs you encounter as soon as possible.
@@ -38,6 +41,11 @@ using Combat;
 using Data;
 using Godot;
 
+public enum EndState
+{
+    VICTORY,
+    DEFEAT
+}
 
 public class CombatManager
 {
@@ -146,7 +154,30 @@ public class CombatManager
             {
                 target.ApplyDebuff(d);
             }
+
+            foreach (DrawEffect de in card.DrawEffects.Keys)
+            {
+                switch (de)
+                {
+                    case DrawEffect.DRAW:
+                    cardPlayer.DrawCards(card.DrawEffects[de]);
+                    break;
+                    case DrawEffect.RETURN:
+                    cardPlayer.ReturnCards(card.DrawEffects[de]);
+                    break;
+                    case DrawEffect.DISCARD:
+                    cardPlayer.DiscardCards(card.DrawEffects[de]);
+                    break;
+                    case DrawEffect.GRAB:
+                    throw new NotImplementedException("GRAB not implemented yet.");
+                    default:
+                    throw new Exception("Invalid draw effect.");
+                }
+            }
         }
+
+        cardPlayer.BurnActionPoints(card.ActionPointCost);
+        cardPlayer.BurnMovementPoints(card.MovementPointCost);
 
         // Remove card from playing combatant's deck here
         // . . .
@@ -214,15 +245,28 @@ public class CombatManager
 
     private void AdvanceInitiative()
     {
+        int _endingTurn = _currentToMove;
         while (true)
         {
-            if (_currentToMove >= _moveOrder.Length)
-                _currentToMove = 0;
+            if (_currentToMove >= _moveOrder.Length-1)
+                _currentToMove = -1;
             if (!_moveOrder[++_currentToMove].IsDead())
                 break;
         }
 
-        _moveOrder[_currentToMove].BeginTurn();
+        if (_endingTurn != _currentToMove)
+            _moveOrder[_currentToMove].BeginTurn();
+        else
+        {
+            // Battle is over
+            if (_player.IsDead())
+            {
+                // Enemy victory
+                _player.EndFight(EndState.DEFEAT);
+            }
+            else
+                _player.EndFight(EndState.VICTORY);
+        }
     }
 
     private int Roll(DamageDice dice)

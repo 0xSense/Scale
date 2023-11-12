@@ -1,4 +1,10 @@
 /*
+ @author Alexander Venezia (Blunderguy)
+*/
+
+
+/*
+
     All combatants should fully implement ICombatant. CombatManager will function only with ICombatant-implementing nodes.
 
     Overview:
@@ -43,5 +49,9 @@ public interface ICombatant
     public void ApplyBuff(Buff buff);
     public void ApplyDebuff(Debuff debuff);
     public bool HasDebuff(DebuffType type);
+    public void DrawCards(int n);
+    public void DiscardCards(int n);
+    public void ReturnCards(int n);
+    public void EndFight(EndState result);
     
 }
