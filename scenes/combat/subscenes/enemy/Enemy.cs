@@ -188,4 +188,18 @@ public partial class Enemy : Area2D, Systems.Combat.ICombatant
         FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, amount, GlobalPosition);
     }
 
+    public void ApplyBuff(Buff buff)
+    {
+
+    }
+
+    public void ApplyDebuff(Debuff debuff)
+    {
+        
+    }
+
+    public void EndTurn()
+    {
+        throw new NotImplementedException();
+    }
 }

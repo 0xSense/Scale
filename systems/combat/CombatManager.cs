@@ -132,6 +132,16 @@ public class CombatManager
             {
                 target.TakeDamage(dt, Roll(card.Damage[dt]), cardPlayer.GetCritModifier(), RollForCrit(cardPlayer.GetCritChance()));
             }
+
+            foreach (Buff b in card.Buffs)
+            {
+                target.ApplyBuff(b);
+            }
+
+            foreach (Debuff d in card.Debuffs)
+            {
+                target.ApplyDebuff(d);
+            }
         }
 
         // Remove card from playing combatant's deck here

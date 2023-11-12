@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dqskjl6vsej8"]
+[gd_scene load_steps=9 format=3 uid="uid://dqskjl6vsej8"]
 
 [ext_resource type="Script" path="res://scenes/combat/subscenes/Card/Card.cs" id="1_q4dhy"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="2_0qfpw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="3_jr6oi"]
 [ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="4_sewri"]
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="5_lktgx"]
+[ext_resource type="SpriteFrames" uid="uid://bsv28668g8l7g" path="res://scenes/combat/subscenes/Card/animations/fire/fire_anim.tres" id="7_1fgaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqjh"]
 size = Vector2(704, 1736)
@@ -101,3 +102,10 @@ z_index = 2
 position = Vector2(368, -1003)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_lktgx")
+
+[node name="PlayAnimation" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -483)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("7_1fgaa")
+speed_scale = 0.5

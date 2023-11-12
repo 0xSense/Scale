@@ -21,10 +21,10 @@ public enum PlayerState
     SELECTING_TARGETS,
 }
 
-public partial class Player : Sprite2D, Systems.Combat.ICombatant
+public partial class Player : Combatant
 {
     [Export] Hand _hand;
-    [Export] RichTextLabel _targetLabel;
+    [Export] RichTextLabel _targetLabel;/*
     [Export] private int _maxHealth;
     [Export] private int _startingActionPoints = 3;
     [Export] private int _startingMovementPoints = 1;
@@ -46,6 +46,8 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     private Systems.Combat.Deck _internalDeck = new();
 
     private Dictionary<Data.DamageType, int> _resistances;
+    private List<Buff> _buffs;
+    private List<Debuff> _debuffs;*/
 
     private PlayerState _state;
     public PlayerState State => _state;
@@ -53,15 +55,17 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     private Card _currentlyTargeting;
     private List<ICombatant> _targeted = new();
 
-    private CombatManager _combatManager;
-
     public override void _Ready()
     {
+        base._Ready();
+        /*
         _combatManager = CombatManager.GetInstance();
         _currentHealth = _maxHealth;
         _isDead = false;
         _internalDeck = new();
         _resistances = new();
+        _buffs = new();
+        _debuffs = new();
         _critChance = _defaultCritChance;
         _critModifier = _defaultCritModifier;
 
@@ -71,24 +75,29 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         }
 
         _armor = 0;
+        */
         _state = PlayerState.SELECTING_CARD;
+        GD.Print(_state);
     }
 
     private void SyncDeck()
-    {
+    {        
         _internalDeck = MasterDeck.PlayerDeck;
     }
 
-    public void StartFight()
+    public override void StartFight()
     {
+        base.StartFight();
         SyncDeck();
         _internalDeck.ForceShuffle();
         _hand.DrawOpeningHand(_internalDeck);
     }
 
-    public void BeginTurn()
+    public override void BeginTurn()
     {
+        base.BeginTurn();
         GD.Print("Begin player turn");
+        /*
         _isTurn = true;
         _movementPoints = _startingMovementPoints;
         _actionPoints = _startingActionPoints;
@@ -98,6 +107,16 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
             _resistances[resistance]--;
             _resistances[resistance] = Math.Max(0, _resistances[resistance]);
         }
+
+        foreach (Buff buff in _buffs)
+        {
+
+        }
+
+        foreach (Debuff debuff in _debuffs)
+        {
+
+        }*/
 
         // TODO: Fill out function
     }
@@ -207,6 +226,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
         }
     }
 
+    /*
     public void BurnActionPoints(int burn)
     {
         _actionPoints -= burn;
@@ -226,7 +246,6 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
 
     public void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit)
     {
-        GD.Print("Player hit");
         if (type == DamageType.HEAL)
         {            
             _currentHealth += amount;
@@ -253,6 +272,26 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
             _isDead = true;
 
         FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, damage, GlobalPosition);
+    }
+
+    public void ApplyBuff(Buff buff)
+    {
+        switch (buff.Type)
+        {
+            case BuffType.ARMOR:
+            _armor += buff.Value;
+            return;
+            case BuffType.RESISTANCE:
+            _resistances[buff.ResistanceType] += buff.Value;
+            return;            
+        }
+
+        _buffs.Add(buff);
+    }
+
+    public void ApplyDebuff(Debuff debuff)
+    {
+        _debuffs.Add(debuff);
     }
 
     public void AddArmor(int armor)
@@ -309,12 +348,7 @@ public partial class Player : Sprite2D, Systems.Combat.ICombatant
     {
         return _critModifier;
     }
-
-    private void EndTurn()
-    {
-        _combatManager.EndTurn(this);
-        _isTurn = false;
-    }
+    */
 
     public async void OnEndTurnButtonInput(Viewport node, InputEvent e, int shapeID)
     {
