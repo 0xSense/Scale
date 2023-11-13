@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbil2ef821vs8"]
+[gd_scene load_steps=4 format=3 uid="uid://cbil2ef821vs8"]
 
 [ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/asset/black_background_square.png" id="1_m3ics"]
-[ext_resource type="Texture2D" uid="uid://tugk3tu2ltca" path="res://assets/asset/hp.png" id="2_fmim5"]
 [ext_resource type="Texture2D" uid="uid://suvrwtmiqiin" path="res://assets/asset/lifebar_bg.png" id="3_ga6hc"]
 [ext_resource type="Texture2D" uid="uid://dc6obo0rmxjdl" path="res://assets/asset/lifebar_fill.png" id="4_wjrn5"]
 
@@ -35,7 +34,6 @@ anchor_bottom = 1.0
 offset_right = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fmim5")
 stretch_mode = 3
 
 [node name="Number" type="Label" parent="HBoxContainer/Bar/MarginContainer/Background"]
