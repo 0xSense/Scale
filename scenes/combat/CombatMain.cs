@@ -51,7 +51,7 @@ public partial class CombatMain : Node
         Node enemiesParentNode = GetNode("Enemies");
         
         // int[] unloadedEnemies = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs().ToArray();
-        int[] unloadedEnemies = new int[]{1, 1, 1};
+        int[] unloadedEnemies = new int[]{1, 1, 1, 1};
         enemies = new ICombatant[unloadedEnemies.Length];
 
         int count = 0;

@@ -202,5 +202,10 @@ public partial class Hand : Marker2D
         return _cards[_selectedCardIndex];
     }
 
+    public int GetCount()
+    {
+        return _cards.Count();
+    }
+
     
 }

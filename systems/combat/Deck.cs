@@ -98,14 +98,17 @@ public class Deck
         return _discard.Count();
     }
 
+    public CardData DrawSpecific(CardData card)
+    {
+        RemoveCard(card, true);
+        return card;
+    }
+
     public CardData[] Draw(int numCards)
     {
         Random rand = CombatManager.GetInstance().RNG;
         CardData[] cards = new CardData[numCards];
-
-
-        // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
-
+        
         for (int i = 0; i < numCards; i++)
         {
             ShuffleIfNecessary();
@@ -118,7 +121,6 @@ public class Deck
             cards[i] = _mainDeck.Last.Value;
             _mainDeck.RemoveLast();
             RemoveCard(cards[i], false);
-
             
         }
 
@@ -156,7 +158,13 @@ public class Deck
 
     public void ForceShuffle()
     {
-        Discard(Draw(_mainDeck.Count));
+        Shuffle(_discard);
+        foreach (CardData c in _discard)
+        {
+            AddCard(c);
+        }
+
+        _discard.Clear();   
     }
 
     private void ShuffleIfNecessary()
@@ -166,7 +174,7 @@ public class Deck
             Shuffle(_discard);
             foreach (CardData c in _discard)
             {
-                _mainDeck.AddFirst(c);
+                AddCard(c);
             }
 
             _discard.Clear();            

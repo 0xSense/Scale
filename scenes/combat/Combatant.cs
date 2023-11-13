@@ -118,8 +118,8 @@ public partial class Combatant : Area2D, ICombatant
         if (type == DamageType.HEAL)
         {            
             _currentHealth += amount;
-            _currentHealth = Math.Max(_currentHealth, _maxHealth);
-            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, isCrit, false, false, 0, amount, GlobalPosition);
+            _currentHealth = Math.Min(_currentHealth, _maxHealth);
+            FloatingTextFactory.GetInstance().CreateFloatingCardText(true, false, false, false, 0, amount, GlobalPosition);
             return;
         }
 

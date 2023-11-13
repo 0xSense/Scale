@@ -213,6 +213,7 @@ shape = SubResource("CircleShape2D_1jepx")
 [node name="FloatingTextFactory" type="Node2D" parent="."]
 script = ExtResource("14_46n5p")
 _theme = ExtResource("12_0sia7")
+_fontSize = 50
 
 [connection signal="input_event" from="EndTurn" to="Player" method="OnEndTurnButtonInput"]
 [connection signal="input_event" from="EndTurn" to="EndTurn" method="OnInputEvent"]

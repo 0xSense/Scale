@@ -190,7 +190,27 @@ public partial class Player : Combatant
 
     private bool CanPlay(Card card)
     {
-        return (card.Data.ActionPointCost <= _actionPoints) && (card.Data.MovementPointCost <= _movementPoints);
+        int minCardCount = 0;
+        int drawable = _internalDeck.GetCardCount() + _internalDeck.GetDiscardCount();
+        foreach (DrawEffect d in card.Data.DrawEffects.Keys)
+        {
+            if (d == DrawEffect.RETURN || d == DrawEffect.DISCARD)
+                minCardCount += card.Data.DrawEffects[d];
+            else if (d == DrawEffect.DRAW)
+            {
+                if (drawable >= card.Data.DrawEffects[d])
+                {
+                    minCardCount -= card.Data.DrawEffects[d];
+                    drawable -= card.Data.DrawEffects[d];
+                }
+                else
+                {
+                    minCardCount -= drawable;
+                    drawable = 0;
+                }
+            }
+        }
+        return (card.Data.ActionPointCost <= _actionPoints) && (card.Data.MovementPointCost <= _movementPoints) && (_hand.GetCount()-1 >= minCardCount);
     }
 
     private bool IsTargetingValid()

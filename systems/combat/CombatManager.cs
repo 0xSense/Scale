@@ -62,6 +62,7 @@ public class CombatManager
     public ICombatant ToMove => _moveOrder[_currentToMove];
 
     private static CombatManager _instance;
+    private bool _isOver;
     
     public static CombatManager GetInstance()
     {
@@ -87,6 +88,8 @@ public class CombatManager
     {
         GD.Print("Fight has begun");
 
+        _isOver = false;
+
         _player = player;
         _enemies = enemies;
 
@@ -105,7 +108,7 @@ public class CombatManager
 
     public bool PlayCard(ICombatant cardPlayer, ICombatant[] targets, CardData card)
     {
-        if (card.Target == TargetType.SELF)
+        if (card.Target == TargetType.SELF && cardPlayer == _player)
         {
             targets = new ICombatant[]{_player};
         }
@@ -115,10 +118,10 @@ public class CombatManager
         }
 
         if (cardPlayer.GetActionPoints() < card.ActionPointCost || cardPlayer.GetMovementPoints() < card.MovementPointCost)
-            throw new Exception("TOO FEW POINTS");
+            throw new Exception("TOO FEW POINTS " + card.Name);
         
         if (!VerifyTargeting(cardPlayer, targets, card))
-            throw new Exception ("TARGETING INVALID");
+            throw new Exception ("TARGETING INVALID " + card.Name);
 
         
 
@@ -221,7 +224,12 @@ public class CombatManager
                 break;
             case TargetType.SELF:
                 if (targets[0] != cardPlayer)
+                {
+                    GD.Print("ERR: " + targets.Length);
+                    GD.Print(targets[0] == _player);
+
                     return false;
+                }
                 break;
             case TargetType.MULTI_TWO:
                 if (targets.Length > 2)
@@ -245,6 +253,16 @@ public class CombatManager
 
     private void AdvanceInitiative()
     {
+        if (_isOver)
+            return;
+            
+        if (_player.IsDead())
+        {
+            _isOver = true;
+            _player.EndFight(EndState.DEFEAT);
+            return;
+        }
+
         int _endingTurn = _currentToMove;
         while (true)
         {
@@ -258,14 +276,9 @@ public class CombatManager
             _moveOrder[_currentToMove].BeginTurn();
         else
         {
-            // Battle is over
-            if (_player.IsDead())
-            {
-                // Enemy victory
-                _player.EndFight(EndState.DEFEAT);
-            }
-            else
-                _player.EndFight(EndState.VICTORY);
+            // Battle is over and player is alive
+            _isOver = true;
+            _player.EndFight(EndState.VICTORY);
         }
     }
 

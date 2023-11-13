@@ -38,7 +38,7 @@ public partial class FloatingTextFactory : Node2D
             CreateFloatingText(String.Format("[color=#888888][s]{0}[/s][/color]", armorAmount), position + offset*1.5f);
     }
 
-    public void CreateFloatingText(string message, Vector2 position)
+    public void CreateFloatingText(string message, Vector2 position, int lifetime=1000, int height=200)
     {
         message = String.Format("[center][font_size={0}]{1}[/font_size][/center]", _fontSize, message);
 
@@ -63,7 +63,7 @@ public partial class FloatingTextFactory : Node2D
         }
 
         AddChild(floatingText);
-        TextLifetime(floatingText);
+        TextLifetime(floatingText, lifetime, height);
     }
 
     private void Refresh(RichTextLabel label, string message, Vector2 position)
@@ -73,16 +73,17 @@ public partial class FloatingTextFactory : Node2D
         label.Modulate = new Color(1, 1, 1, 1);
     }
 
-    private async void TextLifetime(RichTextLabel label)
+    private async void TextLifetime(RichTextLabel label, int wait, int height)
     {
         Tween positionTween = CreateTween();
         Tween alphaTween = CreateTween();
-        int wait = 2;
-        positionTween.TweenProperty(label, "position:y", label.Position.Y - 200, (float)wait);
         
-        //label.Modulate.A -= 0.5f;
-        alphaTween.TweenProperty(label, "modulate:a", 0, (float)wait);
-        await Task.Delay(wait * 1000);
+        float waitSeconds = wait * 0.001f;
+
+        positionTween.TweenProperty(label, "position:y", label.Position.Y - height, waitSeconds);
+        
+        alphaTween.TweenProperty(label, "modulate:a", 0, waitSeconds);
+        await Task.Delay(wait);
 
         RemoveChild(label);
         _waitingQueue.Enqueue(label);
