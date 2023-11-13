@@ -19,6 +19,8 @@ public enum PlayerState
 {
     SELECTING_CARD,
     SELECTING_TARGETS,
+    DISCARDING_CARDS,
+    RETURNING_CARDS,
     GAME_OVER
 }
 
@@ -34,11 +36,14 @@ public partial class Player : Combatant
 
     private Card _currentlyTargeting;
     private List<ICombatant> _targeted = new();
+    private int _toDiscard; // Refers to either discarding or returning
 
     public override void _Ready()
     {
         base._Ready();
+        _toDiscard = 0;
         _state = PlayerState.SELECTING_CARD;
+        _targetLabel.Visible = false;
     }
 
     private void SyncDeck()
@@ -79,6 +84,32 @@ public partial class Player : Combatant
         {
             switch (_state)
             {
+                case PlayerState.RETURNING_CARDS:
+                case PlayerState.DISCARDING_CARDS:
+                    _currentlyTargeting = _hand.GetSelectedCard();
+
+                    if (_currentlyTargeting != null)
+                    {
+                        if (_state == PlayerState.DISCARDING_CARDS)
+                        {
+                            _internalDeck.Discard(_hand.RemoveCard(_currentlyTargeting));
+                            _targetLabel.Text = "[center][color=#BB5545]Discard " + (_toDiscard-1) + " cards[/color]";
+                        }
+                        else if (_state == PlayerState.RETURNING_CARDS)
+                        {
+                            _internalDeck.AddCard(_hand.RemoveCard(_currentlyTargeting));
+                            _targetLabel.Text = "[center][color=#BB5545]Return " + (_toDiscard-1) + " cards to deck[/color]";
+                        }
+
+                        _currentlyTargeting = null;
+                        _toDiscard--;
+                        if (_toDiscard <= 0)
+                        {
+                            _state = PlayerState.SELECTING_CARD;
+                            _targetLabel.Visible = false;
+                        }
+                    }
+                break;
                 case PlayerState.SELECTING_CARD:
                     
                     _currentlyTargeting = _hand.GetSelectedCard();
@@ -87,6 +118,7 @@ public partial class Player : Combatant
                     {
                         _state = PlayerState.SELECTING_TARGETS;
                         _targetLabel.Visible = true;
+                        _targetLabel.Text = "[center][color=#BB5545]Select Targets[/color]";
                         _hand.Freeze();
                         _currentlyTargeting.ZIndex += 99;
                     }
@@ -114,6 +146,9 @@ public partial class Player : Combatant
                 case PlayerState.GAME_OVER:
                 break;     
             }
+
+            GD.Print("Deck size: " + _internalDeck.GetCardCount());
+            GD.Print("Discard size: " + _internalDeck.GetDiscardCount());
         }
 
         if (Input.IsActionJustPressed("Deselect") && _state == PlayerState.SELECTING_TARGETS)
@@ -201,12 +236,19 @@ public partial class Player : Combatant
 
     public override void DiscardCards(int n)
     {
-
+        _state = PlayerState.DISCARDING_CARDS;
+        _toDiscard = n;
+        _targetLabel.Visible = true;
+        _targetLabel.Text = "[center][color=#BB5545]Discard " + n + " cards[/color]";
     }
 
     public override void ReturnCards(int n)
     {
-
+        _state = PlayerState.RETURNING_CARDS;
+        GD.Print(_state);
+        _toDiscard = n;
+        _targetLabel.Visible = true;
+        _targetLabel.Text = "[center][color=#BB5545]Return " + n + " cards to deck[/color]";
     }
 
     public override void EndFight(EndState result)

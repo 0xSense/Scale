@@ -93,6 +93,11 @@ public class Deck
         return _mainDeck.Count();
     }
 
+    public int GetDiscardCount()
+    {
+        return _discard.Count();
+    }
+
     public CardData[] Draw(int numCards)
     {
         Random rand = CombatManager.GetInstance().RNG;

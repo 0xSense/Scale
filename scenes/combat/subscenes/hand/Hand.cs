@@ -14,7 +14,7 @@ using Systems.Combat;
 
 public partial class Hand : Marker2D
 {   
-    [Export] private int _openingHandSize = 3;
+    [Export] private int _openingHandSize = 7;
     [Export] private PackedScene _cardResource;
     [Export] private Vector2 _scale;
     [Export] private float _handArc;
@@ -76,12 +76,13 @@ public partial class Hand : Marker2D
         }
     }
 
-    public void RemoveCard(Card card)
+    public CardData RemoveCard(Card card)
     {
         RemoveChild(card);
         _cards.Remove(card);
         _selectedCardIndex = -1;
         OrderCards();
+        return card.Data;
         
     }
 

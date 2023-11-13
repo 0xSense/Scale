@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bk6mw4uwgd1yl"]
+[gd_scene load_steps=20 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://scenes/combat/CombatMain.cs" id="1_gps4y"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
 [ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
+[ext_resource type="Theme" uid="uid://d0p7lfh0pb83p" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
 [ext_resource type="Script" path="res://scenes/combat/EndTurn.cs" id="12_atut3"]
 [ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
 [ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]
@@ -38,7 +39,7 @@ _enemyTypePaths = Array[String](["uid://gkajlv32sxji"])
 position = Vector2(-628, 103)
 scale = Vector2(-1, 1)
 _hand = NodePath("../Hand")
-_targetLabel = NodePath("../SelectTargetsLabel")
+_targetLabel = NodePath("../InfoLabel")
 _actionPointLabel = NodePath("../Energy/ActionPoint/Label")
 _movementPointLabel = NodePath("../Energy/MovementPoint/Label")
 _maxHealth = 25
@@ -52,6 +53,7 @@ transform = Transform2D(0.67, 0, 0, 0.67, 0, 0)
 [node name="Hand" type="Marker2D" parent="."]
 position = Vector2(0, 1450)
 script = ExtResource("2_xecqg")
+_openingHandSize = 5
 _cardResource = ExtResource("3_6gjep")
 _scale = Vector2(0.3, 0.3)
 _handArc = 25.0
@@ -187,15 +189,15 @@ position = Vector2(661, 401)
 scale = Vector2(10.6875, 4.57422)
 texture = SubResource("GradientTexture2D_hidsq")
 
-[node name="SelectTargetsLabel" type="RichTextLabel" parent="."]
-visible = false
-offset_left = -398.0
+[node name="InfoLabel" type="RichTextLabel" parent="."]
+offset_left = -587.0
 offset_top = -439.0
-offset_right = 399.0
+offset_right = 586.0
 offset_bottom = -269.0
+theme = ExtResource("12_0sia7")
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "[center][color=#FFAA45]Select Targets[/color]"
+text = "[center][color=#BB5545]Select Targets[/color]"
 
 [node name="EndTurn" type="Area2D" parent="."]
 position = Vector2(690, 475)
@@ -210,6 +212,7 @@ shape = SubResource("CircleShape2D_1jepx")
 
 [node name="FloatingTextFactory" type="Node2D" parent="."]
 script = ExtResource("14_46n5p")
+_theme = ExtResource("12_0sia7")
 
 [connection signal="input_event" from="EndTurn" to="Player" method="OnEndTurnButtonInput"]
 [connection signal="input_event" from="EndTurn" to="EndTurn" method="OnInputEvent"]

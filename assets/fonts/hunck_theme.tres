@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d0p7lfh0pb83p"]
+
+[ext_resource type="FontFile" uid="uid://dmdep3cf4qjtw" path="res://assets/fonts/hunck/Hunck-Regular.otf" id="1_cmw5j"]
+
+[resource]
+default_font = ExtResource("1_cmw5j")

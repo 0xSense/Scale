@@ -1,3 +1,24 @@
-[gd_resource type="Resource" format=3 uid="uid://cdn7m5jc6gcr5"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cdn7m5jc6gcr5"]
+
+[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_y0xvd"]
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="2_pg1i2"]
 
 [resource]
+script = ExtResource("2_pg1i2")
+_name = "Tactical Roll"
+_description = ""
+_artwork = ExtResource("1_y0xvd")
+_type = 0
+_rarity = 2
+_actionPointCost = 0
+_movementPointCost = 1
+_target = 0
+_damageTypes = []
+_damageDice = []
+_drawEffects = [1, 0]
+_drawQuantities = [3, 5]
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []

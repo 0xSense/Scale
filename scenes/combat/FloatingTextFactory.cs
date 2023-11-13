@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 public partial class FloatingTextFactory : Node2D
 {
+    [Export] Theme _theme;
     [Export] int _fontSize = 30;
     private static FloatingTextFactory _instance;
     private Queue<RichTextLabel> _waitingQueue;
@@ -52,6 +53,7 @@ public partial class FloatingTextFactory : Node2D
         else
         {
             RichTextLabel newLabel = new();
+            newLabel.Theme = _theme;
             newLabel.Text = message;
             newLabel.SetSize(new Vector2(600, 100), false);
             newLabel.BbcodeEnabled = true;

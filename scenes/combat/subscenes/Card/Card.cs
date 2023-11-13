@@ -39,8 +39,8 @@ public partial class Card : Area2D
 	{
 		_data = data;
 		((Sprite2D)GetNode("Art")).Texture = data.Artwork;
-		((RichTextLabel)GetNode("NameLabel")).Text = "[center][font_size=65]" + data.Name + "[/font_size][/center]";
-		((RichTextLabel)GetNode("DescriptionLabel")).Text = "[center][font_size=35]" + data.Description + "[/font_size][/center]";
+		((RichTextLabel)GetNode("NameLabel")).Text = "[center][font_size=70]" + data.Name + "[/font_size][/center]";
+		((RichTextLabel)GetNode("DescriptionLabel")).Text = "[center][font_size=45]" + data.Description + "[/font_size][/center]";
 
 		string diceText = "";
 
@@ -62,9 +62,9 @@ public partial class Card : Area2D
 			diceText += "[color=#772233]" + d.Type + ": " + d.Duration + "[/color]\n";
  		}
 
-		((RichTextLabel)GetNode("DamageLabel")).Text = "[font_size=40]" + diceText + "[/font_size]";
+		((RichTextLabel)GetNode("DamageLabel")).Text = "[font_size=50]" + diceText + "[/font_size]";
 
-		((RichTextLabel)GetNode("TargetsLabel")).Text = "[right][font_size=40]" + data.Target + "[/font_size][/right]";
+		((RichTextLabel)GetNode("TargetsLabel")).Text = "[right][font_size=50]" + data.Target + "[/font_size][/right]";
 
 		((Label)GetNode("ActionPointIcon/ActionPointNumber")).Text = data.ActionPointCost.ToString();
 
