@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://q8tuhyagxv5b"
-path="res://.godot/imported/Village-wip.wav-ea85ed1dcca48d73ec91a3f5358fa0fe.sample"
+path="res://.godot/imported/Village-wip.wav-9175c62795b3b7fa643cb8c820b79a1a.sample"
 
 [deps]
 
-source_file="res://assets/placeholder/music/Village-wip.wav"
-dest_files=["res://.godot/imported/Village-wip.wav-ea85ed1dcca48d73ec91a3f5358fa0fe.sample"]
+source_file="res://assets/audio/music/Village-wip.wav"
+dest_files=["res://.godot/imported/Village-wip.wav-9175c62795b3b7fa643cb8c820b79a1a.sample"]
 
 [params]
 

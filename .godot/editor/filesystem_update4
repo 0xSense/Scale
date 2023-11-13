@@ -1,0 +1,12 @@
+res://res/scenes/characters/npcs/Receptionist.cs
+res://res/scenes/levels/hell/enemys/HandEnemy.cs
+res://res/scripts/controllers/Door.cs
+res://res/scripts/controllers/MasterDeck.cs
+res://res/scripts/controllers/Pathfinding.cs
+res://res/scripts/controllers/platforming/LeverCollision.cs
+res://res/scripts/controllers/platforming/LeverInteract.cs
+res://res/scripts/controllers/platforming/MovingPlatform.cs
+res://res/scripts/controllers/platforming/Player.cs
+res://res/scripts/controllers/platforming/Spikes.cs
+res://res/scripts/controllers/Shop.cs
+res://res/scripts/managers/combat/CardData.cs

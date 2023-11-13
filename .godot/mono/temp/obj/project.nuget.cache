@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Kun6e1yzO6Tc3RIIQa5frEoJ6YJT43MAc98ItEtBeQ0Z02bq05meQuDW+7Yh0s29Qv7wonGsd7/6FPEMhrYpTw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\Scale\\Scale.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nashl\\.nuget\\packages\\godot.sourcegenerators\\4.1.2\\godot.sourcegenerators.4.1.2.nupkg.sha512",
+    "C:\\Users\\nashl\\.nuget\\packages\\godotsharp\\4.1.2\\godotsharp.4.1.2.nupkg.sha512",
+    "C:\\Users\\nashl\\.nuget\\packages\\godotsharpeditor\\4.1.2\\godotsharpeditor.4.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
