@@ -1,7 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://y0ea6015fblh"]
-
-[ext_resource type="PackedScene" uid="uid://h8hxdj6xv1b5" path="res://scenes/purgatory/scenes/purgatory-level.tscn" id="2_ovmyh"]
+[gd_scene format=3 uid="uid://y0ea6015fblh"]
 
 [node name="overworld" type="Node2D"]
-
-[node name="Purgatory" parent="." instance=ExtResource("2_ovmyh")]

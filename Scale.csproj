@@ -2,6 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>Gamejamprojectnameunknown</RootNamespace>
+    <RootNamespace>Scale</RootNamespace>
   </PropertyGroup>
 </Project>

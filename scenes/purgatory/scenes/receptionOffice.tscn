@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccr4eijee7e4g"]
 
 [ext_resource type="TileSet" uid="uid://cya0kq4dotyg7" path="res://resources/purgatory-level.tres" id="1_p1l8a"]
-[ext_resource type="PackedScene" uid="uid://clpb08acj6srs" path="res://scenes/overworld/player.tscn" id="2_0e45h"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="2_0e45h"]
 
 [node name="receptionOffice" type="Node2D"]
 

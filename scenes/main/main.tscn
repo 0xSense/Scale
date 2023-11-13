@@ -1,24 +1,3 @@
-[gd_scene load_steps=6 format=3 uid="uid://cipd5odixnpm8"]
+[gd_scene format=3 uid="uid://cunxut08v2t0k"]
 
-[ext_resource type="Script" path="res://scenes/main/main.cs" id="1_6ei66"]
-[ext_resource type="Script" path="res://scenes/main/CardTestNode.cs" id="3_k0m6s"]
-[ext_resource type="Script" path="res://data_resources/card_data/MasterDeck.cs" id="4_x5pg5"]
-[ext_resource type="Script" path="res://scenes/main/GeneralTestNode.cs" id="5_6bc1x"]
-
-[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/cameras/overworld_game_camera.tscn" id="2_5ntls"]
-[ext_resource type="PackedScene" uid="uid://fbgpwrq4amq2" path="res://scenes/overworld_game_camera.tscn" id="2_5ntls"]
-
-[ext_resource type="Resource" uid="uid://dubg7k3yfq3wm" path="res://data_resources/card_data/MovementCardExample.tres" id="4_rwdgt"]
-[ext_resource type="Resource" uid="uid://c0c0mscfyaa73" path="res://data_resources/card_data/TestCard.tres" id="3_0537i"]
-
-[node name="MainScene" type="Node2D"]
-script = ExtResource("1_6ei66")
-
-[node name="MasterDeckPopulater" type="Node2D" parent="."]
-script = ExtResource("4_x5pg5")
-_cardTypes = [ExtResource("3_0537i")]
-
-[node name="GeneralTestNode" type="Node2D" parent="."]
-script = ExtResource("5_6bc1x")
-
-[node name="Camera2D" parent="." instance=ExtResource("2_5ntls")]
+[node name="main" type="Node2D"]

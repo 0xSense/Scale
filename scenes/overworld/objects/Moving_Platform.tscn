@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyj22wo26qjra"]
 
 [ext_resource type="Script" path="res://scenes/overworld/MovingPlatform.cs" id="1_tu0lq"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="2_d8e2r"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/asset/combat_environment.png" id="2_d8e2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20hko"]
 size = Vector2(247.997, 32)

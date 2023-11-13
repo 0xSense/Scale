@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-jam-project-name-unknown", "Game-jam-project-name-unknown.csproj", "{D62122B8-EE2B-4049-8D57-A952777BC48F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scale", "Scale.csproj", "{D62122B8-EE2B-4049-8D57-A952777BC48F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

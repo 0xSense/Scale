@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgqpkxkx1pp7v"
-path="res://.godot/imported/Purgatory_Level_Design_Blueprint.png-27490830fb3e18f68d71ace73e01bb39.ctex"
+path="res://.godot/imported/Purgatory_Level_Design_Blueprint.png-ef33defb65c42c72512b9d6dfe233af6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png"
-dest_files=["res://.godot/imported/Purgatory_Level_Design_Blueprint.png-27490830fb3e18f68d71ace73e01bb39.ctex"]
+source_file="res://Scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png"
+dest_files=["res://.godot/imported/Purgatory_Level_Design_Blueprint.png-ef33defb65c42c72512b9d6dfe233af6.ctex"]
 
 [params]
 

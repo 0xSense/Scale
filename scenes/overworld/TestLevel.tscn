@@ -1,14 +1,14 @@
 [gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
 
 [ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
-[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="4_131s4"]
+[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/Door.tscn" id="3_ne5i1"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/asset/combat_environment.png" id="4_131s4"]
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="5_co7nw"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 [ext_resource type="Script" path="res://scenes/overworld/npcs/npc.gd" id="5_sq5ew"]
 [ext_resource type="FontFile" uid="uid://b4u1ukisjtk5t" path="res://fonts/18thCentury.ttf" id="6_3yiat"]
-[ext_resource type="Script" path="res://scenes/overworld/shop.cs" id="8_0pv16"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="8_xb7gt"]
+[ext_resource type="Script" path="res://scenes/overworld/Shop.cs" id="8_0pv16"]
+[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/asset/black_background_square.png" id="8_xb7gt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -176,17 +176,15 @@ position = Vector2(42, -1195)
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
+[node name="ShopKeeperDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
-_targetLocation = NodePath("../../Locations/Room_1")
-_player = NodePath("../../Player")
+script = null
 
-[node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation", "_player") instance=ExtResource("3_ne5i1")]
+[node name="ReceptionistDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
-_targetLocation = NodePath("../../Locations/Room_2")
-_player = NodePath("../../Player")
+script = null
 
 [node name="EnemyStage" type="StaticBody2D" parent="."]
 
@@ -201,10 +199,11 @@ shape = SubResource("RectangleShape2D_52nkj")
 
 [node name="Enemys" type="Node" parent="."]
 
-[node name="enemy" parent="Enemys" node_paths=PackedStringArray("_playerBody", "_groundPosition") instance=ExtResource("5_kojqv")]
+[node name="enemy" parent="Enemys" instance=ExtResource("5_kojqv")]
 position = Vector2(-376, -2483)
-_playerBody = NodePath("../../Player")
-_groundPosition = NodePath("GroundPosition")
+_attackTimer = null
+_findTimer = null
+_holdPositionTimer = null
 
 [node name="Area2D" type="Area2D" parent="Enemys/enemy"]
 
@@ -313,7 +312,7 @@ texture = ExtResource("4_131s4")
 
 [node name="Player" parent="." instance=ExtResource("5_co7nw")]
 position = Vector2(-807, -596)
-_jumpSpeed = 590.0
+script = null
 
 [node name="Shop" type="Node2D" parent="Player"]
 visible = false

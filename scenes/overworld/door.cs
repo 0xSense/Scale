@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class door : Node2D
+public partial class Door : Node2D
 {
 	[Export] private Marker2D _targetLocation;
 	[Export] private CharacterBody2D _player;
@@ -11,7 +11,7 @@ public partial class door : Node2D
 	{
 		if (_playerInsideRange)
 		{
-			if(Input.IsActionJustReleased("ui_interact"))
+			if (Input.IsActionJustReleased("ui_interact"))
 			{
 				_player.Position = _targetLocation.Position;
 			}

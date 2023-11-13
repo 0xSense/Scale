@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://dujbp4wpv8wo1"]
 
-[ext_resource type="Script" path="res://scenes/overworld/LeverInteract.cs" id="1_rrou3"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://scenes/combat/asset/black_background_square.png" id="2_ip08x"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://scenes/combat/asset/combat_environment.png" id="3_f7f6e"]
+[ext_resource type="Script" path="res://scenes/overworld/LeverInteract.cs" id="1_e4r6p"]
+[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/asset/black_background_square.png" id="2_4bhva"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/asset/combat_environment.png" id="3_k5cbj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo6yf"]
 size = Vector2(72, 32)
 
-[node name="Interatction_Lever" type="Node2D"]
+[node name="Interaction_Lever" type="Node2D"]
 
 [node name="Area2D_2" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_rrou3")
+script = ExtResource("1_e4r6p")
 
 [node name="CollisionShape2D_2" type="CollisionShape2D" parent="Area2D_2"]
 position = Vector2(-1, -9)
@@ -21,11 +21,11 @@ shape = SubResource("RectangleShape2D_vo6yf")
 [node name="Off_2" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.005, -0.025)
-texture = ExtResource("2_ip08x")
+texture = ExtResource("2_4bhva")
 
 [node name="On_2" type="Sprite2D" parent="."]
 scale = Vector2(0.005, -0.025)
-texture = ExtResource("3_f7f6e")
+texture = ExtResource("3_k5cbj")
 
 [connection signal="body_entered" from="Area2D_2" to="Area2D_2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D_2" to="Area2D_2" method="_on_body_exited"]
