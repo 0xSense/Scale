@@ -1,3 +1,5 @@
 res://res/scenes/TestLevel.tscn
 res://res/scenes/levels/purgatory/purgatory.tres
 res://res/scenes/MasterScene.tscn
+res://res/scenes/levels/purgatory/purgatory.tscn
+res://res/scenes/levels/overworld/OverworldTest.tscn
