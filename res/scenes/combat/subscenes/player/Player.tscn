@@ -9,7 +9,7 @@
 radius = 57.0
 height = 280.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg408"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ripkl"]
 resource_local_to_scene = true
 shader = ExtResource("4_x2hpw")
 shader_parameter/health_factor = 0.4
@@ -24,5 +24,5 @@ shape = SubResource("CapsuleShape2D_8u6yp")
 texture = ExtResource("1_6w4tj")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_ri5e0")]
-material = SubResource("ShaderMaterial_sg408")
+material = SubResource("ShaderMaterial_ripkl")
 position = Vector2(-0.500025, 160.75)

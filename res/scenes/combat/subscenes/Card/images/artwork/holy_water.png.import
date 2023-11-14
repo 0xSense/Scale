@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1yuec1bdyki7"
-path="res://.godot/imported/holy_smite.png-30fc753fc3f5bb0ca832f71e3cf3e9a3.ctex"
+uid="uid://cdp3khw6tb8jr"
+path="res://.godot/imported/holy_water.png-61158d91c528e7e51f8cd3e51ff9d342.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/Card/images/artwork/holy_smite.png"
-dest_files=["res://.godot/imported/holy_smite.png-30fc753fc3f5bb0ca832f71e3cf3e9a3.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/artwork/holy_water.png"
+dest_files=["res://.godot/imported/holy_water.png-61158d91c528e7e51f8cd3e51ff9d342.ctex"]
 
 [params]
 

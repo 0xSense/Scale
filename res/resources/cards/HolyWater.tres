@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://blnau2cu3smcr"]
 
-[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_e4bky"]
+[ext_resource type="Texture2D" uid="uid://cdp3khw6tb8jr" path="res://res/scenes/combat/subscenes/Card/images/artwork/holy_water.png" id="1_7dm1m"]
 [ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="1_mq1jq"]
 
 [resource]
 script = ExtResource("1_mq1jq")
 _name = "Holy Water"
 _description = ""
-_artwork = ExtResource("1_e4bky")
+_artwork = ExtResource("1_7dm1m")
 _type = 0
 _rarity = 2
 _actionPointCost = 0

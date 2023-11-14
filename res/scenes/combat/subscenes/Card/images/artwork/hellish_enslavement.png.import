@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1yuec1bdyki7"
-path="res://.godot/imported/holy_smite.png-30fc753fc3f5bb0ca832f71e3cf3e9a3.ctex"
+uid="uid://c7wqn4bb1qxks"
+path="res://.godot/imported/hellish_enslavement.png-7937fcd37f3aad81f8ff9c2de37f52e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/Card/images/artwork/holy_smite.png"
-dest_files=["res://.godot/imported/holy_smite.png-30fc753fc3f5bb0ca832f71e3cf3e9a3.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/artwork/hellish_enslavement.png"
+dest_files=["res://.godot/imported/hellish_enslavement.png-7937fcd37f3aad81f8ff9c2de37f52e2.ctex"]
 
 [params]
 

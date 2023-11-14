@@ -17,6 +17,7 @@ public class Deck
     private Dictionary<CardData, int> _cards; // Maps cards to number of instances in this deck
     public Dictionary<CardData, int> CardDict => _cards;
     private LinkedList<CardData> _mainDeck;
+    public LinkedList<CardData> CardList => _mainDeck;
     private List<CardData> _discard;
 
     public Deck()
@@ -165,6 +166,12 @@ public class Deck
         _discard.Clear();
     }
 
+    public void ForceFullReshuffle()
+    {
+        Discard(Draw(_mainDeck.Count()));
+        ShuffleIfNecessary();
+    }
+
     private void ShuffleIfNecessary()
     {
         if (_mainDeck.Count <= 0)
@@ -182,6 +189,7 @@ public class Deck
     public static void Shuffle(List<CardData> list)
     {
         int n = list.Count;
+        
         while (n > 1)
         {
             n--;

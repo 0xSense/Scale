@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://bcjf232cowv26"]
 
-[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_e6wrv"]
+[ext_resource type="Texture2D" uid="uid://b1yuec1bdyki7" path="res://res/scenes/combat/subscenes/Card/images/artwork/holy_smite.png" id="1_0csvu"]
 [ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="1_jfu4y"]
 
 [resource]
 script = ExtResource("1_jfu4y")
 _name = "Divine Smite"
 _description = ""
-_artwork = ExtResource("1_e6wrv")
+_artwork = ExtResource("1_0csvu")
 _type = 2
 _rarity = 3
 _actionPointCost = 1
