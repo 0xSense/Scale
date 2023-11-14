@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0yvuuqs8usan"
-path="res://.godot/imported/action_point_icon.png-3f7aec84171369ee0a6745d2ce0a4c42.ctex"
+path="res://.godot/imported/action_point_icon.png-2675f6df0790d5379da79f69704b0e6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/card/images/action_point_icon.png"
-dest_files=["res://.godot/imported/action_point_icon.png-3f7aec84171369ee0a6745d2ce0a4c42.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/action_point_icon.png"
+dest_files=["res://.godot/imported/action_point_icon.png-2675f6df0790d5379da79f69704b0e6f.ctex"]
 
 [params]
 

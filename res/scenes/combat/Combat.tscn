@@ -2,19 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://res/scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://res/scenes/combat/CombatMain.cs" id="1_gps4y"]
-[ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://res/scenes/combat/subscenes/card/Card.tscn" id="3_6gjep"]
+[ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://res/scenes/combat/subscenes/Card/Card.tscn" id="3_6gjep"]
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Hand.cs" id="4_d0wjn"]
 [ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://res/scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://res/scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
-[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/card/images/artwork/test_card.png" id="10_04n3w"]
-[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://res/scenes/combat/subscenes/card/images/card_background_trans.png" id="11_be1sx"]
-[ext_resource type="Theme" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
+[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://res/scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
+[ext_resource type="Theme" uid="uid://cggsc5a61dg71" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
 [ext_resource type="Script" path="res://res/scenes/combat/EndTurn.cs" id="12_atut3"]
-[ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://res/scenes/combat/subscenes/card/images/card_background.png" id="12_npiqr"]
+[ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://res/scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
 [ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://res/scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]
-[ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://res/scenes/combat/subscenes/card/images/action_point_icon.png" id="13_ey1xf"]
+[ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://res/scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
 [ext_resource type="Script" path="res://res/scenes/combat/FloatingTextFactory.cs" id="14_46n5p"]
-[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/card/images/movement_point_icon.png" id="14_epm16"]
+[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xqp2"]
 
@@ -33,7 +33,7 @@ radius = 32.0
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_gps4y")
-_enemyTypePaths = Array[String](["uid://gkajlv32sxji"])
+_enemyTypePaths = Array[String](["uid://iw7vaee7nlpc"])
 
 [node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel") instance=ExtResource("4_rn6c5")]
 position = Vector2(-628, 103)

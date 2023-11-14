@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
+[gd_scene load_steps=35 format=3 uid="uid://c336oofsl335u"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_pc0xt"]
 [ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
@@ -8,7 +8,10 @@
 [ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.gd" id="5_sq5ew"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_0d6dk"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_ho4ij"]
+[ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="10_83exr"]
+[ext_resource type="PackedScene" uid="uid://d37yqbhr0ph5g" path="res://res/scenes/levels/purgatory/PokerGuyFight.tscn" id="11_usxvq"]
+[ext_resource type="Script" path="res://res/scripts/controllers/combat/PokerGuyFight.cs" id="12_a1hs4"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -86,7 +89,7 @@ texture = ExtResource("8_xb7gt")
 region_rect = Rect2(20, 20, 200, 200)
 modulate_color = Color(0, 0, 0, 1)
 
-[node name="TestLevel" type="Node2D"]
+[node name="Purgatory" type="Node2D"]
 script = ExtResource("1_pc0xt")
 _combatScene = "uid://bk6mw4uwgd1yl"
 
@@ -215,10 +218,9 @@ navigation_polygon = SubResource("NavigationPolygon_ais8d")
 
 [node name="Npcs" type="Node" parent="."]
 
-[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("player", "shop")]
+[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("shop")]
 position = Vector2(177, -1171)
 script = ExtResource("5_sq5ew")
-player = NodePath("")
 shop = NodePath("../../Shop")
 json_file_path = "res://dialogue/dialogue.json"
 
@@ -427,8 +429,17 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
-[node name="Player" parent="." instance=ExtResource("9_0d6dk")]
-position = Vector2(-811, -585)
+[node name="PokerGuyFight" parent="." node_paths=PackedStringArray("_player") instance=ExtResource("11_usxvq")]
+position = Vector2(2436, -1251)
+script = ExtResource("12_a1hs4")
+_player = NodePath("../Player")
+
+[node name="Player" parent="." instance=ExtResource("9_ho4ij")]
+position = Vector2(-810, -593)
+_walkSpeed = 900.0
+_jumpSpeed = 1500.0
+
+[node name="platformer_camera" parent="Player" instance=ExtResource("10_83exr")]
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]

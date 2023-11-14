@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2enj8vdr7p3y"
-path="res://.godot/imported/emerald.png-0fab82c9b0a42dea9ea220e59bd57bbd.ctex"
+path="res://.godot/imported/emerald.png-d95a907b7780edc55b2f0a6f1e393108.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/card/images/emerald.png"
-dest_files=["res://.godot/imported/emerald.png-0fab82c9b0a42dea9ea220e59bd57bbd.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/emerald.png"
+dest_files=["res://.godot/imported/emerald.png-d95a907b7780edc55b2f0a6f1e393108.ctex"]
 
 [params]
 

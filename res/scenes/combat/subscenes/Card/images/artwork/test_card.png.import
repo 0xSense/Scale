@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfad8mude76tx"
-path.s3tc="res://.godot/imported/test_card.png-6d13a72dc8d2856d7fd3bed16f6fc38a.s3tc.ctex"
+path.s3tc="res://.godot/imported/test_card.png-49ad5273aaba252a2bd013f88906d1b6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/card/images/artwork/test_card.png"
-dest_files=["res://.godot/imported/test_card.png-6d13a72dc8d2856d7fd3bed16f6fc38a.s3tc.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/artwork/test_card.png"
+dest_files=["res://.godot/imported/test_card.png-49ad5273aaba252a2bd013f88906d1b6.s3tc.ctex"]
 
 [params]
 

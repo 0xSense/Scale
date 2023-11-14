@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cbil2ef821vs8"]
+[gd_scene format=3 uid="uid://bogq50umqf2st"]
 
 [node name="HealthBar" type="MarginContainer"]
 z_index = 10

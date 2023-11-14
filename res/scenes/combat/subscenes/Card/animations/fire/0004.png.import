@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnn25i0he3t54"
-path="res://.godot/imported/0004.png-358a44d3ba5a811e7886bd584537a334.ctex"
+path="res://.godot/imported/0004.png-054c07ddc73f8408193d769b66e0499c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/card/animations/fire/0004.png"
-dest_files=["res://.godot/imported/0004.png-358a44d3ba5a811e7886bd584537a334.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/animations/fire/0004.png"
+dest_files=["res://.godot/imported/0004.png-054c07ddc73f8408193d769b66e0499c.ctex"]
 
 [params]
 

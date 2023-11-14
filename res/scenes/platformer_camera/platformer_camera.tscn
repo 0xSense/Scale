@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://diuh8d07tu460"]
+
+[node name="platformer_camera" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1.25, 1.25)
+zoom = Vector2(1.25, 1.25)
+position_smoothing_enabled = true
+drag_vertical_offset = -1.0

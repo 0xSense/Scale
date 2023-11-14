@@ -3,13 +3,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tdw5"]
 size = Vector2(1150, 50)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kfju"]
-size = Vector2(343.5, 33)
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a1m6g"]
 vertices = PackedVector2Array(-812.268, -1579.66, 2499.87, -1524.48, 2477.16, 1441.7, -961.099, 1493.44)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-812.268, -1579.66, 2499.87, -1524.48, 2477.16, 1441.7, -961.099, 1493.44)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kfju"]
+size = Vector2(343.5, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhohn"]
 size = Vector2(270, 71.5)
@@ -33,6 +33,11 @@ scale = Vector2(0.998264, 0.0771605)
 position = Vector2(-1, 51)
 shape = SubResource("RectangleShape2D_4tdw5")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-255, -2)
+scale = Vector2(0.396421, 0.289936)
+navigation_polygon = SubResource("NavigationPolygon_a1m6g")
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(72, 40)
 
@@ -43,11 +48,6 @@ scale = Vector2(0.298177, 0.0509259)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-346, -36)
 shape = SubResource("RectangleShape2D_5kfju")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-255, -2)
-scale = Vector2(0.396421, 0.289936)
-navigation_polygon = SubResource("NavigationPolygon_a1m6g")
 
 [node name="enemy_Area2D" type="Area2D" parent="."]
 

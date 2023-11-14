@@ -1,13 +1,13 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b03n7ciamrhdl"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cuyob31ibyd5g"]
 
-[ext_resource type="Texture2D" uid="uid://cwlgc4t03a1se" path="res://scenes/combat/subscenes/Card/images/artwork/angelic_glide.png" id="1_aa1hc"]
-[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_evd0r"]
+[ext_resource type="Texture2D" uid="uid://cwlgc4t03a1se" path="res://res/scenes/combat/subscenes/Card/images/artwork/angelic_glide.png" id="1_ymgeq"]
+[ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="1_yyxyy"]
 
 [resource]
-script = ExtResource("1_evd0r")
+script = ExtResource("1_yyxyy")
 _name = "Angelic Glide"
 _description = ""
-_artwork = ExtResource("1_aa1hc")
+_artwork = ExtResource("1_ymgeq")
 _type = 0
 _rarity = 2
 _actionPointCost = 0

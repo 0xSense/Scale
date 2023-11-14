@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7q2b6x200j6v"
-path="res://.godot/imported/snek2.png-bc1f9f8bf5fc2a80f736891cf45e79ed.ctex"
+path="res://.godot/imported/snek2.png-ed723c71b93fcba040161da1f6079ac6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/card/images/snek2.png"
-dest_files=["res://.godot/imported/snek2.png-bc1f9f8bf5fc2a80f736891cf45e79ed.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/snek2.png"
+dest_files=["res://.godot/imported/snek2.png-ed723c71b93fcba040161da1f6079ac6.ctex"]
 
 [params]
 

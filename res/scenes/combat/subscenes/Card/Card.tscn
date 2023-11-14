@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqskjl6vsej8"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Card.cs" id="1_q4dhy"]
-[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/card/images/artwork/test_card.png" id="2_0qfpw"]
-[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://res/scenes/combat/subscenes/card/images/card_background_trans.png" id="3_iu6l8"]
-[ext_resource type="Texture2D" uid="uid://cishxyohwwj8e" path="res://res/scenes/combat/subscenes/card/images/card_background_parchment.png" id="4_3c6qu"]
-[ext_resource type="Theme" path="res://assets/fonts/card_theme.tres" id="5_k86js"]
-[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/card/images/movement_point_icon.png" id="5_lktgx"]
-[ext_resource type="Texture2D" uid="uid://1mxovo0dtleq" path="res://res/scenes/combat/subscenes/card/images/snek_color.png" id="6_c8t6u"]
-[ext_resource type="SpriteFrames" uid="uid://bsv28668g8l7g" path="res://res/scenes/combat/subscenes/card/animations/fire/fire_anim.tres" id="7_1fgaa"]
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card.png" id="2_0qfpw"]
+[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://res/scenes/combat/subscenes/Card/images/card_background_trans.png" id="3_iu6l8"]
+[ext_resource type="Texture2D" uid="uid://cishxyohwwj8e" path="res://res/scenes/combat/subscenes/Card/images/card_background_parchment.png" id="4_3c6qu"]
+[ext_resource type="Theme" uid="uid://urfgm04ynpbp" path="res://assets/fonts/card_theme.tres" id="5_k86js"]
+[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/Card/images/movement_point_icon.png" id="5_lktgx"]
+[ext_resource type="Texture2D" uid="uid://1mxovo0dtleq" path="res://res/scenes/combat/subscenes/Card/images/snek_color.png" id="6_c8t6u"]
+[ext_resource type="SpriteFrames" uid="uid://bsv28668g8l7g" path="res://res/scenes/combat/subscenes/Card/animations/fire/fire_anim.tres" id="7_1fgaa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqjh"]
 size = Vector2(704, 1736)

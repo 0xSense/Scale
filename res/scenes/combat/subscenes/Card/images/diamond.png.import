@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://diod3setnj17n"
-path="res://.godot/imported/diamond.png-c806730d294c28397fe2f747932dd878.ctex"
+path="res://.godot/imported/diamond.png-e54b8c019414e6f4945592e9e489d5ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/card/images/diamond.png"
-dest_files=["res://.godot/imported/diamond.png-c806730d294c28397fe2f747932dd878.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/diamond.png"
+dest_files=["res://.godot/imported/diamond.png-e54b8c019414e6f4945592e9e489d5ec.ctex"]
 
 [params]
 
