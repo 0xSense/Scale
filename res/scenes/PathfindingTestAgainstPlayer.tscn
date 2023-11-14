@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=8 format=3 uid="uid://cshcvcas2jerk"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/platforming/Player.cs" id="1_kjfuy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
 radius = 7.5
@@ -28,6 +30,7 @@ point_count = 3
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(71, -8)
+script = ExtResource("1_kjfuy")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]

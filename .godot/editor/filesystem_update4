@@ -1,4 +1,3 @@
-res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn
-res://res/scenes/levels/purgatory/purgatory.tres
 res://res/scenes/TestLevel.tscn
-res://res/scenes/PathfindingTestAgainstPlayer.tscn
+res://res/scenes/levels/purgatory/purgatory.tres
+res://res/scenes/MasterScene.tscn

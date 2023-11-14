@@ -1,18 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://gkajlv32sxji"]
+[gd_scene load_steps=7 format=3 uid="uid://iw7vaee7nlpc"]
 
 [ext_resource type="Texture2D" uid="uid://cqvufpd2e1m2j" path="res://res/scenes/combat/subscenes/enemy/assets/test_enemy.png" id="1_i2prc"]
-[ext_resource type="Resource" uid="uid://df1iwww5ic7dt" path="res://res/resources/cards/HellsGrasp.tres" id="2_p5luk"]
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Enemy.cs" id="2_urypt"]
 [ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_2ktwj"]
-[ext_resource type="Resource" uid="uid://bn1d4ogph8kcx" path="res://res/resources/cards/DivineSmite.tres" id="3_ptnwu"]
 [ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="4_3xjn0"]
-[ext_resource type="Resource" uid="uid://bcdiuviks0t4v" path="res://res/resources/cards/BlessedPlus.tres" id="4_eykyn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shunw"]
 radius = 77.0
 height = 268.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nr1m2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv826"]
 resource_local_to_scene = true
 shader = ExtResource("4_3xjn0")
 shader_parameter/health_factor = 0.4
@@ -20,7 +17,6 @@ shader_parameter/health_factor = 0.4
 [node name="Enemy" type="Area2D"]
 collision_layer = 4
 script = ExtResource("2_urypt")
-_deck = [ExtResource("2_p5luk"), ExtResource("3_ptnwu"), ExtResource("4_eykyn")]
 _ID = 1
 _maxHealth = 9
 _startingActionPoints = 2
@@ -37,5 +33,5 @@ scale = Vector2(-0.5, 0.5)
 texture = ExtResource("1_i2prc")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_2ktwj")]
-material = SubResource("ShaderMaterial_nr1m2")
+material = SubResource("ShaderMaterial_gv826")
 position = Vector2(0, 147)
