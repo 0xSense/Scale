@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dg7fkynwwgtai"]
+
+[ext_resource type="Texture2D" uid="uid://b1yuec1bdyki7" path="res://res/scenes/combat/subscenes/Card/images/artwork/holy_smite.png" id="1_js855"]
+[ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="2_dmf6a"]
+
+[resource]
+script = ExtResource("2_dmf6a")
+_name = "Holy Word"
+_description = ""
+_artwork = ExtResource("1_js855")
+_type = 2
+_rarity = 0
+_actionPointCost = 1
+_movementPointCost = 0
+_target = 1
+_damageTypes = [0]
+_damageDice = ["1d4 + 1"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []
