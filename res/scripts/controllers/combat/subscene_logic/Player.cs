@@ -59,13 +59,13 @@ public partial class Player : Combatant
         base.StartFight();
         SyncDeck();
 
-        _internalDeck.ForceShuffle();        
-
+        _internalDeck.ForceFullReshuffle();        
         _hand.DrawOpeningHand(_internalDeck);
     }
 
     public override void BeginTurn()
     {
+        GD.Print("Begin turn");
         base.BeginTurn();
         if (!_firstTurn)
             _hand.AddCards(_internalDeck.Draw(2));
