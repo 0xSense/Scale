@@ -6,14 +6,11 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_27dgb"]
 
-[node name="enemy" type="Node2D"]
+[node name="enemy" type="Node2D" node_paths=PackedStringArray("_attackTimer", "_findTimer", "_holdPositionTimer")]
 script = ExtResource("1_bvd53")
-_attackTimer = Object(Timer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","process_callback":1,"wait_time":2.0,"one_shot":false,"autostart":false,"script":null)
-
-_findTimer = Object(Timer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","process_callback":1,"wait_time":1.0,"one_shot":false,"autostart":false,"script":null)
-
-_holdPositionTimer = Object(Timer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","process_callback":1,"wait_time":0.5,"one_shot":false,"autostart":false,"script":null)
-
+_attackTimer = NodePath("")
+_findTimer = NodePath("")
+_holdPositionTimer = NodePath("")
 
 [node name="Body" type="CharacterBody2D" parent="."]
 

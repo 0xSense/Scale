@@ -2,9 +2,9 @@
 
 [ext_resource type="TileSet" uid="uid://cya0kq4dotyg7" path="res://resources/purgatory-level.tres" id="2_oq3x2"]
 [ext_resource type="AudioStream" uid="uid://q8tuhyagxv5b" path="res://assets/placeholder/music/Village-wip.wav" id="5_76tbk"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/asset/combat_environment.png" id="6_bnbol"]
-[ext_resource type="Texture2D" uid="uid://bo5bjm5a2nkty" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/eagle/eagle-attack-1.png" id="6_ou5ra"]
-[ext_resource type="PackedScene" uid="uid://clpb08acj6srs" path="res://scenes/overworld/player.tscn" id="7_mcw1c"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/models/combat_environment.png" id="6_bnbol"]
+
+[ext_resource type="PackedScene" uid="uid://clpb08acj6srs" path="res://res/scenes/characters/player/player.tscn" id="7_mcw1c"]
 [ext_resource type="PackedScene" uid="uid://bj3effc41cjb8" path="res://scenes/purgatory/paths/doors/receptionist_door.tscn" id="8_k61sw"]
 
 [node name="Purgatory" type="Node2D"]
@@ -30,7 +30,6 @@ _coyoteBuffer = 0.1
 [node name="Door2" type="Sprite2D" parent="Doors"]
 position = Vector2(584, -173)
 scale = Vector2(0.0277778, 0.0987655)
-texture = ExtResource("6_bnbol")
 
 [node name="Receptionist Door" parent="Doors" instance=ExtResource("8_k61sw")]
 position = Vector2(229, -173)

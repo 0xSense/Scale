@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cshcvcas2jerk"]
 
-[ext_resource type="Script" path="res://scenes/overworld/Player.cs" id="1_hns8f"]
+[ext_resource type="Script" path="res://res/scripts/controllers/platforming/Player.cs" id="1_hns8f"]
 [ext_resource type="Texture2D" uid="uid://dgiupu1qni7u6" path="res://scenes/combat/subscenes/player/asset/test_player.png" id="2_185j4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4xlam"]

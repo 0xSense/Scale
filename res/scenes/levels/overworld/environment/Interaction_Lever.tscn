@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dujbp4wpv8wo1"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/LeverInteract.cs" id="1_e4r6p"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/models/black_background_square.png" id="2_4bhva"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/models/combat_environment.png" id="3_k5cbj"]
+[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="2_4bhva"]
+[ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="3_k5cbj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo6yf"]
 size = Vector2(72, 32)

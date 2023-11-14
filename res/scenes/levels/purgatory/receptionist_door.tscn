@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bj3effc41cjb8"]
 
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/asset/combat_environment.png" id="1_ymygq"]
-[ext_resource type="Script" path="res://scenes/purgatory/paths/doors/Door.cs" id="2_k36yk"]
+[ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="1_ymygq"]
+[ext_resource type="Script" path="res://res/scripts/controllers/Door.cs" id="2_k36yk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6lve"]
 size = Vector2(2304, 891)
@@ -12,7 +12,6 @@ texture = ExtResource("1_ymygq")
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_k36yk")
-_sceneTransition = "res://scenes/purgatory/scenes/receptionOffice.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_m6lve")
