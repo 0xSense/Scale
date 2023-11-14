@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Scale"
-run/main_scene="res://res/scenes/MasterScene.tscn"
+run/main_scene="res://res/scenes/levels/purgatory/purgatory.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
