@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\Scale\\Scale.csproj": {}
+    "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\Scale\\Scale.csproj": {
+    "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\Scale\\Scale.csproj",
+        "projectUniqueName": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj",
         "projectName": "Scale",
-        "projectPath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\Scale\\Scale.csproj",
+        "projectPath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj",
         "packagesPath": "C:\\Users\\nashl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\Scale\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
