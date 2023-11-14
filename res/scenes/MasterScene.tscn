@@ -19,3 +19,4 @@ _defaultSceneUID = "uid://bk6mw4uwgd1yl"
 [node name="MasterDeck" type="Node" parent="."]
 script = ExtResource("2_ykx58")
 _cardTypes = [ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("5_54fyw"), ExtResource("6_2hqoe"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("9_w8voq"), ExtResource("10_74qxg")]
+_playerStarterDeck = Array[Resource]([ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("7_g0tv5"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("10_74qxg"), ExtResource("9_w8voq"), ExtResource("10_74qxg")])

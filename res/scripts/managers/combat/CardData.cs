@@ -202,7 +202,7 @@ public partial class CardData : Resource
 
     public void Activate()
     {
-        Damage = new();
+          Damage = new();
         DrawEffects = new();
         Buffs = new();
         Debuffs = new();
@@ -265,14 +265,13 @@ public partial class CardData : Resource
             }
 
             dice.flat = flatModifier;
-
             Damage.Add(t, dice);
 
             i++;
         }
 
-        _damageTypes.Clear();
-        _damageDice.Clear();
+        // _damageTypes.Clear();
+        // _damageDice.Clear();
 
         i = 0;
         foreach (DrawEffect e in _drawEffects)
@@ -280,8 +279,8 @@ public partial class CardData : Resource
             DrawEffects.Add(e, _drawQuantities[i++]);
         }
 
-        _drawEffects.Clear();
-        _drawQuantities.Clear();
+        // _drawEffects.Clear();
+        // _drawQuantities.Clear();
 
         i = 0;
         foreach (BuffType b in _buffs)
@@ -297,8 +296,8 @@ public partial class CardData : Resource
             i++;
         }
 
-        _buffs.Clear();
-        _buffDuration.Clear();
+        // _buffs.Clear();
+        // _buffDuration.Clear();
 
         i = 0;
         foreach (DebuffType d in _debuffs)
@@ -310,8 +309,10 @@ public partial class CardData : Resource
             i++;
         }
 
-        _debuffs.Clear();
-        _debuffDuration.Clear();
+        // GD.Print(_name + "; " + _damageDice.Count);
+
+        // _debuffs.Clear();
+        // _debuffDuration.Clear();
     }
 
     // Operator overrides for easy comparisons of card data. Don't worry about the implementation here unless you really think it's bugged.

@@ -52,6 +52,8 @@ public partial class Player : Combatant
     private void SyncDeck()
     {
         _internalDeck = MasterDeck.PlayerDeck;
+        foreach (CardData c in _internalDeck.GetCards())
+            GD.Print(c.Name);
     }
 
     public override void StartFight()
