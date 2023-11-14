@@ -12,10 +12,8 @@ public class Deck
 {
     private Dictionary<CardData, int> _cards; // Maps cards to number of instances in this deck
     public Dictionary<CardData, int> CardDict => _cards;
-
     private LinkedList<CardData> _mainDeck;
     private List<CardData> _discard;
-
 
     public Deck()
     {
@@ -75,11 +73,9 @@ public class Deck
         Random rand = CombatManager.GetInstance().RNG;
         CardData[] cards = new CardData[numCards];
 
-
         // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
 
         // _mainDeck.RemoveLast();
-
 
         return cards;
     }

@@ -10,3 +10,4 @@ res://res/scripts/controllers/platforming/Player.cs
 res://res/scripts/controllers/platforming/Spikes.cs
 res://res/scripts/controllers/Shop.cs
 res://res/scripts/managers/combat/CardData.cs
+res://res/scenes/main/main.tscn
