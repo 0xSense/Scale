@@ -1,19 +1,14 @@
-
 [gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_pc0xt"]
-[ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
-
+[ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_ne5i1"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/models/combat_environment.png" id="4_131s4"]
-
-[ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.cs" id="5_ayw20"]
-
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="5_co7nw"]
-[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://assets/models/grippy.png" id="5_kojqv"]
+[ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="4_131s4"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="5_co7nw"]
+[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 [ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.gd" id="5_sq5ew"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
+[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -186,12 +181,10 @@ position = Vector2(42, -1195)
 [node name="ShopKeeperDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
-script = null
 
 [node name="ReceptionistDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
-script = null
 
 [node name="EnemyStage" type="StaticBody2D" parent="."]
 
@@ -207,9 +200,6 @@ shape = SubResource("RectangleShape2D_52nkj")
 
 [node name="enemy" parent="Enemys" instance=ExtResource("5_kojqv")]
 position = Vector2(-376, -2483)
-_attackTimer = null
-_findTimer = null
-_holdPositionTimer = null
 
 [node name="Area2D" type="Area2D" parent="Enemys/enemy"]
 
@@ -246,7 +236,6 @@ offset_left = -101.0
 offset_top = -109.0
 offset_right = 103.0
 offset_bottom = -69.0
-
 texture = ExtResource("4_131s4")
 metadata/_edit_use_anchors_ = true
 
@@ -256,7 +245,6 @@ offset_left = 4.0
 offset_right = 200.0
 offset_bottom = 13.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_3yiat")
 theme_override_font_sizes/normal_font_size = 14
 text = "Name"
 metadata/_edit_use_anchors_ = true
@@ -268,7 +256,6 @@ offset_top = 13.0
 offset_right = 200.0
 offset_bottom = 37.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("6_3yiat")
 theme_override_font_sizes/normal_font_size = 13
 text = "Hello"
 metadata/_edit_use_anchors_ = true
@@ -280,7 +267,6 @@ offset_top = 40.0
 offset_right = 23.0
 offset_bottom = 59.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 13
 text = "Yes"
 flat = true
@@ -301,7 +287,6 @@ offset_top = 40.0
 offset_right = 46.0
 offset_bottom = 59.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 13
 text = "No"
 flat = true
@@ -318,7 +303,6 @@ texture = ExtResource("4_131s4")
 
 [node name="Player" parent="." instance=ExtResource("5_co7nw")]
 position = Vector2(-807, -596)
-script = null
 
 [node name="Shop" type="Node2D" parent="Player"]
 visible = false
@@ -356,7 +340,6 @@ offset_top = -41.0
 offset_right = 56.0
 offset_bottom = -9.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 34
 text = "Item 1"
 
@@ -377,7 +360,6 @@ offset_top = -41.0
 offset_right = 56.0
 offset_bottom = -9.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 34
 text = "Item 2"
 
@@ -398,7 +380,6 @@ offset_top = -41.0
 offset_right = 56.0
 offset_bottom = -9.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 34
 text = "Item 3"
 
@@ -419,7 +400,6 @@ offset_top = -41.0
 offset_right = 56.0
 offset_bottom = -9.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 34
 text = "Item 4
 "
@@ -436,7 +416,6 @@ offset_top = -222.0
 offset_right = -335.0
 offset_bottom = -190.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 34
 text = "Shop"
 
@@ -446,7 +425,6 @@ offset_top = -222.0
 offset_right = 361.0
 offset_bottom = -190.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_3yiat")
 theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true

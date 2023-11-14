@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjvk42o3wxiyl"]
 
 [ext_resource type="Texture2D" uid="uid://dgiupu1qni7u6" path="res://res/scenes/combat/subscenes/player/asset/test_player.png" id="1_6w4tj"]
-[ext_resource type="Script" path="res://res/scenes/combat/subscenes/player/Player.cs" id="2_ws6fc"]
+[ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Player.cs" id="1_vvg4x"]
 [ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_ri5e0"]
 [ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="4_x2hpw"]
 
@@ -15,7 +15,7 @@ shader = ExtResource("4_x2hpw")
 shader_parameter/health_factor = 0.4
 
 [node name="Player" type="Area2D"]
-script = ExtResource("2_ws6fc")
+script = ExtResource("1_vvg4x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8u6yp")

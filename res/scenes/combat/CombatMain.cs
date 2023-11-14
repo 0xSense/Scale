@@ -32,7 +32,7 @@ public partial class CombatMain : Node
     {
 
         _enemyTypesByUID = new();
-        
+
         // This is stupid, but that's Godot's fault.
         for (int i = 0; i < _enemyTypePaths.Count; i++)
         {
@@ -49,19 +49,19 @@ public partial class CombatMain : Node
             tempInstance.QueueFree();
         }
         Node enemiesParentNode = GetNode("Enemies");
-        
+
         int[] enemyUIDs;
         int[] loaded = null;
-        loaded = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs()?.ToArray();
+        loaded = ((MasterScene)GetTree().Root.GetChild(0)).LoadEnemyIDs()?.ToArray();
 
-        if (loaded != null)            
+        if (loaded != null)
             enemyUIDs = loaded;
         else
         {
             GD.Print("No enemy data received from overworld.");
-            enemyUIDs = new int[]{1, 1, 1, 1};
+            enemyUIDs = new int[] { 1, 1, 1, 1 };
         }
-        
+
         enemies = new ICombatant[enemyUIDs.Length];
 
         int count = 0;
@@ -75,20 +75,20 @@ public partial class CombatMain : Node
             enemies[count] = newEnemy;
             count++;
         }
-        
+
     }
 
-    
+
     /* TEST - TODO REMOVE*/
-    
+
     public override void _Process(double delta)
     {
-         if (Input.IsPhysicalKeyPressed(Key.Space))
+        if (Input.IsPhysicalKeyPressed(Key.Space))
         {
             ((MasterScene)GetTree().Root.GetChild(0)).ActivatePreviousScene();
         }
     }
-    
+
 
     /*
     public void OnTreeEntered()

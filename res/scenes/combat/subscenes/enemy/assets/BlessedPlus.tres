@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bcdiuviks0t4v"]
+
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_c50yt"]
+[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_fxwbh"]
+
+[resource]
+script = ExtResource("1_c50yt")
+_name = "Blessed+"
+_description = ""
+_artwork = ExtResource("1_fxwbh")
+_type = 2
+_rarity = 1
+_actionPointCost = 1
+_movementPointCost = 0
+_target = 0
+_damageTypes = [8]
+_damageDice = ["1d4"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = [0, 0]
+_buffDuration = [1, 1]
+_resistanceType = [0, 1]
+_debuffs = []
+_debuffDuration = []

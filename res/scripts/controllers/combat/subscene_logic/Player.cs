@@ -1,5 +1,5 @@
- /*
- @author Alexander Venezia (Blunderguy)
+/*
+@author Alexander Venezia (Blunderguy)
 */
 
 namespace Combat;
@@ -25,7 +25,7 @@ public enum PlayerState
 }
 
 public partial class Player : Combatant
-{ 
+{
     [Export] Hand _hand;
     [Export] RichTextLabel _targetLabel;
     [Export] Label _actionPointLabel;
@@ -47,7 +47,7 @@ public partial class Player : Combatant
     }
 
     private void SyncDeck()
-    {        
+    {
         _internalDeck = MasterDeck.PlayerDeck;
     }
 
@@ -78,7 +78,7 @@ public partial class Player : Combatant
             _targeted = new();
         }
         if (!_isTurn)
-            return;        
+            return;
 
         if (Input.IsActionJustPressed("Select"))
         {
@@ -93,12 +93,12 @@ public partial class Player : Combatant
                         if (_state == PlayerState.DISCARDING_CARDS)
                         {
                             _internalDeck.Discard(_hand.RemoveCard(_currentlyTargeting));
-                            _targetLabel.Text = "[center][color=#BB5545]Discard " + (_toDiscard-1) + " cards[/color]";
+                            _targetLabel.Text = "[center][color=#BB5545]Discard " + (_toDiscard - 1) + " cards[/color]";
                         }
                         else if (_state == PlayerState.RETURNING_CARDS)
                         {
                             _internalDeck.AddCard(_hand.RemoveCard(_currentlyTargeting));
-                            _targetLabel.Text = "[center][color=#BB5545]Return " + (_toDiscard-1) + " cards to deck[/color]";
+                            _targetLabel.Text = "[center][color=#BB5545]Return " + (_toDiscard - 1) + " cards to deck[/color]";
                         }
 
                         _currentlyTargeting = null;
@@ -109,9 +109,9 @@ public partial class Player : Combatant
                             _targetLabel.Visible = false;
                         }
                     }
-                break;
+                    break;
                 case PlayerState.SELECTING_CARD:
-                    
+
                     _currentlyTargeting = _hand.GetSelectedCard();
 
                     if (_currentlyTargeting != null && CanPlay(_currentlyTargeting))
@@ -123,7 +123,7 @@ public partial class Player : Combatant
                         _currentlyTargeting.ZIndex += 99;
                     }
 
-                break;     
+                    break;
                 case PlayerState.SELECTING_TARGETS:
                     Enemy clicked = GetEnemyUnderMouse();
                     if (clicked != null)
@@ -138,13 +138,13 @@ public partial class Player : Combatant
                         _currentlyTargeting.Position = position;
                         GetParent().AddChild(_currentlyTargeting);
 
-                        PlayCard(_targeted.ToArray(), _currentlyTargeting);                                            
-                        
+                        PlayCard(_targeted.ToArray(), _currentlyTargeting);
+
                         endTargeting();
                     }
-                break;      
+                    break;
                 case PlayerState.GAME_OVER:
-                break;     
+                    break;
             }
 
             GD.Print("Deck size: " + _internalDeck.GetCardCount());
@@ -182,7 +182,7 @@ public partial class Player : Combatant
 
         if (hits.Count == 0)
             return null;
-            
+
         enemy = (Enemy)hits.ElementAt(0)["collider"];
 
         return enemy;
@@ -210,7 +210,7 @@ public partial class Player : Combatant
                 }
             }
         }
-        return (card.Data.ActionPointCost <= _actionPoints) && (card.Data.MovementPointCost <= _movementPoints) && (_hand.GetCount()-1 >= minCardCount);
+        return (card.Data.ActionPointCost <= _actionPoints) && (card.Data.MovementPointCost <= _movementPoints) && (_hand.GetCount() - 1 >= minCardCount);
     }
 
     private bool IsTargetingValid()
@@ -218,19 +218,19 @@ public partial class Player : Combatant
         switch (_currentlyTargeting.Data.Target)
         {
             case TargetType.SELF:
-            return true;
+                return true;
             case TargetType.SINGLE:
-            return _targeted.Count == 1;
+                return _targeted.Count == 1;
             case TargetType.MULTI_TWO:
-            return _targeted.Count == 2 || (_targeted.Count >= _combatManager.GetRemainingEnemies());
+                return _targeted.Count == 2 || (_targeted.Count >= _combatManager.GetRemainingEnemies());
             case TargetType.MULTI_THREE:
-            return _targeted.Count == 3 || (_targeted.Count >= _combatManager.GetRemainingEnemies());
+                return _targeted.Count == 3 || (_targeted.Count >= _combatManager.GetRemainingEnemies());
             case TargetType.MULTI_FOUR:
-            return true;
+                return true;
             case TargetType.ALL:
-            return true;
+                return true;
             default:
-            return false;
+                return false;
         }
     }
 

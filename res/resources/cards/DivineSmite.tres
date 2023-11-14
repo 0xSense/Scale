@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bn1d4ogph8kcx"]
+
+[ext_resource type="Texture2D" uid="uid://b1yuec1bdyki7" path="res://scenes/combat/subscenes/Card/images/artwork/holy_smite_bw.png" id="1_6hqa2"]
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="2_3uyqm"]
+
+[resource]
+script = ExtResource("2_3uyqm")
+_name = "Divine Smite"
+_description = ""
+_artwork = ExtResource("1_6hqa2")
+_type = 2
+_rarity = 3
+_actionPointCost = 1
+_movementPointCost = 0
+_target = 1
+_damageTypes = [0]
+_damageDice = ["1d6 + 4"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []

@@ -60,7 +60,7 @@ public partial class Enemy : Combatant
         base.BeginTurn();
 
         TakeTurn();
-        
+
     }
 
     /*
@@ -70,13 +70,14 @@ public partial class Enemy : Combatant
     */
     private async void TakeTurn()
     {
-        for (;;)
+        for (; ; )
         {
             CardData cardToPlay = null;
 
             await Task.Delay(_turnDelayTimeStart);
 
-            List<CardData> playable = _internalDeck.GetCards((CardData c) => {
+            List<CardData> playable = _internalDeck.GetCards((CardData c) =>
+            {
                 return c.ActionPointCost <= _actionPoints;
             });
 
@@ -91,23 +92,23 @@ public partial class Enemy : Combatant
             switch (cardToPlay.Target)
             {
                 case TargetType.SELF:
-                    targets = new ICombatant[]{this};
-                break;
+                    targets = new ICombatant[] { this };
+                    break;
                 case TargetType.SINGLE:
                 case TargetType.MULTI_TWO:
                 case TargetType.MULTI_THREE:
                 case TargetType.MULTI_FOUR:
-                    targets = new ICombatant[]{_combatManager.Player};
-                break;
+                    targets = new ICombatant[] { _combatManager.Player };
+                    break;
                 case TargetType.ALL:
-                    targets = new ICombatant[]{this, _combatManager.Player};
-                break;
+                    targets = new ICombatant[] { this, _combatManager.Player };
+                    break;
             }
 
             _combatManager.PlayCard(this, targets, cardToPlay);
             _internalDeck.Discard(cardToPlay);
 
-            FloatingTextFactory.GetInstance().CreateFloatingText("[color=white]" + cardToPlay.Name + "[/color]", Position + Vector2.Up*100, lifetime:2500, 300);
+            FloatingTextFactory.GetInstance().CreateFloatingText("[color=white]" + cardToPlay.Name + "[/color]", Position + Vector2.Up * 100, lifetime: 2500, 300);
 
         }
         GD.Print("Ending turn");
@@ -121,7 +122,7 @@ public partial class Enemy : Combatant
     {
         return 0;
     }
-    
+
     private void Die()
     {
         QueueFree();

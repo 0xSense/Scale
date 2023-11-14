@@ -13,7 +13,7 @@ using System.Xml.XPath;
 using Systems.Combat;
 
 public partial class Hand : Marker2D
-{   
+{
     [Export] private int _openingHandSize = 7;
     [Export] private PackedScene _cardResource;
     [Export] private Vector2 _scale;
@@ -38,7 +38,7 @@ public partial class Hand : Marker2D
         CardData[] cards = deck.Draw(_openingHandSize);
         foreach (CardData c in cards)
             AddCards(c, 1);
-            
+
         // for (int i = 0; i < _openingHandSize; i++)
     }
 
@@ -83,7 +83,7 @@ public partial class Hand : Marker2D
         _selectedCardIndex = -1;
         OrderCards();
         return card.Data;
-        
+
     }
 
     public void Freeze()
@@ -116,11 +116,11 @@ public partial class Hand : Marker2D
         Card nextCard = null;
 
         foreach (var h in hits)
-        {            
+        {
             nextCard = (Card)(h["collider"]);
             if (highestZ == null || nextCard.ZIndex > highestZ.ZIndex)
                 highestZ = nextCard;
-        }        
+        }
 
         if (highestZ != null)
             _selectedCardIndex = _cards.IndexOf(highestZ);
@@ -129,41 +129,41 @@ public partial class Hand : Marker2D
 
         UpdateCardProtrusion();
         OrderCards();
-        
+
     }
 
     private void OrderCards()
     {
-        float arcStep = _handArc/_cards.Count;
-        float arcStart = -(_handArc/2f);
+        float arcStep = _handArc / _cards.Count;
+        float arcStart = -(_handArc / 2f);
 
         Vector2 offset = Vector2.Zero;
 
         for (int i = 0; i < _cards.Count; i++)
         {
             _cards[i].Scale = _scale;
-            float angle = arcStart + arcStep*(i+0.5f);
+            float angle = arcStart + arcStep * (i + 0.5f);
 
             if (_selectedCardIndex != -1 && i < _selectedCardIndex)
             {
-                _cards[i].StartAngleTween(-(int)((_cards.Count/2)*1.4), 0.25f);
+                _cards[i].StartAngleTween(-(int)((_cards.Count / 2) * 1.4), 0.25f);
 
             }
             else if (_selectedCardIndex != -1 && i > _selectedCardIndex)
             {
-                _cards[i].StartAngleTween((int)((_cards.Count/2)*1.4), 0.25f);
+                _cards[i].StartAngleTween((int)((_cards.Count / 2) * 1.4), 0.25f);
             }
             else
                 _cards[i].StartAngleTween(0, 0.25f);
 
             _cards[i].RotationDegrees = Mathf.Lerp(angle, 0, _cards[i].GetRotationFactor());
 
-            offset.X = Mathf.Cos(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset) * 1.25f;
-            offset.Y = Mathf.Sin(Mathf.DegToRad(angle-90+_cards[i].AngleOffset)) * (_radius+_cards[i].Offset);
+            offset.X = Mathf.Cos(Mathf.DegToRad(angle - 90 + _cards[i].AngleOffset)) * (_radius + _cards[i].Offset) * 1.25f;
+            offset.Y = Mathf.Sin(Mathf.DegToRad(angle - 90 + _cards[i].AngleOffset)) * (_radius + _cards[i].Offset);
 
             _cards[i].Position = Vector2.Zero + offset;
 
-            _cards[i].ZIndex = i+1;  
+            _cards[i].ZIndex = i + 1;
 
         }
 
@@ -173,11 +173,11 @@ public partial class Hand : Marker2D
         }
     }
 
-    
+
     private void UpdateCardProtrusion()
-    {        
+    {
         Card topMoused = null;
-        
+
         if (_selectedCardIndex >= 0)
             topMoused = _cards[_selectedCardIndex]; //GetTopMoused();
 
@@ -207,5 +207,5 @@ public partial class Hand : Marker2D
         return _cards.Count();
     }
 
-    
+
 }

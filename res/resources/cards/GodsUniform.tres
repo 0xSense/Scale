@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ct440gvn28qyo"]
+
+[ext_resource type="Script" path="res://data_resources/card_data/CardData.cs" id="1_lcaq0"]
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="1_u77sw"]
+
+[resource]
+script = ExtResource("1_lcaq0")
+_name = "God's Uniform"
+_description = ""
+_artwork = ExtResource("1_u77sw")
+_type = 0
+_rarity = 2
+_actionPointCost = 0
+_movementPointCost = 1
+_target = 0
+_damageTypes = []
+_damageDice = []
+_drawEffects = [0]
+_drawQuantities = [2]
+_buffs = [1]
+_buffDuration = [6]
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []
