@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.gd" id="5_sq5ew"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="9_ho4ij"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_v6l8l"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="10_83exr"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
@@ -427,8 +427,8 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
-[node name="Player" parent="." instance=ExtResource("9_ho4ij")]
-position = Vector2(-810, -593)
+[node name="Player" parent="." instance=ExtResource("9_v6l8l")]
+position = Vector2(-809, -588)
 
 [node name="platformer_camera" parent="Player" instance=ExtResource("10_83exr")]
 
