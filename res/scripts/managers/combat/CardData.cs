@@ -219,6 +219,14 @@ public partial class CardData : Resource
             dice = new();
 
             string[] parts = _damageDice[i].Split("d");
+
+            if (parts.Length < 2)
+            {
+                dice.flat = int.Parse(parts[0].Trim());
+                Damage.Add(t, dice);
+                continue;
+            }
+
             dieQuantity = int.Parse(parts[0]);
 
             if (parts[1].Contains("+"))

@@ -56,6 +56,7 @@ public partial class Player : Combatant
         base.StartFight();
         SyncDeck();
         _internalDeck.ForceShuffle();
+        GD.Print(_internalDeck.GetCardCount());
         _hand.DrawOpeningHand(_internalDeck);
     }
 

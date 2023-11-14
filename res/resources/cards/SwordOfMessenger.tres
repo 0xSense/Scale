@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c6pel68nd1b8l"]
+
+[ext_resource type="Texture2D" uid="uid://blxsauvyq1pr8" path="res://res/scenes/combat/subscenes/Card/images/artwork/sword_of_messenger.png" id="1_0hy1l"]
+[ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="2_dpe2k"]
+
+[resource]
+script = ExtResource("2_dpe2k")
+_name = "Sword of Messenger"
+_description = ""
+_artwork = ExtResource("1_0hy1l")
+_type = 2
+_rarity = 3
+_actionPointCost = 1
+_movementPointCost = 0
+_target = 1
+_damageTypes = [5, 0]
+_damageDice = ["2d4+3", "3"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []
