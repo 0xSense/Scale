@@ -9,10 +9,10 @@
 radius = 57.0
 height = 280.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0n8ey"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n5e0t"]
 resource_local_to_scene = true
 shader = ExtResource("4_x2hpw")
-shader_parameter/health_factor = 0.4
+shader_parameter/health_factor = 0.5
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_vvg4x")
@@ -21,8 +21,9 @@ script = ExtResource("1_vvg4x")
 shape = SubResource("CapsuleShape2D_8u6yp")
 
 [node name="Player" type="Sprite2D" parent="."]
+scale = Vector2(-1, 1)
 texture = ExtResource("1_6w4tj")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_ri5e0")]
-material = SubResource("ShaderMaterial_0n8ey")
+material = SubResource("ShaderMaterial_n5e0t")
 position = Vector2(-0.500025, 160.75)

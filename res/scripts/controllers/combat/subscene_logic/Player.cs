@@ -52,14 +52,16 @@ public partial class Player : Combatant
     private void SyncDeck()
     {
         _internalDeck = MasterDeck.PlayerDeck;
-        foreach (CardData c in _internalDeck.GetCards())
-            GD.Print(c.Name);
+
     }
 
     public override void StartFight()
     {
         base.StartFight();
         SyncDeck();
+
+        _currentHealth = MasterScene.GetInstance().LoadPlayerHP();
+        GD.Print(_currentHealth);
 
         _internalDeck.ForceFullReshuffle();        
         _hand.DrawOpeningHand(_internalDeck);

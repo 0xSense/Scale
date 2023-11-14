@@ -11,7 +11,7 @@
 radius = 77.0
 height = 268.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubi4u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_do74u"]
 resource_local_to_scene = true
 shader = ExtResource("4_3xjn0")
 shader_parameter/health_factor = 0.4
@@ -36,5 +36,5 @@ scale = Vector2(-0.5, 0.5)
 texture = ExtResource("1_i2prc")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_2ktwj")]
-material = SubResource("ShaderMaterial_ubi4u")
+material = SubResource("ShaderMaterial_do74u")
 position = Vector2(0, 147)

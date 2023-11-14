@@ -37,7 +37,6 @@ _enemyTypePaths = Array[String](["uid://iw7vaee7nlpc"])
 
 [node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel") instance=ExtResource("4_rn6c5")]
 position = Vector2(-628, 103)
-scale = Vector2(-1, 1)
 _hand = NodePath("../Hand")
 _targetLabel = NodePath("../InfoLabel")
 _actionPointLabel = NodePath("../Energy/ActionPoint/Label")

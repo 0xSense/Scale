@@ -63,6 +63,16 @@ public partial class Enemy : Combatant
 
     }
 
+    // TODO: Finish
+    private List<CardData> DetermineCards()
+    {
+        List<CardData> cards = new();
+
+
+
+        return cards;
+    }
+
     /*
         Current implementation - the enemy cannot reshuffle their discard *mid turn.* If this is desired, either add a "force shuffle" 
         after each card is played OR switch back to the standard Deck.Draw() method. On option would be to draw, say, three card hands

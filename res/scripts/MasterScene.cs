@@ -20,8 +20,16 @@ public partial class MasterScene : Node
     private List<int> _enemyIDs;
     private int _playerHP;
 
+    private static MasterScene _instance;
+
+    public static MasterScene GetInstance()
+    {
+        return _instance;
+    }
+
     public override void _Ready()
     {
+        _instance = this;
         _loadedScenes = new();
 
         //LoadScene(_combatSceneUID);
