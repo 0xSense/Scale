@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://lckxk3aqysfo"]
 
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/asset/black_background_square.png" id="1_lo61w"]
-[ext_resource type="Script" path="res://scenes/overworld/Spikes.cs" id="2_53oec"]
+[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="1_lo61w"]
+[ext_resource type="Script" path="res://res/scripts/controllers/platforming/Spikes.cs" id="2_53oec"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcj8e"]
 size = Vector2(28.9999, 6)

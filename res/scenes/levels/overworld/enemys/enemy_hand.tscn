@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cutwu3nhtg776"]
 
-[ext_resource type="Script" path="res://scenes/overworld/enemys/HandEnemy.cs" id="1_bvd53"]
-[ext_resource type="Texture2D" uid="uid://cwv14vj72kxqj" path="res://scenes/overworld/assets/grippy.png" id="2_axmky"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/asset/black_background_square.png" id="3_06fqy"]
+[ext_resource type="Script" path="res://res/scripts/controllers/platforming/HandEnemy.cs" id="1_bvd53"]
+[ext_resource type="Texture2D" uid="uid://duq8wisjrpoxt" path="res://assets/models/grippy.png" id="2_axmky"]
+[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="3_06fqy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_27dgb"]
 

@@ -183,7 +183,6 @@ position = Vector2(42, -1195)
 
 [node name="Doors" type="Node" parent="."]
 
-<<<<<<< HEAD:res/scenes/TestLevel.tscn
 [node name="ShopKeeperDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
@@ -193,17 +192,6 @@ script = null
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
 script = null
-=======
-[node name="door" parent="Doors" node_paths=PackedStringArray("_targetLocation") instance=ExtResource("3_ne5i1")]
-position = Vector2(-542, -600)
-scale = Vector2(0.0516886, 0.13859)
-_targetLocation = NodePath("../../Locations/Room_1")
-
-[node name="door2" parent="Doors" node_paths=PackedStringArray("_targetLocation") instance=ExtResource("3_ne5i1")]
-position = Vector2(12, -600)
-scale = Vector2(0.0516886, 0.13859)
-_targetLocation = NodePath("../../Locations/Room_2")
->>>>>>> 116aac0a80e586ee1b45b07cd2df892007715b5b:scenes/overworld/TestLevel.tscn
 
 [node name="EnemyStage" type="StaticBody2D" parent="."]
 
@@ -258,11 +246,9 @@ offset_left = -101.0
 offset_top = -109.0
 offset_right = 103.0
 offset_bottom = -69.0
-<<<<<<< HEAD:res/scenes/TestLevel.tscn
+
 texture = ExtResource("4_131s4")
 metadata/_edit_use_anchors_ = true
-=======
->>>>>>> 116aac0a80e586ee1b45b07cd2df892007715b5b:scenes/overworld/TestLevel.tscn
 
 [node name="Name" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
 layout_mode = 0
