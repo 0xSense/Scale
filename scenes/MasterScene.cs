@@ -18,6 +18,7 @@ public partial class MasterScene : Node
     private string _lastScene;
 
     private List<int> _enemyIDs;
+    private int _playerHP;
 
     public override void _Ready() 
     {
@@ -26,7 +27,7 @@ public partial class MasterScene : Node
         //LoadScene(_combatSceneUID);
         LoadScene(_defaultSceneUID);
         
-		ActivateScene(_defaultSceneUID, false);
+		ActivateScene(_defaultSceneUID, includeLoad:false);
 		_activeScene = _defaultSceneUID;
 		_lastScene = "";
     }
@@ -42,6 +43,23 @@ public partial class MasterScene : Node
         _enemyIDs = enemyIDs;
     }
 
+    public void SetPlayerHP(int hp)
+    {
+        _playerHP = hp;
+    }
+
+    public int LoadPlayerHP()
+    {
+        return _playerHP;
+    }
+
+    /*
+    TODO: Implement rewards for combat.
+    public void SetPlayerReward();
+    public void LoadPlayerReward();
+    */
+
+
     public void LoadScene(string sceneUID)
     {
         if (_loadedScenes.ContainsKey(sceneUID))
@@ -50,7 +68,7 @@ public partial class MasterScene : Node
         _loadedScenes.Add(sceneUID, scene.Instantiate());
     }
 
-    public void ActivateScene(string uid, bool includeLoad)
+    public void ActivateScene(string uid, bool includeLoad=false, bool forceReload=false)
     {
         if (!_loadedScenes.ContainsKey(uid))
         {
@@ -66,6 +84,7 @@ public partial class MasterScene : Node
         _activeScene = uid;
         AddChild(_loadedScenes[_activeScene]);
     }
+
 
     public void ActivateSceneAndWipeCurrent(string destUID)
     {

@@ -50,13 +50,23 @@ public partial class CombatMain : Node
         }
         Node enemiesParentNode = GetNode("Enemies");
         
-        // int[] unloadedEnemies = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs().ToArray();
-        int[] unloadedEnemies = new int[]{1, 1, 1, 1};
-        enemies = new ICombatant[unloadedEnemies.Length];
+        int[] enemyUIDs;
+        int[] loaded = null;
+        loaded = ((MasterScene) GetTree().Root.GetChild(0)).LoadEnemyIDs()?.ToArray();
+
+        if (loaded != null)            
+            enemyUIDs = loaded;
+        else
+        {
+            GD.Print("No enemy data received from overworld.");
+            enemyUIDs = new int[]{1, 1, 1, 1};
+        }
+        
+        enemies = new ICombatant[enemyUIDs.Length];
 
         int count = 0;
         Enemy newEnemy;
-        foreach (int e in unloadedEnemies)
+        foreach (int e in enemyUIDs)
         {
             newEnemy = (Enemy)_enemyTypesByUID[e].Instantiate();
             //RemoveChild(newEnemy);
@@ -70,13 +80,22 @@ public partial class CombatMain : Node
 
     
     /* TEST - TODO REMOVE*/
-    /*
+    
     public override void _Process(double delta)
     {
          if (Input.IsPhysicalKeyPressed(Key.Space))
         {
             ((MasterScene)GetTree().Root.GetChild(0)).ActivatePreviousScene();
         }
+    }
+    
+
+    /*
+    public void OnTreeEntered()
+    {
+        GD.Print("Entering tree");
+        ICombatant[] enemies = null;
+        PopulateEnemyArray(ref enemies);
     }
     */
 
