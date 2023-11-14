@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://de6otae1c7bon"]
 
-[ext_resource type="Texture2D" uid="uid://dfwboik6u6sgd" path="res://scenes/combat/subscenes/deck/test_deck.png" id="1_7w36g"]
+[ext_resource type="Texture2D" uid="uid://dfwboik6u6sgd" path="res://res/scenes/combat/subscenes/deck/test_deck.png" id="1_7w36g"]
 
 [node name="Deck" type="Sprite2D"]
 texture = ExtResource("1_7w36g")

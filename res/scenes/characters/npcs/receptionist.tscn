@@ -1,10 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgkkhk5ao6if"]
+[gd_scene load_steps=6 format=3 uid="uid://dgkkhk5ao6if"]
 
-[ext_resource type="Script" path="res://scenes/purgatory/npcs/Receptionist.cs" id="1_bpl8e"]
-[ext_resource type="Texture2D" uid="uid://bnn3jol75toh4" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-1.png" id="2_vyyvj"]
-[ext_resource type="Texture2D" uid="uid://by6um3my2bhn0" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-2.png" id="3_i20ya"]
-[ext_resource type="Texture2D" uid="uid://yx20fi2recd5" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-3.png" id="4_cifqc"]
-[ext_resource type="Texture2D" uid="uid://do06r13pd82v6" path="res://assets/placeholder/sunny-land-assets/Graphical Assets/sprites/frog/idle/frog-idle-4.png" id="5_ioew7"]
+[ext_resource type="Script" path="res://res/scripts/controllers/npc/Receptionist.cs" id="1_bpl8e"]
+[ext_resource type="Texture2D" uid="uid://4j652m8h65qs" path="res://assets/models/Slugceptionist.png" id="5_ioew7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qb60k"]
 radius = 8.0
@@ -14,13 +11,13 @@ height = 20.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vyyvj")
+"texture": ExtResource("5_ioew7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_i20ya")
+"texture": ExtResource("5_ioew7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_cifqc")
+"texture": ExtResource("5_ioew7")
 }, {
 "duration": 1.0,
 "texture": ExtResource("5_ioew7")
@@ -41,6 +38,7 @@ shape = SubResource("CapsuleShape2D_qb60k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_x6cei")
 animation = &"Idle"
 

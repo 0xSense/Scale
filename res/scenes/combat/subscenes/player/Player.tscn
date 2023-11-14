@@ -1,15 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjvk42o3wxiyl"]
 
-[ext_resource type="Texture2D" uid="uid://dgiupu1qni7u6" path="res://scenes/combat/subscenes/player/asset/test_player.png" id="1_6w4tj"]
-[ext_resource type="Script" path="res://scenes/combat/subscenes/player/Player.cs" id="2_ws6fc"]
-[ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_ri5e0"]
-[ext_resource type="Shader" path="res://scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="4_x2hpw"]
+[ext_resource type="Texture2D" uid="uid://dgiupu1qni7u6" path="res://res/scenes/combat/subscenes/player/asset/test_player.png" id="1_6w4tj"]
+[ext_resource type="Script" path="res://res/scenes/combat/subscenes/player/Player.cs" id="2_ws6fc"]
+[ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_ri5e0"]
+[ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="4_x2hpw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u6yp"]
 radius = 57.0
 height = 280.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhf2m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hipiv"]
 resource_local_to_scene = true
 shader = ExtResource("4_x2hpw")
 shader_parameter/health_factor = 0.4
@@ -24,5 +24,5 @@ shape = SubResource("CapsuleShape2D_8u6yp")
 texture = ExtResource("1_6w4tj")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_ri5e0")]
-material = SubResource("ShaderMaterial_rhf2m")
+material = SubResource("ShaderMaterial_hipiv")
 position = Vector2(-0.500025, 160.75)

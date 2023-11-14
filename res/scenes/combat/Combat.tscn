@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://res/scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/card/images/artwork/test_card.png" id="10_04n3w"]
 [ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://res/scenes/combat/subscenes/card/images/card_background_trans.png" id="11_be1sx"]
-[ext_resource type="Theme" uid="uid://d0p7lfh0pb83p" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
+[ext_resource type="Theme" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
 [ext_resource type="Script" path="res://res/scenes/combat/EndTurn.cs" id="12_atut3"]
 [ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://res/scenes/combat/subscenes/card/images/card_background.png" id="12_npiqr"]
 [ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://res/scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]

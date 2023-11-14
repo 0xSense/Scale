@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqskjl6vsej8"]
 
-[ext_resource type="Script" path="res://scenes/combat/subscenes/Card/Card.cs" id="1_q4dhy"]
+[ext_resource type="Script" path="res://res/scenes/combat/subscenes/card/Card.cs" id="1_q4dhy"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="2_0qfpw"]
 [ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="3_iu6l8"]
 [ext_resource type="Texture2D" uid="uid://cishxyohwwj8e" path="res://scenes/combat/subscenes/Card/images/card_background_parchment.png" id="4_3c6qu"]

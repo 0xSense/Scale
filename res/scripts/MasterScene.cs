@@ -1,5 +1,5 @@
- /*
- @author Alexander Venezia (Blunderguy)
+/*
+@author Alexander Venezia (Blunderguy)
 */
 
 using Combat;
@@ -20,16 +20,16 @@ public partial class MasterScene : Node
     private List<int> _enemyIDs;
     private int _playerHP;
 
-    public override void _Ready() 
+    public override void _Ready()
     {
         _loadedScenes = new();
 
         //LoadScene(_combatSceneUID);
         LoadScene(_defaultSceneUID);
-        
-		ActivateScene(_defaultSceneUID, includeLoad:false);
-		_activeScene = _defaultSceneUID;
-		_lastScene = "";
+
+        ActivateScene(_defaultSceneUID, includeLoad: false);
+        _activeScene = _defaultSceneUID;
+        _lastScene = "";
     }
 
     public List<int> LoadEnemyIDs()
@@ -68,7 +68,7 @@ public partial class MasterScene : Node
         _loadedScenes.Add(sceneUID, scene.Instantiate());
     }
 
-    public void ActivateScene(string uid, bool includeLoad=false, bool forceReload=false)
+    public void ActivateScene(string uid, bool includeLoad = false, bool forceReload = false)
     {
         if (!_loadedScenes.ContainsKey(uid))
         {

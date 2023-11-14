@@ -35,3 +35,11 @@ res://res/scripts/controllers/Shop.cs
 res://res/scripts/managers/combat/CardData.cs
 res://res/scripts/MasterScene.cs
 res://res/scenes/levels/purgatory/receptionist_door.tscn
+res://res/scenes/characters/npcs/receptionist.tscn
+res://res/scenes/ui/HealthBar.tscn
+res://res/scenes/characters/player/player.tscn
+res://res/scenes/ui/GUI.tscn
+res://res/scripts/controllers/npc/Receptionist.cs
+res://res/scenes/combat/subscenes/deck/Deck.tscn
+res://res/scenes/combat/subscenes/player/Player.tscn
+res://res/scenes/combat/Combat.tscn
