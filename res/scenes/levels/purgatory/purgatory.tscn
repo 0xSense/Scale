@@ -1,11 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://b6a77ow3dkibo"]
+[gd_scene load_steps=32 format=3 uid="uid://b6a77ow3dkibo"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_pc0xt"]
 [ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_ne5i1"]
 [ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="4_131s4"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
-[ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.gd" id="5_sq5ew"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_v6l8l"]
@@ -216,11 +215,8 @@ navigation_polygon = SubResource("NavigationPolygon_ais8d")
 
 [node name="Npcs" type="Node" parent="."]
 
-[node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("shop")]
+[node name="TestNPC" type="Node2D" parent="Npcs"]
 position = Vector2(177, -1171)
-script = ExtResource("5_sq5ew")
-shop = NodePath("../../Shop")
-json_file_path = "res://dialogue/dialogue.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
 scale = Vector2(0.0555556, 0.180556)
