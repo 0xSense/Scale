@@ -1,10 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cshcvcas2jerk"]
-
-[ext_resource type="Script" path="res://res/scripts/controllers/platforming/Player.cs" id="1_kjfuy"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4x2bo"]
-radius = 7.5
-height = 19.0
+[gd_scene load_steps=6 format=3 uid="uid://cshcvcas2jerk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4tdw5"]
 size = Vector2(1150, 50)
@@ -27,22 +21,6 @@ _data = {
 point_count = 3
 
 [node name="player_scene" type="Node2D"]
-
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(71, -8)
-script = ExtResource("1_kjfuy")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(1, 1.24)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 0.5)
-shape = SubResource("CapsuleShape2D_4x2bo")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
-[node name="Area2D" type="Area2D" parent="Player"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(72, 40)

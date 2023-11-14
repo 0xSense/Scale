@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://res/scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://res/scenes/combat/CombatMain.cs" id="1_gps4y"]
-[ext_resource type="Script" path="res://res/scripts/controllers/combat/Hand.cs" id="2_xecqg"]
 [ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://res/scenes/combat/subscenes/card/Card.tscn" id="3_6gjep"]
+[ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Hand.cs" id="4_d0wjn"]
 [ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://res/scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://res/scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/card/images/artwork/test_card.png" id="10_04n3w"]
@@ -35,9 +35,13 @@ radius = 32.0
 script = ExtResource("1_gps4y")
 _enemyTypePaths = Array[String](["uid://gkajlv32sxji"])
 
-[node name="Player" parent="." instance=ExtResource("4_rn6c5")]
+[node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel") instance=ExtResource("4_rn6c5")]
 position = Vector2(-628, 103)
 scale = Vector2(-1, 1)
+_hand = NodePath("../Hand")
+_targetLabel = NodePath("../InfoLabel")
+_actionPointLabel = NodePath("../Energy/ActionPoint/Label")
+_movementPointLabel = NodePath("../Energy/MovementPoint/Label")
 _maxHealth = 25
 
 [node name="Background" parent="." instance=ExtResource("1_5pl1x")]
@@ -48,7 +52,7 @@ transform = Transform2D(0.67, 0, 0, 0.67, 0, 0)
 
 [node name="Hand" type="Marker2D" parent="."]
 position = Vector2(0, 1450)
-script = ExtResource("2_xecqg")
+script = ExtResource("4_d0wjn")
 _openingHandSize = 5
 _cardResource = ExtResource("3_6gjep")
 _scale = Vector2(0.3, 0.3)

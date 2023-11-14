@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_ne5i1"]
 [ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="4_131s4"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="5_co7nw"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
 [ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.gd" id="5_sq5ew"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_0d6dk"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -218,8 +218,8 @@ navigation_polygon = SubResource("NavigationPolygon_ais8d")
 [node name="TestNPC" type="Node2D" parent="Npcs" node_paths=PackedStringArray("player", "shop")]
 position = Vector2(177, -1171)
 script = ExtResource("5_sq5ew")
-player = NodePath("../../Player")
-shop = NodePath("../../Player/Shop")
+player = NodePath("")
+shop = NodePath("../../Shop")
 json_file_path = "res://dialogue/dialogue.json"
 
 [node name="Sprite2D" type="Sprite2D" parent="Npcs/TestNPC"]
@@ -301,15 +301,13 @@ position = Vector2(11.5, 10)
 scale = Vector2(0.0199653, 0.0308641)
 texture = ExtResource("4_131s4")
 
-[node name="Player" parent="." instance=ExtResource("5_co7nw")]
-position = Vector2(-807, -596)
-
-[node name="Shop" type="Node2D" parent="Player"]
+[node name="Shop" type="Node2D" parent="."]
 visible = false
 z_index = 2
+position = Vector2(-807, -596)
 script = ExtResource("8_0pv16")
 
-[node name="TextureRect" type="TextureRect" parent="Player/Shop"]
+[node name="TextureRect" type="TextureRect" parent="Shop"]
 offset_left = -405.0
 offset_top = -237.0
 offset_right = 384.0
@@ -317,7 +315,7 @@ offset_bottom = 219.0
 texture = ExtResource("4_131s4")
 expand_mode = 1
 
-[node name="GridContainer" type="GridContainer" parent="Player/Shop"]
+[node name="GridContainer" type="GridContainer" parent="Shop"]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = -350.0
@@ -329,12 +327,12 @@ theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 0
 columns = 4
 
-[node name="Item_1" type="Panel" parent="Player/Shop/GridContainer"]
+[node name="Item_1" type="Panel" parent="Shop/GridContainer"]
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
 
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_1"]
+[node name="Item_Name" type="Label" parent="Shop/GridContainer/Item_1"]
 layout_mode = 0
 offset_top = -41.0
 offset_right = 56.0
@@ -343,18 +341,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
 text = "Item 1"
 
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_1"]
+[node name="Button" type="Button" parent="Shop/GridContainer/Item_1"]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 250.0
 flat = true
 
-[node name="Item_2" type="Panel" parent="Player/Shop/GridContainer"]
+[node name="Item_2" type="Panel" parent="Shop/GridContainer"]
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
 
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_2"]
+[node name="Item_Name" type="Label" parent="Shop/GridContainer/Item_2"]
 layout_mode = 0
 offset_top = -41.0
 offset_right = 56.0
@@ -363,18 +361,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
 text = "Item 2"
 
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_2"]
+[node name="Button" type="Button" parent="Shop/GridContainer/Item_2"]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 250.0
 flat = true
 
-[node name="Item_3" type="Panel" parent="Player/Shop/GridContainer"]
+[node name="Item_3" type="Panel" parent="Shop/GridContainer"]
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
 
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_3"]
+[node name="Item_Name" type="Label" parent="Shop/GridContainer/Item_3"]
 layout_mode = 0
 offset_top = -41.0
 offset_right = 56.0
@@ -383,18 +381,18 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
 text = "Item 3"
 
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_3"]
+[node name="Button" type="Button" parent="Shop/GridContainer/Item_3"]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 250.0
 flat = true
 
-[node name="Item_4" type="Panel" parent="Player/Shop/GridContainer"]
+[node name="Item_4" type="Panel" parent="Shop/GridContainer"]
 custom_minimum_size = Vector2(150, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
 
-[node name="Item_Name" type="Label" parent="Player/Shop/GridContainer/Item_4"]
+[node name="Item_Name" type="Label" parent="Shop/GridContainer/Item_4"]
 layout_mode = 0
 offset_top = -41.0
 offset_right = 56.0
@@ -404,13 +402,13 @@ theme_override_font_sizes/font_size = 34
 text = "Item 4
 "
 
-[node name="Button" type="Button" parent="Player/Shop/GridContainer/Item_4"]
+[node name="Button" type="Button" parent="Shop/GridContainer/Item_4"]
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 250.0
 flat = true
 
-[node name="Title" type="Label" parent="Player/Shop"]
+[node name="Title" type="Label" parent="Shop"]
 offset_left = -391.0
 offset_top = -222.0
 offset_right = -335.0
@@ -419,7 +417,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 34
 text = "Shop"
 
-[node name="Close" type="Button" parent="Player/Shop"]
+[node name="Close" type="Button" parent="Shop"]
 offset_left = 303.0
 offset_top = -222.0
 offset_right = 361.0
@@ -429,14 +427,17 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
+[node name="Player" parent="." instance=ExtResource("9_0d6dk")]
+position = Vector2(-811, -585)
+
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
 [connection signal="body_entered" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="Npcs/TestNPC/Dialogue/Options/Button_1" to="Npcs/TestNPC" method="_on_button_1_pressed"]
 [connection signal="pressed" from="Npcs/TestNPC/Dialogue/Options/Button_2" to="Npcs/TestNPC" method="_on_button_2_pressed"]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_1/Button" to="Player/Shop" method="ButtonItem" binds= [1]]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_2/Button" to="Player/Shop" method="ButtonItem" binds= [2]]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_3/Button" to="Player/Shop" method="ButtonItem" binds= [3]]
-[connection signal="pressed" from="Player/Shop/GridContainer/Item_4/Button" to="Player/Shop" method="ButtonItem" binds= [4]]
-[connection signal="pressed" from="Player/Shop/Close" to="Player/Shop" method="OnClosePressed"]
+[connection signal="pressed" from="Shop/GridContainer/Item_1/Button" to="Shop" method="ButtonItem" binds= [1]]
+[connection signal="pressed" from="Shop/GridContainer/Item_2/Button" to="Shop" method="ButtonItem" binds= [2]]
+[connection signal="pressed" from="Shop/GridContainer/Item_3/Button" to="Shop" method="ButtonItem" binds= [3]]
+[connection signal="pressed" from="Shop/GridContainer/Item_4/Button" to="Shop" method="ButtonItem" binds= [4]]
+[connection signal="pressed" from="Shop/Close" to="Shop" method="OnClosePressed"]

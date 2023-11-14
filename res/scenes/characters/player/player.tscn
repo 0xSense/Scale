@@ -17,7 +17,7 @@ _walkSpeed = 450.0
 _sprintSpeed = 1020.0
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerSkin" type="Sprite2D" parent="."]
 position = Vector2(1.34171, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_185j4")

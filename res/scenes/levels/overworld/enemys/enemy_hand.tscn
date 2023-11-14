@@ -6,11 +6,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_27dgb"]
 
-[node name="enemy" type="Node2D" node_paths=PackedStringArray("_attackTimer", "_findTimer", "_holdPositionTimer")]
+[node name="enemy" type="Node2D"]
 script = ExtResource("1_bvd53")
-_attackTimer = NodePath("")
-_findTimer = NodePath("")
-_holdPositionTimer = NodePath("")
 
 [node name="Body" type="CharacterBody2D" parent="."]
 
