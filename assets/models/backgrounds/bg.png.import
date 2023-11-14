@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6b8bplmp4nov"
-path="res://.godot/imported/bg.png-99972f08e3ecca58cf8b4410135bca01.ctex"
+path="res://.godot/imported/bg.png-24cd0d8ee389dba392640567f6863122.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/asset/backgrounds/bg.png"
-dest_files=["res://.godot/imported/bg.png-99972f08e3ecca58cf8b4410135bca01.ctex"]
+source_file="res://assets/models/backgrounds/bg.png"
+dest_files=["res://.godot/imported/bg.png-24cd0d8ee389dba392640567f6863122.ctex"]
 
 [params]
 

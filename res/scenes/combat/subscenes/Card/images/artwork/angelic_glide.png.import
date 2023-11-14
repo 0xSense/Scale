@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwlgc4t03a1se"
-path="res://.godot/imported/angelic_glide.png-da7fe88261cad1ef47113d98455674b5.ctex"
+path="res://.godot/imported/angelic_glide.png-cabb4511a5c172d0c331dc766afe6c21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/subscenes/Card/images/artwork/angelic_glide.png"
-dest_files=["res://.godot/imported/angelic_glide.png-da7fe88261cad1ef47113d98455674b5.ctex"]
+source_file="res://res/scenes/combat/subscenes/card/images/artwork/angelic_glide.png"
+dest_files=["res://.godot/imported/angelic_glide.png-cabb4511a5c172d0c331dc766afe6c21.ctex"]
 
 [params]
 

@@ -110,11 +110,7 @@ public struct DamageDice
     }
 }
 
-<<<<<<< HEAD:res/scripts/managers/combat/CardData.cs
-public partial class CardData : Resource
-=======
 public struct Resistance
->>>>>>> 116aac0a80e586ee1b45b07cd2df892007715b5b:data_resources/card_data/CardData.cs
 {
     public DamageType Type;
     public int Duration;
@@ -141,7 +137,7 @@ public struct Debuff
 
 
 public partial class CardData : Resource
-{    
+{
     [ExportGroup("Appearance")]
     [Export] private string _name;
     [Export] private string _description;
@@ -157,7 +153,7 @@ public partial class CardData : Resource
 
     public string Name => _name;
     public string Description => _description;
-    
+
     public CardRarity Rarity => _rarity;
     public CardType Type => _type;
     public int ActionPointCost => _actionPointCost;
@@ -165,7 +161,7 @@ public partial class CardData : Resource
 
     [Export] private TargetType _target;
     public TargetType Target => _target;
-    
+
     [ExportGroup("Damage")]
     // Damage and damage types
     [Export] private Godot.Collections.Array<DamageType> _damageTypes = new();
@@ -193,7 +189,7 @@ public partial class CardData : Resource
     [Export] private Godot.Collections.Array<int> _debuffDuration = new(); // Turn based, not seconds
     // public Dictionary<DebuffType, int> Debuffs;
     public List<Debuff> Debuffs;
-    
+
 
     private int _uid;
     public int UID => _uid;
@@ -210,7 +206,7 @@ public partial class CardData : Resource
         DrawEffects = new();
         Buffs = new();
         Debuffs = new();
-       
+
         int i = 0;
         DamageDice dice;
         int dieQuantity;
@@ -300,8 +296,8 @@ public partial class CardData : Resource
         foreach (DebuffType d in _debuffs)
         {
             Debuff dB = new();
-            dB.Type = d;           
-            dB.Duration = _debuffDuration[i]; 
+            dB.Type = d;
+            dB.Duration = _debuffDuration[i];
             Debuffs.Add(dB);
             i++;
         }
@@ -318,14 +314,14 @@ public partial class CardData : Resource
         return _uid == ((CardData)obj).UID;
     }
 
-    public static bool operator == (CardData c1, CardData c2)
+    public static bool operator ==(CardData c1, CardData c2)
     {
         if ((object)c1 == null)
             return (object)c2 == null;
         return c1.Equals(c2);
     }
 
-    public static bool operator != (CardData c1, CardData c2)
+    public static bool operator !=(CardData c1, CardData c2)
     {
         return !(c1 == c2);
     }
@@ -339,8 +335,6 @@ public partial class CardData : Resource
     {
         return "Card " + _name;
     }
-
-
 
 }
 

@@ -76,7 +76,7 @@ public class Deck
     }
 
     public void Discard(CardData[] cards)
-    {        
+    {
         foreach (var c in cards)
             Discard(c);
     }
@@ -106,16 +106,11 @@ public class Deck
     {
         Random rand = CombatManager.GetInstance().RNG;
         CardData[] cards = new CardData[numCards];
-        
+
         for (int i = 0; i < numCards; i++)
         {
             ShuffleIfNecessary();
 
-<<<<<<< HEAD:res/scripts/controllers/combat/Deck.cs
-        // TODO: Implement. Draw in order from _mainDeck. If it empties, shuffle _discard and swap before continuing to draw.
-
-        // _mainDeck.RemoveLast();
-=======
             if (_mainDeck.Count <= 0)
             {
                 cards[i] = null;
@@ -124,9 +119,8 @@ public class Deck
             cards[i] = _mainDeck.Last.Value;
             _mainDeck.RemoveLast();
             RemoveCard(cards[i], false);
-            
+
         }
->>>>>>> 116aac0a80e586ee1b45b07cd2df892007715b5b:systems/combat/Deck.cs
 
         return cards;
     }
@@ -168,7 +162,7 @@ public class Deck
             AddCard(c);
         }
 
-        _discard.Clear();   
+        _discard.Clear();
     }
 
     private void ShuffleIfNecessary()
@@ -181,19 +175,20 @@ public class Deck
                 AddCard(c);
             }
 
-            _discard.Clear();            
+            _discard.Clear();
         }
     }
 
-    public static void Shuffle(List<CardData> list)  
-    {  
-        int n = list.Count;  
-        while (n > 1) {  
-            n--;  
-            int k = CombatManager.GetInstance().RNG.Next(n + 1);  
-            CardData swap = list[k];  
-            list[k] = list[n];  
-            list[n] = swap;  
-        }  
+    public static void Shuffle(List<CardData> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = CombatManager.GetInstance().RNG.Next(n + 1);
+            CardData swap = list[k];
+            list[k] = list[n];
+            list[n] = swap;
+        }
     }
 }

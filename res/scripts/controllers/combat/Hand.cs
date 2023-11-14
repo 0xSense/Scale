@@ -18,8 +18,6 @@ public class Hand
     {
         CardData played = _hand.ElementAt(index);
 
-        
-
         return played;
     }
 

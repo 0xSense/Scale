@@ -1,24 +1,19 @@
-<<<<<<< HEAD:res/scenes/TestLevel.tscn
-[gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
-=======
-[gd_scene load_steps=28 format=3 uid="uid://dvjwpfs6wm2j4"]
->>>>>>> 116aac0a80e586ee1b45b07cd2df892007715b5b:scenes/overworld/TestLevel.tscn
 
-[ext_resource type="Script" path="res://scenes/overworld/TestLevel.cs" id="1_pc0xt"]
-[ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://scenes/overworld/assets/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
-<<<<<<< HEAD:res/scenes/TestLevel.tscn
-[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/Door.tscn" id="3_ne5i1"]
-[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/asset/combat_environment.png" id="4_131s4"]
-=======
-[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://scenes/overworld/objects/door.tscn" id="3_ne5i1"]
-[ext_resource type="Script" path="res://scenes/overworld/npcs/npc.cs" id="5_ayw20"]
->>>>>>> 116aac0a80e586ee1b45b07cd2df892007715b5b:scenes/overworld/TestLevel.tscn
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://scenes/overworld/player.tscn" id="5_co7nw"]
-[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://scenes/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
-[ext_resource type="Script" path="res://scenes/overworld/npcs/npc.gd" id="5_sq5ew"]
-[ext_resource type="FontFile" uid="uid://b4u1ukisjtk5t" path="res://fonts/18thCentury.ttf" id="6_3yiat"]
-[ext_resource type="Script" path="res://scenes/overworld/Shop.cs" id="8_0pv16"]
-[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/asset/black_background_square.png" id="8_xb7gt"]
+[gd_scene load_steps=32 format=3 uid="uid://c336oofsl335u"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_pc0xt"]
+[ext_resource type="Texture2D" uid="uid://bgqpkxkx1pp7v" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
+
+[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_ne5i1"]
+[ext_resource type="Texture2D" uid="uid://pa7i20fvwdqa" path="res://assets/models/combat_environment.png" id="4_131s4"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.cs" id="5_ayw20"]
+
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="5_co7nw"]
+[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://assets/models/grippy.png" id="5_kojqv"]
+[ext_resource type="Script" path="res://res/scripts/controllers/dialogue/npc.gd" id="5_sq5ew"]
+[ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
+[ext_resource type="Texture2D" uid="uid://c6vlylv4mg1io" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)

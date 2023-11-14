@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv421tfpuq0g6"
-path="res://.godot/imported/card_background.png-d72211c184688d72f24d0a2abbb5e85c.ctex"
+path="res://.godot/imported/card_background.png-660d81ada7c0054f355bc10eab85e6c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/subscenes/Card/images/card_background.png"
-dest_files=["res://.godot/imported/card_background.png-d72211c184688d72f24d0a2abbb5e85c.ctex"]
+source_file="res://res/scenes/combat/subscenes/card/images/card_background.png"
+dest_files=["res://.godot/imported/card_background.png-660d81ada7c0054f355bc10eab85e6c3.ctex"]
 
 [params]
 

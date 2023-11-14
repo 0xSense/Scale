@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wkaiw4al4ts8"
-path="res://.godot/imported/purgatory.png-edb18883aa717a5531150003e26f47f5.ctex"
+path="res://.godot/imported/purgatory.png-7d9713f56b04c8cc5d3d367ce456ff87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/combat/subscenes/background/purgatory.png"
-dest_files=["res://.godot/imported/purgatory.png-edb18883aa717a5531150003e26f47f5.ctex"]
+source_file="res://res/scenes/combat/subscenes/background/purgatory.png"
+dest_files=["res://.godot/imported/purgatory.png-7d9713f56b04c8cc5d3d367ce456ff87.ctex"]
 
 [params]
 
