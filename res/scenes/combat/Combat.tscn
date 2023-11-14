@@ -1,0 +1,221 @@
+[gd_scene load_steps=20 format=3 uid="uid://bk6mw4uwgd1yl"]
+
+[ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
+[ext_resource type="Script" path="res://scenes/combat/CombatMain.cs" id="1_gps4y"]
+[ext_resource type="Script" path="res://scenes/combat/subscenes/hand/Hand.cs" id="2_xecqg"]
+[ext_resource type="PackedScene" uid="uid://dqskjl6vsej8" path="res://scenes/combat/subscenes/Card/Card.tscn" id="3_6gjep"]
+[ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
+[ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
+[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
+[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
+[ext_resource type="Theme" uid="uid://d0p7lfh0pb83p" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
+[ext_resource type="Script" path="res://scenes/combat/EndTurn.cs" id="12_atut3"]
+[ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
+[ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]
+[ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
+[ext_resource type="Script" path="res://scenes/combat/FloatingTextFactory.cs" id="14_46n5p"]
+[ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xqp2"]
+
+[sub_resource type="Gradient" id="Gradient_5qtr3"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.572848, 0.794702)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hidsq"]
+gradient = SubResource("Gradient_5qtr3")
+fill_from = Vector2(1, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jepx"]
+radius = 32.0
+
+[node name="Combat" type="Node2D"]
+script = ExtResource("1_gps4y")
+_enemyTypePaths = Array[String](["uid://gkajlv32sxji"])
+
+[node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel") instance=ExtResource("4_rn6c5")]
+position = Vector2(-628, 103)
+scale = Vector2(-1, 1)
+_hand = NodePath("../Hand")
+_targetLabel = NodePath("../InfoLabel")
+_actionPointLabel = NodePath("../Energy/ActionPoint/Label")
+_movementPointLabel = NodePath("../Energy/MovementPoint/Label")
+_maxHealth = 25
+
+[node name="Background" parent="." instance=ExtResource("1_5pl1x")]
+scale = Vector2(0.67, 0.67)
+transform = Transform2D(0.67, 0, 0, 0.67, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hand" type="Marker2D" parent="."]
+position = Vector2(0, 1450)
+script = ExtResource("2_xecqg")
+_openingHandSize = 5
+_cardResource = ExtResource("3_6gjep")
+_scale = Vector2(0.3, 0.3)
+_handArc = 25.0
+_radius = 900.0
+
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Deck" parent="." instance=ExtResource("9_5f4rp")]
+position = Vector2(842, 379)
+scale = Vector2(0.35, 0.325)
+
+[node name="Discard" type="Sprite2D" parent="."]
+position = Vector2(-847, 481)
+scale = Vector2(0.21, 0.21)
+
+[node name="Card" type="Sprite2D" parent="Discard"]
+
+[node name="Art" type="Sprite2D" parent="Discard/Card"]
+z_index = 1
+position = Vector2(0, -753.805)
+texture = ExtResource("10_04n3w")
+
+[node name="Background" type="Sprite2D" parent="Discard/Card"]
+z_index = 1
+position = Vector2(0, -499)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("11_be1sx")
+
+[node name="BackroundWhite" type="Sprite2D" parent="Discard/Card"]
+position = Vector2(0, -499)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("12_npiqr")
+
+[node name="NameLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = -306.0
+offset_top = -471.0
+offset_right = 310.0
+offset_bottom = -381.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]Name[/center]"
+threaded = true
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = -306.0
+offset_top = -375.0
+offset_right = 306.0
+offset_bottom = -211.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center]Description of the card - intended to be flavor text."
+threaded = true
+
+[node name="DamageLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = -306.0
+offset_top = -194.0
+offset_right = -21.0
+offset_bottom = -42.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[color=red]1d8 + 4[/color] [img=40]assets/placeholder/damage_icons/fire.png[/img]"
+threaded = true
+
+[node name="TargetsLabel" type="RichTextLabel" parent="Discard/Card"]
+offset_left = 23.0
+offset_top = -194.0
+offset_right = 307.0
+offset_bottom = -42.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[right]Target info here"
+threaded = true
+
+[node name="ActionPointIcon" type="Sprite2D" parent="Discard/Card"]
+z_index = 2
+position = Vector2(-370, -1010)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_ey1xf")
+
+[node name="ActionPointNumber" type="Label" parent="Discard/Card/ActionPointIcon"]
+offset_left = -62.0
+offset_top = -118.0
+offset_right = 58.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 150
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovementPointIcon" type="Sprite2D" parent="Discard/Card"]
+z_index = 2
+position = Vector2(368, -1003)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_epm16")
+
+[node name="Energy" type="Node2D" parent="."]
+
+[node name="MovementPoint" type="Sprite2D" parent="Energy"]
+position = Vector2(690, 314)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_epm16")
+
+[node name="Label" type="Label" parent="Energy/MovementPoint"]
+offset_left = -28.0
+offset_top = -52.0
+offset_right = 29.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 100
+text = "1"
+
+[node name="ActionPoint" type="Sprite2D" parent="Energy"]
+position = Vector2(690, 392)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_ey1xf")
+
+[node name="Label" type="Label" parent="Energy/ActionPoint"]
+offset_left = -24.0
+offset_top = -76.0
+offset_right = 33.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 100
+text = "3"
+
+[node name="Sprite2D" type="Sprite2D" parent="Energy"]
+z_index = -1
+material = SubResource("ShaderMaterial_1xqp2")
+position = Vector2(661, 401)
+scale = Vector2(10.6875, 4.57422)
+texture = SubResource("GradientTexture2D_hidsq")
+
+[node name="InfoLabel" type="RichTextLabel" parent="."]
+offset_left = -587.0
+offset_top = -439.0
+offset_right = 586.0
+offset_bottom = -269.0
+theme = ExtResource("12_0sia7")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center][color=#BB5545]Select Targets[/color]"
+
+[node name="EndTurn" type="Area2D" parent="."]
+position = Vector2(690, 475)
+script = ExtResource("12_atut3")
+
+[node name="Icon" type="Sprite2D" parent="EndTurn"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("12_y8ifr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndTurn"]
+shape = SubResource("CircleShape2D_1jepx")
+
+[node name="FloatingTextFactory" type="Node2D" parent="."]
+script = ExtResource("14_46n5p")
+_theme = ExtResource("12_0sia7")
+_fontSize = 50
+
+[connection signal="input_event" from="EndTurn" to="Player" method="OnEndTurnButtonInput"]
+[connection signal="input_event" from="EndTurn" to="EndTurn" method="OnInputEvent"]
+[connection signal="mouse_entered" from="EndTurn" to="EndTurn" method="OnMouseEntered"]
+[connection signal="mouse_exited" from="EndTurn" to="EndTurn" method="OnMouseExited"]

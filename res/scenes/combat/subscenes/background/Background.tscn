@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5xfakfw8o7lh"]
+
+[ext_resource type="Texture2D" uid="uid://wkaiw4al4ts8" path="res://scenes/combat/subscenes/background/purgatory.png" id="1_c71om"]
+
+[node name="Background" type="ParallaxBackground"]
+follow_viewport_enabled = true
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_c71om")

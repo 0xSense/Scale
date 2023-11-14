@@ -1,4 +1,10 @@
 /*
+ @author Alexander Venezia (Blunderguy)
+*/
+
+
+/*
+
     All combatants should fully implement ICombatant. CombatManager will function only with ICombatant-implementing nodes.
 
     Overview:
@@ -17,17 +23,35 @@
 
 namespace Systems.Combat;
 
+using System.Collections.Generic;
 using Data;
 
 public interface ICombatant
 {
+    public abstract int GetHealth();
     public abstract void BeginTurn();
-    public abstract void TakeDamage(DamageType type, float amount);
+    public abstract void EndTurn();
+    public abstract void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit, bool autoResist);
     public abstract bool IsDead();
     public abstract int GetActionPoints();
     public abstract int GetMovementPoints();
     public abstract Deck GetDeck();
     public abstract void BurnActionPoints(int burn); // If this function reduces action points below zero, set them to zero.
     public abstract void BurnMovementPoints(int burn); // If this function reduces movement points below zero, set them to zero.
+    public abstract int GetArmor();
+    public abstract void AddArmor(int armor);
+    public abstract void AddResistance(DamageType resistance, int turns);
+    public abstract int GetCritChance();
+    public abstract double GetCritModifier();
+    public Dictionary<Data.DamageType, int> GetResistances();
+    public void StartFight();
+
+    public void ApplyBuff(Buff buff);
+    public void ApplyDebuff(Debuff debuff);
+    public bool HasDebuff(DebuffType type);
+    public void DrawCards(int n);
+    public void DiscardCards(int n);
+    public void ReturnCards(int n);
+    public void EndFight(EndState result);
     
 }

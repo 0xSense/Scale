@@ -1,4 +1,8 @@
 /*
+ @author Alexander Venezia (Blunderguy)
+*/
+
+/*
     ** NOTE: This class is INCOMPLETE. Any behaviors you need which it does not currently provide should be immediately send to Blunderguy (Alex). Please do not implement a hacky workaround instead. **
     Also, as I (Blunderguy) have not been able to thoroughly test any of this backend combat behavior without a complementary frontend, bugs are a probability. Please inform me of any possible or certain
     bugs you encounter as soon as possible.
@@ -33,8 +37,15 @@ namespace Systems.Combat;
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Combat;
 using Data;
-using Systems.Combat;
+using Godot;
+
+public enum EndState
+{
+    VICTORY,
+    DEFEAT
+}
 
 public class CombatManager
 {
@@ -48,8 +59,10 @@ public class CombatManager
     private ICombatant[] _moveOrder;
     public ICombatant[] MoveOrder => _moveOrder;
     private int _currentToMove;
+    public ICombatant ToMove => _moveOrder[_currentToMove];
 
     private static CombatManager _instance;
+    private bool _isOver;
     
     public static CombatManager GetInstance()
     {
@@ -58,8 +71,25 @@ public class CombatManager
         return _instance;
     }
 
+    public int GetRemainingEnemies()
+    {
+        int remaining = 0;
+
+        foreach (ICombatant enemy in _enemies)
+        {
+            if (!enemy.IsDead())
+                remaining++;
+        }
+        
+        return remaining;
+    }
+
     public void NewFight(ICombatant player, ICombatant[] enemies)
     {
+        GD.Print("Fight has begun");
+
+        _isOver = false;
+
         _player = player;
         _enemies = enemies;
 
@@ -71,18 +101,36 @@ public class CombatManager
             _moveOrder[++i] = c;        
 
         _currentToMove = 0;
+        _player.StartFight();
+
+        _player.BeginTurn();
     }
 
     public bool PlayCard(ICombatant cardPlayer, ICombatant[] targets, CardData card)
     {
-        if (cardPlayer.GetActionPoints() <= card.ActionPointCost || cardPlayer.GetMovementPoints() <= card.MovementPointCost)
-            return false;
+        if (card.Target == TargetType.SELF && cardPlayer == _player)
+        {
+            targets = new ICombatant[]{_player};
+        }
+        else if (card.Target == TargetType.ALL)
+        {
+            targets = _moveOrder;
+        }
+
+        if (cardPlayer.GetActionPoints() < card.ActionPointCost || cardPlayer.GetMovementPoints() < card.MovementPointCost)
+            throw new Exception("TOO FEW POINTS " + card.Name);
         
         if (!VerifyTargeting(cardPlayer, targets, card))
-            return false;
+            throw new Exception ("TARGETING INVALID " + card.Name);
 
+        
+
+
+        /*
+        No real need for this.
         if (!VerifyDeck(cardPlayer.GetDeck(), card))
             return false;
+        */
 
         // Put any other necessary verification here
         // . . .
@@ -93,14 +141,71 @@ public class CombatManager
         {
             foreach (DamageType dt in card.Damage.Keys)
             {
-                target.TakeDamage(dt, Roll(card.Damage[dt]));
+                bool isAutoResisted = (cardPlayer.HasDebuff(DebuffType.TRAUMATIZED) && !IsPhysicalDamage(dt)) ||
+                        (cardPlayer.HasDebuff(DebuffType.CRIPPLED) && IsPhysicalDamage(dt))
+                    ;
+
+                target.TakeDamage(dt, Roll(card.Damage[dt]), cardPlayer.GetCritModifier(), RollForCrit(cardPlayer.GetCritChance()), autoResist:isAutoResisted);
+            }
+
+            foreach (Buff b in card.Buffs)
+            {
+                target.ApplyBuff(b);
+            }
+
+            foreach (Debuff d in card.Debuffs)
+            {
+                target.ApplyDebuff(d);
+            }
+
+            foreach (DrawEffect de in card.DrawEffects.Keys)
+            {
+                switch (de)
+                {
+                    case DrawEffect.DRAW:
+                    cardPlayer.DrawCards(card.DrawEffects[de]);
+                    break;
+                    case DrawEffect.RETURN:
+                    cardPlayer.ReturnCards(card.DrawEffects[de]);
+                    break;
+                    case DrawEffect.DISCARD:
+                    cardPlayer.DiscardCards(card.DrawEffects[de]);
+                    break;
+                    case DrawEffect.GRAB:
+                    throw new NotImplementedException("GRAB not implemented yet.");
+                    default:
+                    throw new Exception("Invalid draw effect.");
+                }
             }
         }
+
+        cardPlayer.BurnActionPoints(card.ActionPointCost);
+        cardPlayer.BurnMovementPoints(card.MovementPointCost);
 
         // Remove card from playing combatant's deck here
         // . . .
 
         return true; // TODO: Complete function
+    }
+
+    private bool IsPhysicalDamage(DamageType damage)
+    {
+        switch (damage)
+        {
+            case DamageType.SHARP:
+            return true;
+            case DamageType.BLUNT:
+            return true;
+            case DamageType.PIERCING:
+            return true;
+            default:
+            return false;
+        }
+    }
+
+    private bool RollForCrit(int percentChance)
+    {
+        return (RNG.Next(100)+1) < percentChance;
     }
 
     public void EndTurn(ICombatant current)
@@ -119,14 +224,19 @@ public class CombatManager
                 break;
             case TargetType.SELF:
                 if (targets[0] != cardPlayer)
+                {
+                    GD.Print("ERR: " + targets.Length);
+                    GD.Print(targets[0] == _player);
+
                     return false;
+                }
                 break;
             case TargetType.MULTI_TWO:
-                if (targets.Length != 2)
+                if (targets.Length > 2)
                     return false;
                 break;
             case TargetType.MULTI_THREE:
-                if (targets.Length != 3)
+                if (targets.Length > 3)
                         return false;
                 break;
             case TargetType.ALL:
@@ -143,12 +253,32 @@ public class CombatManager
 
     private void AdvanceInitiative()
     {
+        if (_isOver)
+            return;
+            
+        if (_player.IsDead())
+        {
+            _isOver = true;
+            _player.EndFight(EndState.DEFEAT);
+            return;
+        }
+
+        int _endingTurn = _currentToMove;
         while (true)
         {
-            if (_currentToMove >= _moveOrder.Length)
-                _currentToMove = 0;
+            if (_currentToMove >= _moveOrder.Length-1)
+                _currentToMove = -1;
             if (!_moveOrder[++_currentToMove].IsDead())
                 break;
+        }
+
+        if (_endingTurn != _currentToMove)
+            _moveOrder[_currentToMove].BeginTurn();
+        else
+        {
+            // Battle is over and player is alive
+            _isOver = true;
+            _player.EndFight(EndState.VICTORY);
         }
     }
 
@@ -157,13 +287,13 @@ public class CombatManager
         int damageTotal = 0;
 
         for (int i = 0; i < dice.d4; i++)        
-            damageTotal += _random.Next(1, 4);
+            damageTotal += _random.Next(4) + 1;
         for (int i = 0; i < dice.d6; i++)        
-            damageTotal += _random.Next(1, 6);
+            damageTotal += _random.Next(6) + 1;
         for (int i = 0; i < dice.d8; i++)        
-            damageTotal += _random.Next(1, 8);
+            damageTotal += _random.Next(8) + 1;
         for (int i = 0; i < dice.d10; i++)        
-            damageTotal += _random.Next(1, 10);
+            damageTotal += _random.Next(10) + 1;
         
         damageTotal += dice.flat;
 

@@ -77,7 +77,6 @@ navigation_polygon = SubResource("NavigationPolygon_a1m6g")
 
 [node name="enemy" parent="." instance=ExtResource("5_mr0me")]
 position = Vector2(388, 22)
-script = null
 
 [node name="Area2D" type="Area2D" parent="enemy"]
 

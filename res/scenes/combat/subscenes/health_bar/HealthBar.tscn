@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://ogl7y7epfib"]
+
+[ext_resource type="Shader" path="res://scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="1_wna6x"]
+[ext_resource type="Script" path="res://scenes/combat/subscenes/health_bar/HealthBar.cs" id="2_aoqhq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apwcl"]
+resource_local_to_scene = true
+shader = ExtResource("1_wna6x")
+shader_parameter/health_factor = 0.4
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_msekc"]
+
+[node name="HealthBar" type="Sprite2D"]
+material = SubResource("ShaderMaterial_apwcl")
+scale = Vector2(160, 12)
+texture = SubResource("CanvasTexture_msekc")
+script = ExtResource("2_aoqhq")
