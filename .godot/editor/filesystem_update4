@@ -1,13 +1,3 @@
-res://res/scenes/combat/Combat.tscn
-res://res/resources/cards/AngelicGlide.tres
-res://res/resources/cards/Blessed.tres
-res://res/resources/cards/DivineSmite.tres
-res://res/resources/cards/GodsUniform.tres
-res://res/resources/cards/HellsGrasp.tres
-res://res/resources/cards/HolyWater.tres
-res://res/resources/cards/SwordOfMessenger.tres
-res://res/scenes/MasterScene.tscn
-res://res/scenes/combat/subscenes/player/Player.tscn
 res://res/scenes/combat/Combatant.cs
 res://res/scenes/combat/CombatMain.cs
 res://res/scenes/combat/EndTurn.cs

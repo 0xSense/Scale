@@ -37,9 +37,12 @@ public partial class Player : Combatant
     private Card _currentlyTargeting;
     private List<ICombatant> _targeted = new();
     private int _toDiscard; // Refers to either discarding or returning
+    private bool _firstTurn;
 
     public override void _Ready()
     {
+        GD.Print("Ready");
+        _firstTurn = true;
         base._Ready();
         _toDiscard = 0;
         _state = PlayerState.SELECTING_CARD;
@@ -55,17 +58,20 @@ public partial class Player : Combatant
     {
         base.StartFight();
         SyncDeck();
-        _internalDeck.ForceShuffle();
-        GD.Print(_internalDeck.GetCardCount());
+
+        _internalDeck.ForceShuffle();        
+
         _hand.DrawOpeningHand(_internalDeck);
     }
 
     public override void BeginTurn()
     {
         base.BeginTurn();
+        if (!_firstTurn)
+            _hand.AddCards(_internalDeck.Draw(2));
+        _firstTurn = false;
         _actionPointLabel.Text = _actionPoints.ToString();
         _movementPointLabel.Text = _movementPoints.ToString();
-        GD.Print("Begin player turn");
     }
 
     public override void _PhysicsProcess(double delta)
