@@ -1,34 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj": {}
+    "C:\\dev\\GodotProjects\\GameOff2023\\Scale\\Scale.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj": {
+    "C:\\dev\\GodotProjects\\GameOff2023\\Scale\\Scale.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj",
+        "projectUniqueName": "C:\\dev\\GodotProjects\\GameOff2023\\Scale\\Scale.csproj",
         "projectName": "Scale",
-        "projectPath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj",
-        "packagesPath": "C:\\Users\\nashl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "C:\\dev\\GodotProjects\\GameOff2023\\Scale\\Scale.csproj",
+        "packagesPath": "C:\\Users\\Alexander\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\GodotProjects\\GameOff2023\\Scale\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\nashl\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Alexander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

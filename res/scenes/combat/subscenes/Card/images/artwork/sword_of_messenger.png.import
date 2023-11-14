@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cex47axkwj3ax"
-path="res://.godot/imported/holy_smite_filtered1.png-d04e657eeb51846719c6ef8f20922c61.ctex"
+uid="uid://blxsauvyq1pr8"
+path="res://.godot/imported/sword_of_messenger.png-03fac4df55ca2c7f52526e8ac4831ce4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://res/scenes/combat/subscenes/Card/images/artwork/holy_smite_filtered1.png"
-dest_files=["res://.godot/imported/holy_smite_filtered1.png-d04e657eeb51846719c6ef8f20922c61.ctex"]
+source_file="res://res/scenes/combat/subscenes/Card/images/artwork/sword_of_messenger.png"
+dest_files=["res://.godot/imported/sword_of_messenger.png-03fac4df55ca2c7f52526e8ac4831ce4.ctex"]
 
 [params]
 

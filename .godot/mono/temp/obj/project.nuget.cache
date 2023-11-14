@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "i908vhhoNrcb1SRO0tc2iBAdVFZ1/Nq1mZXTZ1ujbQdz2LMV/b8OpsAhV6MBletuRXlggGynMSQ3zS91d6HH0w==",
+  "dgSpecHash": "gXatS4wJdZIhkZeOiEHou8OEr4TuCEFBm3jDHqxCU5RaEzt6xaCiwCgEEusiSqUMJ5eMpd0ruPNnL5luLhUh1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nashl\\Projects\\Github\\AAA-GAME\\helloWorld\\Scale\\Scale.csproj",
+  "projectFilePath": "C:\\dev\\GodotProjects\\GameOff2023\\Scale\\Scale.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nashl\\.nuget\\packages\\godot.sourcegenerators\\4.1.2\\godot.sourcegenerators.4.1.2.nupkg.sha512",
-    "C:\\Users\\nashl\\.nuget\\packages\\godotsharp\\4.1.2\\godotsharp.4.1.2.nupkg.sha512",
-    "C:\\Users\\nashl\\.nuget\\packages\\godotsharpeditor\\4.1.2\\godotsharpeditor.4.1.2.nupkg.sha512"
+    "C:\\Users\\Alexander\\.nuget\\packages\\godot.sourcegenerators\\4.1.2\\godot.sourcegenerators.4.1.2.nupkg.sha512",
+    "C:\\Users\\Alexander\\.nuget\\packages\\godotsharp\\4.1.2\\godotsharp.4.1.2.nupkg.sha512",
+    "C:\\Users\\Alexander\\.nuget\\packages\\godotsharpeditor\\4.1.2\\godotsharpeditor.4.1.2.nupkg.sha512"
   ],
   "logs": []
 }
