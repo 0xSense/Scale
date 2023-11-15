@@ -1,14 +1,14 @@
 [gd_scene load_steps=32 format=3 uid="uid://b6a77ow3dkibo"]
 
-[ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_pc0xt"]
-[ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_gcwtk"]
-[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_ne5i1"]
-[ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="4_131s4"]
-[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="5_kojqv"]
-[ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="8_0pv16"]
-[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="8_xb7gt"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_v6l8l"]
-[ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="10_83exr"]
+[ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_cx5s2"]
+[ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_xfqal"]
+[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_4jhnf"]
+[ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="4_h554j"]
+[ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="5_hau81"]
+[ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="6_kwr13"]
+[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="8_xo8s2"]
+[ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -82,19 +82,20 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-2754, -3717, -2856, -2
 size = Vector2(107, 140.5)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ra81"]
-texture = ExtResource("8_xb7gt")
+texture = ExtResource("7_q51df")
 region_rect = Rect2(20, 20, 200, 200)
 modulate_color = Color(0, 0, 0, 1)
 
 [node name="Purgatory" type="Node2D"]
-script = ExtResource("1_pc0xt")
+script = ExtResource("1_cx5s2")
 _combatScene = "uid://bk6mw4uwgd1yl"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(506, -993)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_gcwtk")
+texture = ExtResource("2_xfqal")
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -178,11 +179,11 @@ position = Vector2(42, -1195)
 
 [node name="Doors" type="Node" parent="."]
 
-[node name="ShopKeeperDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
+[node name="ShopKeeperDoor" parent="Doors" instance=ExtResource("3_4jhnf")]
 position = Vector2(-542, -600)
 scale = Vector2(0.0516886, 0.13859)
 
-[node name="ReceptionistDoor" parent="Doors" instance=ExtResource("3_ne5i1")]
+[node name="ReceptionistDoor" parent="Doors" instance=ExtResource("3_4jhnf")]
 position = Vector2(12, -600)
 scale = Vector2(0.0516886, 0.13859)
 
@@ -198,7 +199,7 @@ shape = SubResource("RectangleShape2D_52nkj")
 
 [node name="Enemys" type="Node" parent="."]
 
-[node name="enemy" parent="Enemys" instance=ExtResource("5_kojqv")]
+[node name="enemy" parent="Enemys" instance=ExtResource("4_h554j")]
 position = Vector2(-376, -2483)
 
 [node name="Area2D" type="Area2D" parent="Enemys/enemy"]
@@ -232,7 +233,7 @@ offset_left = -101.0
 offset_top = -109.0
 offset_right = 103.0
 offset_bottom = -69.0
-texture = ExtResource("4_131s4")
+texture = ExtResource("5_hau81")
 metadata/_edit_use_anchors_ = true
 
 [node name="Name" type="RichTextLabel" parent="Npcs/TestNPC/Dialogue"]
@@ -275,7 +276,7 @@ metadata/_edit_use_anchors_ = true
 z_index = -1
 position = Vector2(11.5, 10)
 scale = Vector2(0.0199653, 0.0308641)
-texture = ExtResource("4_131s4")
+texture = ExtResource("5_hau81")
 
 [node name="Button_2" type="Button" parent="Npcs/TestNPC/Dialogue/Options"]
 offset_left = 23.0
@@ -295,20 +296,20 @@ metadata/_edit_use_anchors_ = true
 z_index = -1
 position = Vector2(11.5, 10)
 scale = Vector2(0.0199653, 0.0308641)
-texture = ExtResource("4_131s4")
+texture = ExtResource("5_hau81")
 
 [node name="Shop" type="Node2D" parent="."]
 visible = false
 z_index = 2
 position = Vector2(-807, -596)
-script = ExtResource("8_0pv16")
+script = ExtResource("6_kwr13")
 
 [node name="TextureRect" type="TextureRect" parent="Shop"]
 offset_left = -405.0
 offset_top = -237.0
 offset_right = 384.0
 offset_bottom = 219.0
-texture = ExtResource("4_131s4")
+texture = ExtResource("5_hau81")
 expand_mode = 1
 
 [node name="GridContainer" type="GridContainer" parent="Shop"]
@@ -423,10 +424,10 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
-[node name="Player" parent="." instance=ExtResource("9_v6l8l")]
+[node name="Player" parent="." instance=ExtResource("8_xo8s2")]
 position = Vector2(-809, -588)
 
-[node name="platformer_camera" parent="Player" instance=ExtResource("10_83exr")]
+[node name="platformer_camera2" parent="Player" instance=ExtResource("9_meyk3")]
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]

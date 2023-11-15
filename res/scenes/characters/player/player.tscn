@@ -1,7 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=10 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/Player.cs" id="1_hns8f"]
 [ext_resource type="Texture2D" uid="uid://cld6gofjkpjiq" path="res://assets/animations/Player_walk/0.png" id="2_w26dh"]
+
+[sub_resource type="Animation" id="Animation_wsni1"]
+resource_name = "Movement"
+
+[sub_resource type="Animation" id="Animation_ehg11"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.34171, 0), Vector2(1.9, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a3ygj"]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.2001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ip3um"]
+resource_name = "Sprint"
+
+[sub_resource type="Animation" id="Animation_v6qgx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.34171, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSkin:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0toyb"]
+_data = {
+"Jump": SubResource("Animation_ehg11"),
+"Movement": SubResource("Animation_wsni1"),
+"RESET": SubResource("Animation_v6qgx"),
+"Sprint": SubResource("Animation_ip3um"),
+"Walk": SubResource("Animation_a3ygj")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vugs8"]
 
@@ -20,9 +92,13 @@ position = Vector2(1.34171, 0)
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_w26dh")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSkin"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_0toyb")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 0)
 scale = Vector2(1.03391, 1.65647)
 shape = SubResource("CapsuleShape2D_vugs8")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
