@@ -1,10 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=20 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/Player.cs" id="1_hns8f"]
 [ext_resource type="Texture2D" uid="uid://cld6gofjkpjiq" path="res://assets/animations/Player_walk/0.png" id="2_w26dh"]
-
-[sub_resource type="Animation" id="Animation_wsni1"]
-resource_name = "Movement"
+[ext_resource type="Texture2D" uid="uid://dnvtxevkcuu7d" path="res://assets/animations/Player_walk/1.png" id="3_rqqnd"]
+[ext_resource type="Texture2D" uid="uid://bish1r14gyvd0" path="res://assets/animations/Player_walk/2.png" id="4_rrvx4"]
+[ext_resource type="Texture2D" uid="uid://x2nree42yaei" path="res://assets/animations/Player_walk/3.png" id="5_mwgmu"]
+[ext_resource type="Texture2D" uid="uid://bixxfw58arx0h" path="res://assets/animations/Player_walk/5.png" id="6_sfbjf"]
+[ext_resource type="Texture2D" uid="uid://c7bijectasv5r" path="res://assets/animations/Player_walk/7.png" id="7_wwp4i"]
+[ext_resource type="Texture2D" uid="uid://b3upt0iijhrl5" path="res://assets/animations/Player_walk/6.png" id="8_tols1"]
+[ext_resource type="Texture2D" uid="uid://c5u2d1pvbvte6" path="res://assets/animations/Player_walk/8.png" id="9_78g2r"]
+[ext_resource type="Texture2D" uid="uid://cqrqkabfjvwvn" path="res://assets/animations/Player_walk/9.png" id="10_jaawv"]
+[ext_resource type="Texture2D" uid="uid://0su25bfsyi2q" path="res://assets/animations/Player_walk/10.png" id="11_pkmx7"]
+[ext_resource type="Texture2D" uid="uid://clnbskh7fh8xs" path="res://assets/animations/Player_walk/11.png" id="12_4xh64"]
 
 [sub_resource type="Animation" id="Animation_ehg11"]
 resource_name = "Jump"
@@ -20,24 +27,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1.34171, 0), Vector2(1.9, 0)]
 }
-
-[sub_resource type="Animation" id="Animation_a3ygj"]
-resource_name = "Walk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSkin:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.2001),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-0.0349066, 0.0, 0.0]
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSkin:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_w26dh"), ExtResource("3_rqqnd"), ExtResource("4_rrvx4"), ExtResource("5_mwgmu"), ExtResource("6_sfbjf"), ExtResource("7_wwp4i"), ExtResource("8_tols1"), ExtResource("9_78g2r"), ExtResource("10_jaawv"), ExtResource("11_pkmx7"), ExtResource("12_4xh64")]
 }
 
-[sub_resource type="Animation" id="Animation_ip3um"]
-resource_name = "Sprint"
+[sub_resource type="Animation" id="Animation_wsni1"]
+resource_name = "Movement"
 
 [sub_resource type="Animation" id="Animation_v6qgx"]
 length = 0.001
@@ -64,6 +68,36 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerSkin:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_w26dh")]
+}
+
+[sub_resource type="Animation" id="Animation_ip3um"]
+resource_name = "Sprint"
+
+[sub_resource type="Animation" id="Animation_a3ygj"]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.2001),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0349066, 0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0toyb"]
