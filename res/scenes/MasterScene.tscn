@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d204n4ckwe72x"]
+[gd_scene load_steps=14 format=3 uid="uid://d204n4ckwe72x"]
 
 [ext_resource type="Script" path="res://res/scripts/MasterScene.cs" id="1_smi8o"]
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/MasterDeck.cs" id="2_ykx58"]
@@ -10,6 +10,9 @@
 [ext_resource type="Resource" uid="uid://blnau2cu3smcr" path="res://res/resources/cards/HolyWater.tres" id="8_mm6l1"]
 [ext_resource type="Resource" uid="uid://b6qmnb6qex4ku" path="res://res/resources/cards/TacticalRoll.tres" id="9_w8voq"]
 [ext_resource type="Resource" uid="uid://c6pel68nd1b8l" path="res://res/resources/cards/SwordOfMessenger.tres" id="10_74qxg"]
+[ext_resource type="Resource" uid="uid://dg7fkynwwgtai" path="res://res/resources/cards/HolyWord.tres" id="11_xkwkq"]
+[ext_resource type="Resource" uid="uid://gehuv5a00swn" path="res://res/resources/cards/ScatterShot.tres" id="12_r5kwp"]
+[ext_resource type="Resource" uid="uid://qi6jlwliipaq" path="res://res/resources/cards/LetterOpener.tres" id="13_cvagq"]
 
 [node name="MasterScene" type="Node2D"]
 script = ExtResource("1_smi8o")
@@ -18,5 +21,5 @@ _defaultSceneUID = "uid://bk6mw4uwgd1yl"
 
 [node name="MasterDeck" type="Node" parent="."]
 script = ExtResource("2_ykx58")
-_cardTypes = [ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("5_54fyw"), ExtResource("6_2hqoe"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("9_w8voq"), ExtResource("10_74qxg")]
-_playerStarterDeck = Array[Resource]([ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("7_g0tv5"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("10_74qxg"), ExtResource("9_w8voq"), ExtResource("10_74qxg")])
+_cardTypes = [ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("5_54fyw"), ExtResource("6_2hqoe"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("9_w8voq"), ExtResource("10_74qxg"), ExtResource("13_cvagq"), ExtResource("12_r5kwp"), ExtResource("11_xkwkq")]
+_playerStarterDeck = Array[Resource]([ExtResource("3_k5w33"), ExtResource("3_k5w33"), ExtResource("3_k5w33"), ExtResource("8_mm6l1"), ExtResource("8_mm6l1"), ExtResource("11_xkwkq"), ExtResource("11_xkwkq"), ExtResource("11_xkwkq"), ExtResource("12_r5kwp"), ExtResource("12_r5kwp"), ExtResource("13_cvagq"), ExtResource("13_cvagq"), ExtResource("13_cvagq"), ExtResource("4_oxfww"), ExtResource("4_oxfww")])
