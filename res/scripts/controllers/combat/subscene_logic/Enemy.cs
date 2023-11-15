@@ -66,9 +66,12 @@ public partial class Enemy : Combatant
     // TODO: Finish
     private List<CardData> DetermineCards()
     {
-        List<CardData> cards = new();
+        List<CardData> cards = null;
 
+        while (_actionPoints > 0)
+        {
 
+        }   
 
         return cards;
     }

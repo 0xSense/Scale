@@ -47,6 +47,8 @@ public partial class Player : Combatant
         _toDiscard = 0;
         _state = PlayerState.SELECTING_CARD;
         _targetLabel.Visible = false;
+
+
     }
 
     private void SyncDeck()
@@ -61,6 +63,7 @@ public partial class Player : Combatant
         SyncDeck();
 
         _currentHealth = MasterScene.GetInstance().LoadPlayerHP();
+        if (_currentHealth == 0) _currentHealth = MaxHealth;
         GD.Print(_currentHealth);
 
         _internalDeck.ForceFullReshuffle();        
@@ -137,7 +140,7 @@ public partial class Player : Combatant
                     break;
                 case PlayerState.SELECTING_TARGETS:
                     Enemy clicked = GetEnemyUnderMouse();
-                    if (clicked != null)
+                    if (clicked != null && !_targeted.Contains(clicked))
                     {
                         _targeted.Add(clicked);
                     }

@@ -115,6 +115,13 @@ public partial class Combatant : Area2D, ICombatant
 
     public virtual void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit, bool autoResist)
     {
+        GD.Print("\nHIT receieved");
+        GD.Print(type);
+        GD.Print(amount);
+        GD.Print(critModifier);
+        GD.Print(isCrit);
+        GD.Print(autoResist);
+
         if (type == DamageType.HEAL)
         {            
             _currentHealth += amount;
@@ -123,32 +130,46 @@ public partial class Combatant : Area2D, ICombatant
             return;
         }
 
-        int armorDamage = 0;
+        float armorDamage = 0;    
 
-        if ((type == DamageType.SHARP || type == DamageType.BLUNT) && !HasDebuff(DebuffType.EXPOSED))
+        int isCritInteger = isCrit ? 1 : 0;
+ 
+        int isResisted = ((_resistances[type] > 0) || autoResist) ? 1 : 0;
+
+        float amountPostCrit = (float)(amount * (1.0 + (critModifier-1.0) * isCritInteger));
+        float armorDamageBypass = 0;
+
+        if ((type == DamageType.SHARP || type == DamageType.BLUNT))
         {
-            int dmgTemp = amount;
+            /*
             amount -= _armor;
             amount = Math.Max(0, amount);
             armorDamage = dmgTemp;
             armorDamage = Math.Min(armorDamage, _armor);
             _armor -= armorDamage;            
             _armor = Math.Max(0, _armor);
-        }        
+            */
 
-        int isCritInteger = isCrit ? 1 : 0;
- 
-        int isResisted = ((_resistances[type] > 0) || autoResist) ? 1 : 0;
+            armorDamage = Mathf.Min(amountPostCrit, (float)_armor);
+            _armor -= (int)armorDamage;
+            armorDamageBypass = armorDamage * (1.0f + (-0.5f + (0.25f * isCritInteger)));
+            amountPostCrit -= armorDamage;
+
+        }    
 
         if (HasDebuff(DebuffType.EXPOSED))
             isResisted = 0;
 
-        int damage = (int)(amount * (1.0 + critModifier * isCritInteger) * (1.0 + isResisted * (-0.5 + (0.25 * isCritInteger))));
+        int damage = (int)(amountPostCrit * (1.0 + isResisted * (-0.5 + (0.25 * isCritInteger))) + armorDamageBypass);
         _currentHealth -= damage;
         if (_currentHealth <= 0)
             _isDead = true;
 
-        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, type==DamageType.POISON, isResisted > 0, armorDamage, damage, GlobalPosition);
+        FloatingTextFactory.GetInstance().CreateFloatingCardText(false, isCrit, type==DamageType.POISON, isResisted > 0, 0, damage, GlobalPosition);
+
+        GD.Print("\nFinal damage:");
+        GD.Print("Final applied: " + damage);
+        GD.Print("Bypassed armor: " + armorDamageBypass);
     }
 
     public virtual void ApplyBuff(Buff buff)

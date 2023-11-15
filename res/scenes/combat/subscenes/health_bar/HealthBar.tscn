@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ogl7y7epfib"]
+[gd_scene load_steps=10 format=3 uid="uid://ogl7y7epfib"]
 
 [ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="1_wna6x"]
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/HealthBar.cs" id="2_vy0ce"]
+[ext_resource type="Texture2D" uid="uid://dpy3ahb17corp" path="res://res/scenes/combat/subscenes/health_bar/shield.png" id="3_7bqlt"]
+[ext_resource type="Theme" uid="uid://cggsc5a61dg71" path="res://assets/fonts/hunck_theme.tres" id="4_5m1er"]
+[ext_resource type="Script" path="res://res/scenes/combat/subscenes/health_bar/Armor.cs" id="4_87nbr"]
+[ext_resource type="Texture2D" uid="uid://cbcd7ii17wlwp" path="res://res/scenes/combat/subscenes/health_bar/heart.png" id="6_vair6"]
+[ext_resource type="Script" path="res://res/scenes/combat/subscenes/health_bar/Health.cs" id="7_0nvu3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_apwcl"]
 resource_local_to_scene = true
@@ -10,8 +15,49 @@ shader_parameter/health_factor = 0.4
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_msekc"]
 
-[node name="HealthBar" type="Sprite2D"]
+[node name="Node2D" type="Node2D"]
+
+[node name="HealthBar" type="Sprite2D" parent="."]
+z_index = -1
 material = SubResource("ShaderMaterial_apwcl")
+position = Vector2(-1, 6)
 scale = Vector2(160, 12)
 texture = SubResource("CanvasTexture_msekc")
 script = ExtResource("2_vy0ce")
+
+[node name="Armor" type="Sprite2D" parent="."]
+position = Vector2(-94, 6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7bqlt")
+script = ExtResource("4_87nbr")
+
+[node name="Label" type="Label" parent="Armor"]
+offset_left = -36.0
+offset_top = -39.0
+offset_right = 40.0
+offset_bottom = 39.0
+theme = ExtResource("4_5m1er")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 70
+text = "5"
+horizontal_alignment = 1
+
+[node name="Health" type="Sprite2D" parent="."]
+position = Vector2(94, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_vair6")
+script = ExtResource("7_0nvu3")
+
+[node name="Label2" type="Label" parent="Health"]
+offset_left = -50.0
+offset_top = -42.0
+offset_right = 52.0
+offset_bottom = 50.0
+theme = ExtResource("4_5m1er")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 70
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1

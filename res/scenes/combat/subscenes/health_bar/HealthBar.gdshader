@@ -8,6 +8,8 @@ const vec4 COL_BOT_R = vec4(0.4, 0, 0, 1);
 
 const vec4 COL_DARK = vec4(0, 0, 0, 1);
 
+const vec4 COL_ARMOR_FULL = vec4(0.8, 0.8, 0.8, 1);
+
 uniform float health_factor;
 
 void fragment() {
