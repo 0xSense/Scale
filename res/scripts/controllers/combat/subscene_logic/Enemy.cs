@@ -189,16 +189,20 @@ public partial class Enemy : Combatant
             return c.ActionPointCost <= actionPoints;
         }
 
+        List<CardData> playable = _internalDeck.GetCards(filterFunc);
+
         while (actionPoints > 0)
-        {
-            List<CardData> playable = _internalDeck.GetCards(filterFunc);
+        {            
             if (playable.Count == 0)
                 break;
 
-            CardData best = playable[0];
-            float bestEval = EvalCard(playable[0], actionPoints, _combatManager.Player);
+            CardData best = null;
+            float bestEval = float.NegativeInfinity;
             foreach (CardData card in playable)
             {                
+                if (card.ActionPointCost > actionPoints)
+                    continue;
+
                 float eval = EvalCard(card, actionPoints, _combatManager.Player);
                 GD.Print("Option: " + card.Name + ". Eval: " + eval);
                 if (eval > bestEval)
@@ -210,8 +214,14 @@ public partial class Enemy : Combatant
 
             GD.Print("Choice: " + best + ". Eval: " + bestEval);
 
-            toPlay.Add(best);
-            actionPoints -= best.ActionPointCost;
+            if (best != null)
+            {
+                toPlay.Add(best);
+                actionPoints -= best.ActionPointCost;
+                playable.Remove(best);
+            }
+            else
+                break;
         }
 
         
@@ -228,25 +238,15 @@ public partial class Enemy : Combatant
     private async void TakeTurn()
     {
         List<CardData> toPlay = DetermineCards();
+
+        GD.Print("\nTo play:");
+
         foreach (CardData nextCard in toPlay)
         {
+            GD.Print(nextCard.Name);
             CardData cardToPlay = null;
 
             await Task.Delay(_turnDelayTimeStart);
-
-            /*
-            List<CardData> playable = _internalDeck.GetCards((CardData c) =>
-            {
-                return c.ActionPointCost <= _actionPoints;
-            });
-
-            if (playable.Count == 0)
-                break;
-
-            int choice = _combatManager.RNG.Next(playable.Count);
-
-            cardToPlay = _internalDeck.DrawSpecific(playable[choice]);
-            */
 
             cardToPlay = _internalDeck.DrawSpecific(nextCard);
 

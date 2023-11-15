@@ -22,7 +22,7 @@ script = ExtResource("1_bdvvg")
 _deck = [ExtResource("2_no64v"), ExtResource("3_q2nc2")]
 _ID = 2
 _maxHealth = 6
-_startingActionPoints = 1
+_startingActionPoints = 2
 _startingMovementPoints = 0
 _startingArmor = 5
 
