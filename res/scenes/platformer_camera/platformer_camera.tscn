@@ -6,8 +6,9 @@
 script = ExtResource("1_1kwci")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(7, 22)
 scale = Vector2(1.25, 1.25)
-zoom = Vector2(1.75, 1.75)
+zoom = Vector2(2, 2)
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_vertical_offset = -1.0

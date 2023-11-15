@@ -428,14 +428,9 @@ position = Vector2(-809, -588)
 
 [node name="platformer_camera2" parent="Player" instance=ExtResource("9_meyk3")]
 
-[connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
-[connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
-[connection signal="body_entered" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Npcs/TestNPC/Area2D" to="Npcs/TestNPC" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="Npcs/TestNPC/Dialogue/Options/Button_1" to="Npcs/TestNPC" method="_on_button_1_pressed"]
 [connection signal="pressed" from="Npcs/TestNPC/Dialogue/Options/Button_2" to="Npcs/TestNPC" method="_on_button_2_pressed"]
 [connection signal="pressed" from="Shop/GridContainer/Item_1/Button" to="Shop" method="ButtonItem" binds= [1]]
 [connection signal="pressed" from="Shop/GridContainer/Item_2/Button" to="Shop" method="ButtonItem" binds= [2]]
 [connection signal="pressed" from="Shop/GridContainer/Item_3/Button" to="Shop" method="ButtonItem" binds= [3]]
 [connection signal="pressed" from="Shop/GridContainer/Item_4/Button" to="Shop" method="ButtonItem" binds= [4]]
-[connection signal="pressed" from="Shop/Close" to="Shop" method="OnClosePressed"]
