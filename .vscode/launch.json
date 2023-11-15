@@ -10,7 +10,7 @@
         "type": "coreclr",
         "request": "launch",
         "preLaunchTask": "build",
-        "program": "C:/Portable/Godot_v4.1.2-stable_mono_win64/Godot_v4.1.2-stable_mono_win64.exe",
+        "program": "E:/Godot_v4.1.2-stable_mono_win64/Godot_v4.1.2-stable_mono_win64/Godot_v4.1.2-stable_mono_win64.exe",
         "cwd": "${workspaceFolder}",
         "console": "internalConsole",
         "stopAtEntry": false,

@@ -4,6 +4,7 @@ using Godot;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.Numerics;
 
 /*
 
@@ -16,6 +17,7 @@ Player movement:
 	When input is "right" character sprite should face right
 		
 */
+
 
 public enum State
 {
@@ -37,6 +39,7 @@ public partial class Player : CharacterBody2D
 	private float _gravityDefault;
 	private State _state;
 	private AnimatedSprite2D _playerSprite;
+	private CharacterBody2D _charcterBody;
 
 	public override void _Ready()
 	{
@@ -49,15 +52,23 @@ public partial class Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		Vector2 movementInput = GetMovementInput();
+		ChangePlayerOrientation();
 
-		if (movementInput.X > 0 & !IsSprinting())
-		{
-			_playerSprite.Play("walk");
-		}
-		else
+		if (IsIdle())
 		{
 			_playerSprite.Play("idle");
+		}
+		else if (IsSprinting())
+		{
+			_playerSprite.Play("sprint");
+		}
+		else if (IsJumping())
+		{
+			_playerSprite.Play("jump");
+		}
+		else if (IsWalking())
+		{
+			_playerSprite.Play("walk");
 		}
 	}
 
@@ -65,19 +76,9 @@ public partial class Player : CharacterBody2D
 	{
 		float fDelta = (float)delta;
 
-		Vector2 movementInput = GetMovementInput();
+		Godot.Vector2 movementInput = GetMovementInput();
 
-		// flip sprite orientation horizontally
-		if (movementInput.X > 0)
-		{
-			_playerSprite.FlipH = true;
-		}
-		else if (movementInput.X < 0)
-		{
-			_playerSprite.FlipH = false;
-		}
-
-		Vector2 vel = Velocity;
+		Godot.Vector2 vel = Velocity;
 
 		if (IsOnFloor())
 		{
@@ -105,7 +106,7 @@ public partial class Player : CharacterBody2D
 			case State.GROUNDED:
 				_coyoteTimer = _coyoteBuffer;
 				vel.X = (float)Mathf.Lerp(vel.X, 0, 0.157);
-				if (IsSprinting())
+				if (GetSprintInput())
 				{
 					vel += movementInput * accelerationRate * _sprintSpeed * _accelerationStrength;
 				}
@@ -125,7 +126,6 @@ public partial class Player : CharacterBody2D
 
 				if (GetJumpInput() && _coyoteTimer >= 0)
 				{
-					vel.Y = -_jumpSpeed;
 					_coyoteTimer = 0f;
 				}
 
@@ -133,9 +133,13 @@ public partial class Player : CharacterBody2D
 				vel.X += movementInput.X * accelerationRate * _walkSpeed * _accelerationStrength;
 
 				if (vel.Y < 0)
+				{
 					vel.Y += _gravityDefault * fDelta;
+				}
 				else
+				{
 					vel.Y += _gravityDefault * _gravityFallMultiplier * fDelta;
+				}
 
 				break;
 		}
@@ -145,14 +149,12 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void _Process()
-	{ }
-
-	private Vector2 GetMovementInput()
+	private Godot.Vector2 GetMovementInput()
 	{
-		Vector2 movement = new();
+		Godot.Vector2 movement = new();
 
 		movement.X = Input.GetAxis("ui_left", "ui_right");
+		movement.Y = Input.GetAxis("ui_down", "ui_select");
 		return movement;
 	}
 
@@ -161,21 +163,71 @@ public partial class Player : CharacterBody2D
 		return Input.IsActionJustPressed("ui_select");
 	}
 
-	private bool IsSprinting()
+	private bool GetSprintInput()
 	{
 		return Input.IsActionPressed("ui_sprint");
 	}
 
-	private void PlayWalkingAnimation()
+	private bool IsSprinting()
 	{
-		if (Input.IsActionPressed("ui_right"))
+
+		if (IsOnFloor() && GetSprintInput())
 		{
-			_playerSprite.Play("walk");
+			return true;
 		}
-		else if (Input.IsActionPressed("ui_left"))
+		else
 		{
-			_playerSprite.Play("walk");
+			return false;
 		}
 	}
 
+	private bool IsWalking()
+	{
+		if (IsOnFloor() && !IsSprinting())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	private bool IsIdle()
+	{
+		Godot.Vector2 movementInput = GetMovementInput();
+		if (movementInput.X == 0 && IsOnFloor())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	private bool IsJumping()
+	{
+		if (!IsOnFloor())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	private void ChangePlayerOrientation()
+	{
+		Godot.Vector2 movementInput = GetMovementInput();
+		if (movementInput.X > 0)
+		{
+			_playerSprite.FlipH = true;
+		}
+		else if (movementInput.X < 0)
+		{
+			_playerSprite.FlipH = false;
+		}
+	}
 }
