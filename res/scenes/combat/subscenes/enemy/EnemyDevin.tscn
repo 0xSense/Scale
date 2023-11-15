@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://6dpordjypq8l"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Enemy.cs" id="1_bdvvg"]
+[ext_resource type="Resource" uid="uid://bcjf232cowv26" path="res://res/resources/cards/DivineSmite.tres" id="2_no64v"]
+[ext_resource type="Resource" uid="uid://c6pel68nd1b8l" path="res://res/resources/cards/SwordOfMessenger.tres" id="3_q2nc2"]
+[ext_resource type="Texture2D" uid="uid://c62uot0wq3kxs" path="res://res/scenes/combat/subscenes/enemy/assets/Devin_enemy.png" id="4_f12nr"]
+[ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="5_ihfo4"]
+[ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="6_7uk2k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shunw"]
+radius = 115.0
+height = 352.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_do74u"]
+resource_local_to_scene = true
+shader = ExtResource("6_7uk2k")
+shader_parameter/health_factor = 0.4
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_bdvvg")
+_deck = [ExtResource("2_no64v"), ExtResource("3_q2nc2")]
+_ID = 2
+_maxHealth = 6
+_startingActionPoints = 2
+_startingMovementPoints = 0
+_startingArmor = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(15, -26)
+shape = SubResource("CapsuleShape2D_shunw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(31, -35)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_f12nr")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_ihfo4")]
+material = SubResource("ShaderMaterial_do74u")
+position = Vector2(0, 147)
