@@ -1,9 +1,13 @@
-[gd_scene format=3 uid="uid://diuh8d07tu460"]
+[gd_scene load_steps=2 format=3 uid="uid://diuh8d07tu460"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/camera/PlatformerCamera.cs" id="1_1kwci"]
 
 [node name="platformer_camera" type="Node2D"]
+script = ExtResource("1_1kwci")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(1.25, 1.25)
-zoom = Vector2(1.25, 1.25)
+zoom = Vector2(1.75, 1.75)
+limit_smoothed = true
 position_smoothing_enabled = true
 drag_vertical_offset = -1.0
