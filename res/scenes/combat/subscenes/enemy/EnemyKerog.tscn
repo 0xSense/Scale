@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://iw7vaee7nlpc"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Enemy.cs" id="1_qjx0m"]
+[ext_resource type="Resource" uid="uid://he6fbgb3ossq" path="res://res/resources/cards/Blessed.tres" id="2_l53pd"]
+[ext_resource type="Resource" uid="uid://cagkcsnwq2qr0" path="res://res/resources/cards/HellsGrasp.tres" id="3_is6ov"]
+[ext_resource type="Texture2D" uid="uid://c5b8yr685m8ev" path="res://res/scenes/combat/subscenes/enemy/assets/Kerog_enemy.png" id="4_bainj"]
+[ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="5_l6jft"]
+[ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="6_p2fnk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_shunw"]
+radius = 77.0
+height = 268.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_do74u"]
+resource_local_to_scene = true
+shader = ExtResource("6_p2fnk")
+shader_parameter/health_factor = 0.4
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_qjx0m")
+_deck = [ExtResource("2_l53pd"), ExtResource("3_is6ov")]
+_ID = 1
+_maxHealth = 9
+_startingActionPoints = 2
+_startingMovementPoints = 0
+_startingArmor = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+shape = SubResource("CapsuleShape2D_shunw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(12, -6)
+scale = Vector2(-0.2, 0.2)
+texture = ExtResource("4_bainj")
+
+[node name="HealthBar" parent="." instance=ExtResource("5_l6jft")]
+material = SubResource("ShaderMaterial_do74u")
+position = Vector2(0, 147)

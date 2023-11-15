@@ -63,17 +63,161 @@ public partial class Enemy : Combatant
 
     }
 
+    private float CalcAverageDamage(CardData card, ICombatant player)
+    {
+        const float EXPLOIT_EXPOSED_MULT = 1.25f;
+        const float LOW_HEALTH_HEAL_MULT = 2f;
+        const float EMERGENCY_HEAL_MULT = 4f;
+        float avg = 0;
+
+        foreach (DamageType damageType in card.Damage.Keys)
+        {
+            float localAvg = 0;
+            DamageDice damageDice = card.Damage[damageType];
+
+            localAvg += damageDice.d4 * 2.5f;
+            localAvg += damageDice.d6 * 3.5f;
+            localAvg += damageDice.d8 * 4.5f;
+            localAvg += damageDice.d10 * 5.5f;
+            localAvg += damageDice.flat;
+
+            if (player.GetResistances()[damageType] > 0)
+            {
+                if (player.HasDebuff(DebuffType.EXPOSED))
+                    localAvg *= EXPLOIT_EXPOSED_MULT;
+                else
+                    localAvg *= 0.5f;
+            }
+
+            if (damageType == DamageType.HEAL)
+            {
+                if (_currentHealth + localAvg >= _maxHealth)
+                    localAvg = 0f;
+                else if (_currentHealth <= MaxHealth/4f)
+                    localAvg *= EMERGENCY_HEAL_MULT;  
+                else if (_currentHealth <= _maxHealth/2f)
+                    localAvg *= LOW_HEALTH_HEAL_MULT;
+            }
+
+            avg += localAvg;
+        }
+
+        return avg;
+    }
+
+    private float CalcBuffEffects(CardData card, ICombatant player)
+    {
+        const float ARMOR_MULT = 0.25f;
+        const float DEBUFF_CURE_MULT = 1.5f;
+        const float CRIT_CHANCE_MULT = 2f;
+        const float CRIT_DMG_MULT = 2f;
+        float value = 0f;
+
+        foreach (Buff buff in card.Buffs)
+        {
+            switch (buff.Type)
+            {
+                case BuffType.RESISTANCE:
+                value += 1f;
+                break;
+                case BuffType.ARMOR:
+                value += buff.Value*ARMOR_MULT;
+                break;
+                case BuffType.PURIFY:
+                foreach (DebuffType d in _debuffs.Keys)
+                {
+                    if (_debuffs[d] > 0)
+                        value += _debuffs[d] * DEBUFF_CURE_MULT;
+                }
+                break;
+                case BuffType.CRIT_CHANCE_INCREASE:
+                value += CRIT_CHANCE_MULT;
+                break;
+                case BuffType.CRIT_DMG_INCREASE:
+                value += CRIT_DMG_MULT;
+                break;
+            }
+        }
+
+        return value;
+    }
+
+    private float CalcDebuffEffects(CardData card, ICombatant player)
+    {
+        const float POISON_MULT = 0.75f;
+
+        float value = 0;
+
+        foreach (Debuff debuff in card.Debuffs)
+        {
+            switch (debuff.Type)
+            {
+                case DebuffType.POISONED:
+                value += debuff.Duration * POISON_MULT;
+                break;
+                default:
+                value += debuff.Duration * 0.5f;
+                break;
+            }
+        }
+
+        return value;
+    }
+
+    private float EvalCard(CardData card, int actionPointsAvailable, ICombatant player)
+    {
+        float eval = 0f;
+
+        eval += CalcAverageDamage(card, player);
+        eval += CalcBuffEffects(card, player);
+        eval += CalcDebuffEffects(card, player);
+
+        eval /= card.ActionPointCost;
+
+        return eval;
+    }
+
     // TODO: Finish
     private List<CardData> DetermineCards()
     {
-        List<CardData> cards = null;
+        
+        List<CardData> toPlay = new();
+        int actionPoints = _actionPoints;
 
-        while (_actionPoints > 0)
+        bool filterFunc(CardData c)
         {
+            return c.ActionPointCost <= actionPoints;
+        }
 
-        }   
+        while (actionPoints > 0)
+        {
+            List<CardData> playable = _internalDeck.GetCards(filterFunc);
+            if (playable.Count == 0)
+                break;
 
-        return cards;
+            CardData best = playable[0];
+            float bestEval = EvalCard(playable[0], actionPoints, _combatManager.Player);
+            foreach (CardData card in playable)
+            {                
+                float eval = EvalCard(card, actionPoints, _combatManager.Player);
+                GD.Print("Option: " + card.Name + ". Eval: " + eval);
+                if (eval > bestEval)
+                {
+                    bestEval = eval;
+                    best = card;
+                }
+            }
+
+            GD.Print("Choice: " + best + ". Eval: " + bestEval);
+
+            toPlay.Add(best);
+            actionPoints -= best.ActionPointCost;
+        }
+
+        
+            
+
+        return toPlay;
     }
 
     /*
@@ -83,12 +227,14 @@ public partial class Enemy : Combatant
     */
     private async void TakeTurn()
     {
-        for (; ; )
+        List<CardData> toPlay = DetermineCards();
+        foreach (CardData nextCard in toPlay)
         {
             CardData cardToPlay = null;
 
             await Task.Delay(_turnDelayTimeStart);
 
+            /*
             List<CardData> playable = _internalDeck.GetCards((CardData c) =>
             {
                 return c.ActionPointCost <= _actionPoints;
@@ -100,6 +246,9 @@ public partial class Enemy : Combatant
             int choice = _combatManager.RNG.Next(playable.Count);
 
             cardToPlay = _internalDeck.DrawSpecific(playable[choice]);
+            */
+
+            cardToPlay = _internalDeck.DrawSpecific(nextCard);
 
             ICombatant[] targets = null;
             switch (cardToPlay.Target)

@@ -59,7 +59,7 @@ public partial class CombatMain : Node
         else
         {
             GD.Print("No enemy data received from overworld.");
-            enemyUIDs = new int[] { 1, 1, 1, 1 };
+            enemyUIDs = new int[] { 1, 2, 1, 1 };
         }
 
         enemies = new ICombatant[enemyUIDs.Length];

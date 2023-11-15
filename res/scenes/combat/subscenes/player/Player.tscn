@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjvk42o3wxiyl"]
 
-[ext_resource type="Texture2D" uid="uid://dgiupu1qni7u6" path="res://res/scenes/combat/subscenes/player/asset/test_player.png" id="1_6w4tj"]
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Player.cs" id="1_vvg4x"]
+[ext_resource type="Texture2D" uid="uid://bx56yjdh8g4fi" path="res://res/scenes/combat/subscenes/player/asset/Boi.png" id="2_lut1a"]
 [ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_ri5e0"]
 [ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="4_x2hpw"]
 
@@ -21,9 +21,10 @@ script = ExtResource("1_vvg4x")
 shape = SubResource("CapsuleShape2D_8u6yp")
 
 [node name="Player" type="Sprite2D" parent="."]
-scale = Vector2(-1, 1)
-texture = ExtResource("1_6w4tj")
+position = Vector2(0, 3)
+scale = Vector2(-0.5, 0.5)
+texture = ExtResource("2_lut1a")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_ri5e0")]
 material = SubResource("ShaderMaterial_n5e0t")
-position = Vector2(-0.500025, 160.75)
+position = Vector2(-0.500025, 142.75)
