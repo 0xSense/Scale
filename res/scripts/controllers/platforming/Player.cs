@@ -2,6 +2,7 @@ namespace Overworld;
 
 using Godot;
 using System;
+using System.ComponentModel;
 using System.Data;
 
 /*
@@ -35,14 +36,29 @@ public partial class Player : CharacterBody2D
 	private float _coyoteTimer;
 	private float _gravityDefault;
 	private State _state;
-	private Sprite2D _playerSprite;
+	private AnimatedSprite2D _playerSprite;
 
 	public override void _Ready()
 	{
 		_gravityDefault = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 		_state = State.GROUNDED;
 		_coyoteTimer = _coyoteBuffer;
-		_playerSprite = GetNode<Sprite2D>("PlayerSkin");
+		// _playerSprite = GetNode<Sprite2D>("PlayerSkin");
+		_playerSprite = GetNode<AnimatedSprite2D>("PlayerAnimation");
+	}
+
+	public override void _Process(double delta)
+	{
+		Vector2 movementInput = GetMovementInput();
+
+		if (movementInput.X > 0 & !IsSprinting())
+		{
+			_playerSprite.Play("walk");
+		}
+		else
+		{
+			_playerSprite.Play("idle");
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -64,9 +80,14 @@ public partial class Player : CharacterBody2D
 		Vector2 vel = Velocity;
 
 		if (IsOnFloor())
+		{
 			_state = State.GROUNDED;
+		}
 		else
+		{
+
 			_state = State.AIRBORNE;
+		}
 
 		float accelerationRate;
 		// Continuing in current direction
@@ -78,6 +99,7 @@ public partial class Player : CharacterBody2D
 		{
 			accelerationRate = 2f;
 		}
+
 		switch (_state)
 		{
 			case State.GROUNDED:
@@ -142,6 +164,18 @@ public partial class Player : CharacterBody2D
 	private bool IsSprinting()
 	{
 		return Input.IsActionPressed("ui_sprint");
+	}
+
+	private void PlayWalkingAnimation()
+	{
+		if (Input.IsActionPressed("ui_right"))
+		{
+			_playerSprite.Play("walk");
+		}
+		else if (Input.IsActionPressed("ui_left"))
+		{
+			_playerSprite.Play("walk");
+		}
 	}
 
 }
