@@ -91,7 +91,6 @@ script = ExtResource("1_cx5s2")
 _combatScene = "uid://bk6mw4uwgd1yl"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 z_index = -1
 position = Vector2(506, -993)
 scale = Vector2(1.5, 1.5)
