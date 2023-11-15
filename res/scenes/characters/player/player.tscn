@@ -1,10 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://cshcvcas2jerk"]
+[gd_scene load_steps=25 format=3 uid="uid://cshcvcas2jerk"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/Player.cs" id="1_hns8f"]
 [ext_resource type="Texture2D" uid="uid://cld6gofjkpjiq" path="res://assets/animations/Player_walk/0.png" id="2_w26dh"]
+[ext_resource type="Texture2D" uid="uid://nwb12bkpr2l0" path="res://assets/animations/Player_sprint/1.PNG" id="3_okkog"]
 [ext_resource type="Texture2D" uid="uid://dnvtxevkcuu7d" path="res://assets/animations/Player_walk/1.png" id="3_rqqnd"]
+[ext_resource type="Texture2D" uid="uid://cp0qx5ci6jeys" path="res://assets/animations/Player_sprint/2.PNG" id="4_o6fqq"]
 [ext_resource type="Texture2D" uid="uid://bish1r14gyvd0" path="res://assets/animations/Player_walk/2.png" id="4_rrvx4"]
+[ext_resource type="Texture2D" uid="uid://blhh5ymyqqnah" path="res://assets/animations/Player_sprint/3.PNG" id="5_85dj4"]
 [ext_resource type="Texture2D" uid="uid://x2nree42yaei" path="res://assets/animations/Player_walk/3.png" id="5_mwgmu"]
+[ext_resource type="Texture2D" uid="uid://byqo7amrh1ihy" path="res://assets/animations/Player_sprint/4.PNG" id="6_5tsa0"]
 [ext_resource type="Texture2D" uid="uid://bixxfw58arx0h" path="res://assets/animations/Player_walk/5.png" id="6_sfbjf"]
 [ext_resource type="Texture2D" uid="uid://c7bijectasv5r" path="res://assets/animations/Player_walk/7.png" id="7_wwp4i"]
 [ext_resource type="Texture2D" uid="uid://b3upt0iijhrl5" path="res://assets/animations/Player_walk/6.png" id="8_tols1"]
@@ -15,6 +19,18 @@
 
 [sub_resource type="Animation" id="Animation_ip3um"]
 resource_name = "Sprint"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_okkog"), ExtResource("4_o6fqq"), ExtResource("5_85dj4"), ExtResource("6_5tsa0")]
+}
 
 [sub_resource type="Animation" id="Animation_h0128"]
 resource_name = "Idle"
@@ -75,10 +91,26 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_d82wv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSkin:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_w26dh")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0toyb"]
 _data = {
 "Idle": SubResource("Animation_h0128"),
 "Jump2": SubResource("Animation_a3ygj"),
+"RESET": SubResource("Animation_d82wv"),
 "Sprint": SubResource("Animation_ip3um"),
 "Walk": SubResource("Animation_ehg11")
 }
