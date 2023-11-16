@@ -30,6 +30,8 @@ public partial class Player : Combatant
     [Export] RichTextLabel _targetLabel;
     [Export] Label _actionPointLabel;
     [Export] Label _movementPointLabel;
+    [Export] Node2D _deck;
+    [Export] Node2D _discard;
 
     private PlayerState _state;
     public PlayerState State => _state;
@@ -49,7 +51,22 @@ public partial class Player : Combatant
         _state = PlayerState.SELECTING_CARD;
         _targetLabel.Visible = false;
         _sprite = (AnimatedSprite2D)GetNode<AnimatedSprite2D>("Player");
+        _internalDeck.OnDiscardChange += OnDiscardChange;
 
+    }
+
+    private void OnDiscardChange()
+    {
+        GD.Print("Event detected");
+        if (_internalDeck.GetDiscardCount() == 0)
+        {
+            Card c = (Card)_discard.GetNodeOrNull("Top");
+            if (c != null)
+            {
+                _discard.RemoveChild(c);
+                c.QueueFree();
+            }
+        }
     }
 
     private void SyncDeck()
@@ -62,6 +79,7 @@ public partial class Player : Combatant
     {
         base.StartFight();
         SyncDeck();
+        _internalDeck.OnDiscardChange += OnDiscardChange;
 
         _currentHealth = MasterScene.GetInstance().LoadPlayerHP();
         if (_currentHealth == 0) _currentHealth = MaxHealth;
@@ -99,7 +117,11 @@ public partial class Player : Combatant
 
     public override void _PhysicsProcess(double delta)
     {
-        
+        Label deck = (Label)(_deck.GetNode("Cards"));
+        deck.Text = _internalDeck.GetCardCount().ToString();
+        Label discard = (Label)(_discard.GetNode("Cards"));
+        discard.Text = _internalDeck.GetDiscardCount().ToString();
+
         if (!_isTurn)
             return;
 
@@ -115,12 +137,13 @@ public partial class Player : Combatant
                     {
                         if (_state == PlayerState.DISCARDING_CARDS)
                         {
-                            _internalDeck.Discard(_hand.RemoveCard(_currentlyTargeting));
+                            _internalDeck.Discard(_hand.RemoveCard(_currentlyTargeting, true, _discard));
                             _targetLabel.Text = "[center][color=#BB5545]Discard " + (_toDiscard - 1) + " cards[/color]";
+
                         }
                         else if (_state == PlayerState.RETURNING_CARDS)
                         {
-                            _internalDeck.AddCard(_hand.RemoveCard(_currentlyTargeting));
+                            _internalDeck.AddCard(_hand.RemoveCard(_currentlyTargeting, delete:true));
                             _targetLabel.Text = "[center][color=#BB5545]Return " + (_toDiscard - 1) + " cards to deck[/color]";
                         }
 
@@ -141,7 +164,10 @@ public partial class Player : Combatant
                     {
                         _state = PlayerState.SELECTING_TARGETS;
                         _targetLabel.Visible = true;
-                        _targetLabel.Text = "[center][color=#BB5545]Select Targets[/color]";
+                        if (_currentlyTargeting.Data.Target == TargetType.SELF)
+                            _targetLabel.Text = "[center][color=#BB5545]Click to Confirm[/color]";
+                        else
+                            _targetLabel.Text = "[center][color=#BB5545]Select Targets[/color]";
                         _hand.Freeze();
                         _currentlyTargeting.ZIndex += 99;
                     }
@@ -152,6 +178,12 @@ public partial class Player : Combatant
                     if (clicked != null && !_targeted.Contains(clicked))
                     {
                         _targeted.Add(clicked);
+                    }
+
+                    if (_currentlyTargeting.Data.Target == TargetType.SELF)
+                    {
+                        if ((GetGlobalMousePosition()/GetWindow().Size).X > 0.35)
+                            break;
                     }
 
                     if (IsTargetingValid())
@@ -183,9 +215,11 @@ public partial class Player : Combatant
     private async void PlayCard(ICombatant[] targets, Card card)
     {
         _sprite.Play("attack");
-        await card.BeginPlayAnimation();
+        await card.BeginPlayAnimation(_discard);
         _combatManager.PlayCard(this, targets, card.Data);
         _internalDeck.Discard(card.Data);
+
+        
 
         _actionPointLabel.Text = _actionPoints.ToString();
         _movementPointLabel.Text = _movementPoints.ToString();
@@ -271,6 +305,11 @@ public partial class Player : Combatant
                 this.EndTurn();
             }
         }
+    }
+
+    public void OnXButtonPressed()
+    {
+        EndTargeting();
     }
 
     public override void DrawCards(int n)

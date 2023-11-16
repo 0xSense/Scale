@@ -79,7 +79,7 @@ public partial class Card : Area2D
 	private float _playAnimationVerticalPosition;
 	private Vector2 _playAnimationPosition;
 	private bool _animating = false;
-	public async Task BeginPlayAnimation()
+	public async Task BeginPlayAnimation(Node2D discard)
 	{
 		((CollisionShape2D)GetNode("CollisionShape2D")).Disabled = true;
 		_animating = true;
@@ -95,7 +95,32 @@ public partial class Card : Area2D
 		((AnimatedSprite2D)GetNode("PlayAnimation")).Play();
 
 		await Task.Delay(750);
-		this.QueueFree();		
+		
+		GetParent().RemoveChild(this);
+		AddToDiscard(discard);
+
+	}
+
+	public void AddToDiscard(Node2D discard)
+	{
+		Position = Vector2.Zero;		
+
+		if (discard.GetNodeOrNull("Top") == null)		
+			discard.AddChild(this);
+		else
+		{
+			Card temp = (Card)discard.GetNode("Top");
+			discard.RemoveChild(temp);
+			temp.QueueFree();
+			discard.AddChild(this);
+		}
+
+		Name = "Top";
+
+		//Position = discard.Position;
+		Scale *= 0.8f;
+
+		_animating = false;
 	}
 
     public override void _Process(double delta)
