@@ -8,9 +8,9 @@ const vec4 COL_BOT_R = vec4(0.4, 0, 0, 1);
 
 const vec4 COL_DARK = vec4(0, 0, 0, 1);
 
-const vec4 COL_ARMOR_FULL = vec4(0.8, 0.8, 0.8, 1);
 
 uniform float health_factor;
+uniform float draining_factor;
 
 void fragment() {
 	// Place fragment code here.
@@ -21,5 +21,11 @@ void fragment() {
 	
 	col = mix(col, COL_DARK, smoothstep(0.75, 0.95, UV.y)*0.75);
 	
-	COLOR = col;
+	vec4 white = vec4(1, 1, 1, 1);
+	float fac = health_factor+draining_factor;
+	
+	vec4 white_overlay = mix(white, col, step(UV.x, health_factor));
+	vec4 final_col = mix(col, white_overlay, step(UV.x, fac));
+	
+	COLOR = final_col;
 }

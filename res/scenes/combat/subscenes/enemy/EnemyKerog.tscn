@@ -15,6 +15,7 @@ height = 268.0
 resource_local_to_scene = true
 shader = ExtResource("6_p2fnk")
 shader_parameter/health_factor = 0.4
+shader_parameter/draining_factor = null
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 4

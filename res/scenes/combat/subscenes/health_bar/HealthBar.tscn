@@ -12,6 +12,7 @@
 resource_local_to_scene = true
 shader = ExtResource("1_wna6x")
 shader_parameter/health_factor = 0.4
+shader_parameter/draining_factor = 0.1
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_msekc"]
 

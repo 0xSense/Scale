@@ -92,7 +92,7 @@ public partial class Card : Area2D
 		await Task.Delay(150);
 
 		// Play animation/shader here
-		((AnimatedSprite2D)GetNode("PlayAnimation")).Play();
+		// ((AnimatedSprite2D)GetNode("PlayAnimation")).Play();
 
 		await Task.Delay(750);
 		
