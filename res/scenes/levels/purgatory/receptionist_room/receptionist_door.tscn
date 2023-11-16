@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://5o43jwy5vt17"]
+
+[ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="1_6bbbd"]
+
+[node name="receptionist_door" type="Node2D"]
+
+[node name="Door" parent="." instance=ExtResource("1_6bbbd")]

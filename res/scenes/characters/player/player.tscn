@@ -145,8 +145,7 @@ metadata/_edit_group_ = true
 position = Vector2(1.34171, 0)
 scale = Vector2(0.125, 0.125)
 sprite_frames = SubResource("SpriteFrames_2yypb")
-animation = &"sprint"
-frame_progress = 0.298184
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 0)
