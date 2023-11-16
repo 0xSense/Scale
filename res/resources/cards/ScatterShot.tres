@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cfc5bwbj41lg6"]
+
+[ext_resource type="Texture2D" uid="uid://eq7dr4vuuelx" path="res://res/scenes/combat/subscenes/Card/images/artwork/scattershot.png" id="1_0sgmh"]
+[ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="2_6gw2p"]
+
+[resource]
+script = ExtResource("2_6gw2p")
+_name = "Scattershot"
+_description = ""
+_artwork = ExtResource("1_0sgmh")
+_type = 2
+_rarity = 1
+_actionPointCost = 1
+_movementPointCost = 0
+_target = 3
+_damageTypes = [7]
+_damageDice = ["1d4"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []

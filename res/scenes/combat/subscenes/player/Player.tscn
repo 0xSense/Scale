@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjvk42o3wxiyl"]
+[gd_scene load_steps=10 format=3 uid="uid://cjvk42o3wxiyl"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Player.cs" id="1_vvg4x"]
 [ext_resource type="SpriteFrames" uid="uid://d0xuag4u0grsi" path="res://res/scenes/combat/subscenes/player/asset/animation/player_frames.tres" id="2_kg70c"]
 [ext_resource type="PackedScene" uid="uid://ogl7y7epfib" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.tscn" id="3_ri5e0"]
 [ext_resource type="Shader" path="res://res/scenes/combat/subscenes/health_bar/HealthBar.gdshader" id="4_x2hpw"]
+[ext_resource type="AudioStream" uid="uid://dj6erpmyku2qc" path="res://res/scenes/combat/audio/draw.ogg" id="5_25uvg"]
+[ext_resource type="AudioStream" uid="uid://cvldrv41gdld0" path="res://res/scenes/combat/audio/card_drop.ogg" id="6_dxykr"]
+[ext_resource type="AudioStream" uid="uid://vgspo8yd51si" path="res://res/scenes/combat/audio/drop_2.ogg" id="7_haymp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u6yp"]
 radius = 57.0
@@ -31,3 +34,15 @@ animation = &"neutral"
 [node name="HealthBar" parent="." instance=ExtResource("3_ri5e0")]
 material = SubResource("ShaderMaterial_n5e0t")
 position = Vector2(-0.500025, 142.75)
+
+[node name="DrawSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_25uvg")
+bus = &"UI"
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dxykr")
+bus = &"UI"
+
+[node name="DropSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_haymp")
+bus = &"UI"

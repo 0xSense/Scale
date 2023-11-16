@@ -13,6 +13,12 @@ using System.Threading.Tasks;
 
 public partial class Card : Area2D
 {
+	private readonly Color COMMON_COL = new Color(1, 1, 1, 1);
+	private readonly Color UNCOMMON_COL = new Color(0.11f, 1, 0, 1);
+	private readonly Color RARE_COL = new Color(0, 0.44f, 0.86f, 1);
+	private readonly Color EPIC_COL = new Color(0.64f, 0.21f, 0.93f, 1);
+	private readonly Color LEGENDARY_COL = new Color(1, 0.5f, 0, 1);
+
 	[Export] private float _maxOffset = 75f;
 
 	private Hand _handOwner;
@@ -33,6 +39,8 @@ public partial class Card : Area2D
 
 	private CardData _data;
 	public CardData Data => _data;
+
+	private ShaderMaterial _playerStampMat;
 
 	
 	public void UpdateData(CardData data)
@@ -64,7 +72,69 @@ public partial class Card : Area2D
 
 		((RichTextLabel)GetNode("DamageLabel")).Text = "[font_size=50]" + diceText + "[/font_size]";
 
-		((RichTextLabel)GetNode("TargetsLabel")).Text = "[right][font_size=50]" + data.Target + "[/font_size][/right]";
+		((RichTextLabel)GetNode("TargetsLabel")).Text = ""; // "[right][font_size=50]" + data.Target + "[/font_size][/right]";
+
+		Node2D targetingStamp = null;
+
+		_playerStampMat = null;
+
+		switch (data.Target)
+		{
+			case TargetType.SELF:
+			targetingStamp = ((Node2D)GetNode("SelfStamp")); //.Visible = true;
+			_playerStampMat = (((Sprite2D)targetingStamp.GetNode("PlayerStamp")).Material as ShaderMaterial);
+			break;
+			case TargetType.SINGLE:
+			targetingStamp = ((Node2D)GetNode("SingleStamp"));
+			break;
+			case TargetType.MULTI_TWO:
+			targetingStamp = ((Node2D)GetNode("DualStamp"));
+			break;
+			case TargetType.MULTI_THREE:
+			targetingStamp = ((Node2D)GetNode("TripleStamp"));
+			break;
+			case TargetType.MULTI_FOUR:
+			targetingStamp = ((Node2D)GetNode("QuadStamp"));
+			break;
+			case TargetType.ALL:
+			targetingStamp = ((Node2D)GetNode("AllStamp"));
+			_playerStampMat = (((Sprite2D)targetingStamp.GetNode("PlayerStamp")).Material as ShaderMaterial);
+			break;
+		}
+
+
+
+		targetingStamp.Visible = true;
+
+		Color rarityColor = new Color(1, 0, 1, 1);
+		
+
+		switch (data.Rarity)
+		{
+			case CardRarity.COMMON:
+			rarityColor = COMMON_COL;
+			// (((Sprite2D)targetingStamp.GetNode("PlayerStamp")).Material as ShaderMaterial).SetShaderParameter("tint", rarityColor);
+			
+			break;
+			case CardRarity.UNCOMMON:
+			rarityColor = UNCOMMON_COL;
+			break;
+			case CardRarity.RARE:
+			rarityColor = RARE_COL;
+			break;
+			case CardRarity.EPIC:
+			rarityColor = EPIC_COL;
+			break;
+			case CardRarity.LEGENDARY:
+			rarityColor = LEGENDARY_COL;
+			break;
+		}
+
+		if (_playerStampMat != null)
+			_playerStampMat.SetShaderParameter("tint", rarityColor);
+
+		targetingStamp.Modulate = rarityColor;
+		((Node2D)GetNode("Background")).Modulate = rarityColor;
 
 		((Label)GetNode("ActionPointIcon/ActionPointNumber")).Text = data.ActionPointCost.ToString();
 

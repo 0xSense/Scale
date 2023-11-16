@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://cagkcsnwq2qr0"]
 
-[ext_resource type="Texture2D" uid="uid://c7wqn4bb1qxks" path="res://res/scenes/combat/subscenes/Card/images/artwork/hellish_enslavement.png" id="1_2oqf8"]
 [ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="1_11otx"]
+[ext_resource type="Texture2D" uid="uid://cgckme6dljrlw" path="res://res/scenes/combat/subscenes/Card/images/artwork/hellish_grasp.png" id="1_jue7i"]
 
 [resource]
 script = ExtResource("1_11otx")
 _name = "Hell's Grasp"
 _description = ""
-_artwork = ExtResource("1_2oqf8")
+_artwork = ExtResource("1_jue7i")
 _type = 0
 _rarity = 1
 _actionPointCost = 2
