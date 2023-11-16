@@ -1,13 +1,15 @@
-[gd_scene load_steps=32 format=3 uid="uid://b6a77ow3dkibo"]
+[gd_scene load_steps=36 format=3 uid="uid://b6a77ow3dkibo"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_cx5s2"]
 [ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_xfqal"]
 [ext_resource type="PackedScene" uid="uid://do36152v62xpk" path="res://res/scenes/levels/overworld/environment/Door.tscn" id="3_4jhnf"]
+[ext_resource type="PackedScene" uid="uid://lnrwul0e3vmm" path="res://res/scenes/levels/purgatory/shopkeeperroom.tscn" id="3_bsdw3"]
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="4_h554j"]
 [ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="5_hau81"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="6_kwr13"]
+[ext_resource type="PackedScene" uid="uid://clbhsh67kqbp3" path="res://res/scenes/characters/npcs/shopkeeper.tscn" id="6_voel0"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="8_xo8s2"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_7i5ul"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
@@ -66,6 +68,12 @@ size = Vector2(55, 27.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h05vj"]
 size = Vector2(55, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwog5"]
+size = Vector2(27, 249.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc7fv"]
+size = Vector2(305, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_52nkj"]
 size = Vector2(1152, 52)
@@ -171,10 +179,29 @@ shape = SubResource("RectangleShape2D_h05vj")
 [node name="Locations" type="Node" parent="."]
 
 [node name="Room_1" type="Marker2D" parent="Locations"]
-position = Vector2(-18, -2681)
+position = Vector2(-520, -1123)
 
 [node name="Room_2" type="Marker2D" parent="Locations"]
 position = Vector2(42, -1195)
+
+[node name="shopkeeperroom" parent="Locations" instance=ExtResource("3_bsdw3")]
+position = Vector2(-404, -1204)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Locations/shopkeeperroom"]
+position = Vector2(-153, -7.75)
+shape = SubResource("RectangleShape2D_fwog5")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Locations/shopkeeperroom"]
+position = Vector2(181, -7)
+shape = SubResource("RectangleShape2D_fwog5")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Locations/shopkeeperroom"]
+position = Vector2(14.5, -117)
+shape = SubResource("RectangleShape2D_dc7fv")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Locations/shopkeeperroom"]
+position = Vector2(15, 104)
+shape = SubResource("RectangleShape2D_dc7fv")
 
 [node name="Doors" type="Node" parent="."]
 
@@ -296,6 +323,9 @@ z_index = -1
 position = Vector2(11.5, 10)
 scale = Vector2(0.0199653, 0.0308641)
 texture = ExtResource("5_hau81")
+
+[node name="Shopkeeper" parent="Npcs" instance=ExtResource("6_voel0")]
+position = Vector2(-325, -1136)
 
 [node name="Shop" type="Node2D" parent="."]
 visible = false
@@ -423,10 +453,10 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
-[node name="Player" parent="." instance=ExtResource("8_xo8s2")]
-position = Vector2(-809, -588)
+[node name="Player" parent="." instance=ExtResource("9_7i5ul")]
+position = Vector2(-815, -585)
 
-[node name="platformer_camera2" parent="Player" instance=ExtResource("9_meyk3")]
+[node name="platformer_camera" parent="Player" instance=ExtResource("9_meyk3")]
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
