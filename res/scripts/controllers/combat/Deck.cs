@@ -20,8 +20,12 @@ public class Deck
     public LinkedList<CardData> CardList => _mainDeck;
     private List<CardData> _discard;
 
+    public delegate void DiscardChangeWarner();
+    public event DiscardChangeWarner OnDiscardChange;
+
     public Deck()
     {
+
         _cards = new();
         _mainDeck = new();
         _discard = new();
@@ -164,6 +168,7 @@ public class Deck
         }
 
         _discard.Clear();
+        OnDiscardChange?.Invoke();
     }
 
     public void ForceFullReshuffle()
@@ -183,6 +188,9 @@ public class Deck
             }
 
             _discard.Clear();
+            OnDiscardChange?.Invoke();
+            GD.Print("In shuffle");
+            GD.Print(OnDiscardChange == null);
         }
     }
 

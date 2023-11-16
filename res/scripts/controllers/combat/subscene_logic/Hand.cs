@@ -76,12 +76,20 @@ public partial class Hand : Marker2D
         }
     }
 
-    public CardData RemoveCard(Card card)
+    public CardData RemoveCard(Card card, bool delete=false, Node2D discard=null)
     {
         RemoveChild(card);
         _cards.Remove(card);
         _selectedCardIndex = -1;
         OrderCards();
+
+        if (discard != null)
+        {
+            card.AddToDiscard(discard);
+        }
+        else if (delete)
+            card.QueueFree();
+
         return card.Data;
 
     }

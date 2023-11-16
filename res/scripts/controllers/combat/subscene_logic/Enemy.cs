@@ -204,7 +204,7 @@ public partial class Enemy : Combatant
                     continue;
 
                 float eval = EvalCard(card, actionPoints, _combatManager.Player);
-                GD.Print("Option: " + card.Name + ". Eval: " + eval);
+                // GD.Print("Option: " + card.Name + ". Eval: " + eval);
                 if (eval > bestEval)
                 {
                     bestEval = eval;
@@ -212,7 +212,7 @@ public partial class Enemy : Combatant
                 }
             }
 
-            GD.Print("Choice: " + best + ". Eval: " + bestEval);
+            // GD.Print("Choice: " + best + ". Eval: " + bestEval);
 
             if (best != null)
             {
@@ -239,11 +239,11 @@ public partial class Enemy : Combatant
     {
         List<CardData> toPlay = DetermineCards();
 
-        GD.Print("\nTo play:");
+        // GD.Print("\nTo play:");
 
         foreach (CardData nextCard in toPlay)
         {
-            GD.Print(nextCard.Name);
+            // GD.Print(nextCard.Name);
             CardData cardToPlay = null;
 
             await Task.Delay(_turnDelayTimeStart);
@@ -273,7 +273,7 @@ public partial class Enemy : Combatant
             FloatingTextFactory.GetInstance().CreateFloatingText("[color=white]" + cardToPlay.Name + "[/color]", Position + Vector2.Up * 100, lifetime: 2500, 300);
 
         }
-        GD.Print("Ending turn");
+        // GD.Print("Ending turn");
         await Task.Delay(_turnDelayTimeEnd);
         _internalDeck.ForceShuffle();
 

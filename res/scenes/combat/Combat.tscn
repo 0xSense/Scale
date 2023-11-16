@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bk6mw4uwgd1yl"]
+[gd_scene load_steps=18 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://res/scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://res/scenes/combat/CombatMain.cs" id="1_gps4y"]
@@ -6,15 +6,13 @@
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Hand.cs" id="4_d0wjn"]
 [ext_resource type="PackedScene" uid="uid://cjvk42o3wxiyl" path="res://res/scenes/combat/subscenes/player/Player.tscn" id="4_rn6c5"]
 [ext_resource type="PackedScene" uid="uid://de6otae1c7bon" path="res://res/scenes/combat/subscenes/deck/Deck.tscn" id="9_5f4rp"]
-[ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card.png" id="10_04n3w"]
-[ext_resource type="Texture2D" uid="uid://dgurbiof18wya" path="res://res/scenes/combat/subscenes/Card/images/card_background_trans.png" id="11_be1sx"]
 [ext_resource type="Theme" uid="uid://cggsc5a61dg71" path="res://assets/fonts/hunck_theme.tres" id="12_0sia7"]
 [ext_resource type="Script" path="res://res/scenes/combat/EndTurn.cs" id="12_atut3"]
-[ext_resource type="Texture2D" uid="uid://cv421tfpuq0g6" path="res://res/scenes/combat/subscenes/Card/images/card_background.png" id="12_npiqr"]
 [ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://res/scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]
 [ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://res/scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
 [ext_resource type="Script" path="res://res/scenes/combat/FloatingTextFactory.cs" id="14_46n5p"]
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
+[ext_resource type="Texture2D" uid="uid://btu5t7qeg8uof" path="res://res/scenes/combat/subscenes/XButton.png" id="16_qdhf3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xqp2"]
 
@@ -35,12 +33,14 @@ radius = 32.0
 script = ExtResource("1_gps4y")
 _enemyTypePaths = Array[String](["uid://iw7vaee7nlpc", "uid://6dpordjypq8l"])
 
-[node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel") instance=ExtResource("4_rn6c5")]
+[node name="Player" parent="." node_paths=PackedStringArray("_hand", "_targetLabel", "_actionPointLabel", "_movementPointLabel", "_deck", "_discard") instance=ExtResource("4_rn6c5")]
 position = Vector2(-628, 103)
 _hand = NodePath("../Hand")
 _targetLabel = NodePath("../InfoLabel")
 _actionPointLabel = NodePath("../Energy/ActionPoint/Label")
 _movementPointLabel = NodePath("../Energy/MovementPoint/Label")
+_deck = NodePath("../Deck")
+_discard = NodePath("../Discard")
 _maxHealth = 25
 
 [node name="Background" parent="." instance=ExtResource("1_5pl1x")]
@@ -65,93 +65,26 @@ y_sort_enabled = true
 position = Vector2(842, 379)
 scale = Vector2(0.35, 0.325)
 
+[node name="Cards" type="Label" parent="Deck"]
+offset_left = -57.1433
+offset_top = 393.847
+offset_right = 38.8567
+offset_bottom = 496.847
+theme = ExtResource("12_0sia7")
+theme_override_font_sizes/font_size = 100
+text = "10"
+
 [node name="Discard" type="Sprite2D" parent="."]
 position = Vector2(-847, 481)
-scale = Vector2(0.21, 0.21)
 
-[node name="Card" type="Sprite2D" parent="Discard"]
-
-[node name="Art" type="Sprite2D" parent="Discard/Card"]
-z_index = 1
-position = Vector2(0, -753.805)
-texture = ExtResource("10_04n3w")
-
-[node name="Background" type="Sprite2D" parent="Discard/Card"]
-z_index = 1
-position = Vector2(0, -499)
-scale = Vector2(0.76, 0.76)
-texture = ExtResource("11_be1sx")
-
-[node name="BackroundWhite" type="Sprite2D" parent="Discard/Card"]
-position = Vector2(0, -499)
-scale = Vector2(0.76, 0.76)
-texture = ExtResource("12_npiqr")
-
-[node name="NameLabel" type="RichTextLabel" parent="Discard/Card"]
-offset_left = -306.0
-offset_top = -471.0
-offset_right = 310.0
-offset_bottom = -381.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "[center]Name[/center]"
-threaded = true
-
-[node name="DescriptionLabel" type="RichTextLabel" parent="Discard/Card"]
-offset_left = -306.0
-offset_top = -375.0
-offset_right = 306.0
-offset_bottom = -211.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "[center]Description of the card - intended to be flavor text."
-threaded = true
-
-[node name="DamageLabel" type="RichTextLabel" parent="Discard/Card"]
-offset_left = -306.0
-offset_top = -194.0
-offset_right = -21.0
-offset_bottom = -42.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "[color=red]1d8 + 4[/color] [img=40]assets/placeholder/damage_icons/fire.png[/img]"
-threaded = true
-
-[node name="TargetsLabel" type="RichTextLabel" parent="Discard/Card"]
-offset_left = 23.0
-offset_top = -194.0
-offset_right = 307.0
-offset_bottom = -42.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 35
-bbcode_enabled = true
-text = "[right]Target info here"
-threaded = true
-
-[node name="ActionPointIcon" type="Sprite2D" parent="Discard/Card"]
-z_index = 2
-position = Vector2(-370, -1010)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("13_ey1xf")
-
-[node name="ActionPointNumber" type="Label" parent="Discard/Card/ActionPointIcon"]
-offset_left = -62.0
-offset_top = -118.0
-offset_right = 58.0
-offset_bottom = 112.0
-theme_override_font_sizes/font_size = 150
-text = "1"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MovementPointIcon" type="Sprite2D" parent="Discard/Card"]
-z_index = 2
-position = Vector2(368, -1003)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("14_epm16")
+[node name="Cards" type="Label" parent="Discard"]
+offset_left = -10.332
+offset_top = 8.3335
+offset_right = 85.668
+offset_bottom = 111.333
+theme = ExtResource("12_0sia7")
+theme_override_font_sizes/font_size = 40
+text = "10"
 
 [node name="Energy" type="Node2D" parent="."]
 
@@ -175,9 +108,9 @@ texture = ExtResource("13_ey1xf")
 
 [node name="Label" type="Label" parent="Energy/ActionPoint"]
 offset_left = -24.0
-offset_top = -76.0
+offset_top = -68.0
 offset_right = 33.0
-offset_bottom = 64.0
+offset_bottom = 72.0
 theme_override_font_sizes/font_size = 100
 text = "3"
 
@@ -214,7 +147,29 @@ script = ExtResource("14_46n5p")
 _theme = ExtResource("12_0sia7")
 _fontSize = 50
 
+[node name="XButton" type="TextureButton" parent="."]
+offset_left = 783.0
+offset_top = 129.0
+offset_right = 1039.0
+offset_bottom = 385.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("16_qdhf3")
+
+[node name="Label" type="Label" parent="XButton"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 176.0
+offset_right = 244.0
+offset_bottom = 254.0
+theme = ExtResource("12_0sia7")
+theme_override_colors/font_color = Color(0.815686, 0.172549, 0.207843, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 75
+text = "Cancel"
+
 [connection signal="input_event" from="EndTurn" to="Player" method="OnEndTurnButtonInput"]
 [connection signal="input_event" from="EndTurn" to="EndTurn" method="OnInputEvent"]
 [connection signal="mouse_entered" from="EndTurn" to="EndTurn" method="OnMouseEntered"]
 [connection signal="mouse_exited" from="EndTurn" to="EndTurn" method="OnMouseExited"]
+[connection signal="pressed" from="XButton" to="Player" method="OnXButtonPressed"]

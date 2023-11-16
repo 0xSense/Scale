@@ -38,6 +38,8 @@ public partial class Combatant : Area2D, ICombatant
     protected Dictionary<Data.DamageType, int> _resistances;
     protected Dictionary<BuffType, int> _buffs;
     protected Dictionary<DebuffType, int> _debuffs;
+    public Dictionary<BuffType, int> Buffs => _buffs;
+    public Dictionary<DebuffType, int> Debuffs => _debuffs;
     protected CombatManager _combatManager;
 
     public override void _Ready()
@@ -77,21 +79,11 @@ public partial class Combatant : Area2D, ICombatant
             _resistances[resistance] = Math.Max(0, _resistances[resistance]);
         }
 
-        if (_debuffs.ContainsKey(DebuffType.POISONED) && _debuffs[DebuffType.POISONED] > 0)
-            TakeDamage(DamageType.POISON, 1, 1, false, false);
-
         foreach (BuffType buff in _buffs.Keys)
         {
             _buffs[buff]--;
             _buffs[buff] = Math.Max(0, _buffs[buff]);
-        }
-
-        foreach (DebuffType debuff in _debuffs.Keys)
-        {
-            _debuffs[debuff]--;
-            _debuffs[debuff] = Math.Max(0, _debuffs[debuff]);
-        }        
-            
+        }           
 
         // TODO: Fill out function
     }
@@ -155,6 +147,9 @@ public partial class Combatant : Area2D, ICombatant
             armorDamageBypass = armorDamage * (1.0f + (-0.5f + (0.25f * isCritInteger)));
             amountPostCrit -= armorDamage;
 
+            Vector2 textPos = Position + ((Node2D)(GetNode("HealthBar/Armor"))).Position + Vector2.Down * 100;
+            GD.Print("Pos: " + textPos);
+            FloatingTextFactory.GetInstance().CreateFloatingText("[color=#666666]" + armorDamage.ToString() + "[/color]", textPos);
         }    
 
         if (HasDebuff(DebuffType.EXPOSED))
@@ -188,7 +183,7 @@ public partial class Combatant : Area2D, ICombatant
         }
 
         if (_buffs.ContainsKey(buff.Type))
-            _buffs[buff.Type] += buff.Value;
+            _buffs[buff.Type] = Math.Max(buff.Value, _buffs[buff.Type]);
         else
             _buffs.Add(buff.Type, buff.Value);
     }
@@ -199,7 +194,7 @@ public partial class Combatant : Area2D, ICombatant
             _buffs = new();
             
         if (_debuffs.ContainsKey(debuff.Type))
-            _debuffs[debuff.Type] += debuff.Duration;
+            _debuffs[debuff.Type] = Math.Max(debuff.Duration, _debuffs[debuff.Type]);
         else
             _debuffs.Add(debuff.Type, debuff.Duration);
     }
@@ -273,6 +268,15 @@ public partial class Combatant : Area2D, ICombatant
     public virtual void EndTurn()
     {
         _isTurn = false;
+        if (_debuffs.ContainsKey(DebuffType.POISONED) && _debuffs[DebuffType.POISONED] > 0)
+            TakeDamage(DamageType.POISON, 1, 1, false, false);
+
+        foreach (DebuffType debuff in _debuffs.Keys)
+        {
+            _debuffs[debuff]--;
+            _debuffs[debuff] = Math.Max(0, _debuffs[debuff]);
+        }    
+
         _combatManager.EndTurn(this);        
     }
 
