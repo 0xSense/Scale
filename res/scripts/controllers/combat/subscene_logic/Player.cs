@@ -35,6 +35,7 @@ public partial class Player : Combatant
     public PlayerState State => _state;
 
     private Card _currentlyTargeting;
+    private AnimatedSprite2D _sprite;
     private List<ICombatant> _targeted = new();
     private int _toDiscard; // Refers to either discarding or returning
     private bool _firstTurn;
@@ -47,7 +48,7 @@ public partial class Player : Combatant
         _toDiscard = 0;
         _state = PlayerState.SELECTING_CARD;
         _targetLabel.Visible = false;
-
+        _sprite = (AnimatedSprite2D)GetNode<AnimatedSprite2D>("Player");
 
     }
 
@@ -81,16 +82,24 @@ public partial class Player : Combatant
         _movementPointLabel.Text = _movementPoints.ToString();
     }
 
+    void EndTargeting()
+    {
+        _currentlyTargeting = null;
+        _hand.Unfreeze();
+        _targetLabel.Visible = false;
+        _state = PlayerState.SELECTING_CARD;
+        _targeted = new();
+    }
+
+    public override void TakeDamage(Data.DamageType type, int amount, double critModifier, bool isCrit, bool autoResist)
+    {
+        base.TakeDamage(type, amount, critModifier, isCrit, autoResist);
+        _sprite.Play("hurt");
+    }
+
     public override void _PhysicsProcess(double delta)
     {
-        void endTargeting()
-        {
-            _currentlyTargeting = null;
-            _hand.Unfreeze();
-            _targetLabel.Visible = false;
-            _state = PlayerState.SELECTING_CARD;
-            _targeted = new();
-        }
+        
         if (!_isTurn)
             return;
 
@@ -154,7 +163,7 @@ public partial class Player : Combatant
 
                         PlayCard(_targeted.ToArray(), _currentlyTargeting);
 
-                        endTargeting();
+                        EndTargeting();
                     }
                     break;
                 case PlayerState.GAME_OVER:
@@ -167,12 +176,13 @@ public partial class Player : Combatant
 
         if (Input.IsActionJustPressed("Deselect") && _state == PlayerState.SELECTING_TARGETS)
         {
-            endTargeting();
+            EndTargeting();
         }
     }
 
     private async void PlayCard(ICombatant[] targets, Card card)
     {
+        _sprite.Play("attack");
         await card.BeginPlayAnimation();
         _combatManager.PlayCard(this, targets, card.Data);
         _internalDeck.Discard(card.Data);
@@ -257,6 +267,7 @@ public partial class Player : Combatant
             {
                 _isTurn = false;
                 await Task.Delay(1000);
+                EndTargeting();
                 this.EndTurn();
             }
         }

@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://d0xuag4u0grsi"]
+
+[ext_resource type="Texture2D" uid="uid://b05b7rpo1cmoc" path="res://res/scenes/combat/subscenes/player/asset/animation/player_attack.PNG" id="1_kre7l"]
+[ext_resource type="Texture2D" uid="uid://rjr0f4cvnrok" path="res://res/scenes/combat/subscenes/player/asset/animation/player_hurt.PNG" id="2_4g20g"]
+[ext_resource type="Texture2D" uid="uid://c41xwv8rv622u" path="res://res/scenes/combat/subscenes/player/asset/animation/player_neutral.PNG" id="3_ig0iq"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kre7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ig0iq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4g20g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ig0iq")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ig0iq")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 1.0
+}]
