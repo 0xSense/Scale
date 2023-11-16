@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d204n4ckwe72x"]
+[gd_scene load_steps=15 format=3 uid="uid://d204n4ckwe72x"]
 
 [ext_resource type="Script" path="res://res/scripts/MasterScene.cs" id="1_smi8o"]
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/MasterDeck.cs" id="2_ykx58"]
@@ -12,6 +12,8 @@
 [ext_resource type="Resource" uid="uid://c6pel68nd1b8l" path="res://res/resources/cards/SwordOfMessenger.tres" id="10_74qxg"]
 [ext_resource type="Resource" uid="uid://cn0adl2tnmo8n" path="res://res/resources/cards/ArrowStorm.tres" id="11_61ikk"]
 [ext_resource type="Resource" uid="uid://cfc5bwbj41lg6" path="res://res/resources/cards/ScatterShot.tres" id="12_ojmvo"]
+[ext_resource type="Resource" uid="uid://dg7fkynwwgtai" path="res://res/resources/cards/HolyWord.tres" id="13_82e7h"]
+[ext_resource type="Resource" uid="uid://qi6jlwliipaq" path="res://res/resources/cards/LetterOpener.tres" id="14_v7u5o"]
 
 [node name="MasterScene" type="Node2D"]
 script = ExtResource("1_smi8o")
@@ -20,5 +22,5 @@ _defaultSceneUID = "uid://bk6mw4uwgd1yl"
 
 [node name="MasterDeck" type="Node" parent="."]
 script = ExtResource("2_ykx58")
-_cardTypes = [ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("5_54fyw"), ExtResource("6_2hqoe"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("9_w8voq"), ExtResource("10_74qxg"), ExtResource("11_61ikk"), ExtResource("12_ojmvo")]
-_playerStarterDeck = Array[Resource]([ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("7_g0tv5"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("10_74qxg"), ExtResource("9_w8voq"), ExtResource("10_74qxg"), ExtResource("12_ojmvo"), ExtResource("11_61ikk")])
+_cardTypes = [ExtResource("3_k5w33"), ExtResource("4_oxfww"), ExtResource("5_54fyw"), ExtResource("6_2hqoe"), ExtResource("7_g0tv5"), ExtResource("8_mm6l1"), ExtResource("9_w8voq"), ExtResource("10_74qxg"), ExtResource("11_61ikk"), ExtResource("12_ojmvo"), ExtResource("14_v7u5o"), ExtResource("13_82e7h")]
+_playerStarterDeck = Array[Resource]([ExtResource("3_k5w33"), ExtResource("3_k5w33"), ExtResource("3_k5w33"), ExtResource("8_mm6l1"), ExtResource("8_mm6l1"), ExtResource("13_82e7h"), ExtResource("13_82e7h"), ExtResource("13_82e7h"), ExtResource("12_ojmvo"), ExtResource("12_ojmvo"), ExtResource("14_v7u5o"), ExtResource("14_v7u5o"), ExtResource("14_v7u5o"), ExtResource("4_oxfww"), ExtResource("4_oxfww")])
