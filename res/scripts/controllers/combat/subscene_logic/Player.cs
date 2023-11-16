@@ -33,6 +33,10 @@ public partial class Player : Combatant
     [Export] Node2D _deck;
     [Export] Node2D _discard;
 
+    private AudioStreamPlayer _drawSound;
+    private AudioStreamPlayer _selectSound;
+    private AudioStreamPlayer _dropSound;
+
     private PlayerState _state;
     public PlayerState State => _state;
 
@@ -41,6 +45,7 @@ public partial class Player : Combatant
     private List<ICombatant> _targeted = new();
     private int _toDiscard; // Refers to either discarding or returning
     private bool _firstTurn;
+
 
     public override void _Ready()
     {
@@ -52,6 +57,10 @@ public partial class Player : Combatant
         _targetLabel.Visible = false;
         _sprite = (AnimatedSprite2D)GetNode<AnimatedSprite2D>("Player");
         _internalDeck.OnDiscardChange += OnDiscardChange;
+
+        _drawSound = (AudioStreamPlayer)GetNode("DrawSound");
+        _selectSound = (AudioStreamPlayer)GetNode("SelectSound");
+        _dropSound = (AudioStreamPlayer)GetNode("DropSound");
 
     }
 
@@ -93,8 +102,9 @@ public partial class Player : Combatant
     {
         GD.Print("Begin turn");
         base.BeginTurn();
+
         if (!_firstTurn)
-            _hand.AddCards(_internalDeck.Draw(2));
+            DrawCards(2); // _hand.AddCards(_internalDeck.Draw(2));
         _firstTurn = false;
         _actionPointLabel.Text = _actionPoints.ToString();
         _movementPointLabel.Text = _movementPoints.ToString();
@@ -139,12 +149,13 @@ public partial class Player : Combatant
                         {
                             _internalDeck.Discard(_hand.RemoveCard(_currentlyTargeting, true, _discard));
                             _targetLabel.Text = "[center][color=#BB5545]Discard " + (_toDiscard - 1) + " cards[/color]";
-
+                            _dropSound.Play();
                         }
                         else if (_state == PlayerState.RETURNING_CARDS)
                         {
                             _internalDeck.AddCard(_hand.RemoveCard(_currentlyTargeting, delete:true));
                             _targetLabel.Text = "[center][color=#BB5545]Return " + (_toDiscard - 1) + " cards to deck[/color]";
+                            _dropSound.Play();
                         }
 
                         _currentlyTargeting = null;
@@ -170,6 +181,7 @@ public partial class Player : Combatant
                             _targetLabel.Text = "[center][color=#BB5545]Select Targets[/color]";
                         _hand.Freeze();
                         _currentlyTargeting.ZIndex += 99;
+                        _selectSound.Play();
                     }
 
                     break;
@@ -178,6 +190,7 @@ public partial class Player : Combatant
                     if (clicked != null && !_targeted.Contains(clicked))
                     {
                         _targeted.Add(clicked);
+                        _selectSound.Play();
                     }
 
                     if (_currentlyTargeting.Data.Target == TargetType.SELF)
@@ -196,6 +209,7 @@ public partial class Player : Combatant
                         PlayCard(_targeted.ToArray(), _currentlyTargeting);
 
                         EndTargeting();
+                        _selectSound.Play();
                     }
                     break;
                 case PlayerState.GAME_OVER:
@@ -314,6 +328,7 @@ public partial class Player : Combatant
 
     public override void DrawCards(int n)
     {
+        _drawSound.Play();
         CardData[] cards = _internalDeck.Draw(n);
         _hand.AddCards(cards);
     }

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://he6fbgb3ossq"]
 
 [ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="1_4nxem"]
-[ext_resource type="Texture2D" uid="uid://dy8xeiqxwx2xp" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card2.png" id="1_qyox7"]
+[ext_resource type="Texture2D" uid="uid://bqq31uqvb0ys" path="res://res/scenes/combat/subscenes/Card/images/artwork/bless.png" id="1_d6rg6"]
 
 [resource]
 script = ExtResource("1_4nxem")
 _name = "Blessed"
 _description = ""
-_artwork = ExtResource("1_qyox7")
+_artwork = ExtResource("1_d6rg6")
 _type = 2
 _rarity = 1
 _actionPointCost = 1

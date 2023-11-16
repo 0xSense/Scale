@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://cn0adl2tnmo8n"]
+
+[ext_resource type="Texture2D" uid="uid://b8okdl77s732j" path="res://res/scenes/combat/subscenes/Card/images/artwork/arrow_storm.png" id="1_eo3e1"]
+[ext_resource type="Script" path="res://res/scripts/managers/combat/CardData.cs" id="2_o7dnw"]
+
+[resource]
+script = ExtResource("2_o7dnw")
+_name = "Arrow Storm"
+_description = ""
+_artwork = ExtResource("1_eo3e1")
+_type = 2
+_rarity = 4
+_actionPointCost = 1
+_movementPointCost = 0
+_target = 3
+_damageTypes = [7]
+_damageDice = ["2d6"]
+_drawEffects = []
+_drawQuantities = []
+_buffs = []
+_buffDuration = []
+_resistanceType = []
+_debuffs = []
+_debuffDuration = []

@@ -42,8 +42,19 @@ public partial class Combatant : Area2D, ICombatant
     public Dictionary<DebuffType, int> Debuffs => _debuffs;
     protected CombatManager _combatManager;
 
+    private AudioStreamPlayer _dmgPhysical;    
+    private AudioStreamPlayer _critPhysical;
+    private AudioStreamPlayer _dmgMagic;
+    private AudioStreamPlayer _critMagic;
+
     public override void _Ready()
     {
+        _dmgPhysical = (AudioStreamPlayer)GetTree().Root.GetChild(0).GetNode("Combat/Audio/DmgPhysical");
+        _critPhysical = (AudioStreamPlayer)GetTree().Root.GetChild(0).GetNode("Combat/Audio/DmgPhysical");
+        _dmgMagic = (AudioStreamPlayer)GetTree().Root.GetChild(0).GetNode("Combat/Audio/DmgPhysical");
+        _critMagic = (AudioStreamPlayer)GetTree().Root.GetChild(0).GetNode("Combat/Audio/DmgPhysical");
+
+
         _combatManager = CombatManager.GetInstance();
         _currentHealth = _maxHealth;
         _isDead = false;
@@ -165,6 +176,21 @@ public partial class Combatant : Area2D, ICombatant
         GD.Print("\nFinal damage:");
         GD.Print("Final applied: " + damage);
         GD.Print("Bypassed armor: " + armorDamageBypass);
+
+        if (type == DamageType.SHARP || type == DamageType.BLUNT || type == DamageType.PIERCING)
+        {
+            if (isCrit)
+                _critPhysical.Play();
+            else
+                _dmgPhysical.Play();
+        }
+        else
+        {
+            if (isCrit)
+                _critMagic.Play();
+            else
+                _dmgMagic.Play();
+        }
     }
 
     public virtual void ApplyBuff(Buff buff)

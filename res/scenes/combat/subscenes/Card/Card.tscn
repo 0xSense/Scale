@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqskjl6vsej8"]
+[gd_scene load_steps=15 format=3 uid="uid://dqskjl6vsej8"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/combat/subscene_logic/Card.cs" id="1_q4dhy"]
 [ext_resource type="Texture2D" uid="uid://dfad8mude76tx" path="res://res/scenes/combat/subscenes/Card/images/artwork/test_card.png" id="2_0qfpw"]
@@ -8,9 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/Card/images/movement_point_icon.png" id="5_lktgx"]
 [ext_resource type="Texture2D" uid="uid://1mxovo0dtleq" path="res://res/scenes/combat/subscenes/Card/images/snek_color.png" id="6_c8t6u"]
 [ext_resource type="SpriteFrames" uid="uid://bsv28668g8l7g" path="res://res/scenes/combat/subscenes/Card/animations/fire/fire_anim.tres" id="7_1fgaa"]
+[ext_resource type="Shader" path="res://res/scenes/combat/subscenes/Card/PlayerStamp.gdshader" id="9_eh8p3"]
+[ext_resource type="Texture2D" uid="uid://cdf18qqmux3gx" path="res://res/scenes/combat/subscenes/Card/images/PlayerStamp.png" id="9_xvclh"]
+[ext_resource type="Texture2D" uid="uid://bep574adcsjck" path="res://res/scenes/combat/subscenes/Card/images/EnemyStamp.png" id="10_kaadg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqjh"]
 size = Vector2(704, 1736)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5cahu"]
+shader = ExtResource("9_eh8p3")
+shader_parameter/tint = Vector3(1, 0, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4g8vr"]
+shader = ExtResource("9_eh8p3")
+shader_parameter/tint = Vector3(1, 0, 0.5)
 
 [node name="Card" type="Area2D"]
 disable_mode = 1
@@ -115,3 +126,88 @@ position = Vector2(2, -499)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_1fgaa")
 speed_scale = 0.5
+
+[node name="SelfStamp" type="Node2D" parent="."]
+visible = false
+
+[node name="PlayerStamp" type="Sprite2D" parent="SelfStamp"]
+material = SubResource("ShaderMaterial_5cahu")
+position = Vector2(281, -60)
+texture = ExtResource("9_xvclh")
+
+[node name="SingleStamp" type="Node2D" parent="."]
+visible = false
+
+[node name="EnemyStamp" type="Sprite2D" parent="SingleStamp"]
+position = Vector2(281, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="DualStamp" type="Node2D" parent="."]
+visible = false
+
+[node name="EnemyStamp" type="Sprite2D" parent="DualStamp"]
+position = Vector2(281, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp2" type="Sprite2D" parent="DualStamp"]
+position = Vector2(150, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="TripleStamp" type="Node2D" parent="."]
+visible = false
+
+[node name="EnemyStamp" type="Sprite2D" parent="TripleStamp"]
+position = Vector2(281, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp4" type="Sprite2D" parent="TripleStamp"]
+position = Vector2(150, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp2" type="Sprite2D" parent="TripleStamp"]
+position = Vector2(281, -191)
+texture = ExtResource("10_kaadg")
+
+[node name="QuadStamp" type="Node2D" parent="."]
+visible = false
+
+[node name="EnemyStamp" type="Sprite2D" parent="QuadStamp"]
+position = Vector2(281, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp4" type="Sprite2D" parent="QuadStamp"]
+position = Vector2(150, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp2" type="Sprite2D" parent="QuadStamp"]
+position = Vector2(281, -191)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp5" type="Sprite2D" parent="QuadStamp"]
+position = Vector2(150, -191)
+texture = ExtResource("10_kaadg")
+
+[node name="AllStamp" type="Node2D" parent="."]
+visible = false
+
+[node name="PlayerStamp" type="Sprite2D" parent="AllStamp"]
+material = SubResource("ShaderMaterial_4g8vr")
+position = Vector2(225, -133)
+rotation = 0.523599
+texture = ExtResource("9_xvclh")
+
+[node name="EnemyStamp" type="Sprite2D" parent="AllStamp"]
+position = Vector2(281, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp4" type="Sprite2D" parent="AllStamp"]
+position = Vector2(150, -60)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp2" type="Sprite2D" parent="AllStamp"]
+position = Vector2(281, -191)
+texture = ExtResource("10_kaadg")
+
+[node name="EnemyStamp5" type="Sprite2D" parent="AllStamp"]
+position = Vector2(150, -191)
+texture = ExtResource("10_kaadg")

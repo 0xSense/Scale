@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bk6mw4uwgd1yl"]
+[gd_scene load_steps=22 format=3 uid="uid://bk6mw4uwgd1yl"]
 
 [ext_resource type="PackedScene" uid="uid://5xfakfw8o7lh" path="res://res/scenes/combat/subscenes/background/Background.tscn" id="1_5pl1x"]
 [ext_resource type="Script" path="res://res/scenes/combat/CombatMain.cs" id="1_gps4y"]
@@ -10,9 +10,13 @@
 [ext_resource type="Script" path="res://res/scenes/combat/EndTurn.cs" id="12_atut3"]
 [ext_resource type="Texture2D" uid="uid://cmd0yww32e0eg" path="res://res/scenes/combat/subscenes/EndTurn.png" id="12_y8ifr"]
 [ext_resource type="Texture2D" uid="uid://d0yvuuqs8usan" path="res://res/scenes/combat/subscenes/Card/images/action_point_icon.png" id="13_ey1xf"]
+[ext_resource type="AudioStream" uid="uid://cfsptp38y7lk1" path="res://res/scenes/combat/audio/Dmg nrm.wav" id="14_026us"]
 [ext_resource type="Script" path="res://res/scenes/combat/FloatingTextFactory.cs" id="14_46n5p"]
 [ext_resource type="Texture2D" uid="uid://shtr3us4frvi" path="res://res/scenes/combat/subscenes/Card/images/movement_point_icon.png" id="14_epm16"]
+[ext_resource type="AudioStream" uid="uid://r1s28ufw3838" path="res://res/scenes/combat/audio/Dmg Nrm Crit.wav" id="15_aosei"]
+[ext_resource type="AudioStream" uid="uid://clu8iavaomujq" path="res://res/scenes/combat/audio/Dmg Mag.wav" id="16_c5ed2"]
 [ext_resource type="Texture2D" uid="uid://btu5t7qeg8uof" path="res://res/scenes/combat/subscenes/XButton.png" id="16_qdhf3"]
+[ext_resource type="AudioStream" uid="uid://6nbaw18ep3i5" path="res://res/scenes/combat/audio/Dmg Mag Crit.wav" id="17_dd106"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xqp2"]
 
@@ -167,6 +171,24 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 7
 theme_override_font_sizes/font_size = 75
 text = "Cancel"
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="DmgPhysical" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("14_026us")
+bus = &"SFX"
+
+[node name="CritPhysical" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_aosei")
+bus = &"SFX"
+
+[node name="DmgMagic" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_c5ed2")
+bus = &"SFX"
+
+[node name="CritMagic" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("17_dd106")
+bus = &"SFX"
 
 [connection signal="input_event" from="EndTurn" to="Player" method="OnEndTurnButtonInput"]
 [connection signal="input_event" from="EndTurn" to="EndTurn" method="OnInputEvent"]
