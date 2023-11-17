@@ -16,5 +16,4 @@ position = Vector2(0, -4.19395)
 scale = Vector2(34.4345, -2.55426)
 shape = SubResource("RectangleShape2D_wjuh5")
 
-[connection signal="body_entered" from="Area2D" to="." method="OnAreaEntered"]
 [connection signal="body_exited" from="Area2D" to="." method="OnAreaExited"]

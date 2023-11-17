@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="6_kwr13"]
 [ext_resource type="PackedScene" uid="uid://clbhsh67kqbp3" path="res://res/scenes/characters/npcs/shopkeeper.tscn" id="6_voel0"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_7i5ul"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="9_7i5ul"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]

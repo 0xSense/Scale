@@ -230,4 +230,9 @@ public partial class Player : CharacterBody2D
 			_playerSprite.FlipH = false;
 		}
 	}
+
+	private void OnShopKeeperDoorChildEneteredTree()
+	{
+		SetProcess(!IsProcessing());
+	}
 }
