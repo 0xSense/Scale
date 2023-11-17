@@ -8,3 +8,5 @@
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_57x0t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
