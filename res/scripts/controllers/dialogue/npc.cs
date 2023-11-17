@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.IO;
 
-public partial class npc : Node
+public partial class NPC : Node
 {
 	[Export] private CharacterBody2D _playerBody;
 	[Export] private string _dialogueFile;
@@ -22,7 +22,7 @@ public partial class npc : Node
 		{
 			if (Input.IsActionJustPressed("ui_interact"))
 			{
-				
+
 			}
 		}
 	}

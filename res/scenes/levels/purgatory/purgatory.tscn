@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6a77ow3dkibo"]
+[gd_scene load_steps=35 format=3 uid="uid://b6a77ow3dkibo"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_cx5s2"]
 [ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_xfqal"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cutwu3nhtg776" path="res://res/scenes/levels/overworld/enemys/enemy_hand.tscn" id="4_h554j"]
 [ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="5_hau81"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="6_kwr13"]
-[ext_resource type="PackedScene" uid="uid://clbhsh67kqbp3" path="res://res/scenes/characters/npcs/shopkeeper.tscn" id="6_voel0"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="9_7i5ul"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
@@ -323,9 +322,6 @@ z_index = -1
 position = Vector2(11.5, 10)
 scale = Vector2(0.0199653, 0.0308641)
 texture = ExtResource("5_hau81")
-
-[node name="Shopkeeper" parent="Npcs" instance=ExtResource("6_voel0")]
-position = Vector2(-325, -1136)
 
 [node name="Shop" type="Node2D" parent="."]
 visible = false
