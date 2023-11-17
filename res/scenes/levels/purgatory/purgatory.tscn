@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="5_hau81"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="6_kwr13"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="9_7i5ul"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="9_f6ukf"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
@@ -449,8 +449,7 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
-[node name="Player" parent="." instance=ExtResource("9_7i5ul")]
-position = Vector2(-815, -585)
+[node name="Player" parent="." instance=ExtResource("9_f6ukf")]
 
 [node name="platformer_camera" parent="Player" instance=ExtResource("9_meyk3")]
 

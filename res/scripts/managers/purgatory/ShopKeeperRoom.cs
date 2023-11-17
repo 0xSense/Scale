@@ -18,4 +18,6 @@ public partial class ShopKeeperRoom : Node2D
 	public override void _Process(double delta)
 	{
 	}
+
+
 }
