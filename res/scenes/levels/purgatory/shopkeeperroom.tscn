@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://lnrwul0e3vmm"]
+[gd_scene load_steps=5 format=3 uid="uid://lnrwul0e3vmm"]
 
 [ext_resource type="PackedScene" uid="uid://clbhsh67kqbp3" path="res://res/scenes/characters/npcs/shopkeeper.tscn" id="1_36pk8"]
+[ext_resource type="Script" path="res://res/scripts/managers/purgatory/ShopKeeperRoom.cs" id="1_65rm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_578j8"]
 size = Vector2(26.5, 249.75)
@@ -9,6 +10,7 @@ size = Vector2(26.5, 249.75)
 size = Vector2(306, 28)
 
 [node name="shopkeeperroom" type="Node2D"]
+script = ExtResource("1_65rm1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-151, -7)

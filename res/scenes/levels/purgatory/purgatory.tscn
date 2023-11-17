@@ -186,6 +186,7 @@ position = Vector2(42, -1195)
 
 [node name="shopkeeperroom" parent="Locations" instance=ExtResource("3_bsdw3")]
 position = Vector2(-404, -1204)
+script = null
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Locations/shopkeeperroom"]
 position = Vector2(-153, -7.75)
