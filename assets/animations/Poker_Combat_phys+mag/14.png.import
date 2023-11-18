@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blhh5ymyqqnah"
-path="res://.godot/imported/3.PNG-34b5db181bf23e0f2707118d6e0e02e9.ctex"
+uid="uid://ddejj4mo06nk"
+path="res://.godot/imported/14.png-6c7ad60f31ed1c267d3d48a7d69ffabc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/Player_sprint/3.PNG"
-dest_files=["res://.godot/imported/3.PNG-34b5db181bf23e0f2707118d6e0e02e9.ctex"]
+source_file="res://assets/animations/Poker_Combat_phys+mag/14.png"
+dest_files=["res://.godot/imported/14.png-6c7ad60f31ed1c267d3d48a7d69ffabc.ctex"]
 
 [params]
 

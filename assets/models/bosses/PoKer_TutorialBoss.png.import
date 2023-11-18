@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blhh5ymyqqnah"
-path="res://.godot/imported/3.PNG-34b5db181bf23e0f2707118d6e0e02e9.ctex"
+uid="uid://bp6lg81sqkw0p"
+path="res://.godot/imported/PoKer_TutorialBoss.png-0b04432b431c2d3ffa9dede90fd393b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/Player_sprint/3.PNG"
-dest_files=["res://.godot/imported/3.PNG-34b5db181bf23e0f2707118d6e0e02e9.ctex"]
+source_file="res://assets/models/bosses/PoKer_TutorialBoss.png"
+dest_files=["res://.godot/imported/PoKer_TutorialBoss.png-0b04432b431c2d3ffa9dede90fd393b3.ctex"]
 
 [params]
 

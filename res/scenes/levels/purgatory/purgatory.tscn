@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="5_hau81"]
 [ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="6_kwr13"]
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
-[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/PathfindingTestAgainstPlayer.tscn" id="8_xo8s2"]
+[ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="8_27ny3"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
@@ -423,10 +423,11 @@ theme_override_font_sizes/font_size = 31
 text = "Exit"
 flat = true
 
-[node name="Player" parent="." instance=ExtResource("8_xo8s2")]
-position = Vector2(-809, -588)
+[node name="Player" parent="." instance=ExtResource("8_27ny3")]
+position = Vector2(-681, -632)
+_jumpSpeed = 500.0
 
-[node name="platformer_camera2" parent="Player" instance=ExtResource("9_meyk3")]
+[node name="platformer_camera" parent="Player" instance=ExtResource("9_meyk3")]
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blhh5ymyqqnah"
-path="res://.godot/imported/3.PNG-34b5db181bf23e0f2707118d6e0e02e9.ctex"
+uid="uid://bc744vuea7ifu"
+path="res://.godot/imported/23.png-6a0ecbf6c41ea7c96bd596d0f50b1cc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/Player_sprint/3.PNG"
-dest_files=["res://.godot/imported/3.PNG-34b5db181bf23e0f2707118d6e0e02e9.ctex"]
+source_file="res://assets/animations/PoKer_Idle/23.png"
+dest_files=["res://.godot/imported/23.png-6a0ecbf6c41ea7c96bd596d0f50b1cc3.ctex"]
 
 [params]
 
