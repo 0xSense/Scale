@@ -1,6 +1,6 @@
 [gd_scene load_steps=81 format=3 uid="uid://bonaec654gtw3"]
 
-[ext_resource type="Script" path="res://res/scripts/controllers/npc/tutorial_boss.cs" id="1_3deh0"]
+[ext_resource type="Script" path="res://res/scripts/controllers/npc/TutorialBoss.cs" id="1_b608m"]
 [ext_resource type="Texture2D" uid="uid://3ruoyyt3s7un" path="res://assets/animations/Poker_Combat_phys+mag/1.png" id="2_8g3ew"]
 [ext_resource type="Texture2D" uid="uid://cq014ber1i6dd" path="res://assets/animations/Poker_Combat_phys+mag/2.png" id="3_3kowf"]
 [ext_resource type="Texture2D" uid="uid://cti0252yixmw8" path="res://assets/animations/Poker_Combat_phys+mag/3.png" id="4_vo48n"]
@@ -331,11 +331,12 @@ radius = 47.8017
 radius = 1167.0
 
 [node name="tutorial_boss" type="CharacterBody2D"]
-script = ExtResource("1_3deh0")
+script = ExtResource("1_b608m")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="TutorialBossAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hq81l")
 animation = &"Idle"
+frame_progress = 0.744894
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gvb81")
