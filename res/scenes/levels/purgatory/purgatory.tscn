@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b6a77ow3dkibo"]
+[gd_scene load_steps=33 format=3 uid="uid://b6a77ow3dkibo"]
 
 [ext_resource type="Script" path="res://res/scripts/controllers/platforming/TestLevel.cs" id="1_cx5s2"]
 [ext_resource type="Texture2D" uid="uid://dyowibwg6t7w" path="res://assets/models/Purgatory_Level_Design_Blueprint.png" id="2_xfqal"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="7_q51df"]
 [ext_resource type="PackedScene" uid="uid://cshcvcas2jerk" path="res://res/scenes/characters/player/player.tscn" id="8_27ny3"]
 [ext_resource type="PackedScene" uid="uid://diuh8d07tu460" path="res://res/scenes/platformer_camera/platformer_camera.tscn" id="9_meyk3"]
+[ext_resource type="PackedScene" uid="uid://bonaec654gtw3" path="res://res/scenes/characters/npcs/tutorial_boss.tscn" id="10_3yd5q"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_hm3xe"]
 a = Vector2(-43, 8)
@@ -428,6 +429,10 @@ position = Vector2(-681, -632)
 _jumpSpeed = 500.0
 
 [node name="platformer_camera" parent="Player" instance=ExtResource("9_meyk3")]
+
+[node name="tutorial_boss" parent="." instance=ExtResource("10_3yd5q")]
+position = Vector2(2439, -1250)
+scale = Vector2(0.3, 0.3)
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
 [connection signal="body_exited" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyExited"]
