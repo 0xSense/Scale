@@ -1,0 +1,141 @@
+[gd_scene load_steps=5 format=3 uid="uid://e6bovi677jcn"]
+
+[ext_resource type="Script" path="res://res/scripts/controllers/Shop.cs" id="1_y5b3u"]
+[ext_resource type="Texture2D" uid="uid://d3803a136grhv" path="res://assets/models/combat_environment.png" id="2_xpf55"]
+[ext_resource type="Texture2D" uid="uid://bqtgngcws2xth" path="res://assets/models/black_background_square.png" id="3_i6vhw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ra81"]
+texture = ExtResource("3_i6vhw")
+region_rect = Rect2(20, 20, 200, 200)
+modulate_color = Color(0, 0, 0, 1)
+
+[node name="Shop" type="Node2D"]
+z_index = 2
+position = Vector2(-807, -596)
+script = ExtResource("1_y5b3u")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -405.0
+offset_top = -237.0
+offset_right = 384.0
+offset_bottom = 219.0
+texture = ExtResource("2_xpf55")
+expand_mode = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -125.0
+offset_right = 322.0
+offset_bottom = 125.0
+grow_vertical = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 0
+columns = 4
+
+[node name="Item_1" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
+
+[node name="Item_Name" type="Label" parent="GridContainer/Item_1"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 56.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Item 1"
+
+[node name="Button" type="Button" parent="GridContainer/Item_1"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 250.0
+flat = true
+
+[node name="Item_2" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
+
+[node name="Item_Name" type="Label" parent="GridContainer/Item_2"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 56.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Item 2"
+
+[node name="Button" type="Button" parent="GridContainer/Item_2"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 250.0
+flat = true
+
+[node name="Item_3" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
+
+[node name="Item_Name" type="Label" parent="GridContainer/Item_3"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 56.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Item 3"
+
+[node name="Button" type="Button" parent="GridContainer/Item_3"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 250.0
+flat = true
+
+[node name="Item_4" type="Panel" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0ra81")
+
+[node name="Item_Name" type="Label" parent="GridContainer/Item_4"]
+layout_mode = 0
+offset_top = -41.0
+offset_right = 56.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Item 4
+"
+
+[node name="Button" type="Button" parent="GridContainer/Item_4"]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 250.0
+flat = true
+
+[node name="Title" type="Label" parent="."]
+offset_left = -391.0
+offset_top = -222.0
+offset_right = -335.0
+offset_bottom = -190.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "Shop"
+
+[node name="Close" type="Button" parent="."]
+offset_left = 303.0
+offset_top = -222.0
+offset_right = 361.0
+offset_bottom = -190.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 31
+text = "Exit"
+flat = true
+
+[connection signal="pressed" from="GridContainer/Item_1/Button" to="." method="ButtonItem"]
+[connection signal="pressed" from="GridContainer/Item_2/Button" to="." method="ButtonItem"]
+[connection signal="pressed" from="GridContainer/Item_3/Button" to="." method="ButtonItem"]
+[connection signal="pressed" from="GridContainer/Item_4/Button" to="." method="ButtonItem"]
+[connection signal="pressed" from="Close" to="." method="OnClosePressed"]

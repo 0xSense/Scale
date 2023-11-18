@@ -3,17 +3,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjuh5"]
 size = Vector2(36.4858, 259.426)
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Area2D"]
 scale = Vector2(-0.0334297, 0.11922)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4.19395)
 scale = Vector2(34.4345, -2.55426)
 shape = SubResource("RectangleShape2D_wjuh5")
 
-[connection signal="body_exited" from="Area2D" to="." method="OnAreaExited"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1

@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Numerics;
 
-/*
+/*	
 
 Player movement:
  - Walk left and right
@@ -231,11 +231,13 @@ public partial class Player : CharacterBody2D
 		}
 	}
 
-	private void OnShopKeeperDoorChildEneteredTree()
+	private void OnShopKeeperDoorAreaEntered()
 	{
-		if (Input.IsActionPressed("ui_interact"))
-		{
-			GD.Print("Hello from the door");
-		}
+		GD.Print("Shop keep door enter");
+	}
+
+	private void OnReceptionistDoorChildEnteredTree()
+	{
+		GD.Print("Signal Fired");
 	}
 }
