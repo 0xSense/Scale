@@ -233,6 +233,9 @@ public partial class Player : CharacterBody2D
 
 	private void OnShopKeeperDoorChildEneteredTree()
 	{
-		SetProcess(!IsProcessing());
+		if (Input.IsActionPressed("ui_interact"))
+		{
+			GD.Print("Hello from the door");
+		}
 	}
 }
