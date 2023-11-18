@@ -431,7 +431,7 @@ _jumpSpeed = 500.0
 [node name="platformer_camera" parent="Player" instance=ExtResource("9_meyk3")]
 
 [node name="tutorial_boss" parent="." instance=ExtResource("10_3yd5q")]
-position = Vector2(2439, -1250)
+position = Vector2(2422, -1250)
 scale = Vector2(0.3, 0.3)
 
 [connection signal="body_entered" from="Enemys/enemy/Area2D" to="Enemys/enemy" method="OnAreaBodyEntered"]
