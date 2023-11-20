@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Numerics;
 
-/*
+/*	
 
 Player movement:
  - Walk left and right
@@ -229,5 +229,15 @@ public partial class Player : CharacterBody2D
 		{
 			_playerSprite.FlipH = false;
 		}
+	}
+
+	private void OnShopKeeperDoorAreaEntered()
+	{
+		GD.Print("Shop keep door enter");
+	}
+
+	private void OnReceptionistDoorChildEnteredTree()
+	{
+		GD.Print("Signal Fired");
 	}
 }

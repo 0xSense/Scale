@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://lnrwul0e3vmm"]
+
+[ext_resource type="PackedScene" uid="uid://clbhsh67kqbp3" path="res://res/scenes/characters/npcs/shopkeeper.tscn" id="1_36pk8"]
+[ext_resource type="Script" path="res://res/scripts/managers/purgatory/ShopKeeperRoom.cs" id="1_65rm1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_578j8"]
+size = Vector2(26.5, 249.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34gkq"]
+size = Vector2(306, 28)
+
+[node name="shopkeeperroom" type="Node2D"]
+script = ExtResource("1_65rm1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-151, -7)
+shape = SubResource("RectangleShape2D_578j8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(181, -7)
+shape = SubResource("RectangleShape2D_578j8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(15, -118)
+shape = SubResource("RectangleShape2D_34gkq")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(15, 104)
+shape = SubResource("RectangleShape2D_34gkq")
+
+[node name="roomspawnpoint" type="Marker2D" parent="."]
+position = Vector2(-108, 73)
+
+[node name="Shopkeeper" parent="." instance=ExtResource("1_36pk8")]
+position = Vector2(87, 21)
+scale = Vector2(4.2295, 1.70167)
